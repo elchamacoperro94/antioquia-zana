@@ -1,36 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ChevronRight, PlayCircle, HelpCircle } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { objectives } from '../data/projectData';
-import type { ObjectiveEntry } from '../data/projectData';
 import GlassCard from './GlassCard';
 import Badge from './Badge';
 
 export default function ObjectiveTabs() {
   const [activeId, setActiveId] = useState<string>(objectives[0].id);
   const activeObj = objectives.find((obj) => obj.id === activeId) || objectives[0];
-
-  const getStatusIcon = (status: ObjectiveEntry['status']) => {
-    switch (status) {
-      case 'Completado':
-        return <CheckCircle2 className="h-5 w-5 text-emerald-400 shrink-0" />;
-      case 'Avanzado':
-        return <PlayCircle className="h-5 w-5 text-amber-400 shrink-0 animate-pulse" />;
-      default:
-        return <HelpCircle className="h-5 w-5 text-slate-500 shrink-0" />;
-    }
-  };
-
-  const getStatusBadgeColor = (status: ObjectiveEntry['status']) => {
-    switch (status) {
-      case 'Completado':
-        return 'green';
-      case 'Avanzado':
-        return 'amber';
-      default:
-        return 'orange';
-    }
-  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -69,10 +46,7 @@ export default function ObjectiveTabs() {
                     >
                       {obj.title}
                     </h4>
-                    <div className="mt-1 flex items-center gap-1.5">
-                      {getStatusIcon(obj.status)}
-                      <span className="text-xs font-mono text-slate-500">{obj.status}</span>
-                    </div>
+                    <span className="text-xs font-mono text-slate-500 mt-1 block">Hito de Investigación</span>
                   </div>
                 </div>
                 <ChevronRight
@@ -106,7 +80,7 @@ export default function ObjectiveTabs() {
                   </span>
                   <h3 className="text-2xl font-bold text-white mt-1">{activeObj.title}</h3>
                 </div>
-                <Badge text={activeObj.status} color={getStatusBadgeColor(activeObj.status)} pulsing={activeObj.status === 'Avanzado'} />
+                <Badge text="Objetivo Consolidado" color="green" />
               </div>
 
               {/* Description */}

@@ -9,7 +9,7 @@ export default function About() {
     { label: 'Investigador Principal', value: 'Juan C. Henao R., M.Sc.', icon: <UserCircle className="h-5 w-5 text-emerald-400" /> },
     { label: 'Zona de Impacto', value: 'Oriente Antioqueño', icon: <MapPin className="h-5 w-5 text-blue-400" /> },
     { label: 'Periodo de Ejecución', value: '2022 — 2026', icon: <CalendarRange className="h-5 w-5 text-amber-400" /> },
-    { label: 'Presupuesto Financiado', value: '$6.301M COP SGR', icon: <Landmark className="h-5 w-5 text-purple-400" /> }
+    { label: 'Fondo Financiador', value: 'SGR — Regalías CTI', icon: <Landmark className="h-5 w-5 text-purple-400" /> }
   ];
 
   return (

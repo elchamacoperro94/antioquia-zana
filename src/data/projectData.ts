@@ -13,7 +13,6 @@ export interface ProjectMetadata {
   cropChain: string;
   researchGroups: string;
   totalResearchers: string;
-  budgetTotal: string;
 }
 
 export interface RegionStat {
@@ -84,8 +83,7 @@ export const projectMetadata: ProjectMetadata = {
   funder: "Regalías SGR — Fondo de Ciencia, Tecnología e Innovación (CTI)",
   cropChain: "Hortalizas (Vegetables)",
   researchGroups: "12 grupos reconocidos por Colciencias (5 A1, 2 A, 3 B, 3 C)",
-  totalResearchers: "24 investigadores (9 PhD, 6 M.Sc., 9 B.Sc.)",
-  budgetTotal: "$6.301 Millones COP"
+  totalResearchers: "24 investigadores (9 PhD, 6 M.Sc., 9 B.Sc.)"
 };
 
 export const regionStats: RegionStat[] = [

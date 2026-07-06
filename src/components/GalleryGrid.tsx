@@ -6,12 +6,11 @@ import GalleryLightbox from './GalleryLightbox';
 
 const categories = [
   'Todas',
-  'Escalamiento Industrial',
-  'Variedades',
-  'Laboratorio',
-  'Analisis',
-  'Eventos',
-  'Equipo'
+  'ACT-01: Investigación Agronómica',
+  'ACT-05: Prototipado Alimentario',
+  'ACT-06: Pruebas Sensoriales',
+  'ACT-10: Escalamiento Cosmético',
+  'ACT-13: Apropiación Social'
 ];
 
 export default function GalleryGrid() {
@@ -40,7 +39,6 @@ export default function GalleryGrid() {
   };
 
   const getUIName = (cat: string) => {
-    if (cat === 'Analisis') return 'Análisis';
     return cat;
   };
 
@@ -66,7 +64,7 @@ export default function GalleryGrid() {
       {/* Stats Bar */}
       <div className="flex flex-col sm:flex-row justify-between items-center bg-obsidian-850 border border-white/5 p-4 rounded-2xl gap-3 text-xs md:text-sm font-mono text-slate-400">
         <div>
-          <span className="text-white font-bold">{galleryPhotos.length}</span> Fotografías reales | <span className="text-white font-bold">7</span> Categorías | <span className="text-white font-bold">14</span> Informes fuente
+          <span className="text-white font-bold">{galleryPhotos.length}</span> Fotografías reales | Organizadas por <span className="text-white font-bold">5</span> Actividades clave de resultados
         </div>
         <div>
           Mostrando <span className="text-carrot-orange font-bold">{filteredPhotos.length}</span> resultados

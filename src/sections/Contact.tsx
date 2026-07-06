@@ -109,7 +109,6 @@ export default function Contact() {
                   { key: 'Cadena Productiva', val: 'Hortalizas (Vegetales)' },
                   { key: 'Fondo de Financiación', val: 'Regalías SGR — Fondo CTI' },
                   { key: 'Vigencia de Proyecto', val: '2022 — 2026' },
-                  { key: 'Presupuesto Aprobado', val: '$6.301 Millones COP' },
                   { key: 'Ejecutor Técnico', val: 'AGROSAVIA Centro La Selva' },
                   { key: 'Área del Cultivo', val: 'Oriente Antioqueño' }
                 ].map((row, idx) => (

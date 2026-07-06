@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, CheckCircle2, AlertCircle, Calendar } from 'lucide-react';
+import { ChevronDown, CheckCircle2, Calendar } from 'lucide-react';
 import { activities } from '../data/projectData';
-import type { ActivityEntry } from '../data/projectData';
 import GlassCard from './GlassCard';
 import Badge from './Badge';
 
@@ -69,21 +68,29 @@ export default function ActivityAccordion() {
     setExpandedActivity(expandedActivity === actId ? null : actId);
   };
 
-  const getStatusIcon = (status: ActivityEntry['status']) => {
-    if (status === 'Completado') {
-      return <CheckCircle2 className="h-5 w-5 text-emerald-400 shrink-0" />;
-    }
-    return <AlertCircle className="h-5 w-5 text-amber-400 shrink-0 animate-pulse" />;
-  };
-
-  const getStatusBadgeColor = (status: ActivityEntry['status']) => {
-    return status === 'Completado' ? 'green' : 'amber';
+  const getDiscipline = (actId: string) => {
+    const map: Record<string, { label: string; color: 'green' | 'blue' | 'orange' | 'amber' }> = {
+      'ACT-01': { label: 'Agronomía', color: 'green' },
+      'ACT-02': { label: 'Modelado NIRS', color: 'blue' },
+      'ACT-03': { label: 'Fisicoquímica', color: 'blue' },
+      'ACT-04': { label: 'Tecnología Limpia', color: 'orange' },
+      'ACT-05': { label: 'Biotecnología', color: 'green' },
+      'ACT-06': { label: 'Análisis Sensorial', color: 'green' },
+      'ACT-07': { label: 'Fitoquímica', color: 'blue' },
+      'ACT-08': { label: 'Nanoencapsulación', color: 'blue' },
+      'ACT-09': { label: 'Seguridad Clínica', color: 'blue' },
+      'ACT-10': { label: 'Planta Piloto', color: 'orange' },
+      'ACT-11': { label: 'Economía Agraria', color: 'amber' },
+      'ACT-12': { label: 'Planes de Negocio', color: 'amber' },
+      'ACT-13': { label: 'Apropiación Social', color: 'amber' },
+      'ACT-14': { label: 'Gobernanza', color: 'amber' }
+    };
+    return map[actId] || { label: 'Investigación', color: 'blue' };
   };
 
   const getPhaseStats = (phaseNum: number) => {
     const phaseActs = activities.filter((act) => act.phase === phaseNum);
-    const completed = phaseActs.filter((act) => act.status === 'Completado').length;
-    return `${completed}/${phaseActs.length} Completado`;
+    return `${phaseActs.length} Hitos Científicos`;
   };
 
   return (
@@ -156,7 +163,7 @@ export default function ActivityAccordion() {
                           {/* Activity Row */}
                           <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div className="flex items-center gap-3">
-                              {getStatusIcon(act.status)}
+                              <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0" />
                               <div>
                                 <div className="flex items-center gap-2">
                                   <span className="text-xs font-mono text-slate-500">{act.id}</span>
@@ -168,7 +175,7 @@ export default function ActivityAccordion() {
                               </div>
                             </div>
                             <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto">
-                              <Badge text={act.status} color={getStatusBadgeColor(act.status)} />
+                              <Badge text={getDiscipline(act.id).label} color={getDiscipline(act.id).color} />
                               <ChevronDown
                                 className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${
                                   isActExpanded ? 'transform rotate-180 text-carrot-orange' : ''

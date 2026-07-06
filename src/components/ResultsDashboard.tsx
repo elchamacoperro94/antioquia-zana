@@ -29,37 +29,53 @@ import GlassCard from './GlassCard';
 import Badge from './Badge';
 
 // 1. Data Definitions
+// Physicochemical characterization results of raw residue
 const muestrasData = [
-  { name: 'Plaguicidas Evaluados', cantidad: 240, fill: '#ef4444' },
-  { name: 'Excedentes Mapeados', cantidad: 62, fill: '#e86a1f' },
-  { name: 'Nuevos Materiales', cantidad: 55, fill: '#f5a623' },
-  { name: 'Variedades Evaluadas', cantidad: 14, fill: '#10b981' }
+  { name: 'Beta-caroteno (mg/100g)', shortName: 'Beta-caroteno', cantidad: 8.28, fill: '#e86a1f' },
+  { name: 'Alfa-caroteno (mg/100g)', shortName: 'Alfa-caroteno', cantidad: 3.42, fill: '#f5a623' },
+  { name: 'Fibra Insoluble (%)', shortName: 'Fibra Insol.', cantidad: 16.0, fill: '#2d6a30' },
+  { name: 'Fibra Soluble (%)', shortName: 'Fibra Sol.', cantidad: 12.5, fill: '#10b981' },
+  { name: 'Sólidos Solubles (°Brix)', shortName: 'Sólidos Sol. (°B)', cantidad: 7.20, fill: '#3b82f6' }
 ];
 
-const actividadesPieData = [
-  { name: 'Completado', value: 8, fill: '#10b981' },
-  { name: 'En Desarrollo / Avanzado', value: 6, fill: '#f5a623' }
+// Social appropriation and outreach data counts (number of people reached)
+const apropiacionData = [
+  { name: 'Productores Capacitados', value: 190, fill: '#10b981' },
+  { name: 'Catadores en Cata Sensorial', value: 70, fill: '#e86a1f' },
+  { name: 'Asistentes en Socialización', value: 59, fill: '#f5a623' },
+  { name: 'Investigadores Vinculados', value: 24, fill: '#8b5cf6' }
 ];
 
-const prototipoProgresoData = [
-  { name: 'ZanaPure (Compota)', uv: 95, fill: '#e86a1f' },
-  { name: 'Apocarotenoides', uv: 90, fill: '#8b5cf6' },
-  { name: 'Aurum Carota', uv: 85, fill: '#ec4899' },
-  { name: 'ZanaPet (Mascotas)', uv: 80, fill: '#10b981' },
-  { name: 'Gomas Biofuncionales', uv: 75, fill: '#f5a623' }
+// Percentages of upcycled carrot residues incorporated into the final formulations of prototypes
+const formulaIngredienteData = [
+  { name: 'ZanaPure (Compota)', uv: 27, fill: '#e86a1f' },
+  { name: 'Extracto Apocarotenoide', uv: 85, fill: '#8b5cf6' },
+  { name: 'Aurum Carota (Crema)', uv: 15, fill: '#ec4899' },
+  { name: 'ZanaPet (Mascotas)', uv: 45, fill: '#10b981' },
+  { name: 'Gomas Biofuncionales', uv: 18, fill: '#f5a623' }
 ];
 
 export default function ResultsDashboard() {
-  const [activeChart, setActiveChart] = useState<'muestras' | 'actividades' | 'prototipos'>('muestras');
+  const [activeChart, setActiveChart] = useState<'muestras' | 'apropiacion' | 'innovacion'>('muestras');
 
   // Custom tooltips
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
+      const value = payload[0].value;
+      const name = payload[0].name;
+      let unit = '';
+      if (activeChart === 'muestras') {
+        unit = name.includes('mg') ? ' mg/100g' : name.includes('Brix') ? ' °Brix' : ' %';
+      } else if (activeChart === 'innovacion') {
+        unit = ' %';
+      } else {
+        unit = ' Personas';
+      }
       return (
         <div className="bg-obsidian-900/90 border border-white/10 p-3 rounded-lg shadow-xl backdrop-blur-md">
-          <p className="text-xs font-mono text-slate-400">{payload[0].name}</p>
+          <p className="text-xs font-mono text-slate-400">{name}</p>
           <p className="text-sm font-bold text-white mt-1">
-            {payload[0].value} {activeChart === 'muestras' ? 'Unidades' : activeChart === 'prototipos' ? '%' : 'Actividades'}
+            {value}{unit}
           </p>
         </div>
       );
@@ -97,9 +113,9 @@ export default function ResultsDashboard() {
         {/* Chart Selector list */}
         <div className="lg:col-span-4 flex flex-col gap-4">
           {[
-            { id: 'muestras', title: 'Muestras Analizadas', desc: 'Tipos y volumen de pruebas realizadas en laboratorio.' },
-            { id: 'actividades', title: 'Estado Actividades', desc: 'Estado general del cronograma de las 14 actividades.' },
-            { id: 'prototipos', title: 'Avance de Prototipos', desc: 'Porcentaje de progreso en el desarrollo de productos.' }
+            { id: 'muestras', title: 'Caracterización Fisicoquímica', desc: 'Valores promedio de compuestos funcionales y fibra identificados en excedentes.' },
+            { id: 'apropiacion', title: 'Apropiación Social', desc: 'Personas e investigadores vinculados en talleres y paneles.' },
+            { id: 'innovacion', title: 'Ingrediente Valorizado (%)', desc: 'Porcentaje de excedente de zanahoria incorporado en la formulación final.' }
           ].map((chart) => (
             <button
               key={chart.id}
@@ -126,7 +142,7 @@ export default function ResultsDashboard() {
               <ResponsiveContainer width="100%" height="100%">
                 {activeChart === 'muestras' ? (
                   <BarChart data={muestrasData} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
-                    <XAxis dataKey="name" stroke="#6b7280" fontSize={11} tickLine={false} />
+                    <XAxis dataKey="shortName" stroke="#6b7280" fontSize={11} tickLine={false} />
                     <YAxis stroke="#6b7280" fontSize={11} tickLine={false} />
                     <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
                     <Bar dataKey="cantidad" radius={[8, 8, 0, 0]}>
@@ -135,11 +151,11 @@ export default function ResultsDashboard() {
                       ))}
                     </Bar>
                   </BarChart>
-                ) : activeChart === 'actividades' ? (
+                ) : activeChart === 'apropiacion' ? (
                   <PieChart>
                     <Tooltip content={<CustomTooltip />} />
                     <Pie
-                      data={actividadesPieData}
+                      data={apropiacionData}
                       cx="50%"
                       cy="50%"
                       innerRadius={60}
@@ -147,7 +163,7 @@ export default function ResultsDashboard() {
                       paddingAngle={5}
                       dataKey="value"
                     >
-                      {actividadesPieData.map((entry, index) => (
+                      {apropiacionData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.fill} />
                       ))}
                     </Pie>
@@ -156,7 +172,7 @@ export default function ResultsDashboard() {
                       height={36} 
                       formatter={(value, entry: any) => (
                         <span className="text-xs text-slate-300 font-mono">
-                          {value} ({entry.payload.value} actividades)
+                          {value} ({entry.payload.value} personas)
                         </span>
                       )}
                     />
@@ -168,7 +184,7 @@ export default function ResultsDashboard() {
                     innerRadius="30%"
                     outerRadius="95%"
                     barSize={12}
-                    data={prototipoProgresoData}
+                    data={formulaIngredienteData}
                   >
                     <RadialBar
                       label={{ position: 'insideStart', fill: '#fff', fontSize: 9, fontFamily: 'monospace' }}
