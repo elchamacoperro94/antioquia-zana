@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, FileText } from 'lucide-react';
 import { objectives } from '../data/projectData';
 import GlassCard from './GlassCard';
 import Badge from './Badge';
@@ -102,6 +102,35 @@ export default function ObjectiveTabs() {
                   ))}
                 </ul>
               </div>
+
+              {/* Deliverables Section */}
+              {activeObj.deliverables && activeObj.deliverables.length > 0 && (
+                <div className="mt-8 pt-6 border-t border-white/10">
+                  <h4 className="text-xs font-mono tracking-widest uppercase text-slate-500 mb-4">
+                    Entregables Oficiales del Objetivo
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[220px] overflow-y-auto pr-2 scrollbar-thin">
+                    {activeObj.deliverables.map((deliv, idx) => (
+                      <a 
+                        key={idx}
+                        href={deliv.link}
+                        download
+                        className="group/item flex items-start gap-2.5 p-3 rounded-xl bg-white/5 border border-white/5 text-xs text-slate-300 hover:bg-emerald-500/5 hover:border-emerald-500/20 transition-all cursor-pointer"
+                      >
+                        <FileText className="h-4.5 w-4.5 text-emerald-400 shrink-0 mt-0.5" />
+                        <div className="flex flex-col w-full min-w-0">
+                          <span className="font-medium text-white group-hover/item:text-emerald-300 transition-colors truncate block">
+                            {deliv.name}
+                          </span>
+                          <span className="text-[10px] text-slate-500 mt-1 block font-mono">
+                            Haga clic para descargar
+                          </span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </GlassCard>

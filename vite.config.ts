@@ -19,7 +19,8 @@ export default defineConfig({
             decodedUrl.startsWith('/Objetivo 2/') ||
             decodedUrl.startsWith('/Objetivo 3/') ||
             decodedUrl.startsWith('/Objetivo 4/') ||
-            decodedUrl.startsWith('/Informes por Actividades/')
+            decodedUrl.startsWith('/Informes por Actividades/') ||
+            decodedUrl.startsWith('/entregables objetivos/')
           ) {
             const urlPath = decodedUrl.split('?')[0];
             const filePath = path.join(__dirname, urlPath);

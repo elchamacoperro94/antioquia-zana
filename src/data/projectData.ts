@@ -27,6 +27,7 @@ export interface ObjectiveEntry {
   status: 'Completado' | 'Avanzado' | 'Pendiente';
   description: string;
   achievements: string[];
+  deliverables?: DeliverableItem[];
 }
 
 export interface TechnicalTable {
@@ -118,6 +119,18 @@ export const objectives: ObjectiveEntry[] = [
       "Identificación de huellas espectrales por NIRS para potencial biofuncional.",
       "Cuantificación de compuestos bioactivos (alfa y beta carotenos).",
       "Elaboración de catálogo de variedades promisorias y perfiles de uso."
+    ],
+    deliverables: [
+      { name: "1.1 Catálogo de materiales y excedentes de zanahoria", link: "/entregables objetivos/Objetivo 1/1.1 Catalogo de materiales y excedentes de zanahoria.pdf" },
+      { name: "1.5 Informe de volúmenes de excedentes regionales", link: "/entregables objetivos/Objetivo 1/1.5 informe volumenes de excedentes.docx" },
+      { name: "1.6 Artículo de recomendaciones y perfiles de uso de los excedentes", link: "/entregables objetivos/Objetivo 1/1.6 Articulo recomendaciones y perfiles de uso de los excedentes.pdf" },
+      { name: "1.7 Protocolo detallado de firma espectral NIRS", link: "/entregables objetivos/Objetivo 1/1.7 Protocolo para la evaluación de respuestas espectrales en zanahoria/Protocolo detallado firma espectral.pdf" },
+      { name: "1.11 Documento de divulgación 'Esta Zanahoria Pa' Qué'", link: "/entregables objetivos/Objetivo 1/1.11. Documento sobre la importancia de la transformación en el sector hortícola colombiano/1.11 documento Esta Zanahoria Pa que.pdf" },
+      { name: "1.12 Artículo científico de tecnologías de conservación funcional", link: "/entregables objetivos/Objetivo 1/1.12 Articulo cientifico Tecnologías apropiadas para salvaguardar las características funcionales de la zanahoria en productos alimenticios.pdf" },
+      { name: "1.13 Artículo de prototipos farmacéuticos y cosméticos a base de excedentes", link: "/entregables objetivos/Objetivo 1/1.13 Articulo obre generación de prototipos de productos farmacéuticos-cosmeticos a base de excedentes y nuevos materiales de zanahoria.pdf" },
+      { name: "1.14 Artículo sobre mercado, cadena de valor y oportunidades de negocio", link: "/entregables objetivos/Objetivo 1/1.14 Articulo sobre las mercado, cadena de valor y oportunidades de modelos de negocio de la zanahoria.pdf" },
+      { name: "1.15 Informe Final consolidado del Objetivo 1", link: "/entregables objetivos/Objetivo 1/1.15 Informe Final .docx" },
+      { name: "V1 Libro de Cadena de valor de zanahoria en Antioquia", link: "/entregables objetivos/Objetivo 1/1.3 Libro modelo productivo FALTA/V1_MP_Cadena de valor de zanahoria en Antioquia_JCHR.pdf" }
     ]
   },
   {
@@ -130,6 +143,16 @@ export const objectives: ObjectiveEntry[] = [
       "Formulación final validada de ZanaPet para el mercado de mascotas.",
       "Lanzamiento experimental de Gomas Biofuncionales enriquecidas con micronutrientes.",
       "Validación sensorial y estimación de vida útil de prototipos."
+    ],
+    deliverables: [
+      { name: "2.3 Ficha de prototipo alimentario ZanaPet (Mascotas)", link: "/entregables objetivos/Objetivo 2/2.3 Ficha 1 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPet) PENDIENTE.pdf" },
+      { name: "2.4 Ficha de prototipo alimentario Gomas Funcionales (Humanos)", link: "/entregables objetivos/Objetivo 2/2.4 Ficha 2 de prototipo de producto para la industria Alimentaria a base de zanahoria (Gomas upcycling) PENDIENTE.pdf" },
+      { name: "2.5 Ficha de prototipo alimentario ZanaPure (Compotas)", link: "/entregables objetivos/Objetivo 2/2.5 Ficha 3 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPure) PENDIENTE.pdf" },
+      { name: "2.6 Tesis de Maestría en Calidad de Alimentos - Mateo Londoño V.", link: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf" },
+      { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "/entregables objetivos/Objetivo 2/2.7 Secreto empresarial/Constancia Secreto Empresarial_ Zanahoria.pdf" },
+      { name: "2.2 Tesis de Maestría Paola Ospina (Universidad Nacional)", link: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.3 TESIS FINAL PAOLA OSPINA.pdf" },
+      { name: "Certificado de entrega de tesis de maestría (U de A)", link: "/entregables objetivos/Objetivo 2/2.8 Tesista de Maestria 4 (U de A) PENDIENTE SUSTENTACION/Certificado de entrega de tesis de maestría.pdf" },
+      { name: "Contrato y Acta de Grado Daniela López Galeano (UCO)", link: "/entregables objetivos/Objetivo 2/2.11 Estudiante vinculado pregrado UCO 3/ACTA DE GRADO.pdf" }
     ]
   },
   {
@@ -142,6 +165,12 @@ export const objectives: ObjectiveEntry[] = [
       "Estabilización nanotecnológica en NLC (Nanostructured Lipid Carriers) <400nm.",
       "Evaluación dermatológica y toxicológica usando 4 protocolos OCDE.",
       "Desarrollo de la emulsión facial antienvejecimiento Aurum Carota."
+    ],
+    deliverables: [
+      { name: "3.1 Ficha de ingrediente rico en apocarotenoides", link: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.1 Ficha Ingrediente enriquecido en apocarotenoides de zanahoria.pdf" },
+      { name: "3.1 Protocolo de obtención de bioingrediente rico en apocarotenoides", link: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf" },
+      { name: "3.2 Ficha de transportador lipídico nanoestructurado (NLC) para apocarotenoides", link: "/entregables objetivos/Objetivo 3/3.2 Bioingrediente para la industria cosmetica a base de zanahoria 2/Ficha transportador lipidico nanoextructurado apocarotenoides de zanahoria.pdf" },
+      { name: "3.2 Protocolo de encapsulación en transportadores lipídicos nanoestructurados", link: "/entregables objetivos/Objetivo 3/3.2 Bioingrediente para la industria cosmetica a base de zanahoria 2/Protocolo trasnportador lipidico nanoestructurado.pdf" }
     ]
   },
   {
@@ -154,6 +183,17 @@ export const objectives: ObjectiveEntry[] = [
       "Diseño de 6 modelos de negocios específicos para los prototipos entregados.",
       "Capacitación de más de 190 productores y actores del sector.",
       "Elaboración de documentos de transferencia y articulación comercial."
+    ],
+    deliverables: [
+      { name: "4.1 Informe del Curso Técnico de Transformación 'Carota 360°'", link: "/entregables objetivos/Objetivo 4/4.1 Un curso de operaciones unitarias y métodos de extracción, aplicado a la agroindustria de zanahoria en Antioquia/Informe Curso Carota 360°.docx" },
+      { name: "4.3 Memorias de transferencia en parcelas (Días de Campo 2 y 3)", link: "/entregables objetivos/Objetivo 4/4.3 190 personas capacitadas en transformación para el sector hortícola/Segundo y tercer Día de Campo.docx" },
+      { name: "ACT-11 Informe de Cadena de valor y mercados de la zanahoria", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 11/ACT 11 INFORME_Cadena de valor y mercados.docx" },
+      { name: "ACT-12 Informe consolidado de Planes de Negocios de Prototipos", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/ACT 12 INFORME_Plan de negocios.docx" },
+      { name: "ACT-13 Informe de Desarrollo conceptual y panel de censo sensorial", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/ACT 13 INFORME_Desarrollo conceptual (1).docx" },
+      { name: "ACT-14 Informe de Gobernanza y articulación institucional final", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/ACT 14. INFORME TÉCNICO_FINAL.docx" },
+      { name: "Anexo 12.8 Documento completo 'Una Zanahoria Para Emprender'", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.8 Una zanahoria para emprender.pdf" },
+      { name: "Anexo 13.1 Manual completo 'Una Zanahoria Para Exportar'", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/Anexo 13.1 Una zanahoria para exportar.pdf" },
+      { name: "Anexo 14.1 Cartilla didáctica 'Esta Zanahoria Pa' Quién'", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/Anexo 14.1 Esta Zanahoria pa quien.pdf" }
     ]
   }
 ];
@@ -172,8 +212,8 @@ export const activities: ActivityEntry[] = [
       "Frecuencia de aplicación de insumos químicos para control foliar medida entre 2 y 15 veces por ciclo."
     ],
     deliverables: [
-      { name: "Entregable 1.1: Informe de volumen de excedentes y caracterización agronómica.", link: "/Objetivo 1/1.5 informe volumenes de excedentes.docx" },
-      { name: "Catálogo técnico de 14 cultivares promisorios de zanahoria evaluados en campo.", link: "/Objetivo 1/1.1 Catalogo de materiales y excedentes de zanahoria.pdf" }
+      { name: "Entregable 1.1: Informe de volumen de excedentes y caracterización agronómica.", link: "/entregables objetivos/Objetivo 1/1.5 informe volumenes de excedentes.docx" },
+      { name: "Catálogo técnico de 14 cultivares promisorios de zanahoria evaluados en campo.", link: "/entregables objetivos/Objetivo 1/1.1 Catalogo de materiales y excedentes de zanahoria.pdf" }
     ],
     technicalTable: {
       title: "Evaluación Fitosanitaria y Rendimiento de Cultivares (CI La Selva)",
@@ -201,8 +241,8 @@ export const activities: ActivityEntry[] = [
       "Estandarización de firmas ópticas para predecir concentraciones de provitamina A y carotenos en muestras frescas."
     ],
     deliverables: [
-      { name: "Entregable 1.7: Protocolo detallado para la evaluación de respuestas espectrales de zanahoria.", link: "/Objetivo 1/1.7 Protocolo para la evaluación de respuestas espectrales en zanahoria/Protocolo detallado firma espectral.pdf" },
-      { name: "Modelo matemático de calibración espectral NIRS para carotenos y sólidos solubles.", link: "/Objetivo 1/1.4 Articulo bandas espectreales/Peerj 2026.pdf" }
+      { name: "Entregable 1.7: Protocolo detallado para la evaluación de respuestas espectrales de zanahoria.", link: "/entregables objetivos/Objetivo 1/1.7 Protocolo para la evaluación de respuestas espectrales en zanahoria/Protocolo detallado firma espectral.pdf" },
+      { name: "Modelo matemático de calibración espectral NIRS para carotenos y sólidos solubles.", link: "/entregables objetivos/Objetivo 1/1.4 Articulo bandas espectreales/Peerj 2026.pdf" }
     ],
     technicalTable: {
       title: "Modelos de Calibración Espectral NIRS en Python",
@@ -228,8 +268,8 @@ export const activities: ActivityEntry[] = [
       "Desarrollo de métodos de extracción selectiva de carotenos con disoluciones de etanol al 70% y centrifugación a 13.000 RPM durante 10 minutos."
     ],
     deliverables: [
-      { name: "Entregable 1.3: Libro 'Modelo Productivo y Cadena de Valor de la Zanahoria en Antioquia'.", link: "/Objetivo 1/1.3 Libro modelo productivo FALTA/V1_MP_Cadena de valor de zanahoria en Antioquia_JCHR.pdf" },
-      { name: "Fichas fisicoquímicas y perfiles nutricionales completos de excedentes.", link: "/Objetivo 1/1.6 Articulo recomendaciones y perfiles de uso de los excedentes.pdf" }
+      { name: "Entregable 1.3: Libro 'Modelo Productivo y Cadena de Valor de la Zanahoria en Antioquia'.", link: "/entregables objetivos/Objetivo 1/1.3 Libro modelo productivo FALTA/V1_MP_Cadena de valor de zanahoria en Antioquia_JCHR.pdf" },
+      { name: "Fichas fisicoquímicas y perfiles nutricionales completos de excedentes.", link: "/entregables objetivos/Objetivo 1/1.6 Articulo recomendaciones y perfiles de uso de los excedentes.pdf" }
     ],
     technicalTable: {
       title: "Rendimiento y Extracción en Muestras Liofilizadas (Actividad 3)",
@@ -256,7 +296,7 @@ export const activities: ActivityEntry[] = [
       "Evaluación de adaptabilidad tecnológica en el Oriente Antioqueño conforme a normativas Invima."
     ],
     deliverables: [
-      { name: "Informe de selección técnica y priorización de tecnologías limpias (Cavitación e Hidrólisis).", link: "/Objetivo 1/1.12 Articulo cientifico Tecnologías apropiadas para salvaguardar las características funcionales de la zanahoria en productos alimenticios.pdf" }
+      { name: "Informe de selección técnica y priorización de tecnologías limpias (Cavitación e Hidrólisis).", link: "/entregables objetivos/Objetivo 1/1.12 Articulo cientifico Tecnologías apropiadas para salvaguardar las características funcionales de la zanahoria en productos alimenticios.pdf" }
     ]
   },
   {
@@ -272,9 +312,9 @@ export const activities: ActivityEntry[] = [
       "Pruebas piloto de digestión de almidón y enriquecimiento funcional en gomas."
     ],
     deliverables: [
-      { name: "Entregable 1.8: Protocolo de producción a escala piloto de ZanaPet (Suplemento de mascotas).", link: "/Objetivo 1/1.8 Protocolo producto 1 (Zanapet)/1.8 Protocolo de producción Zanapet.pdf" },
-      { name: "Entregable 1.9: Protocolo de producción a escala piloto de Gomas Biofuncionales.", link: "/Objetivo 1/1.9 Protocolo producto 2 (Gomas upcycling)/1.9 Protocolo de producción Gomitas.pdf" },
-      { name: "Entregable 1.10: Protocolo de producción a escala piloto de ZanaPure (Compota infantil).", link: "/Objetivo 1/1.10 Protocolo producto 3 (ZanaPure)/1.10 Protocolo de producción ZanaPure.pdf" }
+      { name: "Entregable 1.8: Protocolo de producción a escala piloto de ZanaPet (Suplemento de mascotas).", link: "/entregables objetivos/Objetivo 1/1.8 Protocolo producto 1 (Zanapet)/1.8 Protocolo de producción Zanapet.pdf" },
+      { name: "Entregable 1.9: Protocolo de producción a escala piloto de Gomas Biofuncionales.", link: "/entregables objetivos/Objetivo 1/1.9 Protocolo producto 2 (Gomas upcycling)/1.9 Protocolo de producción Gomitas.pdf" },
+      { name: "Entregable 1.10: Protocolo de producción a escala piloto de ZanaPure (Compota infantil).", link: "/entregables objetivos/Objetivo 1/1.10 Protocolo producto 3 (ZanaPure)/1.10 Protocolo de producción ZanaPure.pdf" }
     ],
     technicalTable: {
       title: "Formulación e Incorporación de Zanahoria de Descarte",
@@ -300,9 +340,9 @@ export const activities: ActivityEntry[] = [
       "Establecimiento de vida útil y paneles de catadores entrenados para validación organoleptica."
     ],
     deliverables: [
-      { name: "Entregable 2.3: Ficha técnica y validación sensorial de ZanaPet (Mascotas).", link: "/Objetivo 2/2.3 Ficha 1 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPet) PENDIENTE.pdf" },
-      { name: "Entregable 2.4: Ficha técnica y validación sensorial de Gomas Biofuncionales (Humanos).", link: "/Objetivo 2/2.4 Ficha 2 de prototipo de producto para la industria Alimentaria a base de zanahoria (Gomas upcycling) PENDIENTE.pdf" },
-      { name: "Entregable 2.5: Ficha técnica y validación sensorial de ZanaPure (Compota).", link: "/Objetivo 2/2.5 Ficha 3 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPure) PENDIENTE.pdf" }
+      { name: "Entregable 2.3: Ficha técnica y validación sensorial de ZanaPet (Mascotas).", link: "/entregables objetivos/Objetivo 2/2.3 Ficha 1 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPet) PENDIENTE.pdf" },
+      { name: "Entregable 2.4: Ficha técnica y validación sensorial de Gomas Biofuncionales (Humanos).", link: "/entregables objetivos/Objetivo 2/2.4 Ficha 2 de prototipo de producto para la industria Alimentaria a base de zanahoria (Gomas upcycling) PENDIENTE.pdf" },
+      { name: "Entregable 2.5: Ficha técnica y validación sensorial de ZanaPure (Compota).", link: "/entregables objetivos/Objetivo 2/2.5 Ficha 3 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPure) PENDIENTE.pdf" }
     ],
     technicalTable: {
       title: "Diseño Experimental y Vida Útil en Prototipos",
@@ -328,8 +368,8 @@ export const activities: ActivityEntry[] = [
       "Ajuste del flujo analítico a 0.7 mL/min para optimización de separación de retinoides activos."
     ],
     deliverables: [
-      { name: "Entregable 3.1: Ficha técnica de ingrediente cosmético enriquecido en apocarotenoides.", link: "/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.1 Ficha Ingrediente enriquecido en apocarotenoides de zanahoria.pdf" },
-      { name: "Protocolo de extracción fotoquímica y ruptura controlada de betacaroteno.", link: "/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf" }
+      { name: "Entregable 3.1: Ficha técnica de ingrediente cosmético enriquecido en apocarotenoides.", link: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.1 Ficha Ingrediente enriquecido en apocarotenoides de zanahoria.pdf" },
+      { name: "Protocolo de extracción fotoquímica y ruptura controlada de betacaroteno.", link: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf" }
     ],
     technicalTable: {
       title: "Eficiencia de Ruptura Fotoquímica (Fenton + UV)",
@@ -355,8 +395,8 @@ export const activities: ActivityEntry[] = [
       "Validación de linealidad (r=0.9997) para cuantificar apocarotenoides y retinoides encapsulados."
     ],
     deliverables: [
-      { name: "Entregable 3.2: Ficha de transportador lipídico nanoestructurado (NLC) para apocarotenoides.", link: "/Objetivo 3/3.2 Bioingrediente para la industria cosmetica a base de zanahoria 2/Ficha transportador lipidico nanoextructurado apocarotenoides de zanahoria.pdf" },
-      { name: "Protocolo de homogenización de alta presión y estabilización coloidal.", link: "/Objetivo 3/3.2 Bioingrediente para la industria cosmetica a base de zanahoria 2/Protocolo trasnportador lipidico nanoestructurado.pdf" }
+      { name: "Entregable 3.2: Ficha de transportador lipídico nanoestructurado (NLC) para apocarotenoides.", link: "/entregables objetivos/Objetivo 3/3.2 Bioingrediente para la industria cosmetica a base de zanahoria 2/Ficha transportador lipidico nanoextructurado apocarotenoides de zanahoria.pdf" },
+      { name: "Protocolo de homogenización de alta presión y estabilización coloidal.", link: "/entregables objetivos/Objetivo 3/3.2 Bioingrediente para la industria cosmetica a base de zanahoria 2/Protocolo trasnportador lipidico nanoestructurado.pdf" }
     ],
     technicalTable: {
       title: "Validación HPLC-DAD de Apocarotenoides",
@@ -382,7 +422,7 @@ export const activities: ActivityEntry[] = [
       "Determinación de colágeno y MMP-1 mediante técnicas ELISA (DuoSet ELISA R&D Systems) para validación antienvejecimiento."
     ],
     deliverables: [
-      { name: "Informes de seguridad dérmica in-vitro bajo protocolos de la OCDE (citotoxicidad y corrosión).", link: "/Objetivo 1/1.13 Articulo obre generación de prototipos de productos farmacéuticos-cosmeticos a base de excedentes y nuevos materiales de zanahoria.pdf" }
+      { name: "Informes de seguridad dérmica in-vitro bajo protocolos de la OCDE (citotoxicidad y corrosión).", link: "/entregables objetivos/Objetivo 1/1.13 Articulo obre generación de prototipos de productos farmacéuticos-cosmeticos a base de excedentes y nuevos materiales de zanahoria.pdf" }
     ],
     technicalTable: {
       title: "Ensayos de Viabilidad Celular in-vitro (Normas OCDE)",
@@ -408,7 +448,7 @@ export const activities: ActivityEntry[] = [
       "Molienda de biomasa seca y tamizado por malla 40 para obtención de polvo uniforme."
     ],
     deliverables: [
-      { name: "Entregable 3.3: Formulación final y protocolo de escalamiento de emulsión facial Aurum Carota.", link: "/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.5 Plan de Negocio para Emulsión.docx" }
+      { name: "Entregable 3.3: Formulación final y protocolo de escalamiento de emulsión facial Aurum Carota.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.5 Plan de Negocio para Emulsión.docx" }
     ]
   },
   {
@@ -424,8 +464,8 @@ export const activities: ActivityEntry[] = [
       "Mapeo relacional de flujos logísticos y cuellos de botella para el upcycling de excedentes."
     ],
     deliverables: [
-      { name: "Entregable 4.4: Libro publicado 'Esta Zanahoria Pa' Qué: Rutas de Innovación para la Zanahoria en Antioquia'.", link: "/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 11/Anexo 11.1 Esta_zanahoria_pa_que_UCO.pdf" },
-      { name: "Estudio de mapeo de la cadena de valor y oportunidades de mercado.", link: "/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 11/ACT 11 INFORME_Cadena de valor y mercados.docx" }
+      { name: "Entregable 4.4: Libro publicado 'Esta Zanahoria Pa' Qué: Rutas de Innovación para la Zanahoria en Antioquia'.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 11/Anexo 11.1 Esta_zanahoria_pa_que_UCO.pdf" },
+      { name: "Estudio de mapeo de la cadena de valor y oportunidades de mercado.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 11/ACT 11 INFORME_Cadena de valor y mercados.docx" }
     ],
     technicalTable: {
       title: "Mapeo de Actores Habilitados (Oriente Antioqueño)",
@@ -451,8 +491,8 @@ export const activities: ActivityEntry[] = [
       "Modelado comercial de la emulsión semielaborada Aurum Carota para venta a granel a industrias de cosméticos."
     ],
     deliverables: [
-      { name: "Entregables 12.1 a 12.5: Planes de negocio específicos para los 5 prototipos desarrollados.", link: "/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/ACT 12 INFORME_Plan de negocios.docx" },
-      { name: "Entregable 12.8: Manual de emprendimiento 'Una Zanahoria Para Emprender'.", link: "/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.8 Una zanahoria para emprender.pdf" }
+      { name: "Entregables 12.1 a 12.5: Planes de negocio específicos para los 5 prototipos desarrollados.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/ACT 12 INFORME_Plan de negocios.docx" },
+      { name: "Entregable 12.8: Manual de emprendimiento 'Una Zanahoria Para Emprender'.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.8 Una zanahoria para emprender.pdf" }
     ],
     technicalTable: {
       title: "Estructura de Viabilidad Comercial de Prototipos",
@@ -479,9 +519,9 @@ export const activities: ActivityEntry[] = [
       "Talleres de socialización con la asistencia y retroalimentación de 59 personas en eventos regionales."
     ],
     deliverables: [
-      { name: "Informe del Curso 'Carota 360°: Operaciones Unitarias y Métodos de Extracción'.", link: "/Objetivo 4/4.1 Un curso de operaciones unitarias y métodos de extracción, aplicado a la agroindustria de zanahoria en Antioquia/Informe Curso Carota 360°.docx" },
-      { name: "Entregable 13.1: Manual de exportación 'Una Zanahoria Para Exportar'.", link: "/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/Anexo 13.1 Una zanahoria para exportar.pdf" },
-      { name: "Registros y memorias de talleres de transferencia (Días de Campo 1, 2 y 3).", link: "/Objetivo 4/4.3 190 personas capacitadas en transformación para el sector hortícola/Segundo y tercer Día de Campo.docx" }
+      { name: "Informe del Curso 'Carota 360°: Operaciones Unitarias y Métodos de Extracción'.", link: "/entregables objetivos/Objetivo 4/4.1 Un curso de operaciones unitarias y métodos de extracción, aplicado a la agroindustria de zanahoria en Antioquia/Informe Curso Carota 360°.docx" },
+      { name: "Entregable 13.1: Manual de exportación 'Una Zanahoria Para Exportar'.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/Anexo 13.1 Una zanahoria para exportar.pdf" },
+      { name: "Registros y memorias de talleres de transferencia (Días de Campo 1, 2 y 3).", link: "/entregables objetivos/Objetivo 4/4.3 190 personas capacitadas en transformación para el sector hortícola/Segundo y tercer Día de Campo.docx" }
     ],
     technicalTable: {
       title: "Estudios de Aceptación y Apropiación Social",
@@ -507,8 +547,8 @@ export const activities: ActivityEntry[] = [
       "Análisis de viabilidad exportadora del modelo '100% extracto de zanahoria' para mercados internacionales."
     ],
     deliverables: [
-      { name: "Entregable 14.1: Cartilla de gobernanza 'Esta Zanahoria Pa' Quién: Articulación y Sostenibilidad'.", link: "/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/Anexo 14.1 Esta Zanahoria pa quien.pdf" },
-      { name: "Entregable 14.2: Informe técnico de gobernanza y acuerdos institucionales de la cadena.", link: "/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/ACT 14. INFORME TÉCNICO_FINAL.docx" }
+      { name: "Entregable 14.1: Cartilla de gobernanza 'Esta Zanahoria Pa' Quién: Articulación y Sostenibilidad'.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/Anexo 14.1 Esta Zanahoria pa quien.pdf" },
+      { name: "Entregable 14.2: Informe técnico de gobernanza y acuerdos institucionales de la cadena.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/ACT 14. INFORME TÉCNICO_FINAL.docx" }
     ]
   }
 ];
