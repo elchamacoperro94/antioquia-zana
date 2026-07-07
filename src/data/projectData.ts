@@ -206,7 +206,8 @@ export const activities: ActivityEntry[] = [
         ["β-caroteno (Provitamina A)", "0.156 - 50.0 µg/mL", "0.9997", "PLSR / SVM", "0.0778"],
         ["Capacidad Antioxidante (DPPH)", "0.93 - 30.0 µM", "0.9974", "PLSR", "1.553"],
         ["Sólidos Solubles (°Brix)", "2.0 - 12.0 °Brix", "0.9850", "Random Forest", "0.125"]
-      ]
+      ],
+      description: "El modelado espectral NIRS desarrollado en Python utilizando algoritmos de regresión PLSR y SVM alcanzó una correlación lineal r² sobresaliente de 0.9997 para la cuantificación de β-caroteno en el rango de 0.156 a 50.0 µg/mL. Estos coeficientes validan la viabilidad de utilizar escaneo espectroscópico no destructivo como método rápido de control de calidad en tiempo real para descartar lotes con bajo valor funcional."
     }
   },
   {
@@ -233,7 +234,8 @@ export const activities: ActivityEntry[] = [
         ["Ultrasonido Sonotrodo", "Etanol 70%", "57.10", "204.21", "6028.94"],
         ["Maceración en Baño", "Acetona 70%", "60.79", "146.68", "4849.91"],
         ["Ultrasonido Convencional", "Acetato de Etilo", "26.01", "26.90", "887.38"]
-      ]
+      ],
+      description: "La extracción selectiva con etanol al 70% asistida por ultrasonido de sonotrodo demostró un rendimiento superior de compuestos fenólicos totales (57.10 mg EAG/100g) y actividad antioxidante ORAC-L (6028.94 µmol ET/100g) en la zanahoria liofilizada en comparación con solventes puros como el acetato de etilo. Esto justifica la estandarización industrial de soluciones hidroalcohólicas para el upcycling eficiente de la biomasa."
     }
   },
   {
@@ -276,7 +278,8 @@ export const activities: ActivityEntry[] = [
         ["ZanaPure (Compota)", "Zanahoria Naranja", "27.40%", "63.38 kg", "129 g"],
         ["ZanaPet (Mascotas)", "Zanahoria naranja/morada", "45.00%", "50.00 kg", "240 g"],
         ["Gomas Biofuncionales", "Zanahoria Cavitada", "18.00%", "20.00 kg", "95 g"]
-      ]
+      ],
+      description: "Se lograron niveles óptimos de incorporación de excedentes agrícolas que van desde el 18.00% en las gomas funcionales hasta el 45.00% en el suplemento nutricional para mascotas ZanaPet. Los balances de masa a escala piloto demuestran un riguroso control operacional, limitando las pérdidas mecánicas y evaporativas a menos de 240g por lote de producción."
     }
   },
   {
@@ -303,7 +306,8 @@ export const activities: ActivityEntry[] = [
         ["ZanaPure (Compota)", "40°C ± 2°C", "75% ± 5%", "12 semanas (T0 a T6)", "Triplicado en Python 3.12"],
         ["ZanaPet (Snacks)", "Ambiente", "Normalizada", "8 semanas", "Duplicado"],
         ["Gomas Biofuncionales", "40°C y 45°C", "Controlada", "12 semanas", "Triplicado"]
-      ]
+      ],
+      description: "Los estudios de estabilidad acelerada a 40°C y 75% de humedad relativa demuestran la robustez de los empaques funcionales tipo doypack en la conservación de la vida útil microbiológica y funcional de la compota ZanaPure. Los ensayos en triplicado garantizan la repetibilidad estadística del diseño de empaque para distribución comercial sin refrigeración."
     }
   },
   {
@@ -329,7 +333,8 @@ export const activities: ActivityEntry[] = [
         ["Extracto + Fenton (F1)", "120 min", "Con UV", "7.83% ± 1.67%", "34.90%"],
         ["Extracto + Fenton (F1)", "120 min", "Sin UV", "4.24% ± 0.85%", "18.50%"],
         ["Extracto + Fenton + US", "60 min", "Con UV", "9.12% ± 1.10%", "45.20%"]
-      ]
+      ],
+      description: "El acoplamiento de ultrasonido (US) de alta intensidad con la reacción de Fenton potenció la degradación catalítica de β-caroteno en un tiempo reducido de 60 minutos, aumentando la eficiencia de rompimiento al 45.20% y el rendimiento relativo de iononas volátiles (9.12% ± 1.10%) en comparación con la reacción Fenton convencional con o sin radiación UV."
     }
   },
   {
@@ -355,7 +360,8 @@ export const activities: ActivityEntry[] = [
         ["Linealidad (r)", "0.9997", "C18 Poroshell 120 (100x3.0mm)", "30 minutos", "5 µL"],
         ["Flujo de Elución", "0.7 mL/min", "C18 Poroshell 120", "30 minutos", "5 µL"],
         ["Temperatura de Columna", "50 ◦C", "C18 Poroshell 120", "30 minutos", "5 µL"]
-      ]
+      ],
+      description: "El método analítico por HPLC-DAD fue validado con una linealidad excelente de r=0.9997 a temperatura controlada de 50 ◦C en columna Poroshell C18. Este protocolo estandarizado de inyección de 5 µL y corrida de 30 minutos garantiza la reproducibilidad de la cuantificación de carotenoides y apocarotenoides encapsulados en los portadores lipídicos nanoestructurados."
     }
   },
   {
@@ -380,7 +386,8 @@ export const activities: ActivityEntry[] = [
         ["HDF (Fibroblasto)", "OCDE TG 439 (Irritación)", "100 mJ/cm²", "95.40%", "Pro-colágeno 1α / MMP-1"],
         ["HaCaT (Queratinocito)", "OCDE TG 431 (Corrosión)", "Sin radiación", "98.20%", "IL-1α (ELISA)"],
         ["SkinEthicTM (RhE)", "OCDE TG 489 (Fototoxicidad)", "200 mJ/cm²", "92.10%", "Densidad Óptica (MTT)"]
-      ]
+      ],
+      description: "Los ensayos in-vitro en modelos celulares de fibroblastos (HDF) y queratinocitos (HaCaT) bajo guías internacionales de la OCDE confirmaron una alta viabilidad tisular (>92%) tras la exposición a extractos encapsulados. El mantenimiento de la viabilidad celular ante dosis de radiación UVB de hasta 100 mJ/cm² valida la seguridad y el potencial fotoprotector del ingrediente activo."
     }
   },
   {
@@ -422,7 +429,8 @@ export const activities: ActivityEntry[] = [
         ["Productores Primarios", "43 fincas (1.3 ha)", "El Santuario / Marinilla", "Pequeño agricultor", "Escasa tecnificación y mermas"],
         ["Procesadoras e Industria", "10 empresas", "Rionegro / Medellín", "Hortícola, cosmética y mascotas", "Logística inversa de excedentes"],
         ["Comercializadores", "53 establecimientos", "Oriente Antioqueño", "Retail, galerías, plazas", "Variabilidad en precios de descarte"]
-      ]
+      ],
+      description: "El diagnóstico participativo de 53 actores mapeados evidenció que el principal cuello de botella se concentra en el eslabón primario de productores agrícolas debido a mermas por fluctuación de precios de mercado. Esto sustenta la necesidad de implementar rutas de innovación y upcycling que desvíen estos excedentes hacia cadenas agroindustriales estables."
     }
   },
   {
@@ -449,7 +457,8 @@ export const activities: ActivityEntry[] = [
         ["ZanaPet (Snacks)", "Empaque bilaminado 150g", "Nutrición complementaria de mascotas", "45.00%", "Pet shops, agropecuarias y veterinarias"],
         ["Aurum Carota (Crema)", "Dosificador airless 50 mL", "Cuidado facial dermocosmético", "58.00%", "Línea dermatológica y ventas B2B"],
         ["Gomas Upcycling", "Bolsa flexible 80g", "Snack saludable y confitería funcional", "28.00%", "Tiendas saludables, fitness y farmacias"]
-      ]
+      ],
+      description: "La evaluación económica demuestra márgenes comerciales sólidos para todo el portafolio de prototipos, liderados por el Aurum Carota con un 58.00% debido a su alta valoración en el mercado dermocosmético B2B. Estos números garantizan un retorno de inversión atractivo para cooperativas y transformadores locales al mitigar los costos de descarte agrícola."
     }
   },
   {
@@ -476,7 +485,8 @@ export const activities: ActivityEntry[] = [
         ["Paneles Sensoriales", "Cata descriptiva cuantitativa", "70 panelistas", "70 transcripciones", "Alta aceptabilidad de textura"],
         ["Curso Carota 360°", "Formación operaciones unitarias", "32 técnicos/productores", "Exámenes teóricos", "Certificados UCO entregados"],
         ["Días de Campo (1, 2, 3)", "Transferencia directa parcelas", "190 agricultores", "Fichas de asistencia", "Habilitación de buenas prácticas"]
-      ]
+      ],
+      description: "Los estudios de apropiación social reportan una alta eficacia de transferencia, alcanzando a 190 agricultores a través de días de campo y logrando la capacitación y certificación de 32 técnicos en el curso Carota 360°. La alta aceptabilidad sensorial obtenida en el censo sensorial valida la viabilidad comercial y organoleptica de los productos."
     }
   },
   {

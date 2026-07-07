@@ -6,30 +6,30 @@ import GlassCard from '../components/GlassCard';
 import { regionStats } from '../data/projectData';
 
 const researchTeam = [
-  "Juan Camilo Henao Rojas (Investigador Principal)",
-  "Jorge Eliecer Jaramillo",
-  "Carolina Zuluaga",
-  "Cristian Domínguez",
-  "Rocío Alexandra Ortíz-Paz",
-  "Albeiro de Jesús Macías",
-  "Mario Alonso Mesa",
-  "Rosa Helen Mira Herrera",
-  "Karen Ballestas Álvarez",
-  "Luz Mary Quintero",
-  "German Franco",
-  "Jose Antonio Rubiano",
-  "Carolina Ortiz",
-  "Jaison Martínez",
-  "Yeraldine Bedoya",
-  "Mateo Londoño",
-  "Luis Salazar",
-  "Edison Osorio",
-  "Catalina Agudelo",
-  "Karent Bravo",
-  "Daniel Carvajal",
-  "Liliana Ceballos",
-  "Claudia Lukau",
-  "Jenny Milena Moreno"
+  { name: "Juan Camilo Henao Rojas", role: "Investigador Principal (Líder)", entity: "AGROSAVIA" },
+  { name: "Jorge Eliecer Jaramillo", role: "Investigador Co-principal", entity: "AGROSAVIA" },
+  { name: "Carolina Zuluaga", role: "Investigadora", entity: "AGROSAVIA" },
+  { name: "Cristian Domínguez", role: "Investigador", entity: "AGROSAVIA" },
+  { name: "Rocío Alexandra Ortíz-Paz", role: "Investigadora Fitosanitaria", entity: "AGROSAVIA" },
+  { name: "Albeiro de Jesús Macías", role: "Investigador", entity: "AGROSAVIA" },
+  { name: "Mario Alonso Mesa", role: "Investigador", entity: "AGROSAVIA" },
+  { name: "Rosa Helen Mira Herrera", role: "Investigadora", entity: "AGROSAVIA" },
+  { name: "Karen Ballestas Álvarez", role: "Investigadora", entity: "AGROSAVIA" },
+  { name: "Luz Mary Quintero", role: "Apoyo Técnico", entity: "AGROSAVIA" },
+  { name: "German Franco", role: "Investigador", entity: "AGROSAVIA" },
+  { name: "Jose Antonio Rubiano", role: "Investigador", entity: "AGROSAVIA" },
+  { name: "Carolina Ortiz", role: "Investigadora", entity: "AGROSAVIA" },
+  { name: "Jaison Martínez", role: "Investigador Colaborador", entity: "UCO" },
+  { name: "Yeraldine Bedoya", role: "Investigadora Colaboradora", entity: "UCO" },
+  { name: "Mateo Londoño", role: "Investigador Colaborador", entity: "UCO" },
+  { name: "Luis Salazar", role: "Investigador Colaborador", entity: "UCO" },
+  { name: "Edison Osorio", role: "Investigador Colaborador", entity: "UCO" },
+  { name: "Catalina Agudelo", role: "Investigadora Colaboradora", entity: "UCO" },
+  { name: "Karent Bravo", role: "Investigadora Colaboradora", entity: "UCO" },
+  { name: "Daniel Carvajal", role: "Investigador Colaborador", entity: "UCO" },
+  { name: "Liliana Ceballos", role: "Investigadora Colaboradora", entity: "UCO" },
+  { name: "Claudia Lukau", role: "Investigadora Colaboradora", entity: "UCO" },
+  { name: "Jenny Milena Moreno", role: "Investigadora Colaboradora", entity: "UCO" }
 ];
 
 export default function About() {
@@ -200,28 +200,34 @@ export default function About() {
 
               {/* Research Team Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3.5 border-t border-white/5 pt-5 max-h-[45vh] overflow-y-auto pr-2 scrollbar-thin">
-                {researchTeam.map((name, idx) => {
-                  const isLead = name.includes('(Investigador Principal)');
-                  const cleanName = name.replace(' (Investigador Principal)', '');
+                {researchTeam.map((member: any, idx) => {
+                  const isLead = member.role.includes("Investigador Principal");
                   return (
                     <div 
                       key={idx} 
-                      className={`flex items-center gap-3 p-2.5 rounded-xl border transition-all ${
+                      className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${
                         isLead 
                           ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' 
                           : 'bg-white/5 border-white/5 text-slate-300 hover:bg-white/[0.08]'
                       }`}
                     >
                       <div className={`h-2 w-2 rounded-full ${isLead ? 'bg-emerald-400 shrink-0' : 'bg-slate-500 shrink-0'}`} />
-                      <div className="flex flex-col">
-                        <span className="text-xs md:text-sm font-medium leading-tight">
-                          {cleanName}
-                        </span>
-                        {isLead && (
-                          <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider mt-0.5">
-                            Investigador Principal (Líder)
+                      <div className="flex flex-col w-full">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-xs md:text-sm font-semibold leading-tight">
+                            {member.name}
                           </span>
-                        )}
+                          <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded shrink-0 ${
+                            member.entity === 'AGROSAVIA' 
+                              ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                              : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                          }`}>
+                            {member.entity}
+                          </span>
+                        </div>
+                        <span className="text-[10px] text-slate-400 font-light mt-0.5">
+                          {member.role}
+                        </span>
                       </div>
                     </div>
                   );
