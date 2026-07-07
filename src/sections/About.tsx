@@ -1,15 +1,46 @@
-import { Building2, UserCircle, MapPin, CalendarRange, Landmark } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Building2, Users, MapPin, CalendarRange, Landmark, X } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
 import GlassCard from '../components/GlassCard';
 import { regionStats } from '../data/projectData';
 
+const researchTeam = [
+  "Juan Camilo Henao Rojas (Investigador Principal)",
+  "Jorge Eliecer Jaramillo",
+  "Carolina Zuluaga",
+  "Cristian Domínguez",
+  "Rocío Alexandra Ortíz-Paz",
+  "Albeiro de Jesús Macías",
+  "Mario Alonso Mesa",
+  "Rosa Helen Mira Herrera",
+  "Karen Ballestas Álvarez",
+  "Luz Mary Quintero",
+  "German Franco",
+  "Jose Antonio Rubiano",
+  "Carolina Ortiz",
+  "Jaison Martínez",
+  "Yeraldine Bedoya",
+  "Mateo Londoño",
+  "Luis Salazar",
+  "Edison Osorio",
+  "Catalina Agudelo",
+  "Karent Bravo",
+  "Daniel Carvajal",
+  "Liliana Ceballos",
+  "Claudia Lukau",
+  "Jenny Milena Moreno"
+];
+
 export default function About() {
+  const [showTeamModal, setShowTeamModal] = useState(false);
+
   const infoCards = [
-    { label: 'Entidad Ejecutora', value: 'AGROSAVIA — C.I. La Selva', icon: <Building2 className="h-5 w-5 text-carrot-orange" /> },
-    { label: 'Investigador Principal', value: 'Juan C. Henao R., M.Sc.', icon: <UserCircle className="h-5 w-5 text-emerald-400" /> },
-    { label: 'Zona de Impacto', value: 'Oriente Antioqueño', icon: <MapPin className="h-5 w-5 text-blue-400" /> },
-    { label: 'Periodo de Ejecución', value: '2022 — 2026', icon: <CalendarRange className="h-5 w-5 text-amber-400" /> },
-    { label: 'Fondo Financiador', value: 'SGR — Regalías CTI', icon: <Landmark className="h-5 w-5 text-purple-400" /> }
+    { id: 'entidad', label: 'Entidad Ejecutora', value: 'AGROSAVIA — C.I. La Selva', icon: <Building2 className="h-5 w-5 text-carrot-orange" /> },
+    { id: 'equipo', label: 'Equipo de Investigación', value: '24 Investigadores', icon: <Users className="h-5 w-5 text-emerald-400" />, clickable: true, subValue: 'Ver lista completa' },
+    { id: 'zona', label: 'Zona de Impacto', value: 'Oriente Antioqueño', icon: <MapPin className="h-5 w-5 text-blue-400" /> },
+    { id: 'periodo', label: 'Periodo de Ejecución', value: '2022 — 2026', icon: <CalendarRange className="h-5 w-5 text-amber-400" /> },
+    { id: 'fondo', label: 'Fondo Financiador', value: 'SGR — Regalías CTI', icon: <Landmark className="h-5 w-5 text-purple-400" /> }
   ];
 
   return (
@@ -23,21 +54,50 @@ export default function About() {
 
       {/* Row of 5 Info Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        {infoCards.map((card, i) => (
-          <GlassCard key={i} className="flex flex-col gap-3 p-5 border-white/5 bg-obsidian-900/50" hoverEffect={true}>
-            <div className="p-2 rounded-lg bg-white/5 border border-white/10 w-fit">
-              {card.icon}
-            </div>
-            <div>
-              <span className="text-xs font-mono text-slate-500 block uppercase tracking-wider">
-                {card.label}
-              </span>
-              <span className="text-sm font-semibold text-white mt-1 block leading-snug">
-                {card.value}
-              </span>
-            </div>
-          </GlassCard>
-        ))}
+        {infoCards.map((card, i) => {
+          if (card.clickable) {
+            return (
+              <div 
+                key={i}
+                onClick={() => setShowTeamModal(true)}
+                className="cursor-pointer group flex flex-col justify-between"
+              >
+                <GlassCard className="h-full flex flex-col gap-3 p-5 border-emerald-500/10 bg-obsidian-900/50 hover:border-emerald-500/30 hover:bg-emerald-950/10 transition-all duration-300" hoverEffect={true}>
+                  <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/10 w-fit group-hover:bg-emerald-500/20 group-hover:border-emerald-500/30 transition-all">
+                    {card.icon}
+                  </div>
+                  <div>
+                    <span className="text-xs font-mono text-slate-500 block uppercase tracking-wider">
+                      {card.label}
+                    </span>
+                    <span className="text-sm font-semibold text-white mt-1 block leading-snug">
+                      {card.value}
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-400 mt-2 block underline group-hover:text-emerald-300 transition-colors">
+                      {card.subValue}
+                    </span>
+                  </div>
+                </GlassCard>
+              </div>
+            );
+          }
+
+          return (
+            <GlassCard key={i} className="flex flex-col gap-3 p-5 border-white/5 bg-obsidian-900/50" hoverEffect={true}>
+              <div className="p-2 rounded-lg bg-white/5 border border-white/10 w-fit">
+                {card.icon}
+              </div>
+              <div>
+                <span className="text-xs font-mono text-slate-500 block uppercase tracking-wider">
+                  {card.label}
+                </span>
+                <span className="text-sm font-semibold text-white mt-1 block leading-snug">
+                  {card.value}
+                </span>
+              </div>
+            </GlassCard>
+          );
+        })}
       </div>
 
       {/* BPIN Highlight & Context Panel Grid */}
@@ -99,6 +159,87 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      {/* Modal for Research Team */}
+      <AnimatePresence>
+        {showTeamModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+            {/* Backdrop click close */}
+            <div className="absolute inset-0" onClick={() => setShowTeamModal(false)} />
+            
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 15 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 15 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="z-10 w-full max-w-2xl bg-obsidian-950/90 border border-white/10 p-6 md:p-8 rounded-2xl shadow-2xl relative max-h-[85vh] overflow-y-auto scrollbar-thin"
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setShowTeamModal(false)}
+                className="absolute top-4 right-4 p-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 transition-all"
+              >
+                <X className="h-4 w-4" />
+              </button>
+
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  <Users className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold text-white leading-tight">
+                    Equipo de Investigación
+                  </h3>
+                  <span className="text-xs font-mono text-emerald-400">Antioquia Zana — SGR Regalías</span>
+                </div>
+              </div>
+
+              <p className="text-xs md:text-sm text-slate-400 leading-relaxed font-light mb-6">
+                Personal científico, técnico, administrativo y de transferencia tecnológica de AGROSAVIA y entidades colaboradoras que participaron en la ejecución del proyecto:
+              </p>
+
+              {/* Research Team Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3.5 border-t border-white/5 pt-5 max-h-[45vh] overflow-y-auto pr-2 scrollbar-thin">
+                {researchTeam.map((name, idx) => {
+                  const isLead = name.includes('(Investigador Principal)');
+                  const cleanName = name.replace(' (Investigador Principal)', '');
+                  return (
+                    <div 
+                      key={idx} 
+                      className={`flex items-center gap-3 p-2.5 rounded-xl border transition-all ${
+                        isLead 
+                          ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' 
+                          : 'bg-white/5 border-white/5 text-slate-300 hover:bg-white/[0.08]'
+                      }`}
+                    >
+                      <div className={`h-2 w-2 rounded-full ${isLead ? 'bg-emerald-400 shrink-0' : 'bg-slate-500 shrink-0'}`} />
+                      <div className="flex flex-col">
+                        <span className="text-xs md:text-sm font-medium leading-tight">
+                          {cleanName}
+                        </span>
+                        {isLead && (
+                          <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider mt-0.5">
+                            Investigador Principal (Líder)
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="flex justify-end border-t border-white/5 pt-5 mt-6">
+                <button
+                  onClick={() => setShowTeamModal(false)}
+                  className="px-5 py-2.5 rounded-xl bg-white text-obsidian-950 font-semibold text-xs hover:bg-slate-200 transition-colors"
+                >
+                  Cerrar Ventana
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
