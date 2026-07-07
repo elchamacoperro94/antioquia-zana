@@ -88,7 +88,7 @@ export default function ResultsDashboard() {
       {/* 1. Main Stat Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Muestras Caracterizadas', value: '117', desc: 'Análisis Fisicoquímicos', icon: <Database className="h-6 w-6 text-carrot-orange" /> },
+          { label: 'Muestras Caracterizadas', value: '117', desc: '62 excedentes | 55 cultivares', icon: <Database className="h-6 w-6 text-carrot-orange" /> },
           { label: 'Prototipos Creados', value: '5', desc: 'Alimentos & Cosméticos', icon: <Layers className="h-6 w-6 text-emerald-400" /> },
           { label: 'Modelos de Negocio', value: '6', desc: 'Planes Comerciales Habilitados', icon: <FileSpreadsheet className="h-6 w-6 text-amber-400" /> },
           { label: 'Docs Técnicos', value: '2', desc: 'Soporte Científico', icon: <BookOpen className="h-6 w-6 text-purple-400" /> }
@@ -218,7 +218,7 @@ export default function ResultsDashboard() {
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { title: 'Caracterización Exhaustiva', value: '117 muestras', desc: 'Análisis fisicoquímicos rigurosos de tipologías.', icon: <CheckCircle className="h-5 w-5 text-carrot-orange" /> },
+            { title: 'Caracterización Exhaustiva', value: '117 muestras', desc: '62 de excedentes y 55 de nuevos cultivares.', icon: <CheckCircle className="h-5 w-5 text-carrot-orange" /> },
             { title: 'HPLC Validado', value: 'r = 0.9997', desc: 'Curva de calibración cromatográfica certificada.', icon: <Activity className="h-5 w-5 text-purple-400" /> },
             { title: 'Escalamiento Piloto', value: '16 Litros', desc: 'Procesamiento en reactores BSP-1200.', icon: <FlaskConical className="h-5 w-5 text-blue-400" /> },
             { title: 'Seguridad Cosmética', value: '4 Protocolos', desc: 'OCDE in-vitro cumplidos sin testeo animal.', icon: <Award className="h-5 w-5 text-emerald-400" /> }

@@ -188,9 +188,9 @@ export const activities: ActivityEntry[] = [
     detail: "Análisis fisicoquímico completo de excedentes.",
     description: "Determinación de acidez, pH, sólidos solubles, fibra, azúcares y carotenoides totales en tipologías de descarte para establecer su aptitud industrial.",
     keyFindings: [
-      "Caracterización de acidez, pH y azúcares de descarte realizada mediante centrifugación a 13.000 RPM durante 10 minutos.",
-      "Desarrollo de métodos de extracción selectiva de carotenos usando disoluciones de etanol al 70%.",
-      "Determinación de perfiles nutricionales completos (fibra soluble y compuestos bioactivos) de biomasa descartada."
+      "Caracterización de 62 muestras de excedentes de cosecha y 55 muestras de nuevos materiales (117 muestras evaluadas en total).",
+      "Análisis de varianza multifactorial (ANOVA) sobre 31 muestras seleccionadas para evaluar efectos de origen y tipología en 24 variables.",
+      "Desarrollo de métodos de extracción selectiva de carotenos con disoluciones de etanol al 70% y centrifugación a 13.000 RPM durante 10 minutos."
     ],
     deliverables: [
       "Entregable 1.3: Libro 'Modelo Productivo y Cadena de Valor de la Zanahoria en Antioquia'.",
