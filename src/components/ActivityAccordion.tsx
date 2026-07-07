@@ -57,6 +57,7 @@ const phases: PhaseConfig[] = [
 export default function ActivityAccordion() {
   const [expandedPhase, setExpandedPhase] = useState<number | null>(1);
   const [expandedActivity, setExpandedActivity] = useState<string | null>(null);
+  const [selectedRows, setSelectedRows] = useState<Record<string, number | null>>({});
 
   const togglePhase = (phaseNum: number) => {
     setExpandedPhase(expandedPhase === phaseNum ? null : phaseNum);
@@ -66,6 +67,149 @@ export default function ActivityAccordion() {
   const toggleActivity = (actId: string, event: React.MouseEvent) => {
     event.stopPropagation(); // Avoid triggering phase toggle
     setExpandedActivity(expandedActivity === actId ? null : actId);
+  };
+
+  const handleRowClick = (actId: string, rowIndex: number) => {
+    setSelectedRows(prev => ({
+      ...prev,
+      [actId]: prev[actId] === rowIndex ? null : rowIndex
+    }));
+  };
+
+  const getRowDetailMessage = (actId: string, rowIndex: number) => {
+    if (actId === 'ACT-01') {
+      const messages = [
+        "Material 8: Variedad de alto rendimiento (117.07 g) y excelente comportamiento frente a Alternaria. Recomendado para el procesamiento y deshidratado industrial.",
+        "Material 9: Cultivar destacado con 0.00% de rajaduras y ausencia total de nematodos. Presenta el comportamiento fitosanitario más estable y resistente del ensayo.",
+        "Material 10: Variedad de óptimo peso promedio (117.14 g) con baja severidad de Alternaria y 0.00% de agrietamiento en campo.",
+        "Material 14: Variedad de comportamiento intermedio (72.88 g) con severidad media de Alternaria y baja propensión a rajaduras (2.81%).",
+        "Material 1 (Testigo): Alta vulnerabilidad fitosanitaria (33.33% de rajaduras, pudriciones severas y bifurcaciones por nematodos). No apto para procesamiento industrial."
+      ];
+      return messages[rowIndex] || null;
+    }
+    return null;
+  };
+
+  const renderTableCell = (cell: string, header: string, accent: 'blue' | 'orange' | 'purple' | 'green') => {
+    const headerLower = header.toLowerCase();
+    const cellLower = cell.toLowerCase();
+
+    // 1. Column Alternaria
+    if (headerLower.includes('alternaria')) {
+      if (cellLower.includes('muy baja')) {
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+            Muy Baja
+          </span>
+        );
+      }
+      if (cellLower.includes('baja')) {
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium font-mono bg-green-500/10 text-green-400 border border-green-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-400 shrink-0" />
+            Baja
+          </span>
+        );
+      }
+      if (cellLower.includes('media')) {
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-400 shrink-0" />
+            Media
+          </span>
+        );
+      }
+      if (cellLower.includes('alta')) {
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium font-mono bg-red-500/10 text-red-400 border border-red-500/20 animate-pulse">
+            <span className="h-1.5 w-1.5 rounded-full bg-red-500 shrink-0" />
+            {cell}
+          </span>
+        );
+      }
+    }
+
+    // 2. Column Agallas / Nematodos
+    if (headerLower.includes('agallas') || headerLower.includes('nematodos')) {
+      if (cellLower.includes('ausente')) {
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-xs font-mono text-emerald-400">
+            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
+            Ausente
+          </span>
+        );
+      }
+      if (cellLower.includes('presente')) {
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-xs font-mono text-rose-400">
+            <span className="h-2 w-2 rounded-full bg-rose-500 shrink-0 animate-ping mr-1" />
+            {cell}
+          </span>
+        );
+      }
+    }
+
+    // 3. Column Peso Promedio
+    if (headerLower.includes('peso promedio') || headerLower.includes('peso (g)')) {
+      if (cellLower.includes('no apto')) {
+        return (
+          <span className="text-slate-500 line-through font-mono text-xs">
+            No apto
+          </span>
+        );
+      }
+      const numMatch = cell.match(/[\d.]+/);
+      if (numMatch) {
+        const val = parseFloat(numMatch[0]);
+        const percent = Math.min(100, Math.round((val / 130) * 100));
+        return (
+          <div className="flex items-center gap-2">
+            <span className="font-mono">{cell}</span>
+            <div className="w-12 h-1 bg-white/5 rounded-full overflow-hidden shrink-0 hidden sm:block">
+              <div
+                className={`h-full rounded-full ${
+                  accent === 'blue'
+                    ? 'bg-blue-500'
+                    : accent === 'orange'
+                    ? 'bg-carrot-orange'
+                    : accent === 'purple'
+                    ? 'bg-purple-500'
+                    : 'bg-emerald-500'
+                }`}
+                style={{ width: `${percent}%` }}
+              />
+            </div>
+          </div>
+        );
+      }
+    }
+
+    // 4. Percentage columns
+    const isPercentage = cell.endsWith('%') && !isNaN(parseFloat(cell));
+    if (isPercentage) {
+      return (
+        <div className="flex items-center gap-2">
+          <span>{cell}</span>
+          <div className="w-12 h-1 bg-white/5 rounded-full overflow-hidden shrink-0">
+            <div
+              className={`h-full rounded-full ${
+                accent === 'blue'
+                  ? 'bg-blue-500'
+                  : accent === 'orange'
+                  ? 'bg-carrot-orange'
+                  : accent === 'purple'
+                  ? 'bg-purple-500'
+                  : 'bg-emerald-500'
+              }`}
+              style={{ width: cell }}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    return cell;
   };
 
   const getDiscipline = (actId: string) => {
@@ -153,15 +297,17 @@ export default function ActivityAccordion() {
                       return (
                         <div
                           key={act.id}
-                          onClick={(e) => toggleActivity(act.id, e)}
-                          className={`transition-all duration-200 rounded-xl border border-white/5 cursor-pointer overflow-hidden ${
+                          className={`transition-all duration-200 rounded-xl border border-white/5 overflow-hidden ${
                             isActExpanded 
                               ? 'bg-obsidian-900 border-white/10 shadow-md' 
                               : 'bg-obsidian-900/40 hover:bg-obsidian-900/70'
                           }`}
                         >
                           {/* Activity Row */}
-                          <div className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                          <div 
+                            onClick={(e) => toggleActivity(act.id, e)}
+                            className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer select-none"
+                          >
                             <div className="flex items-center gap-3">
                               <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0" />
                               <div>
@@ -268,38 +414,32 @@ export default function ActivityAccordion() {
                                               </tr>
                                             </thead>
                                             <tbody className="divide-y divide-white/5 font-light">
-                                              {act.technicalTable.rows.map((row, rIdx) => (
-                                                <tr key={rIdx} className="hover:bg-white/[0.02] transition-colors">
-                                                  {row.map((cell, cIdx) => {
-                                                    const isPercentage = cell.endsWith('%') && !isNaN(parseFloat(cell));
-                                                    return (
-                                                      <td key={cIdx} className="px-4 py-2 font-mono text-slate-300 whitespace-nowrap">
-                                                        {isPercentage ? (
-                                                          <div className="flex items-center gap-2">
-                                                            <span>{cell}</span>
-                                                            <div className="w-12 h-1.5 bg-white/5 rounded-full overflow-hidden shrink-0">
-                                                              <div
-                                                                className={`h-full rounded-full ${
-                                                                  phase.accent === 'blue'
-                                                                    ? 'bg-blue-500'
-                                                                    : phase.accent === 'orange'
-                                                                    ? 'bg-carrot-orange'
-                                                                    : phase.accent === 'purple'
-                                                                    ? 'bg-purple-500'
-                                                                    : 'bg-emerald-500'
-                                                                }`}
-                                                                style={{ width: cell }}
-                                                              />
-                                                            </div>
-                                                          </div>
-                                                        ) : (
-                                                          cell
-                                                        )}
+                                              {act.technicalTable.rows.map((row, rIdx) => {
+                                                const isSelected = selectedRows[act.id] === rIdx;
+                                                const isCriticalRow = row[0].includes('Control') || row[0].includes('Material 1');
+                                                const isGoodRow = row[0].includes('Material 8') || row[0].includes('Material 9') || row[0].includes('Material 10');
+                                                const rowClass = isSelected
+                                                  ? 'bg-carrot-orange/10 border-l-2 border-carrot-orange transition-all'
+                                                  : isCriticalRow
+                                                  ? 'hover:bg-red-500/5 hover:border-l-2 hover:border-red-500/30 cursor-pointer transition-all'
+                                                  : isGoodRow
+                                                  ? 'hover:bg-emerald-500/5 hover:border-l-2 hover:border-emerald-500/30 cursor-pointer transition-all'
+                                                  : 'hover:bg-white/[0.02] cursor-pointer transition-all';
+                                                
+                                                return (
+                                                  <tr 
+                                                    key={rIdx} 
+                                                    className={rowClass}
+                                                    onClick={() => handleRowClick(act.id, rIdx)}
+                                                  >
+                                                    {row.map((cell, cIdx) => (
+                                                      <td key={cIdx} className="px-4 py-3 font-mono text-xs text-slate-300 whitespace-nowrap">
+                                                        {renderTableCell(cell, act.technicalTable!.headers[cIdx], phase.accent)}
                                                       </td>
-                                                    );
-                                                  })}
-                                                </tr>
-                                              ))}
+                                                    ))}
+                                                  </tr>
+                                                );
+                                              })}
                                             </tbody>
                                           </table>
                                         </div>
@@ -308,6 +448,19 @@ export default function ActivityAccordion() {
                                             <span className="font-semibold text-slate-300 font-mono text-[10px] uppercase block mb-1">Análisis e Interpretación:</span>
                                             {act.technicalTable.description}
                                           </p>
+                                        )}
+                                        {selectedRows[act.id] !== undefined && selectedRows[act.id] !== null && getRowDetailMessage(act.id, selectedRows[act.id]!) && (
+                                          <motion.div 
+                                            initial={{ opacity: 0, y: 5 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="mt-3 p-3 rounded-lg bg-carrot-orange/10 border border-carrot-orange/20 text-xs text-slate-300 leading-relaxed font-light flex gap-2.5 items-start"
+                                          >
+                                            <span className="mt-0.5 shrink-0 text-carrot-orange font-bold font-mono">💡</span>
+                                            <div>
+                                              <span className="font-semibold text-carrot-orange block mb-0.5">Recomendación / Ficha Técnica:</span>
+                                              {getRowDetailMessage(act.id, selectedRows[act.id]!)}
+                                            </div>
+                                          </motion.div>
                                         )}
                                       </div>
                                     )}
