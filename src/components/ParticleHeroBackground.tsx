@@ -151,7 +151,7 @@ export default function ParticleHeroBackground() {
       </Canvas>
 
       {/* OVERLAY EFFECTS ON TOP OF CANVAS */}
-      
+
       {/* Overlay 1: Radial Glow Gradients (Orange at 30% center, green at 70% edge) */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(232,106,31,0.12)_30%,rgba(45,106,48,0.12)_70%)]" />
 

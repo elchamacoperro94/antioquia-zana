@@ -1,89 +1,99 @@
+// Interfaz que define la estructura de los Metadatos Generales del Proyecto
 export interface ProjectMetadata {
-  name: string;
-  bpin: string;
-  nit: string;
-  executingEntity: string;
-  principalInvestigator: string;
-  piTitle: string;
-  email: string;
-  phone: string;
-  location: string;
-  period: string;
-  funder: string;
-  cropChain: string;
-  researchGroups: string;
-  totalResearchers: string;
+  name: string;                  // Nombre del proyecto (ej. "Antioquia Zana")
+  bpin: string;                  // Código oficial BPIN del banco de proyectos nacional
+  nit: string;                   // Identificación NIT de la entidad ejecutora
+  executingEntity: string;       // Entidad que ejecuta el proyecto (AGROSAVIA)
+  principalInvestigator: string; // Investigador Principal
+  piTitle: string;               // Cargo o titulación académica del investigador principal
+  email: string;                 // Correo electrónico de contacto
+  phone: string;                 // Teléfono de contacto
+  location: string;              // Municipios donde se desarrolla el proyecto
+  period: string;                // Duración en años del proyecto (2022-2026)
+  funder: string;                // Entidad financiadora (Regalías SGR)
+  cropChain: string;             // Cadena agrícola asociada (Hortalizas)
+  researchGroups: string;        // Grupos de investigación académica involucrados
+  totalResearchers: string;      // Investigadores totales que participan
 }
 
+// Interfaz para definir estadísticas clave por región o por tipologías
 export interface RegionStat {
-  value: string;
-  label: string;
-  detail: string;
+  value: string; // Valor estadístico (ej: "25%")
+  label: string; // Etiqueta descriptiva
+  detail: string; // Detalles técnicos del origen del dato
 }
 
+// Interfaz que describe un Objetivo del Proyecto
 export interface ObjectiveEntry {
-  id: string;
-  title: string;
-  status: 'Completado' | 'Avanzado' | 'Pendiente';
-  description: string;
-  achievements: string[];
-  deliverables?: DeliverableItem[];
+  id: string;                    // Identificador único (ej. "OBJ-1")
+  title: string;                 // Título resumido del objetivo
+  status: 'Completado' | 'Avanzado' | 'Pendiente'; // Estado del hito
+  description: string;           // Descripción extensa del propósito del objetivo
+  achievements: string[];        // Lista de logros o hitos puntuales alcanzados
+  deliverables?: DeliverableItem[]; // Lista opcional de entregables descargables asociados
 }
 
+// Interfaz para la Tabla Técnica de Datos Experimentales
 export interface TechnicalTable {
-  title: string;
-  headers: string[];
-  rows: string[][];
-  description?: string;
+  title: string;                 // Título de la tabla experimental
+  headers: string[];             // Nombres de las columnas
+  rows: string[][];              // Matriz de datos (filas de celdas tipo texto)
+  description?: string;          // Párrafo de análisis e interpretación técnica
 }
 
+// Interfaz para un Documento Entregable Oficial
 export interface DeliverableItem {
-  name: string;
-  link?: string;
+  name: string;                  // Nombre descriptivo del informe o archivo
+  link?: string;                 // Ruta de descarga en el servidor local (ej. "/entregables objetivos/...")
 }
 
+// Interfaz que describe una Actividad del Proyecto dentro del acordeón de fases
 export interface ActivityEntry {
-  id: string;
-  phase: number;
-  name: string;
-  status: 'Completado' | 'Avanzado' | 'Pendiente';
-  detail: string;
-  description: string;
-  keyFindings: string[];
-  deliverables: DeliverableItem[];
-  technicalTable?: TechnicalTable;
+  id: string;                    // Código único de la actividad (ej. "ACT-01")
+  phase: number;                 // Número de fase a la que pertenece (1, 2, 3 o 4)
+  name: string;                  // Nombre completo de la actividad
+  status: 'Completado' | 'Avanzado' | 'Pendiente'; // Estado de la actividad
+  detail: string;                // Resumen breve o subtítulo de la actividad
+  description: string;           // Explicación técnica extendida del procedimiento realizado
+  keyFindings: string[];         // Hallazgos y conclusiones clave obtenidas
+  deliverables: DeliverableItem[]; // Lista de entregables y soportes oficiales
+  technicalTable?: TechnicalTable; // Tabla opcional de datos de laboratorio
 }
 
+// Interfaz para un Prototipo de Producto Desarrollado
 export interface ProductEntry {
-  id: string;
-  name: string;
-  type: 'Alimentaria' | 'Farmacéutica/Cosmética';
-  tag: string;
-  formulation: string;
-  process: string;
-  status: string;
-  features: string[];
-  description: string;
-  accent: 'orange' | 'purple' | 'green';
+  id: string;                    // ID del prototipo (ej: "prod-zanapure")
+  name: string;                  // Nombre comercial del prototipo
+  type: 'Alimentaria' | 'Farmacéutica/Cosmética'; // Sector industrial objetivo
+  tag: string;                   // Etiqueta del nicho de mercado (ej: "Primera infancia")
+  formulation: string;           // Fórmulas porcentuales de ingredientes activos y excipientes
+  process: string;               // Tecnología clave de transformación empleada
+  status: string;                // Estado de escalamiento comercial
+  features: string[];            // Lista de ventajas o características diferenciales
+  description: string;           // Descripción comercial e industrial del producto
+  accent: 'orange' | 'purple' | 'green'; // Color de acento para la interfaz
 }
 
+// Interfaz para Hitos o Logros Numéricos Destacados en el Dashboard
 export interface MilestoneEntry {
-  title: string;
-  value: string;
-  description: string;
-  icon: string;
+  title: string;                 // Nombre del logro
+  value: string;                 // Cifra o indicador clave
+  description: string;           // Breve explicación de la métrica
+  icon: string;                  // Nombre del icono de Lucide correspondiente
 }
 
+// Interfaz para las Entidades Alidadas Participantes
 export interface PartnerEntry {
-  name: string;
-  shortName: string;
-  role: string;
-  description: string;
-  activities: string[];
-  website?: string;
-  color: 'green' | 'blue' | 'amber' | 'red' | 'teal' | 'orange';
+  name: string;                  // Nombre de la institución
+  shortName: string;             // Abreviación o sigla
+  role: string;                  // Rol o responsabilidad principal en el proyecto
+  description: string;           // Resumen de las metas asignadas a la entidad
+  activities: string[];          // Lista de actividades asociadas
+  website?: string;              // Enlace oficial de la institución
+  color: 'green' | 'blue' | 'amber' | 'red' | 'teal' | 'orange'; // Color del badge
 }
 
+// Valores de Metadatos Generales del Proyecto Antioquia Zana
 export const projectMetadata: ProjectMetadata = {
   name: "Antioquia Zana",
   bpin: "2020000100192",
@@ -219,10 +229,10 @@ export const activities: ActivityEntry[] = [
       title: "Evaluación Fitosanitaria y Rendimiento de Cultivares (CI La Selva)",
       headers: ["Cultivar / Material", "Peso Promedio (g)", "Alternaria", "Rajaduras (%)", "Agallas Nematodos"],
       rows: [
-        ["Material 10", "117.14 g", "Baja", "0.00%", "Ausente"],
-        ["Material 8", "117.07 g", "Muy Baja", "11.11%", "Ausente"],
-        ["Material 9", "106.93 g", "Muy Baja", "0.00%", "Ausente"],
         ["Material 14", "72.88 g", "Media", "2.81%", "Ausente"],
+        ["Material 10", "117.14 g", "Baja", "0.00%", "Ausente"],
+        ["Material 9", "106.93 g", "Muy Baja", "0.00%", "Ausente"],
+        ["Material 8", "117.07 g", "Muy Baja", "11.11%", "Ausente"],
         ["Material 1 (Control)", "No apto", "Alta (Pudrición)", "33.33%", "Presente (44.44% bifurcado)"]
       ],
       description: "Esta tabla representa el tamizaje agronómico, sanitario y de rendimiento de cultivares de zanahoria en el C.I. La Selva. Los materiales 8, 9 y 10 mostraron el mejor desempeño con pesos promedio elevados (~117g), severidad muy baja de Alternaria y 0% de rajaduras o agallas por nematodos. En contraste, el Material 1 (Control) resultó no apto comercialmente debido a una severidad alta de pudrición, 33.33% de rajaduras y presencia de nematodos con un 44.44% de raíces bifurcadas."

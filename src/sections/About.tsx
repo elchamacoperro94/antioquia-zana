@@ -100,33 +100,40 @@ export default function About() {
         })}
       </div>
 
-      {/* BPIN Highlight & Context Panel Grid */}
+      {/* Rejilla de Diseño para el Código BPIN y el Panel de Contexto */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mt-4">
-        {/* Left: Book Cover Image & BPIN Card */}
+        {/* Panel Izquierdo: Tarjeta con la portada interactiva del libro y el código BPIN */}
         <div className="lg:col-span-5 flex flex-col gap-4">
           <GlassCard
             hoverEffect={true}
             className="flex-grow p-6 border-white/10 bg-obsidian-900/40 relative overflow-hidden flex flex-col justify-between"
           >
-            {/* Book Cover Image Container */}
+            {/* Contenedor interactivo para la Portada del Libro.
+                - 'href': Aponta a la ruta del PDF del libro en la carpeta de entregables.
+                - 'download': Fuerza al navegador a descargar el archivo en lugar de abrirlo.
+                - 'group': Permite que elementos hijos respondan al hover del contenedor padre. */}
             <a 
               href="/entregables objetivos/Objetivo 1/1.11. Documento sobre la importancia de la transformación en el sector hortícola colombiano/1.11 documento Esta Zanahoria Pa que.pdf"
               download
               title="Descargar libro completo"
               className="relative w-full aspect-[3/4] md:aspect-auto md:h-72 lg:h-80 rounded-xl overflow-hidden border border-white/10 shadow-lg group block cursor-pointer"
             >
+              {/* Imagen de la portada del libro */}
               <img 
                 src="/libro-portada.jpg" 
                 alt="Libro ¿Esta Zanahoria Pa' Qué?" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              {/* Overlay on hover indicating click to download */}
+              
+              {/* Capa de overlay que se oscurece y desenfoca sutilmente al pasar el cursor */}
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                {/* Botón flotante verde esmeralda con efecto de traslación hacia arriba */}
                 <div className="px-4 py-2 rounded-xl bg-emerald-500/90 text-white font-mono text-xs font-semibold flex items-center gap-2 border border-emerald-400/30 shadow-lg shadow-emerald-500/20 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                   <span>Descargar Libro Completo</span>
                 </div>
               </div>
-              {/* Subtle glassmorphic BPIN badge inside the image top-left */}
+              
+              {/* Etiqueta flotante con el código oficial BPIN del proyecto nacional en la esquina superior izquierda */}
               <div className="absolute top-3 left-3 px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/10">
                 <span className="text-[10px] font-mono text-slate-400 block tracking-wider uppercase">
                   BPIN 2020000100192
@@ -134,7 +141,7 @@ export default function About() {
               </div>
             </a>
 
-            {/* Book Title & Description */}
+            {/* Título y descripción resumida del libro de divulgación científica */}
             <div className="mt-4 pt-4 border-t border-white/5">
               <h4 className="text-sm font-bold text-white font-mono leading-snug">
                 ¿Esta zanahoria pa' qué?
