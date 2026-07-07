@@ -386,12 +386,39 @@ export default function ActivityAccordion() {
                                           Entregables Oficiales y Soporte Técnico
                                         </h5>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                          {act.deliverables.map((deliv, idx) => (
-                                            <div key={idx} className="flex items-start gap-2.5 p-2 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
-                                              <FileText className="h-4 w-4 text-carrot-orange shrink-0 mt-0.5" />
-                                              <span className="font-light leading-snug">{deliv}</span>
-                                            </div>
-                                          ))}
+                                          {act.deliverables.map((deliv, idx) => {
+                                            const hasLink = !!deliv.link;
+                                            const content = (
+                                              <>
+                                                <FileText className={`h-4 w-4 shrink-0 mt-0.5 ${hasLink ? 'text-emerald-400 group-hover:text-emerald-300' : 'text-carrot-orange'}`} />
+                                                <span className="font-light leading-snug">{deliv.name}</span>
+                                                {hasLink && (
+                                                  <span className="ml-auto text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 group-hover:bg-emerald-500/20 transition-all shrink-0">
+                                                    Descargar
+                                                  </span>
+                                                )}
+                                              </>
+                                            );
+
+                                            if (hasLink) {
+                                              return (
+                                                <a 
+                                                  key={idx} 
+                                                  href={deliv.link} 
+                                                  download
+                                                  className="group flex items-start gap-2.5 p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300 hover:bg-emerald-500/5 hover:border-emerald-500/20 transition-all cursor-pointer"
+                                                >
+                                                  {content}
+                                                </a>
+                                              );
+                                            }
+
+                                            return (
+                                              <div key={idx} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                                                {content}
+                                              </div>
+                                            );
+                                          })}
                                         </div>
                                       </div>
                                     )}
