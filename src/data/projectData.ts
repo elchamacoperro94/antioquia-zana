@@ -29,6 +29,13 @@ export interface ObjectiveEntry {
   achievements: string[];
 }
 
+export interface TechnicalTable {
+  title: string;
+  headers: string[];
+  rows: string[][];
+  description?: string;
+}
+
 export interface ActivityEntry {
   id: string;
   phase: number;
@@ -38,6 +45,7 @@ export interface ActivityEntry {
   description: string;
   keyFindings: string[];
   deliverables: string[];
+  technicalTable?: TechnicalTable;
 }
 
 export interface ProductEntry {
@@ -161,7 +169,19 @@ export const activities: ActivityEntry[] = [
     deliverables: [
       "Entregable 1.1: Informe de volumen de excedentes y caracterización agronómica.",
       "Catálogo técnico de 14 cultivares promisorios de zanahoria evaluados en campo."
-    ]
+    ],
+    technicalTable: {
+      title: "Evaluación Fitosanitaria y Rendimiento de Cultivares (CI La Selva)",
+      headers: ["Cultivar / Material", "Peso Promedio (g)", "Alternaria", "Rajaduras (%)", "Agallas Nematodos"],
+      rows: [
+        ["Material 8", "117.07 g", "Muy Baja", "11.11%", "Ausente"],
+        ["Material 9", "106.93 g", "Muy Baja", "0.00%", "Ausente"],
+        ["Material 10", "117.14 g", "Baja", "0.00%", "Ausente"],
+        ["Material 14", "72.88 g", "Media", "2.81%", "Ausente"],
+        ["Material 1 (Control)", "No apto", "Alta (Pudrición)", "33.33%", "Presente (44.44% bifurcado)"]
+      ],
+      description: "Esta tabla representa el tamizaje agronómico, sanitario y de rendimiento de cultivares de zanahoria en el C.I. La Selva. Los materiales 8, 9 y 10 mostraron el mejor desempeño con pesos promedio elevados (~117g), severidad muy baja de Alternaria y 0% de rajaduras o agallas por nematodos. En contraste, el Material 1 (Control) resultó no apto comercialmente debido a una severidad alta de pudrición, 33.33% de rajaduras y presencia de nematodos con un 44.44% de raíces bifurcadas."
+    }
   },
   {
     id: "ACT-02",
@@ -178,7 +198,16 @@ export const activities: ActivityEntry[] = [
     deliverables: [
       "Entregable 1.7: Protocolo detallado para la evaluación de respuestas espectrales de zanahoria.",
       "Modelo matemático de calibración espectral NIRS para carotenos y sólidos solubles."
-    ]
+    ],
+    technicalTable: {
+      title: "Modelos de Calibración Espectral NIRS en Python",
+      headers: ["Propiedad / Analito", "Rango Dinámico", "Coeficiente r²", "Algoritmo ML", "Error Estándar (Sy.x)"],
+      rows: [
+        ["β-caroteno (Provitamina A)", "0.156 - 50.0 µg/mL", "0.9997", "PLSR / SVM", "0.0778"],
+        ["Capacidad Antioxidante (DPPH)", "0.93 - 30.0 µM", "0.9974", "PLSR", "1.553"],
+        ["Sólidos Solubles (°Brix)", "2.0 - 12.0 °Brix", "0.9850", "Random Forest", "0.125"]
+      ]
+    }
   },
   {
     id: "ACT-03",
@@ -195,7 +224,17 @@ export const activities: ActivityEntry[] = [
     deliverables: [
       "Entregable 1.3: Libro 'Modelo Productivo y Cadena de Valor de la Zanahoria en Antioquia'.",
       "Fichas fisicoquímicas y perfiles nutricionales completos de excedentes."
-    ]
+    ],
+    technicalTable: {
+      title: "Rendimiento y Extracción en Muestras Liofilizadas (Actividad 3)",
+      headers: ["Método de Extracción", "Solvente", "Polifenoles (mg EAG/100g)", "Valor FRAP (µmol ET/100g)", "Valor ORAC-L (µmol ET/100g)"],
+      rows: [
+        ["Ultrasonido Convencional", "Metanol 99%", "85.38", "195.93", "4655.55"],
+        ["Ultrasonido Sonotrodo", "Etanol 70%", "57.10", "204.21", "6028.94"],
+        ["Maceración en Baño", "Acetona 70%", "60.79", "146.68", "4849.91"],
+        ["Ultrasonido Convencional", "Acetato de Etilo", "26.01", "26.90", "887.38"]
+      ]
+    }
   },
   {
     id: "ACT-04",
@@ -229,7 +268,16 @@ export const activities: ActivityEntry[] = [
       "Entregable 1.8: Protocolo de producción a escala piloto de ZanaPet (Suplemento de mascotas).",
       "Entregable 1.9: Protocolo de producción a escala piloto de Gomas Biofuncionales.",
       "Entregable 1.10: Protocolo de producción a escala piloto de ZanaPure (Compota infantil)."
-    ]
+    ],
+    technicalTable: {
+      title: "Formulación e Incorporación de Zanahoria de Descarte",
+      headers: ["Prototipo Alimentario", "Ingrediente Principal", "Incorporación (%)", "Masa de Proceso (kg)", "Control de Pérdidas (g)"],
+      rows: [
+        ["ZanaPure (Compota)", "Zanahoria Naranja", "27.40%", "63.38 kg", "129 g"],
+        ["ZanaPet (Mascotas)", "Zanahoria naranja/morada", "45.00%", "50.00 kg", "240 g"],
+        ["Gomas Biofuncionales", "Zanahoria Cavitada", "18.00%", "20.00 kg", "95 g"]
+      ]
+    }
   },
   {
     id: "ACT-06",
@@ -247,7 +295,16 @@ export const activities: ActivityEntry[] = [
       "Entregable 2.3: Ficha técnica y validación sensorial de ZanaPet (Mascotas).",
       "Entregable 2.4: Ficha técnica y validación sensorial de Gomas Biofuncionales (Humanos).",
       "Entregable 2.5: Ficha técnica y validación sensorial de ZanaPure (Compota)."
-    ]
+    ],
+    technicalTable: {
+      title: "Diseño Experimental y Vida Útil en Prototipos",
+      headers: ["Prototipo", "Temperatura Almacenamiento", "Humedad Relativa (%)", "Tiempo de Ensayo (Semanas)", "Repeticiones de Análisis"],
+      rows: [
+        ["ZanaPure (Compota)", "40°C ± 2°C", "75% ± 5%", "12 semanas (T0 a T6)", "Triplicado en Python 3.12"],
+        ["ZanaPet (Snacks)", "Ambiente", "Normalizada", "8 semanas", "Duplicado"],
+        ["Gomas Biofuncionales", "40°C y 45°C", "Controlada", "12 semanas", "Triplicado"]
+      ]
+    }
   },
   {
     id: "ACT-07",
@@ -264,7 +321,16 @@ export const activities: ActivityEntry[] = [
     deliverables: [
       "Entregable 3.1: Ficha técnica de ingrediente cosmético enriquecido en apocarotenoides.",
       "Protocolo de extracción fotoquímica y ruptura controlada de betacaroteno."
-    ]
+    ],
+    technicalTable: {
+      title: "Eficiencia de Ruptura Fotoquímica (Fenton + UV)",
+      headers: ["Matriz de Reacción", "Tiempo de Reacción (min)", "Radiación UV", "Rendimiento Iononas (Área Rel. %)", "Eficiencia de Rompimiento"],
+      rows: [
+        ["Extracto + Fenton (F1)", "120 min", "Con UV", "7.83% ± 1.67%", "34.90%"],
+        ["Extracto + Fenton (F1)", "120 min", "Sin UV", "4.24% ± 0.85%", "18.50%"],
+        ["Extracto + Fenton + US", "60 min", "Con UV", "9.12% ± 1.10%", "45.20%"]
+      ]
+    }
   },
   {
     id: "ACT-08",
@@ -281,7 +347,16 @@ export const activities: ActivityEntry[] = [
     deliverables: [
       "Entregable 3.2: Ficha de transportador lipídico nanoestructurado (NLC) para apocarotenoides.",
       "Protocolo de homogenización de alta presión y estabilización coloidal."
-    ]
+    ],
+    technicalTable: {
+      title: "Validación HPLC-DAD de Apocarotenoides",
+      headers: ["Parámetro Analítico", "Valor Estandarizado", "Columna Usada", "Tiempo de Corrida", "Volumen Inyección"],
+      rows: [
+        ["Linealidad (r)", "0.9997", "C18 Poroshell 120 (100x3.0mm)", "30 minutos", "5 µL"],
+        ["Flujo de Elución", "0.7 mL/min", "C18 Poroshell 120", "30 minutos", "5 µL"],
+        ["Temperatura de Columna", "50 ◦C", "C18 Poroshell 120", "30 minutos", "5 µL"]
+      ]
+    }
   },
   {
     id: "ACT-09",
@@ -297,7 +372,16 @@ export const activities: ActivityEntry[] = [
     ],
     deliverables: [
       "Informes de seguridad dérmica in-vitro bajo protocolos de la OCDE (citotoxicidad y corrosión)."
-    ]
+    ],
+    technicalTable: {
+      title: "Ensayos de Viabilidad Celular in-vitro (Normas OCDE)",
+      headers: ["Modelo Celular", "Guía de Protocolo OCDE", "Dosis UVB Aplicada", "Viabilidad Tisular (%)", "Marcador Cuantificado"],
+      rows: [
+        ["HDF (Fibroblasto)", "OCDE TG 439 (Irritación)", "100 mJ/cm²", "95.40%", "Pro-colágeno 1α / MMP-1"],
+        ["HaCaT (Queratinocito)", "OCDE TG 431 (Corrosión)", "Sin radiación", "98.20%", "IL-1α (ELISA)"],
+        ["SkinEthicTM (RhE)", "OCDE TG 489 (Fototoxicidad)", "200 mJ/cm²", "92.10%", "Densidad Óptica (MTT)"]
+      ]
+    }
   },
   {
     id: "ACT-10",
@@ -330,7 +414,16 @@ export const activities: ActivityEntry[] = [
     deliverables: [
       "Entregable 4.4: Libro publicado 'Esta Zanahoria Pa' Qué: Rutas de Innovación para la Zanahoria en Antioquia'.",
       "Estudio de mapeo de la cadena de valor y oportunidades de mercado."
-    ]
+    ],
+    technicalTable: {
+      title: "Mapeo de Actores Habilitados (Oriente Antioqueño)",
+      headers: ["Eslabón de la Cadena", "Actores Mapeados", "Ubicación Principal", "Tipologías Identificadas", "Cuello de Botella"],
+      rows: [
+        ["Productores Primarios", "43 fincas (1.3 ha)", "El Santuario / Marinilla", "Pequeño agricultor", "Escasa tecnificación y mermas"],
+        ["Procesadoras e Industria", "10 empresas", "Rionegro / Medellín", "Hortícola, cosmética y mascotas", "Logística inversa de excedentes"],
+        ["Comercializadores", "53 establecimientos", "Oriente Antioqueño", "Retail, galerías, plazas", "Variabilidad en precios de descarte"]
+      ]
+    }
   },
   {
     id: "ACT-12",
@@ -347,7 +440,17 @@ export const activities: ActivityEntry[] = [
     deliverables: [
       "Entregables 12.1 a 12.5: Planes de negocio específicos para los 5 prototipos desarrollados.",
       "Entregable 12.8: Manual de emprendimiento 'Una Zanahoria Para Emprender'."
-    ]
+    ],
+    technicalTable: {
+      title: "Estructura de Viabilidad Comercial de Prototipos",
+      headers: ["Producto Comercial", "Presentación / Unidad", "Mercado Objetivo", "Margen Operativo Estimado", "Canal de Venta Propuesto"],
+      rows: [
+        ["ZanaPure (Compota)", "Doypack 100g/250g", "Alimentación infantil y familiar", "32.00%", "Retail y canales de subsidio social"],
+        ["ZanaPet (Snacks)", "Empaque bilaminado 150g", "Nutrición complementaria de mascotas", "45.00%", "Pet shops, agropecuarias y veterinarias"],
+        ["Aurum Carota (Crema)", "Dosificador airless 50 mL", "Cuidado facial dermocosmético", "58.00%", "Línea dermatológica y ventas B2B"],
+        ["Gomas Upcycling", "Bolsa flexible 80g", "Snack saludable y confitería funcional", "28.00%", "Tiendas saludables, fitness y farmacias"]
+      ]
+    }
   },
   {
     id: "ACT-13",
@@ -365,7 +468,16 @@ export const activities: ActivityEntry[] = [
       "Informe del Curso 'Carota 360°: Operaciones Unitarias y Métodos de Extracción'.",
       "Entregable 13.1: Manual de exportación 'Una Zanahoria Para Exportar'.",
       "Registros y memorias de talleres de transferencia (Días de Campo 1, 2 y 3)."
-    ]
+    ],
+    technicalTable: {
+      title: "Estudios de Aceptación y Apropiación Social",
+      headers: ["Actividad de Socialización", "Metodología / Evento", "Participantes Reales", "Entrevistas Cualitativas", "Eficacia de Transferencia"],
+      rows: [
+        ["Paneles Sensoriales", "Cata descriptiva cuantitativa", "70 panelistas", "70 transcripciones", "Alta aceptabilidad de textura"],
+        ["Curso Carota 360°", "Formación operaciones unitarias", "32 técnicos/productores", "Exámenes teóricos", "Certificados UCO entregados"],
+        ["Días de Campo (1, 2, 3)", "Transferencia directa parcelas", "190 agricultores", "Fichas de asistencia", "Habilitación de buenas prácticas"]
+      ]
+    }
   },
   {
     id: "ACT-14",

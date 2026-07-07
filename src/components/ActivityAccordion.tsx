@@ -249,6 +249,68 @@ export default function ActivityAccordion() {
                                         </div>
                                       </div>
                                     )}
+
+                                    {/* Technical Table Section */}
+                                    {act.technicalTable && (
+                                      <div className="mt-4 pt-4 border-t border-white/5">
+                                        <h5 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+                                          {act.technicalTable.title}
+                                        </h5>
+                                        <div className="overflow-x-auto rounded-xl border border-white/5 bg-obsidian-950/40 scrollbar-thin">
+                                          <table className="min-w-full divide-y divide-white/5 text-left text-xs text-slate-300">
+                                            <thead className="bg-white/5 text-[10px] uppercase font-mono tracking-wider text-slate-400">
+                                              <tr>
+                                                {act.technicalTable.headers.map((h, i) => (
+                                                  <th key={i} className="px-4 py-2.5 font-bold">
+                                                    {h}
+                                                  </th>
+                                                ))}
+                                              </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-white/5 font-light">
+                                              {act.technicalTable.rows.map((row, rIdx) => (
+                                                <tr key={rIdx} className="hover:bg-white/[0.02] transition-colors">
+                                                  {row.map((cell, cIdx) => {
+                                                    const isPercentage = cell.endsWith('%') && !isNaN(parseFloat(cell));
+                                                    return (
+                                                      <td key={cIdx} className="px-4 py-2 font-mono text-slate-300 whitespace-nowrap">
+                                                        {isPercentage ? (
+                                                          <div className="flex items-center gap-2">
+                                                            <span>{cell}</span>
+                                                            <div className="w-12 h-1.5 bg-white/5 rounded-full overflow-hidden shrink-0">
+                                                              <div
+                                                                className={`h-full rounded-full ${
+                                                                  phase.accent === 'blue'
+                                                                    ? 'bg-blue-500'
+                                                                    : phase.accent === 'orange'
+                                                                    ? 'bg-carrot-orange'
+                                                                    : phase.accent === 'purple'
+                                                                    ? 'bg-purple-500'
+                                                                    : 'bg-emerald-500'
+                                                                }`}
+                                                                style={{ width: cell }}
+                                                              />
+                                                            </div>
+                                                          </div>
+                                                        ) : (
+                                                          cell
+                                                        )}
+                                                      </td>
+                                                    );
+                                                  })}
+                                                </tr>
+                                              ))}
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                        {act.technicalTable.description && (
+                                          <p className="mt-3 text-xs text-slate-400 font-light leading-relaxed bg-white/[0.02] border border-white/5 p-3 rounded-lg">
+                                            <span className="font-semibold text-slate-300 font-mono text-[10px] uppercase block mb-1">Análisis e Interpretación:</span>
+                                            {act.technicalTable.description}
+                                          </p>
+                                        )}
+                                      </div>
+                                    )}
                                   </div>
                                 </div>
                               </motion.div>
