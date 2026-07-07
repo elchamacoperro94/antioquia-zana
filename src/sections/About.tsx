@@ -102,25 +102,34 @@ export default function About() {
 
       {/* BPIN Highlight & Context Panel Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mt-4">
-        {/* Left: BPIN Highlight Card */}
+        {/* Left: Book Cover Image & BPIN Card */}
         <div className="lg:col-span-5 flex flex-col gap-4">
           <GlassCard
             hoverEffect={true}
-            className="flex-grow flex flex-col justify-between p-8 border-carrot-orange/20 bg-gradient-to-br from-carrot-orange/15 to-transparent relative overflow-hidden"
+            className="flex-grow p-6 border-white/10 bg-obsidian-900/40 relative overflow-hidden flex flex-col justify-between"
           >
-            {/* Structural mesh in background */}
-            <div className="absolute inset-0 technical-grid opacity-10 pointer-events-none" />
-            <div className="z-10">
-              <span className="text-xs font-mono text-carrot-orange tracking-widest uppercase block">
-                Código BPIN Oficial
-              </span>
-              <h3 className="text-4xl md:text-5xl font-mono font-bold text-white mt-4 tracking-wider">
-                2020000100192
-              </h3>
+            {/* Book Cover Image Container */}
+            <div className="relative w-full aspect-[3/4] md:aspect-auto md:h-72 lg:h-80 rounded-xl overflow-hidden border border-white/10 shadow-lg group">
+              <img 
+                src="/libro-portada.jpg" 
+                alt="Libro ¿Esta Zanahoria Pa' Qué?" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              {/* Subtle glassmorphic BPIN badge inside the image top-left */}
+              <div className="absolute top-3 left-3 px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/10">
+                <span className="text-[10px] font-mono text-slate-400 block tracking-wider uppercase">
+                  BPIN 2020000100192
+                </span>
+              </div>
             </div>
-            <div className="z-10 border-t border-white/10 pt-4 mt-8">
-              <p className="text-xs text-slate-400 font-light leading-relaxed">
-                Registrado bajo el Sistema General de Regalías (SGR) de Colombia, adscrito al Fondo de Ciencia, Tecnología e Innovación (CTI).
+
+            {/* Book Title & Description */}
+            <div className="mt-4 pt-4 border-t border-white/5">
+              <h4 className="text-sm font-bold text-white font-mono leading-snug">
+                ¿Esta zanahoria pa' qué?
+              </h4>
+              <p className="text-[11px] text-slate-400 font-light mt-1.5 leading-relaxed">
+                Libro de divulgación de rutas de innovación para la zanahoria: Conexión entre bioeconomía y agroindustria, resultado oficial del proyecto.
               </p>
             </div>
           </GlassCard>
