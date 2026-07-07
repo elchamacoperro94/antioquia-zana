@@ -79,9 +79,9 @@ export default function ActivityAccordion() {
   const getRowDetailMessage = (actId: string, rowIndex: number) => {
     if (actId === 'ACT-01') {
       const messages = [
+        "Material 10: Variedad de óptimo peso promedio (117.14 g) con baja severidad de Alternaria y 0.00% de agrietamiento en campo.",
         "Material 8: Variedad de alto rendimiento (117.07 g) y excelente comportamiento frente a Alternaria. Recomendado para el procesamiento y deshidratado industrial.",
         "Material 9: Cultivar destacado con 0.00% de rajaduras y ausencia total de nematodos. Presenta el comportamiento fitosanitario más estable y resistente del ensayo.",
-        "Material 10: Variedad de óptimo peso promedio (117.14 g) con baja severidad de Alternaria y 0.00% de agrietamiento en campo.",
         "Material 14: Variedad de comportamiento intermedio (72.88 g) con severidad media de Alternaria y baja propensión a rajaduras (2.81%).",
         "Material 1 (Testigo): Alta vulnerabilidad fitosanitaria (33.33% de rajaduras, pudriciones severas y bifurcaciones por nematodos). No apto para procesamiento industrial."
       ];

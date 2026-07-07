@@ -174,9 +174,9 @@ export const activities: ActivityEntry[] = [
       title: "Evaluación Fitosanitaria y Rendimiento de Cultivares (CI La Selva)",
       headers: ["Cultivar / Material", "Peso Promedio (g)", "Alternaria", "Rajaduras (%)", "Agallas Nematodos"],
       rows: [
+        ["Material 10", "117.14 g", "Baja", "0.00%", "Ausente"],
         ["Material 8", "117.07 g", "Muy Baja", "11.11%", "Ausente"],
         ["Material 9", "106.93 g", "Muy Baja", "0.00%", "Ausente"],
-        ["Material 10", "117.14 g", "Baja", "0.00%", "Ausente"],
         ["Material 14", "72.88 g", "Media", "2.81%", "Ausente"],
         ["Material 1 (Control)", "No apto", "Alta (Pudrición)", "33.33%", "Presente (44.44% bifurcado)"]
       ],
