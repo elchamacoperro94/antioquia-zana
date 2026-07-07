@@ -37,6 +37,7 @@ export interface ActivityEntry {
   detail: string;
   description: string;
   keyFindings: string[];
+  deliverables: string[];
 }
 
 export interface ProductEntry {
@@ -156,6 +157,10 @@ export const activities: ActivityEntry[] = [
       "Estimación de pérdidas en poscosecha del 25% al 30% de la producción total.",
       "Evaluación agronómica y caracterización fitosanitaria de 14 cultivares promisorios de zanahoria en El Santuario y Marinilla.",
       "Frecuencia de aplicación de insumos químicos para control foliar medida entre 2 y 15 veces por ciclo."
+    ],
+    deliverables: [
+      "Entregable 1.1: Informe de volumen de excedentes y caracterización agronómica.",
+      "Catálogo técnico de 14 cultivares promisorios de zanahoria evaluados en campo."
     ]
   },
   {
@@ -169,6 +174,10 @@ export const activities: ActivityEntry[] = [
       "Modelado espectral NIRS calibrado para medición rápida no destructiva de azúcares y sólidos solubles (°Brix).",
       "Correlación espectral de compuestos funcionales en altitudes de 2.000 a 3.000 msnm y temperaturas de 16 a 21 °C.",
       "Estandarización de firmas ópticas para predecir concentraciones de provitamina A y carotenos en muestras frescas."
+    ],
+    deliverables: [
+      "Entregable 1.7: Protocolo detallado para la evaluación de respuestas espectrales de zanahoria.",
+      "Modelo matemático de calibración espectral NIRS para carotenos y sólidos solubles."
     ]
   },
   {
@@ -182,6 +191,10 @@ export const activities: ActivityEntry[] = [
       "Caracterización de acidez, pH y azúcares de descarte realizada mediante centrifugación a 13.000 RPM durante 10 minutos.",
       "Desarrollo de métodos de extracción selectiva de carotenos usando disoluciones de etanol al 70%.",
       "Determinación de perfiles nutricionales completos (fibra soluble y compuestos bioactivos) de biomasa descartada."
+    ],
+    deliverables: [
+      "Entregable 1.3: Libro 'Modelo Productivo y Cadena de Valor de la Zanahoria en Antioquia'.",
+      "Fichas fisicoquímicas y perfiles nutricionales completos de excedentes."
     ]
   },
   {
@@ -195,6 +208,9 @@ export const activities: ActivityEntry[] = [
       "Mapeo de tendencias en Latinoamérica que identifica a las salsas, aderezos y alimentación animal como los principales usos industriales de excedentes.",
       "Priorización de cavitación e hidrólisis enzimática como las tecnologías de transformación con mayor viabilidad local.",
       "Evaluación de adaptabilidad tecnológica en el Oriente Antioqueño conforme a normativas Invima."
+    ],
+    deliverables: [
+      "Informe de selección técnica y priorización de tecnologías limpias (Cavitación e Hidrólisis)."
     ]
   },
   {
@@ -208,6 +224,11 @@ export const activities: ActivityEntry[] = [
       "Preparación de disolución salina de peptona al 0.1% bajo norma UNE-EN-ISO 6887-1:2000.",
       "Evaluación microbiológica de prototipos sólidos, semisólidos y líquidos utilizando Plate Count Agar (PCA) de Merck.",
       "Pruebas piloto de digestión enzimática de caseína para enriquecimiento de nitrógeno en compotas y gomas."
+    ],
+    deliverables: [
+      "Entregable 1.8: Protocolo de producción a escala piloto de ZanaPet (Suplemento de mascotas).",
+      "Entregable 1.9: Protocolo de producción a escala piloto de Gomas Biofuncionales.",
+      "Entregable 1.10: Protocolo de producción a escala piloto de ZanaPure (Compota infantil)."
     ]
   },
   {
@@ -221,6 +242,11 @@ export const activities: ActivityEntry[] = [
       "Diseño de empaques funcionales tipo doypack con válvula en presentaciones de 100g y 250g para ZanaPure.",
       "Ensayos de envasado a nivel de planta piloto realizados en las instalaciones de la Asociación Hortisanos.",
       "Establecimiento de vida útil y paneles de catadores entrenados para validación organoléptica."
+    ],
+    deliverables: [
+      "Entregable 2.3: Ficha técnica y validación sensorial de ZanaPet (Mascotas).",
+      "Entregable 2.4: Ficha técnica y validación sensorial de Gomas Biofuncionales (Humanos).",
+      "Entregable 2.5: Ficha técnica y validación sensorial de ZanaPure (Compota)."
     ]
   },
   {
@@ -234,6 +260,10 @@ export const activities: ActivityEntry[] = [
       "Desarrollo de método cromatográfico con mezcla de gradiente de isopropanol (IPA), acetonitrilo (ACN) y metanol.",
       "Adición de 100 ppm de Butilhidroxitolueno (BHT) como antioxidante para prevenir degradación de apocarotenos.",
       "Ajuste del flujo analítico a 0.7 mL/min para optimización de separación de retinoides activos."
+    ],
+    deliverables: [
+      "Entregable 3.1: Ficha técnica de ingrediente cosmético enriquecido en apocarotenoides.",
+      "Protocolo de extracción fotoquímica y ruptura controlada de betacaroteno."
     ]
   },
   {
@@ -247,6 +277,10 @@ export const activities: ActivityEntry[] = [
       "Establecimiento de volumen de inyección analítica de 5 μL en cromatógrafo HPLC-DAD.",
       "Definición de gradiente de separación en un tiempo total de corrida de 30 minutos.",
       "Validación de linealidad (r=0.9997) para cuantificar apocarotenoides y retinoides encapsulados."
+    ],
+    deliverables: [
+      "Entregable 3.2: Ficha de transportador lipídico nanoestructurado (NLC) para apocarotenoides.",
+      "Protocolo de homogenización de alta presión y estabilización coloidal."
     ]
   },
   {
@@ -260,6 +294,9 @@ export const activities: ActivityEntry[] = [
       "Ensayos in-vitro en fibroblastos humanos dérmicos (HDF) en pasajes de cultivo 2 a 5.",
       "Simulación de radiación UVB controlada en dosis de 25, 50, 100 y 200 mJ/cm².",
       "Determinación de colágeno y MMP-1 mediante técnicas ELISA (DuoSet ELISA R&D Systems) para validación antienvejecimiento."
+    ],
+    deliverables: [
+      "Informes de seguridad dérmica in-vitro bajo protocolos de la OCDE (citotoxicidad y corrosión)."
     ]
   },
   {
@@ -273,6 +310,9 @@ export const activities: ActivityEntry[] = [
       "Procesamiento piloto de 60 kg de zanahoria fresca en rebanadoras automáticas (TT-F60) y secado de lecho fluidizado (Actum).",
       "Deshidratación controlada a 40°C durante 16 horas en lotes de 15 kg para alcanzar humedad final del 5%.",
       "Molienda de biomasa seca y tamizado por malla 40 para obtención de polvo uniforme."
+    ],
+    deliverables: [
+      "Entregable 3.3: Formulación final y protocolo de escalamiento de emulsión facial Aurum Carota."
     ]
   },
   {
@@ -286,6 +326,10 @@ export const activities: ActivityEntry[] = [
       "Identificación y caracterización de 53 tipologías de empresas participantes en la cadena de valor.",
       "Segmentación demográfica de consumidores regionales y análisis de preferencias de consumo por grupos de edad.",
       "Mapeo relacional de flujos logísticos y cuellos de botella para el upcycling de excedentes."
+    ],
+    deliverables: [
+      "Entregable 4.4: Libro publicado 'Esta Zanahoria Pa' Qué: Rutas de Innovación para la Zanahoria en Antioquia'.",
+      "Estudio de mapeo de la cadena de valor y oportunidades de mercado."
     ]
   },
   {
@@ -299,6 +343,10 @@ export const activities: ActivityEntry[] = [
       "Estructuración de 5 lienzos Canvas de negocio y análisis financiero de viabilidad para cada prototipo.",
       "Simulación de costos operativos y margen comercial para la compota infantil, gomas y extractos.",
       "Modelado comercial de la emulsión semielaborada Aurum Carota para venta a granel a industrias de cosméticos."
+    ],
+    deliverables: [
+      "Entregables 12.1 a 12.5: Planes de negocio específicos para los 5 prototipos desarrollados.",
+      "Entregable 12.8: Manual de emprendimiento 'Una Zanahoria Para Emprender'."
     ]
   },
   {
@@ -312,6 +360,11 @@ export const activities: ActivityEntry[] = [
       "Estructuración de matrices DOFA específicas y análisis de Fuerzas de Porter para el portafolio.",
       "Realización de paneles sensoriales avanzados con transcripción de 70 entrevistas cualitativas.",
       "Talleres de socialización con la asistencia y retroalimentación de 59 personas en eventos regionales."
+    ],
+    deliverables: [
+      "Informe del Curso 'Carota 360°: Operaciones Unitarias y Métodos de Extracción'.",
+      "Entregable 13.1: Manual de exportación 'Una Zanahoria Para Exportar'.",
+      "Registros y memorias de talleres de transferencia (Días de Campo 1, 2 y 3)."
     ]
   },
   {
@@ -325,6 +378,10 @@ export const activities: ActivityEntry[] = [
       "Mapeo de preferencias de aprendizaje regional bajo metodología MIDEAS.",
       "Articulación de la Asociación Hortisanos con los resultados de transferencia del proyecto.",
       "Análisis de viabilidad exportadora del modelo '100% extracto de zanahoria' para mercados internacionales."
+    ],
+    deliverables: [
+      "Entregable 14.1: Cartilla de gobernanza 'Esta Zanahoria Pa' Quién: Articulación y Sostenibilidad'.",
+      "Entregable 14.2: Informe técnico de gobernanza y acuerdos institucionales de la cadena."
     ]
   }
 ];

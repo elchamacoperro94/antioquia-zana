@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, CheckCircle2, Calendar } from 'lucide-react';
+import { ChevronDown, CheckCircle2, Calendar, FileText } from 'lucide-react';
 import { activities } from '../data/projectData';
 import GlassCard from './GlassCard';
 import Badge from './Badge';
@@ -230,6 +230,23 @@ export default function ActivityAccordion() {
                                             </li>
                                           ))}
                                         </ul>
+                                      </div>
+                                    )}
+
+                                    {/* Deliverables Section */}
+                                    {act.deliverables && act.deliverables.length > 0 && (
+                                      <div className="mt-4 pt-4 border-t border-white/5">
+                                        <h5 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
+                                          Entregables Oficiales y Soporte Técnico
+                                        </h5>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                          {act.deliverables.map((deliv, idx) => (
+                                            <div key={idx} className="flex items-start gap-2.5 p-2 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
+                                              <FileText className="h-4 w-4 text-carrot-orange shrink-0 mt-0.5" />
+                                              <span className="font-light leading-snug">{deliv}</span>
+                                            </div>
+                                          ))}
+                                        </div>
                                       </div>
                                     )}
                                   </div>
