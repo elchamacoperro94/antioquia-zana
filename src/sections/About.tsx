@@ -12,13 +12,13 @@ const researchTeam = [
   { name: "Cristian Domínguez", role: "Investigador", entity: "AGROSAVIA" },
   { name: "Rocío Alexandra Ortíz-Paz", role: "Investigadora Fitosanitaria", entity: "AGROSAVIA" },
   { name: "Albeiro de Jesús Macías", role: "Investigador", entity: "AGROSAVIA" },
-  { name: "Mario Alonso Mesa", role: "Investigador", entity: "AGROSAVIA" },
+  { name: "Mario Alonso Mesa", role: "Investigador Colaborador", entity: "UdeA" },
   { name: "Rosa Helen Mira Herrera", role: "Investigadora", entity: "AGROSAVIA" },
   { name: "Karen Ballestas Álvarez", role: "Investigadora", entity: "AGROSAVIA" },
   { name: "Luz Mary Quintero", role: "Apoyo Técnico", entity: "AGROSAVIA" },
-  { name: "German Franco", role: "Investigador", entity: "AGROSAVIA" },
+  { name: "German Franco", role: "Investigador Colaborador", entity: "UNal" },
   { name: "Jose Antonio Rubiano", role: "Investigador", entity: "AGROSAVIA" },
-  { name: "Carolina Ortiz", role: "Investigadora", entity: "AGROSAVIA" },
+  { name: "Carolina Ortiz", role: "Investigadora Colaboradora", entity: "UdeA" },
   { name: "Jaison Martínez", role: "Investigador Colaborador", entity: "UCO" },
   { name: "Yeraldine Bedoya", role: "Investigadora Colaboradora", entity: "UCO" },
   { name: "Mateo Londoño", role: "Investigador Colaborador", entity: "UCO" },
@@ -220,7 +220,11 @@ export default function About() {
                           <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded shrink-0 ${
                             member.entity === 'AGROSAVIA' 
                               ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
-                              : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                              : member.entity === 'UCO'
+                              ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                              : member.entity === 'UdeA'
+                              ? 'bg-sky-500/10 text-sky-400 border border-sky-500/20'
+                              : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
                           }`}>
                             {member.entity}
                           </span>
