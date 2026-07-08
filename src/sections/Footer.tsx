@@ -7,14 +7,14 @@ export default function Footer() {
 
   const navLinks = [
     { label: 'Inicio', href: '#inicio' },
-    { label: 'Sobre el Proyecto', href: '#sobre-el-proyecto' },
+    { label: 'Proyecto', href: '#sobre-el-proyecto' },
     { label: 'Objetivos', href: '#objetivos' },
     { label: 'Actividades', href: '#actividades' },
-    { label: 'Prototipos', href: '#prototipos' },
+    { label: 'Productos', href: '#prototipos' },
     { label: 'Resultados', href: '#resultados' },
     { label: 'Registro Fotográfico', href: '#registro-fotografico' },
     { label: 'Aliados', href: '#aliados' },
-    { label: 'Contacto', href: '#contacto' }
+    { label: 'Documentos', href: '#contacto' }
   ];
 
   const entityLinks = [
@@ -25,7 +25,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-obsidian-950 border-t border-white/10 px-6 py-12 md:py-16 text-slate-400 font-light mt-auto">
+    <footer className="bg-obsidian-950 border-t border-white/10 px-6 pt-12 pb-24 md:pt-16 md:pb-32 text-slate-400 font-light mt-auto">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         
         {/* Column 1: Brand & Logo */}

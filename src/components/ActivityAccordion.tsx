@@ -1,83 +1,16 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, CheckCircle2, Calendar, FileText } from 'lucide-react';
+import { CheckCircle2, Calendar, FileText } from 'lucide-react';
 import { activities } from '../data/projectData';
 import { galleryPhotos } from '../data/galleryPhotos'; // Importamos la base de datos de fotos del proyecto
-import GlassCard from './GlassCard';
-import Badge from './Badge';
-
-// Interface que define la configuración visual de cada una de las 4 fases del proyecto
-interface PhaseConfig {
-  number: number;
-  title: string;
-  accent: 'blue' | 'orange' | 'purple' | 'green';
-  colorClass: string;
-  borderClass: string;
-  badgeBg: string;
-  textClass: string;
-}
-
-// Configuración de estilos y acentos visuales específicos para cada fase del proyecto
-const phases: PhaseConfig[] = [
-  {
-    number: 1,
-    title: 'Fase 1: Caracterización y Selección de Cultivares',
-    accent: 'blue',
-    colorClass: 'from-blue-500/20 to-blue-600/5',
-    borderClass: 'border-blue-500/30',
-    badgeBg: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-    textClass: 'text-blue-400'
-  },
-  {
-    number: 2,
-    title: 'Fase 2: Prototipos e Innovación Alimentaria',
-    accent: 'orange',
-    colorClass: 'from-carrot-orange/20 to-carrot-orange/5',
-    borderClass: 'border-carrot-orange/30',
-    badgeBg: 'bg-carrot-orange/10 text-carrot-orange border-carrot-orange/20',
-    textClass: 'text-carrot-orange'
-  },
-  {
-    number: 3,
-    title: 'Fase 3: Prototipos e Ingredientes Cosmecéuticos',
-    accent: 'purple',
-    colorClass: 'from-purple-500/20 to-purple-600/5',
-    borderClass: 'border-purple-500/30',
-    badgeBg: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-    textClass: 'text-purple-400'
-  },
-  {
-    number: 4,
-    title: 'Fase 4: Modelos de Negocio, Gobernanza y Transferencia',
-    accent: 'green',
-    colorClass: 'from-emerald-500/20 to-emerald-600/5',
-    borderClass: 'border-emerald-500/30',
-    badgeBg: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-    textClass: 'text-emerald-400'
-  }
-];
 
 export default function ActivityAccordion() {
-  // Estado local para rastrear qué fase está expandida actualmente (por defecto la Fase 1)
-  const [expandedPhase, setExpandedPhase] = useState<number | null>(1);
   // Estado local para saber qué actividad específica está expandida (nulo al inicio)
   const [expandedActivity, setExpandedActivity] = useState<string | null>(null);
   // Estado local para recordar qué fila de la tabla técnica está seleccionada en cada actividad (clave: actId, valor: nombre del material/fila)
   const [selectedRows, setSelectedRows] = useState<Record<string, string | null>>({});
   // Estado local para controlar qué foto se está visualizando en pantalla completa (lightbox)
   const [lightboxPhoto, setLightboxPhoto] = useState<string | null>(null);
-
-  // Alterna la expansión de una fase
-  const togglePhase = (phaseNum: number) => {
-    setExpandedPhase(expandedPhase === phaseNum ? null : phaseNum);
-    setExpandedActivity(null); // Reseteamos la actividad expandida al cambiar de fase para evitar conflictos
-  };
-
-  // Alterna la expansión de una actividad específica (evitando propagar el clic al botón de la fase)
-  const toggleActivity = (actId: string, event: React.MouseEvent) => {
-    event.stopPropagation(); // Detiene la propagación del evento hacia arriba en el DOM
-    setExpandedActivity(expandedActivity === actId ? null : actId);
-  };
 
   // Gestiona el clic en una fila de la tabla técnica de una actividad para mostrar/ocultar recomendaciones
   const handleRowClick = (actId: string, rowName: string) => {
@@ -322,331 +255,298 @@ export default function ActivityAccordion() {
     return cell;
   };
 
-  return (
-    <div className="flex flex-col gap-6">
-      {phases.map((phase) => {
-        const isPhaseExpanded = expandedPhase === phase.number;
-        // Filtramos las actividades que corresponden únicamente a la fase actual
-        const phaseActivities = activities.filter((act) => act.phase === phase.number);
+  const phaseData = [
+    {
+      number: 1,
+      tag: "FASE I",
+      title: "Diagnóstico Técnico",
+      borderClass: "border-t-2 border-blue-500 pt-6",
+      labelColor: "text-blue-400",
+      accent: "blue",
+      actIds: ["ACT-01", "ACT-02", "ACT-03", "ACT-04"]
+    },
+    {
+      number: 2,
+      tag: "FASE II",
+      title: "I+D Lab",
+      borderClass: "border-t-2 border-primary-container pt-6",
+      labelColor: "text-primary",
+      accent: "orange",
+      actIds: ["ACT-05", "ACT-06", "ACT-07", "ACT-08"]
+    },
+    {
+      number: 3,
+      tag: "FASE III",
+      title: "Escalamiento",
+      borderClass: "border-t-2 border-purple-500 pt-6",
+      labelColor: "text-purple-400",
+      accent: "purple",
+      actIds: ["ACT-09", "ACT-10"]
+    },
+    {
+      number: 4,
+      tag: "FASE IV",
+      title: "Apropiación Social",
+      borderClass: "border-t-2 border-secondary pt-6",
+      labelColor: "text-secondary",
+      accent: "green",
+      actIds: ["ACT-11", "ACT-12", "ACT-13", "ACT-14"]
+    }
+  ];
 
-        return (
-          <GlassCard
-            key={phase.number}
-            hoverEffect={false}
-            className={`transition-all duration-300 ${
-              isPhaseExpanded ? phase.borderClass + ' bg-obsidian-850/90 shadow-2xl' : 'border-white/5 bg-obsidian-900/20'
-            }`}
+  const activeAct = activities.find(a => a.id === expandedActivity);
+  const activePhase = activeAct ? phaseData.find(p => p.number === activeAct.phase) : null;
+  const activePhotos = activeAct ? galleryPhotos.filter(photo => photo.activity.split(':')[0].trim() === activeAct.id) : [];
+
+  return (
+    <div className="flex flex-col gap-8 w-full max-w-[1440px] mx-auto">
+      {/* 4-Phase Grid Layout (Google Stitch style) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {phaseData.map((phase) => {
+          const phaseActivities = activities.filter((act) => phase.actIds.includes(act.id));
+          return (
+            <div key={phase.number} className={`space-y-4 ${phase.borderClass}`}>
+              <span className={`font-label-caps text-xs tracking-wider font-semibold block ${phase.labelColor}`}>
+                {phase.tag}
+              </span>
+              <h4 className="font-headline-md text-white text-lg font-bold leading-tight">
+                {phase.title}
+              </h4>
+              <ul className="space-y-3">
+                {phaseActivities.map((act) => {
+                  const isSelected = expandedActivity === act.id;
+                  const isCompleted = act.status === "Completado";
+
+                  return (
+                    <li 
+                      key={act.id} 
+                      onClick={() => setExpandedActivity(isSelected ? null : act.id)}
+                      className={`flex items-start gap-3 p-3 glass-card rounded-lg border transition-all select-none cursor-pointer group ${
+                        isSelected 
+                          ? 'border-primary-container bg-primary-container/5 ring-1 ring-primary-container/10'
+                          : 'border-white/5 hover:border-white/15 hover:bg-white/[0.02]'
+                      }`}
+                    >
+                      {isCompleted ? (
+                        <CheckCircle2 className="text-secondary h-4.5 w-4.5 shrink-0 mt-0.5" />
+                      ) : (
+                        <Calendar className="text-primary h-4.5 w-4.5 shrink-0 mt-0.5" />
+                      )}
+                      <div className="flex flex-col min-w-0">
+                        <span className="font-mono-data text-xs text-slate-300 font-semibold block group-hover:text-primary transition-colors">
+                          {act.id}
+                        </span>
+                        <span className="font-body-md text-xs text-slate-400 leading-normal mt-0.5">
+                          {act.name}
+                        </span>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Expanding Detail Panel below the grid (Preserves description, key findings, deliverables and tables) */}
+      <AnimatePresence>
+        {expandedActivity && activeAct && activePhase && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -10 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden w-full mt-4"
           >
-            {/* Cabecera de la Fase (Botón principal del acordeón) */}
-            <button
-              onClick={() => togglePhase(phase.number)}
-              className="w-full flex items-center justify-between text-left p-6 focus:outline-none"
-            >
-              <div className="flex items-center gap-4">
-                <div
-                  className={`h-12 w-12 rounded-2xl flex items-center justify-center font-mono font-bold text-lg bg-gradient-to-br ${phase.colorClass} border border-white/10`}
-                >
-                  <span className={phase.textClass}>{phase.number}</span>
-                </div>
-                <div>
-                  <h3 className="text-lg md:text-xl font-bold text-white leading-tight">
-                    {phase.title}
-                  </h3>
-                  <span className="text-xs font-mono text-slate-500 mt-1 block">
-                    {phaseActivities.length} Actividades de Investigación
+            <div className="glass-card p-6 md:p-8 rounded-2xl border border-primary-container/20 bg-obsidian-900/40 space-y-6 relative">
+              <div className="absolute inset-0 technical-grid opacity-[0.02] pointer-events-none" />
+              
+              {/* Header */}
+              <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <span className={`font-mono text-xs px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-400`}>
+                    {activeAct.id}
                   </span>
+                  <div>
+                    <h3 className="font-headline-lg text-white text-xl md:text-2xl font-bold">
+                      {activeAct.name}
+                    </h3>
+                    <p className="text-xs text-slate-500 font-light mt-0.5">{activeAct.detail}</p>
+                  </div>
+                </div>
+                <div className="px-3 py-1 rounded bg-primary-container/10 border border-primary-container/20 text-primary-container font-mono text-xs">
+                  {activeAct.status}
                 </div>
               </div>
-              <ChevronDown
-                className={`h-6 w-6 text-slate-400 transition-transform duration-300 ${
-                  isPhaseExpanded ? 'rotate-180' : ''
-                }`}
-              />
-            </button>
 
-            {/* Listado animado de actividades dentro de la fase */}
-            <AnimatePresence initial={false}>
-              {isPhaseExpanded && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="overflow-hidden border-t border-white/5"
-                >
-                  <div className="p-6 flex flex-col gap-4">
-                    {phaseActivities.map((act) => {
-                      const isActExpanded = expandedActivity === act.id;
-                      // Filtramos las fotos de galleryPhotos correspondientes a esta actividad específica
-                      const actPhotos = galleryPhotos.filter((photo) => {
-                        const actPart = photo.activity.split(':')[0].trim(); // ej: "ACT-01" de "ACT-01: Investigación..."
-                        return actPart === act.id;
-                      });
-
-                      return (
-                        <div
-                          key={act.id}
-                          className={`rounded-xl border transition-all duration-200 ${
-                            isActExpanded
-                              ? 'bg-obsidian-950/60 border-white/10 shadow-inner'
-                              : 'bg-white/[0.01] border-white/5 hover:bg-white/[0.02] hover:border-white/10'
-                          }`}
-                        >
-                          {/* Botón de la Actividad Individual */}
-                          <div
-                            onClick={(e) => toggleActivity(act.id, e)}
-                            className="flex items-center justify-between p-4 cursor-pointer focus:outline-none"
-                          >
-                            <div className="flex items-center gap-3 w-full min-w-0">
-                              {/* Identificador corto de la actividad (ej. ACT-01) */}
-                              <span className="text-xs font-mono text-slate-500 bg-white/5 px-2.5 py-1 rounded-md shrink-0">
-                                {act.id}
-                              </span>
-                              <div className="min-w-0">
-                                <h4 className="text-sm font-semibold text-white truncate">
-                                  {act.name}
-                                </h4>
-                                <p className="text-xs text-slate-400 mt-0.5 truncate font-light">
-                                  {act.detail}
-                                </p>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-3 shrink-0 ml-4">
-                              {/* Insignia de estado (Completado, Avanzado, etc.) */}
-                              <Badge
-                                text={act.status}
-                                color={act.status === 'Completado' ? 'green' : 'amber'}
-                              />
-                              <ChevronDown
-                                className={`h-4 w-4 text-slate-500 transition-transform duration-205 ${
-                                  isActExpanded ? 'rotate-180' : ''
-                                }`}
-                              />
-                            </div>
-                          </div>
-
-                          {/* Detalles internos de la actividad al expandirla */}
-                          <AnimatePresence initial={false}>
-                            {isActExpanded && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: 'auto', opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2, ease: 'easeInOut' }}
-                                className="overflow-hidden"
-                              >
-                                <div className="p-4 pt-0 border-t border-white/5 flex gap-4">
-                                  {/* Línea lateral de color con el acento de la fase */}
-                                  <div
-                                    className={`w-1 rounded-full shrink-0 ${
-                                      phase.accent === 'blue'
-                                        ? 'bg-blue-500'
-                                        : phase.accent === 'orange'
-                                        ? 'bg-carrot-orange'
-                                        : phase.accent === 'purple'
-                                        ? 'bg-purple-500'
-                                        : 'bg-emerald-500'
-                                    }`}
-                                  />
-                                  <div className="flex flex-col gap-2 w-full min-w-0">
-                                    {/* Descripción técnica extendida */}
-                                    <p className="text-sm text-slate-300 leading-relaxed font-light">
-                                      {act.description}
-                                    </p>
-                                    <div className="flex items-center gap-1.5 text-xs font-mono text-slate-500 mt-2">
-                                      <Calendar className="h-3.5 w-3.5" />
-                                      <span>Cronograma: Trimestres 2022-2026</span>
-                                    </div>
-
-                                    {/* Listado de Hallazgos y Resultados clave */}
-                                    {act.keyFindings && act.keyFindings.length > 0 && (
-                                      <div className="mt-4 pt-4 border-t border-white/5">
-                                        <h5 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
-                                          Hallazgos y Resultados Clave
-                                        </h5>
-                                        <ul className="flex flex-col gap-2.5">
-                                          {act.keyFindings.map((finding, idx) => (
-                                            <li key={idx} className="flex items-start gap-2.5 text-xs md:text-sm text-slate-300">
-                                              <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
-                                              <span className="font-light leading-relaxed">{finding}</span>
-                                            </li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                    )}
-
-                                    {/* Sección de Documentos Entregables Oficiales vinculados */}
-                                    {act.deliverables && act.deliverables.length > 0 && (
-                                      <div className="mt-4 pt-4 border-t border-white/5">
-                                        <h5 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
-                                          Entregables Oficiales y Soporte Técnico
-                                        </h5>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                          {act.deliverables.map((deliv, idx) => {
-                                            const hasLink = !!deliv.link;
-                                            const content = (
-                                              <>
-                                                <FileText className={`h-4 w-4 shrink-0 mt-0.5 ${hasLink ? 'text-emerald-400 group-hover:text-emerald-300' : 'text-carrot-orange'}`} />
-                                                <span className="font-light leading-snug truncate block pr-2">{deliv.name}</span>
-                                                {hasLink && (
-                                                  <span className="ml-auto text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 group-hover:bg-emerald-500/20 transition-all shrink-0">
-                                                    Descargar
-                                                  </span>
-                                                )}
-                                              </>
-                                            );
-
-                                            if (hasLink) {
-                                              return (
-                                                <a 
-                                                  key={idx} 
-                                                  href={deliv.link} 
-                                                  download
-                                                  className="group flex items-start gap-2.5 p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300 hover:bg-emerald-500/5 hover:border-emerald-500/20 transition-all cursor-pointer"
-                                                >
-                                                  {content}
-                                                </a>
-                                              );
-                                            }
-
-                                            return (
-                                              <div key={idx} className="flex items-start gap-2.5 p-2.5 rounded-lg bg-white/5 border border-white/5 text-xs text-slate-300">
-                                                {content}
-                                              </div>
-                                            );
-                                          })}
-                                        </div>
-                                      </div>
-                                    )}
-
-                                    {/* Renderizado de la Tabla Técnica Interactiva si existe */}
-                                    {act.technicalTable && (
-                                      <div className="mt-4 pt-4 border-t border-white/5">
-                                        <h5 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
-                                          {act.technicalTable.title}
-                                        </h5>
-                                        {/* Contenedor de la tabla con scroll horizontal para móviles */}
-                                        <div className="overflow-x-auto rounded-xl border border-white/5 bg-obsidian-950/40 scrollbar-thin">
-                                          <table className="min-w-full divide-y divide-white/5 text-left text-xs text-slate-300">
-                                            <thead className="bg-white/5 text-[10px] uppercase font-mono tracking-wider text-slate-400">
-                                              <tr>
-                                                {act.technicalTable.headers.map((h, i) => (
-                                                  <th key={i} className="px-4 py-2.5 font-bold">
-                                                    {h}
-                                                  </th>
-                                                ))}
-                                              </tr>
-                                            </thead>
-                                            <tbody className="divide-y divide-white/5 font-light">
-                                              {act.technicalTable.rows.map((row, rIdx) => {
-                                                const rowName = row[0]; // Clave única por nombre del material
-                                                const isSelected = selectedRows[act.id] === rowName;
-                                                const isCriticalRow = rowName.includes('Control') || rowName.includes('Material 1');
-                                                const isGoodRow = rowName.includes('Material 8') || rowName.includes('Material 9') || rowName.includes('Material 10') || rowName.includes('Material 14');
-                                                
-                                                // Asignamos clases CSS según si la fila está seleccionada o tiene datos clave
-                                                const rowClass = isSelected
-                                                  ? 'bg-carrot-orange/10 border-l-2 border-carrot-orange transition-all'
-                                                  : isCriticalRow
-                                                  ? 'hover:bg-red-500/5 hover:border-l-2 hover:border-red-500/30 cursor-pointer transition-all'
-                                                  : isGoodRow
-                                                  ? 'hover:bg-emerald-500/5 hover:border-l-2 hover:border-emerald-500/30 cursor-pointer transition-all'
-                                                  : 'hover:bg-white/[0.02] cursor-pointer transition-all';
-                                                
-                                                return (
-                                                  <tr 
-                                                    key={rIdx} 
-                                                    className={rowClass}
-                                                    onClick={() => handleRowClick(act.id, rowName)}
-                                                  >
-                                                    {row.map((cell, cIdx) => (
-                                                      <td key={cIdx} className="px-4 py-3 font-mono text-xs text-slate-300 whitespace-nowrap">
-                                                        {renderTableCell(cell, act.technicalTable!.headers[cIdx])}
-                                                      </td>
-                                                    ))}
-                                                  </tr>
-                                                );
-                                              })}
-                                            </tbody>
-                                          </table>
-                                        </div>
-
-                                        {/* Descripción general e interpretación del análisis técnico */}
-                                        {act.technicalTable.description && (
-                                          <p className="mt-3 text-xs text-slate-400 font-light leading-relaxed bg-white/[0.02] border border-white/5 p-3 rounded-lg">
-                                            <span className="font-semibold text-slate-300 font-mono text-[10px] uppercase block mb-1">Análisis e Interpretación:</span>
-                                            {act.technicalTable.description}
-                                          </p>
-                                        )}
-
-                                        {/* Caja interactiva de recomendaciones por fila específica */}
-                                        {selectedRows[act.id] && getRowDetailMessage(act.id, selectedRows[act.id]!) && (
-                                          <motion.div 
-                                            initial={{ opacity: 0, y: 5 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            className="mt-3 p-3 rounded-lg bg-carrot-orange/10 border border-carrot-orange/20 text-xs text-slate-300 leading-relaxed font-light flex gap-2.5 items-start"
-                                          >
-                                            <span className="mt-0.5 shrink-0 text-carrot-orange font-bold font-mono">💡</span>
-                                            <div>
-                                              <span className="font-semibold text-carrot-orange block mb-0.5">Recomendación / Ficha Técnica:</span>
-                                              {getRowDetailMessage(act.id, selectedRows[act.id]!)}
-                                            </div>
-                                          </motion.div>
-                                        )}
-                                      </div>
-                                    )}
-
-                                    {/* Galería Visual de Fotos Reales de la Actividad */}
-                                    {actPhotos.length > 0 && (
-                                      <div className="mt-6 pt-4 border-t border-white/5">
-                                        <h5 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
-                                          Registro Visual del Proyecto
-                                        </h5>
-                                        {/* Carrusel de fotos miniaturas con scroll horizontal */}
-                                        <div className="flex gap-4 overflow-x-auto pb-3 pr-2 scrollbar-thin">
-                                          {actPhotos.map((photo, pIdx) => (
-                                            <div 
-                                              key={pIdx} 
-                                              onClick={() => setLightboxPhoto(`/photos-proyecto/${photo.filename}`)}
-                                              className="relative min-w-[180px] w-[180px] h-[135px] rounded-xl overflow-hidden border border-white/10 group cursor-pointer shrink-0 shadow-lg shadow-black/40 hover:border-carrot-orange/40 transition-all duration-300"
-                                            >
-                                              <img 
-                                                src={`/photos-proyecto/${photo.filename}`} 
-                                                alt={photo.title} 
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                                loading="lazy"
-                                              />
-                                              {/* Overlay degradado con datos de la foto */}
-                                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent flex flex-col justify-end p-2">
-                                                <span className="text-[9px] font-semibold text-white leading-tight truncate">
-                                                  {photo.title}
-                                                </span>
-                                                <span className="text-[8px] font-mono text-slate-400 mt-0.5">
-                                                  📍 {photo.location}
-                                                </span>
-                                              </div>
-                                            </div>
-                                          ))}
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      );
-                    })}
+              {/* Grid content */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                {/* Description & Key Findings */}
+                <div className="lg:col-span-7 space-y-6">
+                  <div className="space-y-3">
+                    <h5 className="font-label-caps text-xs text-slate-400 opacity-60">Descripción de Actividad</h5>
+                    <p className="font-body-md text-sm text-slate-300 leading-relaxed font-light">
+                      {activeAct.description}
+                    </p>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </GlassCard>
-        );
-      })}
 
-      {/* Modal Lightbox para visualización de fotos en pantalla completa */}
+                  <div className="space-y-3">
+                    <h5 className="font-label-caps text-xs text-slate-400 opacity-60">Resultados y Hallazgos</h5>
+                    <ul className="flex flex-col gap-2.5">
+                      {activeAct.keyFindings.map((finding, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-sm text-slate-300 font-light leading-relaxed">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                          <span>{finding}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Deliverables downloads */}
+                <div className="lg:col-span-5 space-y-4">
+                  <h5 className="font-label-caps text-xs text-slate-400 opacity-60">Entregables y Reportes</h5>
+                  {activeAct.deliverables && activeAct.deliverables.length > 0 ? (
+                    <div className="flex flex-col gap-2 max-h-[220px] overflow-y-auto pr-2 scrollbar-thin">
+                      {activeAct.deliverables.map((deliv, idx) => (
+                        <a 
+                          key={idx}
+                          href={deliv.link}
+                          download
+                          className="group/item flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-100 text-xs text-slate-700 hover:bg-emerald-50/50 hover:border-emerald-500/30 shadow-sm hover:shadow-md transition-all cursor-pointer"
+                        >
+                          <FileText className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
+                          <div className="flex flex-col w-full min-w-0">
+                            <span className="font-semibold text-slate-800 group-hover/item:text-emerald-700 transition-colors truncate block">
+                              {deliv.name}
+                            </span>
+                            <span className="text-[10px] text-slate-400 mt-1 block font-mono">
+                              Haga clic para descargar
+                            </span>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-500 italic">No hay archivos descargables adjuntos.</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Technical Table (if present) */}
+              {activeAct.technicalTable && (
+                <div className="mt-6 pt-6 border-t border-white/5 space-y-4">
+                  <h5 className="font-label-caps text-xs text-slate-400 opacity-60">
+                    {activeAct.technicalTable.title}
+                  </h5>
+                  <div className="overflow-x-auto rounded-xl border border-white/10 bg-obsidian-950/40 custom-scrollbar">
+                    <table className="w-full text-left border-collapse">
+                      <thead>
+                        <tr className="border-b border-white/10 bg-white/[0.02]">
+                          {activeAct.technicalTable.headers.map((head, hIdx) => (
+                            <th key={hIdx} className="px-4 py-3 text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+                              {head}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {activeAct.technicalTable.rows.map((row, rIdx) => {
+                          const rowName = row[0];
+                          const isSelectedRow = selectedRows[activeAct.id] === rowName;
+                          
+                          // Evaluamos el color de alerta o éxito para la fila
+                          const isCriticalRow = rowName.includes('Control') || rowName.includes('Testigo') || rowName.includes('Material 1');
+                          const isGoodRow = rowName.includes('Material 9') || rowName.includes('Material 10') || rowName.includes('Material 8');
+                          
+                          const rowClass = isSelectedRow
+                            ? 'bg-primary-container/10 border-l-2 border-primary-container cursor-pointer transition-all'
+                            : isCriticalRow
+                            ? 'hover:bg-red-500/5 hover:border-l-2 hover:border-red-500/30 cursor-pointer transition-all'
+                            : isGoodRow
+                            ? 'hover:bg-emerald-500/5 hover:border-l-2 hover:border-emerald-500/30 cursor-pointer transition-all'
+                            : 'hover:bg-white/[0.02] cursor-pointer transition-all';
+                          
+                          return (
+                            <tr 
+                              key={rIdx} 
+                              className={rowClass}
+                              onClick={() => handleRowClick(activeAct.id, rowName)}
+                            >
+                              {row.map((cell, cIdx) => (
+                                <td key={cIdx} className="px-4 py-3 font-mono text-xs text-slate-300 whitespace-nowrap">
+                                  {renderTableCell(cell, activeAct.technicalTable!.headers[cIdx])}
+                                </td>
+                              ))}
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {activeAct.technicalTable.description && (
+                    <p className="text-xs text-slate-400 font-light leading-relaxed bg-white/[0.01] border border-white/5 p-3 rounded-lg">
+                      <span className="font-semibold text-slate-300 font-mono text-[10px] uppercase block mb-1">Análisis e Interpretación:</span>
+                      {activeAct.technicalTable.description}
+                    </p>
+                  )}
+
+                  {selectedRows[activeAct.id] && getRowDetailMessage(activeAct.id, selectedRows[activeAct.id]!) && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-3 rounded-lg bg-carrot-orange/10 border border-carrot-orange/20 text-xs text-slate-300 leading-relaxed font-light flex gap-2.5 items-start"
+                    >
+                      <span className="mt-0.5 shrink-0 text-carrot-orange font-bold font-mono">💡</span>
+                      <div>
+                        <span className="font-semibold text-carrot-orange block mb-0.5">Recomendación / Ficha Técnica:</span>
+                        {getRowDetailMessage(activeAct.id, selectedRows[activeAct.id]!)}
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              )}
+
+              {/* Photo Gallery (if present) */}
+              {activePhotos.length > 0 && (
+                <div className="mt-6 pt-4 border-t border-white/5">
+                  <h5 className="font-label-caps text-xs text-slate-400 opacity-60 mb-3">
+                    Registro Visual del Proyecto
+                  </h5>
+                  <div className="flex gap-4 overflow-x-auto pb-3 pr-2 scrollbar-thin">
+                    {activePhotos.map((photo, pIdx) => (
+                      <div 
+                        key={pIdx} 
+                        onClick={() => setLightboxPhoto(`/photos-proyecto/${photo.filename}`)}
+                        className="relative min-w-[180px] w-[180px] h-[135px] rounded-xl overflow-hidden border border-white/10 group cursor-pointer shrink-0 shadow-lg shadow-black/40 hover:border-carrot-orange/40 transition-all duration-300"
+                      >
+                        <img 
+                          src={`/photos-proyecto/${photo.filename}`} 
+                          alt={photo.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent flex flex-col justify-end p-2">
+                          <span className="text-[9px] font-semibold text-white leading-tight truncate">
+                            {photo.title}
+                          </span>
+                          <span className="text-[8px] font-mono text-slate-400 mt-0.5">
+                            📍 {photo.location}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal Lightbox for images */}
       <AnimatePresence>
         {lightboxPhoto && (
           <motion.div
@@ -654,7 +554,7 @@ export default function ActivityAccordion() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLightboxPhoto(null)}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -662,14 +562,13 @@ export default function ActivityAccordion() {
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="relative max-w-4xl max-h-[85vh] overflow-hidden rounded-2xl border border-white/10 bg-obsidian-950/80 shadow-2xl"
-              onClick={(e) => e.stopPropagation()} // Evita cerrar el modal al hacer clic sobre la foto misma
+              onClick={(e) => e.stopPropagation()}
             >
               <img 
                 src={lightboxPhoto} 
                 alt="Visualización ampliada" 
                 className="w-full h-full max-h-[80vh] object-contain"
               />
-              {/* Botón cerrar */}
               <button 
                 onClick={() => setLightboxPhoto(null)}
                 className="absolute top-4 right-4 h-9 w-9 rounded-full bg-black/60 border border-white/10 hover:bg-black/80 text-white flex items-center justify-center text-lg focus:outline-none cursor-pointer transition-colors"

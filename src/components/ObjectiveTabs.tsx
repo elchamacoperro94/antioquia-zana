@@ -1,152 +1,164 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, FileText } from 'lucide-react';
+import { FileText, ChevronDown, ChevronUp } from 'lucide-react';
 import { objectives } from '../data/projectData';
-import GlassCard from './GlassCard';
-import Badge from './Badge';
 
-// Componente interactivo para mostrar los Objetivos de Investigación con sus respectivos entregables oficiales
+const objectiveData = [
+  {
+    id: "OBJ-01",
+    badge: "AVANZADO",
+    badgeColor: "bg-secondary/20 text-secondary",
+    title: "Determinación Nutricional",
+    desc: "Evaluación integral de la composición fisicoquímica y perfiles nutricionales de la zanahoria regional."
+  },
+  {
+    id: "OBJ-02",
+    badge: "COMPLETADO",
+    badgeColor: "bg-secondary-container/50 text-secondary-fixed text-green-400",
+    title: "Eficiencia Productiva",
+    desc: "Implementación de modelos de manejo agronómico para optimizar el rendimiento por hectárea."
+  },
+  {
+    id: "OBJ-03",
+    badge: "EN CURSO",
+    badgeColor: "bg-primary/20 text-primary",
+    title: "Desarrollo Agroindustrial",
+    desc: "Creación de prototipos funcionales a partir de excedentes de cosecha (descartes)."
+  },
+  {
+    id: "OBJ-04",
+    badge: "EN CURSO",
+    badgeColor: "bg-primary/20 text-primary",
+    title: "Transferencia de Conocimiento",
+    desc: "Fortalecimiento de las capacidades técnicas de los productores del Oriente Antioqueño."
+  }
+];
+
 export default function ObjectiveTabs() {
-  // Estado local para rastrear qué Objetivo está seleccionado actualmente (por defecto el primero)
-  const [activeId, setActiveId] = useState<string>(objectives[0].id);
+  const [activeId, setActiveId] = useState<string | null>(null);
   
-  // Buscamos los datos completos del objetivo seleccionado activo
-  const activeObj = objectives.find((obj) => obj.id === activeId) || objectives[0];
+  const activeObj = objectives.find((obj) => obj.id === activeId);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      {/* Panel Izquierdo: Botones de Pestaña para cada Objetivo */}
-      <div className="lg:col-span-5 flex flex-col gap-4">
-        {objectives.map((obj) => {
-          const isActive = obj.id === activeId;
+    <div className="flex flex-col gap-6">
+      {/* 4-Column Objectives Grid (Estilo Google Stitch) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {objectiveData.map((item) => {
+          const isActive = activeId === item.id;
           return (
             <button
-              key={obj.id}
-              onClick={() => setActiveId(obj.id)} // Al hacer clic actualiza el objetivo activo
-              className="text-left w-full focus:outline-none group"
+              key={item.id}
+              onClick={() => setActiveId(isActive ? null : item.id)}
+              className="text-left focus:outline-none w-full group"
             >
-              {/* Tarjeta de la pestaña, cambia de borde y fondo si está activa */}
-              <div
-                className={`transition-all duration-300 rounded-2xl p-5 border ${
-                  isActive
-                    ? 'bg-obsidian-800/80 border-carrot-orange/40 shadow-lg shadow-carrot-orange/5 translate-x-2'
-                    : 'bg-obsidian-800/40 border-white/5 hover:bg-obsidian-800/60 hover:border-white/10'
-                } flex items-center justify-between gap-4`}
+              <div 
+                className={`glass-card p-8 rounded-2xl relative h-full flex flex-col justify-between transition-all duration-300 border hover:-translate-y-1 ${
+                  isActive 
+                    ? 'border-primary-container bg-primary-container/5 ring-1 ring-primary-container/20 shadow-md shadow-primary-container/5' 
+                    : 'border-white/10 hover:border-white/20'
+                }`}
               >
-                <div className="flex items-center gap-4">
-                  {/* Número del objetivo (ej. 1, 2, 3, 4) */}
-                  <div
-                    className={`h-10 w-10 rounded-xl flex items-center justify-center font-mono font-bold text-sm ${
-                      isActive
-                        ? 'bg-carrot-orange/10 text-carrot-orange border border-carrot-orange/20'
-                        : 'bg-white/5 text-slate-400 group-hover:text-white border border-white/5'
-                    }`}
-                  >
-                    {obj.id.split('-')[1]}
-                  </div>
-                  <div>
-                    {/* Título de la Pestaña */}
-                    <h4
-                      className={`font-semibold transition-colors ${
-                        isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'
-                      }`}
-                    >
-                      {obj.title}
-                    </h4>
-                    <span className="text-xs font-mono text-slate-500 mt-1 block">Hito de Investigación</span>
-                  </div>
+                {/* Badge top-right */}
+                <div className={`absolute top-4 right-4 ${item.badgeColor} text-[10px] px-2 py-0.5 rounded font-mono`}>
+                  {item.badge}
                 </div>
-                {/* Flecha indicadora de navegación */}
-                <ChevronRight
-                  className={`h-5 w-5 transition-all ${
-                    isActive ? 'text-carrot-orange translate-x-1' : 'text-slate-600 group-hover:text-slate-400'
-                  }`}
-                />
+
+                <div className="space-y-4">
+                  <span className="font-mono text-primary text-sm font-semibold tracking-wider block">{item.id}</span>
+                  <h3 className="font-headline-md text-white text-xl font-bold leading-snug">{item.title}</h3>
+                  <p className="font-body-md text-slate-400 text-sm leading-relaxed font-light">
+                    {item.desc}
+                  </p>
+                </div>
+
+                {/* Interactive Indicator */}
+                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-500 font-mono">
+                  <span>{isActive ? 'Ocultar detalles' : 'Ver entregables'}</span>
+                  {isActive ? <ChevronUp className="h-4 w-4 text-primary" /> : <ChevronDown className="h-4 w-4 text-slate-600 group-hover:text-slate-400" />}
+                </div>
               </div>
             </button>
           );
         })}
       </div>
 
-      {/* Panel Derecho: Contenedor con detalles animados del Objetivo Activo */}
-      <div className="lg:col-span-7 h-full min-h-[350px]">
-        <GlassCard hoverEffect={false} className="h-full flex flex-col justify-between border-white/10">
-          {/* AnimatePresence gestiona la animación de salida cuando el objetivo activo cambia */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeId}
-              initial={{ opacity: 0, y: 15 }} // Estado inicial de animación
-              animate={{ opacity: 1, y: 0 }}   // Animación al entrar
-              exit={{ opacity: 0, y: -15 }}   // Animación al salir
-              transition={{ duration: 0.25, ease: 'easeInOut' }}
-              className="flex flex-col h-full"
-            >
-              {/* Cabecera del Detalle del Objetivo */}
-              <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-4 mb-6">
+      {/* Expanding Detail Panel (Preservación de Hitos y Descargas) */}
+      <AnimatePresence>
+        {activeId && activeObj && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -10 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="glass-card p-8 rounded-2xl border border-primary-container/20 bg-obsidian-900/40 space-y-6">
+              <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-4">
                 <div>
-                  <span className="text-xs font-mono text-carrot-orange tracking-widest uppercase">
-                    {activeObj.id}
+                  <span className="font-mono text-primary text-xs uppercase tracking-widest font-bold">
+                    Resultados Detallados — {activeObj.id}
                   </span>
-                  <h3 className="text-2xl font-bold text-white mt-1">{activeObj.title}</h3>
+                  <h3 className="font-headline-lg text-white text-2xl font-bold mt-1">
+                    {activeObj.title}
+                  </h3>
                 </div>
-                <Badge text="Objetivo Consolidado" color="green" />
+                <div className="px-3 py-1 rounded bg-secondary/10 border border-secondary/20 text-secondary font-mono text-xs">
+                  Entregable Oficial
+                </div>
               </div>
 
-              {/* Descripción Textual */}
-              <p className="text-slate-300 leading-relaxed font-light mb-6 text-lg">
-                {activeObj.description}
-              </p>
-
-              {/* Listado de Logros Clave alcanzados */}
-              <div className="flex-grow">
-                <h4 className="text-xs font-mono tracking-widest uppercase text-slate-500 mb-4">
-                  Logros Clave
-                </h4>
-                <ul className="flex flex-col gap-3">
-                  {activeObj.achievements.map((ach, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-slate-300">
-                      <span className="h-2 w-2 rounded-full bg-carrot-orange mt-2.5 shrink-0" />
-                      <span className="font-light">{ach}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Sección de Entregables Oficiales Descargables */}
-              {activeObj.deliverables && activeObj.deliverables.length > 0 && (
-                <div className="mt-8 pt-6 border-t border-white/10">
-                  <h4 className="text-xs font-mono tracking-widest uppercase text-slate-500 mb-4">
-                    Entregables Oficiales del Objetivo
+              {/* Achievements & Downloads Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                {/* Achievements List */}
+                <div className="lg:col-span-6 space-y-4">
+                  <h4 className="font-label-caps text-xs text-slate-400 opacity-60">
+                    Logros y Metodología Clave
                   </h4>
-                  {/* Cuadrícula con scroll interno para acomodar los archivos del objetivo */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[220px] overflow-y-auto pr-2 scrollbar-thin">
-                    {activeObj.deliverables.map((deliv, idx) => (
-                      <a 
-                        key={idx}
-                        href={deliv.link} // Enlace directo que sirve el archivo
-                        download           // Fuerza la descarga del documento
-                        className="group/item flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-100 text-xs text-slate-700 hover:bg-emerald-50/50 hover:border-emerald-500/30 shadow-sm hover:shadow-md transition-all cursor-pointer"
-                      >
-                        {/* Icono de Archivo de Lucide */}
-                        <FileText className="h-4.5 w-4.5 text-emerald-600 shrink-0 mt-0.5" />
-                        <div className="flex flex-col w-full min-w-0">
-                          {/* Nombre del archivo */}
-                          <span className="font-semibold text-slate-800 group-hover/item:text-emerald-700 transition-colors truncate block">
-                            {deliv.name}
-                          </span>
-                          <span className="text-[10px] text-slate-500 mt-1 block font-mono">
-                            Haga clic para descargar
-                          </span>
-                        </div>
-                      </a>
+                  <ul className="flex flex-col gap-3">
+                    {activeObj.achievements.map((ach, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-slate-300">
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                        <span className="font-body-md text-sm text-slate-300 leading-relaxed font-light">{ach}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </GlassCard>
-      </div>
+
+                {/* Deliverables Downloads */}
+                <div className="lg:col-span-6 space-y-4">
+                  <h4 className="font-label-caps text-xs text-slate-400 opacity-60">
+                    Documentos y Entregables en PDF
+                  </h4>
+                  {activeObj.deliverables && activeObj.deliverables.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[220px] overflow-y-auto pr-2 scrollbar-thin">
+                      {activeObj.deliverables.map((deliv, idx) => (
+                        <a 
+                          key={idx}
+                          href={deliv.link}
+                          download
+                          className="group/item flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-100 text-xs text-slate-700 hover:bg-emerald-50/50 hover:border-emerald-500/30 shadow-sm hover:shadow-md transition-all cursor-pointer"
+                        >
+                          <FileText className="h-4.5 w-4.5 text-emerald-600 shrink-0 mt-0.5" />
+                          <div className="flex flex-col w-full min-w-0">
+                            <span className="font-semibold text-slate-800 group-hover/item:text-emerald-700 transition-colors truncate block">
+                              {deliv.name}
+                            </span>
+                            <span className="text-[10px] text-slate-500 mt-1 block font-mono">
+                              Descargar archivo
+                            </span>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-slate-500 italic">No hay archivos adjuntos en este objetivo.</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

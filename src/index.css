@@ -1,26 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-obsidian-950: #ffffff; /* Fondo principal blanco */
-  --color-obsidian-900: #f8fafc; /* Fondo secundario gris muy claro (slate-50) */
-  --color-obsidian-800: #f1f5f9; /* Fondo de tarjetas/paneles slate-100 */
-  --color-obsidian-700: #e2e8f0; /* Fondo de botones/detalles slate-200 */
-  --color-carrot-orange: #e86a1f;
+  --color-primary: #ffb693;
+  --color-secondary: #95d690;
+  --color-primary-container: #ea6b20;
+  --color-secondary-container: #12521b;
+  --color-surface-container: #1d1f2b;
+  --color-surface-container-low: #191b27;
+  --color-surface-container-high: #282936;
+  --color-surface-container-highest: #333441;
+  --color-surface-container-lowest: #0c0d19;
+  --color-on-surface: #e2e1f2;
+  --color-on-surface-variant: #dfc0b3;
+  --color-outline: #a78b7f;
+  --color-outline-variant: #584238;
+  
+  --color-obsidian-950: #11131e; /* Fondo principal oscuro */
+  --color-obsidian-900: #0c0d19; /* Fondo secundario oscuro */
+  --color-obsidian-800: #1d1f2b; /* Fondo de tarjetas */
+  --color-obsidian-700: #282936; /* Fondo de botones/detalles */
+  
+  --color-carrot-orange: #ea6b20;
   --color-carrot-orange-hover: #ff7f36;
-  --color-amber-gold: #f5a623;
-  --color-forest-green: #2d6a30;
-  --color-sage-green: #475569; /* Gris oscuro para combinar con el tema claro */
+  --color-amber-gold: #ffb955;
+  --color-forest-green: #12521b;
+  --color-sage-green: #95d690;
   --color-glow-purple: #8b5cf6;
   
-  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Fira Code', ui-monospace, monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Sora', var(--font-sans);
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
 }
 
 /* Custom Base Styles */
 html, body {
-  background-color: #ffffff; /* Fondo de la página blanco */
-  color: #334155; /* Texto slate-700 para alta legibilidad */
+  background-color: var(--color-obsidian-950);
+  color: var(--color-on-surface);
   font-family: var(--font-sans);
   overflow-x: hidden;
   margin: 0;
@@ -32,6 +48,61 @@ html, body {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
+}
+
+/* Google Stitch Custom Typography Utilities */
+.font-display-lg {
+  font-family: var(--font-display);
+  font-size: 64px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+.font-headline-lg {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+.font-headline-md {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.font-body-lg {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.font-body-md {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.font-label-caps {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.0;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.font-mono-data {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Responsive adjustment for font-display-lg on mobile */
+@media (max-width: 768px) {
+  .font-display-lg {
+    font-size: 40px;
+    line-height: 1.2;
+  }
 }
 
 /* Lenis Smooth Scroll Configuration */
@@ -51,29 +122,36 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Glassmorphism Styles (Adaptados para el tema claro con sombras suaves) */
+/* Glassmorphism Styles (Adaptados para el tema oscuro Google Stitch) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
 .glass-panel {
-  background: rgba(255, 255, 255, 0.8) !important;
+  background: rgba(20, 22, 34, 0.65) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3) !important;
 }
 
 .glass-panel-light {
-  background: rgba(255, 255, 255, 0.55) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
 }
 
 .glass-panel-hover {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-panel-hover:hover {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border-color: rgba(232, 106, 31, 0.25) !important;
-  box-shadow: 0 20px 40px -15px rgba(232, 106, 31, 0.12) !important;
+  background: rgba(25, 27, 43, 0.8) !important;
+  border-color: rgba(232, 106, 31, 0.35) !important;
+  box-shadow: 0 20px 40px -15px rgba(232, 106, 31, 0.25) !important;
   transform: translateY(-4px);
 }
 
@@ -169,23 +247,23 @@ html.lenis, html.lenis body {
 }
 
 /* =========================================
-   NUEVO FONDO TECNOLÓGICO 3D (VERSIÓN 2 - ADAPTADO A TEMA CLARO)
+   NUEVO FONDO TECNOLÓGICO 3D (VERSIÓN 2 - GOOGLE STITCH DARK)
    ========================================= */
 body, html {
-  background-color: #ffffff !important;
+  background-color: #07080d !important;
 }
 
-/* Aplicamos las luces naranjas y verdes tenues sobre el fondo blanco */
+/* Aplicamos las luces naranjas y verdes en fondo oscuro */
 #root {
   background-color: transparent !important;
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(249, 115, 22, 0.06), transparent 35%),
-    radial-gradient(circle at 85% 30%, rgba(34, 197, 94, 0.06), transparent 35%);
+    radial-gradient(circle at 15% 50%, rgba(249, 115, 22, 0.12), transparent 35%),
+    radial-gradient(circle at 85% 30%, rgba(34, 197, 94, 0.12), transparent 35%);
   background-attachment: fixed;
   min-height: 100vh;
 }
 
-/* La cuadrícula 3D adaptada a líneas oscuras muy tenues */
+/* La cuadrícula 3D adaptada a líneas claras muy tenues */
 #root::before {
   content: "";
   position: fixed;
@@ -196,163 +274,26 @@ body, html {
   z-index: -10;
   
   background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 50px 50px;
   
   mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
   pointer-events: none;
 }
-/* ==========================================
-   SISTEMA DE DISEÑO DE TEMA CLARO (LIGHT MODE)
-   ========================================== */
 
-/* Sobrescritura Global de Colores de Texto */
-.text-white {
-  color: #0f172a !important; /* Slate-900 para títulos principales */
-}
-.text-slate-100 {
-  color: #1e293b !important; /* Slate-800 */
-}
-.text-slate-200 {
-  color: #334155 !important; /* Slate-700 */
-}
-.text-slate-300 {
-  color: #334155 !important; /* Slate-700 */
-}
-.text-slate-400 {
-  color: #475569 !important; /* Slate-600 para textos secundarios */
-}
-.text-slate-500 {
-  color: #64748b !important; /* Slate-500 para etiquetas y metadatos */
-}
-
-/* Sobrescritura de Bordes Oscuros a Bordes Claros */
-.border-white\/5 {
-  border-color: rgba(15, 23, 42, 0.06) !important;
-}
-.border-white\/10 {
-  border-color: rgba(15, 23, 42, 0.09) !important;
-}
-.border-white\/20 {
-  border-color: rgba(15, 23, 42, 0.15) !important;
-}
-.divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgba(15, 23, 42, 0.06) !important;
-}
-.border-t-white\/5 {
-  border-top-color: rgba(15, 23, 42, 0.06) !important;
-}
-
-/* Sobrescritura del Gráfico de Radar (RadialBarChart) de Recharts */
-.recharts-radial-bar-background-sector {
-  fill: rgba(15, 23, 42, 0.04) !important;
-}
-
-/* Sobrescritura de Grillas Técnicas */
-.technical-grid {
-  background-image: 
-    linear-gradient(rgba(15, 23, 42, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.02) 1px, transparent 1px) !important;
-  opacity: 0.8 !important;
-}
-
-/* Scrollbar para Tema Claro */
+/* Scrollbar para Tema Oscuro */
 ::-webkit-scrollbar-track {
-  background: #ffffff !important;
+  background: #07080d !important;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1 !important; /* slate-300 */
+  background: #202336 !important;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #e86a1f !important;
 }
 
-/* Ajuste sutil del sombreado de orbes luminosos en fondo claro */
-.bg-carrot-orange\/10 {
-  background-color: rgba(232, 106, 31, 0.05) !important;
-}
-.bg-emerald-500\/10 {
-  background-color: rgba(16, 185, 129, 0.04) !important;
-}
-
-/* Sobrescritura de fondos semitransparentes en el acordeón y componentes */
-.bg-white\/\[0\.02\] {
-  background-color: rgba(15, 23, 42, 0.015) !important;
-}
-.bg-white\/\[0\.01\] {
-  background-color: rgba(15, 23, 42, 0.008) !important;
-}
-.bg-white\/5 {
-  background-color: rgba(15, 23, 42, 0.02) !important;
-}
-.bg-white\/10 {
-  background-color: rgba(15, 23, 42, 0.04) !important;
-}
-.hover\:bg-white\/\[0\.02\]:hover {
-  background-color: rgba(15, 23, 42, 0.02) !important;
-}
-.hover\:bg-white\/10:hover {
-  background-color: rgba(15, 23, 42, 0.06) !important;
-}
-.bg-obsidian-950\/80 {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-}
-.bg-obsidian-950\/40 {
-  background-color: rgba(255, 255, 255, 0.5) !important;
-}
-.bg-obsidian-950\/60 {
-  background-color: rgba(255, 255, 255, 0.75) !important;
-}
-.bg-obsidian-900\/50 {
-  background-color: rgba(255, 255, 255, 0.6) !important;
-}
-.bg-obsidian-900\/40 {
-  background-color: rgba(255, 255, 255, 0.5) !important;
-}
-
-/* Estilo del botón de cerrar móvil */
-.bg-obsidian-900 {
-  background-color: #ffffff !important;
-}
-
-/* Sobrescrituras adicionales para bg-obsidian-800 en tema claro */
-.bg-obsidian-800 {
-  background-color: #f1f5f9 !important; /* slate-100 */
-}
-.bg-obsidian-800\/30 {
-  background-color: rgba(241, 245, 249, 0.4) !important;
-}
-.bg-obsidian-800\/60:hover {
-  background-color: rgba(241, 245, 249, 0.75) !important;
-}
-.hover\:bg-obsidian-800\/60:hover {
-  background-color: rgba(241, 245, 249, 0.75) !important;
-}
-
-/* Evitar que hover:text-white y group-hover:text-white vuelvan invisible el texto en fondo claro */
-.hover\:text-white:hover {
-  color: #e86a1f !important; /* Cambia a naranja zanahoria en vez de blanco */
-}
-.group-hover\:text-white:group-hover {
-  color: #e86a1f !important;
-}
-.group:hover .group-hover\:text-white {
-  color: #e86a1f !important;
-}
-.hover\:text-slate-200:hover {
-  color: #1e293b !important;
-}
-.group:hover .group-hover\:text-slate-200 {
-  color: #1e293b !important;
-}
-.hover\:text-slate-100:hover {
-  color: #0f172a !important;
-}
-.group:hover .group-hover\:text-slate-100 {
-  color: #0f172a !important;
-}
 
 
 

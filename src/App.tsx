@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Tractor } from 'lucide-react';
 
 // Import Sections
 import Hero from './sections/Hero';
@@ -22,18 +22,17 @@ gsap.registerPlugin(ScrollTrigger);
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
-  const [scrolled, setScrolled] = useState(false);
 
   const navItems = [
     { label: 'Inicio', href: '#inicio' },
-    { label: 'Sobre el Proyecto', href: '#sobre-el-proyecto' },
+    { label: 'Proyecto', href: '#sobre-el-proyecto' },
     { label: 'Objetivos', href: '#objetivos' },
     { label: 'Actividades', href: '#actividades' },
-    { label: 'Prototipos', href: '#prototipos' },
+    { label: 'Productos', href: '#prototipos' },
     { label: 'Resultados', href: '#resultados' },
     { label: 'Registro Fotográfico', href: '#registro-fotografico' },
     { label: 'Aliados', href: '#aliados' },
-    { label: 'Contacto', href: '#contacto' }
+    { label: 'Documentos', href: '#contacto' }
   ];
 
   // Initialize Lenis and GSAP ScrollTrigger
@@ -75,13 +74,7 @@ export default function App() {
       }
     });
 
-    // Header scroll background indicator
-    ScrollTrigger.create({
-      start: 'top -50',
-      onUpdate: (self) => {
-        setScrolled(self.scroll() > 50);
-      }
-    });
+
 
     // 3. GSAP Reveals on Scroll
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
@@ -112,22 +105,17 @@ export default function App() {
   return (
     <div className="relative min-h-screen flex flex-col bg-transparent text-slate-300">
       
-      {/* Dynamic Navigation Bar */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          scrolled
-            ? 'bg-obsidian-950/80 backdrop-blur-md border-b border-white/10 py-4 shadow-lg shadow-black/20'
-            : 'bg-transparent border-b border-transparent py-6'
-        }`}
+      {/* Dynamic Navigation Bar (Sticky Top Nav Bar matching Google Stitch) */}
+      <nav
+        className="sticky top-0 z-50 backdrop-blur-xl bg-surface/80 border-b border-b-white/10 h-20 flex items-center"
       >
-        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-          {/* Logo Oficial Agrandado */}
-          <a href="#inicio" className="flex items-center gap-2 group">
-            <img 
-              src="/logos/logo-principal.png" 
-              alt="Antioquia Zana" 
-              className="h-16 md:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-            />
+        <div className="max-w-[1440px] mx-auto w-full px-6 flex justify-between items-center">
+          {/* Logo Oficial con Tractor (según Google Stitch) */}
+          <a href="#inicio" className="font-headline-md text-primary flex items-center gap-2 group">
+            <Tractor className="h-6 w-6 text-primary group-hover:scale-110 transition-transform duration-300" />
+            <span className="font-bold text-white tracking-wider group-hover:text-primary transition-colors">
+              Antioquia Zana
+            </span>
           </a>
 
           {/* Desktop Navigation Links */}
@@ -135,18 +123,28 @@ export default function App() {
             {navItems.map((item) => {
               const sectionId = item.href.substring(1);
               const isActive = activeSection === sectionId;
+              
+              if (item.href === '#contacto') {
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="px-5 py-2 bg-white/5 rounded-lg border border-white/10 text-on-surface hover:bg-primary-container hover:text-on-primary-container transition-all font-label-caps text-xs tracking-wider"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+              
               return (
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`text-xs font-mono tracking-wide uppercase transition-colors relative py-1 ${
-                    isActive ? 'text-carrot-orange' : 'text-slate-400 hover:text-carrot-orange'
+                  className={`transition-colors relative py-1 font-label-caps text-xs tracking-wider ${
+                    isActive ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface-variant hover:text-primary'
                   }`}
                 >
                   {item.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-carrot-orange rounded-full" />
-                  )}
                 </a>
               );
             })}
@@ -155,12 +153,12 @@ export default function App() {
           {/* Mobile menu trigger */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-slate-400 hover:text-carrot-orange p-1 rounded-lg focus:outline-none focus:ring-1 focus:ring-carrot-orange/30"
+            className="lg:hidden text-on-surface p-1 rounded-lg focus:outline-none"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
-      </header>
+      </nav>
 
       {/* Mobile Sidebar Menu */}
       <div
