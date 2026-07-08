@@ -125,13 +125,13 @@ export default function ObjectiveTabs() {
                         key={idx}
                         href={deliv.link} // Enlace directo que sirve el archivo
                         download           // Fuerza la descarga del documento
-                        className="group/item flex items-start gap-2.5 p-3 rounded-xl bg-white/5 border border-white/5 text-xs text-slate-300 hover:bg-emerald-500/5 hover:border-emerald-500/20 transition-all cursor-pointer"
+                        className="group/item flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-100 text-xs text-slate-700 hover:bg-emerald-50/50 hover:border-emerald-500/30 shadow-sm hover:shadow-md transition-all cursor-pointer"
                       >
                         {/* Icono de Archivo de Lucide */}
-                        <FileText className="h-4.5 w-4.5 text-emerald-400 shrink-0 mt-0.5" />
+                        <FileText className="h-4.5 w-4.5 text-emerald-600 shrink-0 mt-0.5" />
                         <div className="flex flex-col w-full min-w-0">
                           {/* Nombre del archivo */}
-                          <span className="font-medium text-white group-hover/item:text-emerald-300 transition-colors truncate block">
+                          <span className="font-semibold text-slate-800 group-hover/item:text-emerald-700 transition-colors truncate block">
                             {deliv.name}
                           </span>
                           <span className="text-[10px] text-slate-500 mt-1 block font-mono">
