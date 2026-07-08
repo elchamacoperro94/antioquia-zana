@@ -2,15 +2,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-obsidian-950: #050508;
-  --color-obsidian-900: #0a0a0f;
-  --color-obsidian-800: #0f0f14;
-  --color-obsidian-700: #1b1b24;
+  --color-obsidian-950: #ffffff; /* Fondo principal blanco */
+  --color-obsidian-900: #f8fafc; /* Fondo secundario gris muy claro (slate-50) */
+  --color-obsidian-800: #f1f5f9; /* Fondo de tarjetas/paneles slate-100 */
+  --color-obsidian-700: #e2e8f0; /* Fondo de botones/detalles slate-200 */
   --color-carrot-orange: #e86a1f;
   --color-carrot-orange-hover: #ff7f36;
   --color-amber-gold: #f5a623;
   --color-forest-green: #2d6a30;
-  --color-sage-green: #7c9885;
+  --color-sage-green: #475569; /* Gris oscuro para combinar con el tema claro */
   --color-glow-purple: #8b5cf6;
   
   --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
@@ -19,8 +19,8 @@
 
 /* Custom Base Styles */
 html, body {
-  background-color: #0a0a0f;
-  color: #d1d5db;
+  background-color: #ffffff; /* Fondo de la página blanco */
+  color: #334155; /* Texto slate-700 para alta legibilidad */
   font-family: var(--font-sans);
   overflow-x: hidden;
   margin: 0;
@@ -51,28 +51,29 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Glassmorphism Styles */
+/* Glassmorphism Styles (Adaptados para el tema claro con sombras suaves) */
 .glass-panel {
-  background: rgba(15, 15, 20, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04) !important;
 }
 
 .glass-panel-light {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
 
 .glass-panel-hover {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-panel-hover:hover {
-  background: rgba(20, 20, 28, 0.8);
-  border-color: rgba(232, 106, 31, 0.3);
-  box-shadow: 0 12px 40px -10px rgba(232, 106, 31, 0.15);
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(232, 106, 31, 0.25) !important;
+  box-shadow: 0 20px 40px -15px rgba(232, 106, 31, 0.12) !important;
   transform: translateY(-4px);
 }
 
@@ -205,3 +206,131 @@ body, html {
   -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
   pointer-events: none; /* Para que no interfiera con los clics */
 }
+/* ==========================================
+   SISTEMA DE DISEÑO DE TEMA CLARO (LIGHT MODE)
+   ========================================== */
+
+/* Sobrescritura Global de Colores de Texto */
+.text-white {
+  color: #0f172a !important; /* Slate-900 para títulos principales */
+}
+.text-slate-100 {
+  color: #1e293b !important; /* Slate-800 */
+}
+.text-slate-200 {
+  color: #334155 !important; /* Slate-700 */
+}
+.text-slate-300 {
+  color: #334155 !important; /* Slate-700 */
+}
+.text-slate-400 {
+  color: #475569 !important; /* Slate-600 para textos secundarios */
+}
+.text-slate-500 {
+  color: #64748b !important; /* Slate-500 para etiquetas y metadatos */
+}
+
+/* Sobrescritura de Bordes Oscuros a Bordes Claros */
+.border-white\/5 {
+  border-color: rgba(15, 23, 42, 0.06) !important;
+}
+.border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.09) !important;
+}
+.border-white\/20 {
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+.divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(15, 23, 42, 0.06) !important;
+}
+.border-t-white\/5 {
+  border-top-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Sobrescritura del Gráfico de Radar (RadialBarChart) de Recharts */
+.recharts-radial-bar-background-sector {
+  fill: rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Sobrescritura de Grillas Técnicas */
+.technical-grid {
+  background-image: 
+    linear-gradient(rgba(15, 23, 42, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.02) 1px, transparent 1px) !important;
+  opacity: 0.8 !important;
+}
+
+/* Scrollbar para Tema Claro */
+::-webkit-scrollbar-track {
+  background: #ffffff !important;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important; /* slate-300 */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e86a1f !important;
+}
+
+/* Ajuste sutil del sombreado de orbes luminosos en fondo claro */
+.bg-carrot-orange\/10 {
+  background-color: rgba(232, 106, 31, 0.05) !important;
+}
+.bg-emerald-500\/10 {
+  background-color: rgba(16, 185, 129, 0.04) !important;
+}
+
+/* Sobrescritura de fondos semitransparentes en el acordeón y componentes */
+.bg-white\/\[0\.02\] {
+  background-color: rgba(15, 23, 42, 0.015) !important;
+}
+.bg-white\/\[0\.01\] {
+  background-color: rgba(15, 23, 42, 0.008) !important;
+}
+.bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.02) !important;
+}
+.bg-white\/10 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+.hover\:bg-white\/\[0\.02\]:hover {
+  background-color: rgba(15, 23, 42, 0.02) !important;
+}
+.hover\:bg-white\/10:hover {
+  background-color: rgba(15, 23, 42, 0.06) !important;
+}
+.bg-obsidian-950\/80 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+.bg-obsidian-950\/40 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+.bg-obsidian-950\/60 {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+}
+.bg-obsidian-900\/50 {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+.bg-obsidian-900\/40 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Estilo del botón de cerrar móvil */
+.bg-obsidian-900 {
+  background-color: #ffffff !important;
+}
+
+/* Sobrescrituras adicionales para bg-obsidian-800 en tema claro */
+.bg-obsidian-800 {
+  background-color: #f1f5f9 !important; /* slate-100 */
+}
+.bg-obsidian-800\/30 {
+  background-color: rgba(241, 245, 249, 0.4) !important;
+}
+.bg-obsidian-800\/60:hover {
+  background-color: rgba(241, 245, 249, 0.75) !important;
+}
+.hover\:bg-obsidian-800\/60:hover {
+  background-color: rgba(241, 245, 249, 0.75) !important;
+}
+
+
