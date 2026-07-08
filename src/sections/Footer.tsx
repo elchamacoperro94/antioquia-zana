@@ -31,12 +31,11 @@ export default function Footer() {
         {/* Column 1: Brand & Logo */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-carrot-orange to-amber-gold flex items-center justify-center text-white font-extrabold text-sm shadow-md">
-              Z
-            </div>
-            <span className="text-xl font-bold text-white tracking-wide">
-              Antioquia Zana
-            </span>
+            <img 
+              src="/logos/logo-principal.png" 
+              alt="Antioquia Zana" 
+              className="h-10 w-auto object-contain"
+            />
           </div>
           <span className="text-[10px] font-mono text-carrot-orange uppercase tracking-wider block">
             Proyecto BPIN {2020000100192}

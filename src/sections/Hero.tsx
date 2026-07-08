@@ -21,6 +21,15 @@ export default function Hero() {
 
       {/* 2. Hero Content Container */}
       <div className="max-w-5xl text-center flex flex-col items-center gap-6 z-10 my-auto">
+        {/* Logo Oficial en Gran Formato */}
+        <div className="mb-2 max-w-[180px] md:max-w-[250px] animate-pulse-dot" style={{ animationDuration: '3s' }}>
+          <img 
+            src="/logos/logo-principal.png" 
+            alt="Antioquia Zana Logo" 
+            className="w-full h-auto object-contain drop-shadow-sm"
+          />
+        </div>
+
         <Badge text="Proyecto de Regalías SGR — Fondo CTI" pulsing={true} color="green" />
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] max-w-4xl">

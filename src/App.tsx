@@ -121,14 +121,13 @@ export default function App() {
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-          {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-2.5 group">
-            <div className="h-9 w-9 rounded-lg bg-gradient-to-r from-carrot-orange to-amber-gold flex items-center justify-center text-white font-extrabold text-base shadow-md group-hover:scale-105 transition-transform">
-              Z
-            </div>
-            <span className="text-lg font-bold text-white tracking-wide group-hover:text-carrot-orange transition-colors">
-              Antioquia Zana
-            </span>
+          {/* Logo Oficial Agrandado */}
+          <a href="#inicio" className="flex items-center gap-2 group">
+            <img 
+              src="/logos/logo-principal.png" 
+              alt="Antioquia Zana" 
+              className="h-16 md:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+            />
           </a>
 
           {/* Desktop Navigation Links */}
@@ -141,7 +140,7 @@ export default function App() {
                   key={item.href}
                   href={item.href}
                   className={`text-xs font-mono tracking-wide uppercase transition-colors relative py-1 ${
-                    isActive ? 'text-carrot-orange' : 'text-slate-400 hover:text-white'
+                    isActive ? 'text-carrot-orange' : 'text-slate-400 hover:text-carrot-orange'
                   }`}
                 >
                   {item.label}
@@ -156,7 +155,7 @@ export default function App() {
           {/* Mobile menu trigger */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-slate-400 hover:text-white p-1 rounded-lg focus:outline-none focus:ring-1 focus:ring-carrot-orange/30"
+            className="lg:hidden text-slate-400 hover:text-carrot-orange p-1 rounded-lg focus:outline-none focus:ring-1 focus:ring-carrot-orange/30"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -191,7 +190,7 @@ export default function App() {
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`text-sm font-semibold tracking-wide py-1.5 transition-colors ${
-                      isActive ? 'text-carrot-orange' : 'text-slate-300 hover:text-white'
+                      isActive ? 'text-carrot-orange' : 'text-slate-300 hover:text-carrot-orange'
                     }`}
                   >
                     {item.label}
