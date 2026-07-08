@@ -1795,6 +1795,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-is@npm:^19.0.0":
+  version: 19.2.7
+  resolution: "react-is@npm:19.2.7"
+  checksum: 10c0/419fe54d5bd7fdf5414a5bb7bd9a1e0e36f9fae28ffb4cb73290fbe342bde15d8584a90d1db62547f6aa03018dce517b178a041abb522136cd4b4b51b4e94c83
+  languageName: node
+  linkType: hard
+
 "react-redux@npm:8.x.x || 9.x.x":
   version: 9.3.0
   resolution: "react-redux@npm:9.3.0"
@@ -2117,6 +2124,7 @@ __metadata:
     postcss: "npm:^8.5.16"
     react: "npm:^19.2.7"
     react-dom: "npm:^19.2.7"
+    react-is: "npm:^19.0.0"
     recharts: "npm:^3.9.2"
     tailwindcss: "npm:^4.3.2"
     three: "npm:^0.185.1"
