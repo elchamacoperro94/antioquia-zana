@@ -168,6 +168,44 @@ html.lenis, html.lenis body {
   animation: pulseDot 2s infinite ease-in-out;
 }
 
+/* =========================================
+   NUEVO FONDO TECNOLÓGICO 3D (VERSIÓN 2)
+   ========================================= */
+body, html {
+  background-color: #09090b !important;
+}
+
+/* Aplicamos las luces naranjas y verdes al contenedor de React */
+#root {
+  background-color: transparent !important;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(249, 115, 22, 0.15), transparent 35%),
+    radial-gradient(circle at 85% 30%, rgba(34, 197, 94, 0.15), transparent 35%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* La cuadrícula 3D */
+#root::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10; /* Detrás del texto pero delante del fondo negro */
+  
+  /* Líneas de la cuadrícula un poco más visibles */
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  
+  /* Efecto de difuminado (fade) en los bordes */
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
+  pointer-events: none; /* Para que no interfiera con los clics */
+}
 /* ==========================================
    SISTEMA DE DISEÑO DE TEMA CLARO (LIGHT MODE)
    ========================================== */

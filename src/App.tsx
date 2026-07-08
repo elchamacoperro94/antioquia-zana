@@ -110,7 +110,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-obsidian-950 text-slate-300">
+    <div className="relative min-h-screen flex flex-col bg-transparent text-slate-300">
       
       {/* Dynamic Navigation Bar */}
       <header
