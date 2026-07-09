@@ -37,7 +37,7 @@ export default function About() {
   const infoCards = [
     { id: 'entidad', label: 'Entidad Ejecutora', value: 'AGROSAVIA', subValue: 'Centro La Selva', icon: <Building2 className="h-5 w-5 text-carrot-orange" /> },
     { id: 'equipo', label: 'Equipo Investigador', value: 'Personal Cientifico', subValue: 'Alianza AntioquiaZana. (Ver equipo)', icon: <Users className="h-5 w-5 text-emerald-400" />, clickable: true },
-    { id: 'zona', label: 'Región', value: 'Oriente Antioqueño', subValue: 'Rionegro,Marinilla,ELSantuario', icon: <MapPin className="h-5 w-5 text-blue-400" /> },
+    { id: 'zona', label: 'Región', value: 'Oriente Antioqueño', subValue: 'ElSantuario, Marinilla', icon: <MapPin className="h-5 w-5 text-blue-400" /> },
     { id: 'periodo', label: 'Vigencia', value: '2022 — 2026', subValue: 'Periodo de ejecución', icon: <CalendarRange className="h-5 w-5 text-amber-400" /> },
   ];
 

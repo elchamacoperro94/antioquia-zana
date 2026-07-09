@@ -7,31 +7,24 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&amp;family=Inter:wght@300;400;500&amp;family=Geist:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
         :root {
-            --obsidian: #0a0a0f;
-            --burnt-orange: #e86a1f;
+            --obsidian: #11131e;
+            --burnt-orange: #ea6b20;
             --forest-green: #2d6a30;
         }
         body {
             background-color: var(--obsidian);
             color: #e2e1f2;
-            overflow-x: hidden;
+            overflow: hidden; /* Main page uses sidebar scroll */
         }
         .glass-card {
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .orange-glow {
-            filter: drop-shadow(0 0 15px rgba(232, 106, 31, 0.3));
-        }
         .atmospheric-glow {
-            background: radial-gradient(circle at center, rgba(232, 106, 31, 0.15) 0%, transparent 70%);
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            background: radial-gradient(circle at center, rgba(232, 106, 31, 0.1) 0%, transparent 70%);
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 4px;
@@ -42,6 +35,24 @@
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
+        }
+        /* Sidebar Active State */
+        .nav-link.active {
+            color: #ffb693;
+            background: rgba(234, 107, 32, 0.1);
+            border-right: 3px solid #ea6b20;
+        }
+        /* SPA Section Display */
+        .spa-section {
+            display: none;
+        }
+        .spa-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 <script id="tailwind-config">
@@ -137,62 +148,101 @@
       }
     </script>
 </head>
-<body class="font-body-md text-on-surface bg-surface selection:bg-primary/30">
-<!-- Header / Banner Section -->
-<header class="relative min-h-[921px] flex flex-col items-center justify-center overflow-hidden px-container-padding text-center">
-<!-- Atmospheric WebGL (Placeholder Logic) -->
-
-<div class="relative z-10 max-w-5xl space-y-stack-lg">
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-secondary/20">
-<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-<span class="font-label-caps text-label-caps text-secondary">Proyecto de Regalías SGR — Fondo CTI</span>
-</div>
-<h1 class="font-display-lg text-display-lg leading-tight tracking-tight">
-                Fortalecimiento de la <span class="text-primary-container">Cadena Productiva</span> de la <span class="text-secondary">Zanahoria</span>
-</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto">
-                Proyecto BPIN 2020000100192 | Sistema General de Regalías — Fondo CTI | <span class="font-bold text-on-surface">AGROSAVIA</span>
-</p>
-<div class="flex flex-col sm:flex-row gap-gutter justify-center pt-stack-lg">
-<a class="px-8 py-4 bg-primary-container text-on-primary-container font-headline-md text-headline-md rounded-xl hover:scale-105 transition-all shadow-lg shadow-primary-container/20" href="#proyecto">
-                    Explorar el Proyecto
-                </a>
-<a class="px-8 py-4 border border-outline-variant text-on-surface font-headline-md text-headline-md rounded-xl hover:bg-white/5 transition-all" href="#prototipos">
-                    Ver Prototipos
-                </a>
-</div>
-</div>
-<!-- Animated Scroll Indicator -->
-<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-<span class="font-label-caps text-label-caps">Desplazar</span>
-<div class="w-px h-12 bg-gradient-to-b from-primary-container to-transparent"></div>
-</div>
-</header>
-<!-- Navigation -->
-<nav class="sticky top-0 z-50 backdrop-blur-xl bg-surface/80 border-b border-white/10 h-20 flex items-center">
-<div class="max-w-[1440px] mx-auto w-full px-container-padding flex justify-between items-center">
+<body class="font-body-md text-on-surface bg-surface selection:bg-primary/30 h-screen flex overflow-hidden">
+<!-- SIDEBAR NAVIGATION -->
+<aside class="w-64 lg:w-72 h-full bg-surface-container-low border-r border-white/5 flex flex-col z-50 transition-all">
+<div class="p-6 border-b border-white/5">
 <div class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2">
 <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">agriculture</span>
-                Antioquia Zana
-            </div>
-<div class="hidden lg:flex items-center gap-6">
-<a class="text-primary border-b-2 border-primary pb-1 font-label-caps text-label-caps" href="#">Inicio</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#proyecto">Proyecto</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#objetivos">Objetivos</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#actividades">Actividades</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#prototipos">Productos</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#resultados">Resultados</a>
-<a class="px-5 py-2 bg-white/5 rounded-lg border border-white/10 text-on-surface hover:bg-primary-container hover:text-on-primary-container transition-all font-label-caps text-label-caps" href="#contacto">Documentos</a>
+<span class="hidden sm:inline">Antioquia Zana</span>
 </div>
-<button class="lg:hidden text-on-surface">
-<span class="material-symbols-outlined">menu</span>
-</button>
+<p class="text-[10px] font-label-caps text-on-surface-variant mt-2 tracking-widest opacity-60">BPIN 2020000100192</p>
 </div>
+<nav class="flex-grow overflow-y-auto custom-scrollbar py-4">
+<div class="px-4 mb-4">
+<span class="text-[10px] font-label-caps text-on-surface-variant/50 uppercase px-2">Navegación</span>
+</div>
+<ul class="space-y-1">
+<li><button class="nav-link active w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="inicio"><span class="material-symbols-outlined text-xl">home</span> Inicio</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="proyecto"><span class="material-symbols-outlined text-xl">info</span> Proyecto</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="objetivos"><span class="material-symbols-outlined text-xl">target</span> Objetivos</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="actividades"><span class="material-symbols-outlined text-xl">list_alt</span> Actividades</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="productos"><span class="material-symbols-outlined text-xl">biotech</span> Productos</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="resultados"><span class="material-symbols-outlined text-xl">analytics</span> Resultados</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="galeria"><span class="material-symbols-outlined text-xl">gallery_thumbnail</span> Galería</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="cronologia"><span class="material-symbols-outlined text-xl">timeline</span> Cronología</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="documentos"><span class="material-symbols-outlined text-xl">description</span> Documentos</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="equipo"><span class="material-symbols-outlined text-xl">groups</span> Equipo</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="aliados"><span class="material-symbols-outlined text-xl">handshake</span> Aliados</button></li>
+<li><button class="nav-link w-full flex items-center gap-3 px-6 py-3 text-left font-label-caps text-label-caps hover:bg-white/5 transition-all" data-tab="contacto"><span class="material-symbols-outlined text-xl">contact_mail</span> Contacto</button></li>
+</ul>
 </nav>
-<main class="space-y-section-gap pb-section-gap">
-<!-- SECTION 1: SOBRE EL PROYECTO -->
-<section class="max-w-[1440px] mx-auto px-container-padding pt-section-gap" id="proyecto">
-<div class="grid grid-cols-1 md:grid-cols-5 gap-gutter mb-stack-lg">
+<div class="p-6 border-t border-white/5 space-y-4">
+<div class="flex items-center gap-4 grayscale opacity-60">
+<span class="material-symbols-outlined text-2xl">science</span>
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<p class="text-[9px] font-label-caps leading-relaxed opacity-40 uppercase">Agrosavia © 2024</p>
+</div>
+</aside>
+<!-- MAIN CONTENT AREA -->
+<main class="flex-grow h-screen overflow-y-auto custom-scrollbar relative">
+<!-- Persistent Context Header (Header Banner simplified for inner views) -->
+<div class="sticky top-0 z-40 w-full bg-surface/90 backdrop-blur-md border-b border-white/5 px-container-padding py-4 flex items-center justify-between" id="persistent-header">
+<div class="flex flex-col">
+<span class="text-[10px] font-label-caps text-secondary uppercase flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Proyecto de Regalías SGR
+                </span>
+<h2 class="font-headline-md text-headline-md text-primary-fixed-dim" id="current-section-title">Inicio</h2>
+</div>
+<div class="hidden lg:flex items-center gap-4 text-mono-data text-xs opacity-60">
+<span>AGROSAVIA Centro La Selva</span>
+<span class="w-px h-4 bg-white/10"></span>
+<span>Región Oriente</span>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto p-container-padding">
+<!-- SECTION: INICIO -->
+<section class="spa-section active space-y-stack-lg min-h-[80vh] flex flex-col justify-center" id="inicio">
+<div class="max-w-4xl space-y-stack-lg">
+<h1 class="font-display-lg text-display-lg leading-tight tracking-tight">
+                        Fortalecimiento de la <span class="text-primary-container">Cadena Productiva</span> de la <span class="text-secondary">Zanahoria</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                        Desarrollo científico para optimizar el rendimiento y aprovechamiento agroindustrial en el Oriente Antioqueño.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-gutter pt-stack-lg">
+<button class="px-8 py-4 bg-primary-container text-on-primary-container font-headline-md text-headline-md rounded-xl hover:scale-105 transition-all shadow-lg shadow-primary-container/20" onclick="switchTab('proyecto')">
+                            Explorar el Proyecto
+                        </button>
+<button class="px-8 py-4 border border-outline-variant text-on-surface font-headline-md text-headline-md rounded-xl hover:bg-white/5 transition-all" onclick="switchTab('productos')">
+                            Ver Prototipos
+                        </button>
+</div>
+</div>
+<!-- Mini Dashboard for Inicio -->
+<div class="grid grid-cols-1 sm:grid-cols-4 gap-gutter pt-section-gap">
+<div class="glass-card p-6 rounded-xl border-l-4 border-primary">
+<h4 class="font-display-lg text-headline-lg text-primary">500+</h4>
+<p class="font-label-caps text-label-caps opacity-60 uppercase">Productores</p>
+</div>
+<div class="glass-card p-6 rounded-xl border-l-4 border-secondary">
+<h4 class="font-display-lg text-headline-lg text-secondary">05</h4>
+<p class="font-label-caps text-label-caps opacity-60 uppercase">Prototipos</p>
+</div>
+<div class="glass-card p-6 rounded-xl border-l-4 border-primary-container">
+<h4 class="font-display-lg text-headline-lg text-primary-container">$6.3B</h4>
+<p class="font-label-caps text-label-caps opacity-60 uppercase">Presupuesto</p>
+</div>
+<div class="glass-card p-6 rounded-xl border-l-4 border-tertiary">
+<h4 class="font-display-lg text-headline-lg text-tertiary">2026</h4>
+<p class="font-label-caps text-label-caps opacity-60 uppercase">Culminación</p>
+</div>
+</div>
+</section>
+<!-- SECTION: PROYECTO -->
+<section class="spa-section space-y-section-gap" id="proyecto">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-gutter">
 <div class="glass-card p-6 rounded-xl space-y-2">
 <p class="font-label-caps text-label-caps text-primary">Entidad Ejecutora</p>
 <h4 class="font-headline-md text-headline-md">AGROSAVIA</h4>
@@ -214,462 +264,321 @@
 <p class="font-mono-data text-mono-data opacity-60">Periodo de ejecución</p>
 </div>
 <div class="glass-card p-6 rounded-xl border-primary-container/30 bg-primary-container/5 space-y-2">
-<p class="font-label-caps text-label-caps text-primary">Presupuesto</p>
-<h4 class="font-headline-md text-headline-md">$6.301M</h4>
-<p class="font-mono-data text-mono-data opacity-60">Pesos COP</p>
+<p class="font-label-caps text-label-caps text-primary">Código BPIN</p>
+<h4 class="font-headline-md text-headline-md">2020000100192</h4>
+<p class="font-mono-data text-mono-data opacity-60">Identificador SGR</p>
 </div>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-center">
-<div class="lg:col-span-1 border-2 border-primary-container p-8 rounded-2xl flex flex-col items-center justify-center text-center space-y-4">
-<span class="font-label-caps text-label-caps opacity-60 uppercase">Código BPIN</span>
-<h2 class="font-display-lg text-headline-lg tracking-[0.2em] text-primary-container">2020000100192</h2>
-<p class="font-body-md text-body-md italic opacity-80">Identificación única de proyecto ante el SGR</p>
-</div>
-<div class="lg:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-gutter">
-<div class="text-center p-6 space-y-2 border-r border-white/5 last:border-0">
-<h3 class="font-display-lg text-headline-lg text-primary">600</h3>
-<p class="font-label-caps text-label-caps opacity-60">Hectáreas</p>
-</div>
-<div class="text-center p-6 space-y-2 border-r border-white/5 last:border-0">
-<h3 class="font-display-lg text-headline-lg text-primary">500+</h3>
-<p class="font-label-caps text-label-caps opacity-60">Productores</p>
-</div>
-<div class="text-center p-6 space-y-2 border-r border-white/5 last:border-0">
-<h3 class="font-display-lg text-headline-lg text-primary">46.8k</h3>
-<p class="font-label-caps text-label-caps opacity-60">Tons / Año</p>
-</div>
-<div class="text-center p-6 space-y-2 last:border-0">
-<h3 class="font-display-lg text-headline-lg text-primary">30%</h3>
-<p class="font-label-caps text-label-caps opacity-60">Excedentes</p>
-</div>
-</div>
+<div class="p-8 glass-card rounded-2xl">
+<h3 class="font-headline-lg mb-4">Contexto Regional</h3>
+<p class="text-on-surface-variant font-body-lg leading-relaxed">
+                        El departamento de Antioquia, específicamente la subregión Oriente, es una de las principales zonas productoras de zanahoria en el país. Este proyecto busca mitigar las brechas tecnológicas y de aprovechamiento, transformando descartes en activos biotecnológicos de alto valor.
+                    </p>
 </div>
 </section>
-<!-- SECTION 2: OBJETIVOS -->
-<section class="max-w-[1440px] mx-auto px-container-padding" id="objetivos">
-<div class="flex items-end justify-between mb-stack-lg border-l-4 border-primary pl-6">
-<div>
-<span class="font-label-caps text-label-caps text-primary">Estructura Estratégica</span>
-<h2 class="font-headline-lg text-headline-lg">Objetivos del Proyecto</h2>
-</div>
-</div>
+<!-- SECTION: OBJETIVOS -->
+<section class="spa-section" id="objetivos">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
 <!-- OBJ-01 -->
 <div class="glass-card p-8 rounded-2xl relative group hover:-translate-y-2 transition-all">
 <div class="absolute top-4 right-4 bg-secondary/20 text-secondary text-[10px] px-2 py-0.5 rounded font-mono-data">AVANZADO</div>
 <span class="font-mono-data text-primary mb-4 block">OBJ-01</span>
 <h3 class="font-headline-md text-headline-md mb-4">Determinación Nutricional</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                        Evaluación integral de la composición fisicoquímica y perfiles nutricionales de la zanahoria regional.
-                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Evaluación integral de la composición fisicoquímica y perfiles nutricionales.</p>
 </div>
 <!-- OBJ-02 -->
 <div class="glass-card p-8 rounded-2xl relative group hover:-translate-y-2 transition-all">
 <div class="absolute top-4 right-4 bg-secondary-container/50 text-secondary-fixed text-[10px] px-2 py-0.5 rounded font-mono-data">COMPLETADO</div>
 <span class="font-mono-data text-primary mb-4 block">OBJ-02</span>
 <h3 class="font-headline-md text-headline-md mb-4">Eficiencia Productiva</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                        Implementación de modelos de manejo agronómico para optimizar el rendimiento por hectárea.
-                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Implementación de modelos de manejo agronómico para optimizar el rendimiento.</p>
 </div>
 <!-- OBJ-03 -->
 <div class="glass-card p-8 rounded-2xl relative group hover:-translate-y-2 transition-all">
 <div class="absolute top-4 right-4 bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded font-mono-data">EN CURSO</div>
 <span class="font-mono-data text-primary mb-4 block">OBJ-03</span>
 <h3 class="font-headline-md text-headline-md mb-4">Desarrollo Agroindustrial</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                        Creación de prototipos funcionales a partir de excedentes de cosecha (descartes).
-                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Creación de prototipos funcionales a partir de excedentes de cosecha.</p>
 </div>
 <!-- OBJ-04 -->
 <div class="glass-card p-8 rounded-2xl relative group hover:-translate-y-2 transition-all">
 <div class="absolute top-4 right-4 bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded font-mono-data">EN CURSO</div>
 <span class="font-mono-data text-primary mb-4 block">OBJ-04</span>
 <h3 class="font-headline-md text-headline-md mb-4">Transferencia de Conocimiento</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                        Fortalecimiento de las capacidades técnicas de los productores del Oriente Antioqueño.
-                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Fortalecimiento de las capacidades técnicas de los productores locales.</p>
 </div>
 </div>
 </section>
-<!-- SECTION 3: ACTIVIDADES (Asymmetric Timeline) -->
-<section class="bg-surface-container-low py-stack-lg border-y border-white/5" id="actividades">
-<div class="max-w-[1440px] mx-auto px-container-padding">
-<div class="grid grid-cols-1 lg:grid-cols-4 gap-gutter">
-<!-- Phase 1 -->
-<div class="space-y-stack-md border-t-2 border-blue-500 pt-6">
-<span class="font-label-caps text-label-caps text-blue-400">FASE I</span>
-<h4 class="font-headline-md text-headline-md">Diagnóstico Técnico</h4>
-<ul class="space-y-4">
-<li class="flex items-start gap-3 p-3 glass-card rounded-lg border-white/5">
-<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span class="text-mono-data">Muestreo regional de suelos</span>
-</li>
-<li class="flex items-start gap-3 p-3 glass-card rounded-lg border-white/5">
-<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span class="text-mono-data">Encuestas socioeconómicas</span>
-</li>
-</ul>
-</div>
-<!-- Phase 2 -->
+<!-- SECTION: ACTIVIDADES -->
+<section class="spa-section" id="actividades">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
 <div class="space-y-stack-md border-t-2 border-primary-container pt-6">
-<span class="font-label-caps text-label-caps text-primary">FASE II</span>
-<h4 class="font-headline-md text-headline-md">I+D Lab</h4>
+<span class="font-label-caps text-label-caps text-primary">FASE I - II</span>
+<h4 class="font-headline-md text-headline-md">Diagnóstico e I+D</h4>
 <ul class="space-y-4">
 <li class="flex items-start gap-3 p-3 glass-card rounded-lg border-white/5">
 <span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span class="text-mono-data">Extracción de carotenoides</span>
+<span class="text-mono-data">Muestreo regional de suelos y perfiles nutricionales</span>
 </li>
 <li class="flex items-start gap-3 p-3 glass-card rounded-lg border-white/5">
 <span class="material-symbols-outlined text-primary text-sm">cached</span>
-<span class="text-mono-data">Pruebas de estabilidad</span>
+<span class="text-mono-data">Extracción y caracterización de carotenoides</span>
 </li>
 </ul>
 </div>
-<!-- Phase 3 -->
-<div class="space-y-stack-md border-t-2 border-purple-500 pt-6">
-<span class="font-label-caps text-label-caps text-purple-400">FASE III</span>
-<h4 class="font-headline-md text-headline-md">Escalamiento</h4>
-<ul class="space-y-4">
-<li class="flex items-start gap-3 p-3 glass-card rounded-lg border-white/5">
-<span class="material-symbols-outlined text-primary text-sm">cached</span>
-<span class="text-mono-data">Producción piloto (Lotes)</span>
-</li>
-<li class="flex items-start gap-3 p-3 glass-card rounded-lg border-white/5">
-<span class="material-symbols-outlined text-on-surface-variant text-sm">schedule</span>
-<span class="text-mono-data">Estudios de mercado</span>
-</li>
-</ul>
-</div>
-<!-- Phase 4 -->
 <div class="space-y-stack-md border-t-2 border-secondary pt-6">
-<span class="font-label-caps text-label-caps text-secondary">FASE IV</span>
-<h4 class="font-headline-md text-headline-md">Apropiación Social</h4>
+<span class="font-label-caps text-label-caps text-secondary">FASE III - IV</span>
+<h4 class="font-headline-md text-headline-md">Escalamiento y Transferencia</h4>
 <ul class="space-y-4">
 <li class="flex items-start gap-3 p-3 glass-card rounded-lg border-white/5">
-<span class="material-symbols-outlined text-on-surface-variant text-sm">schedule</span>
-<span class="text-mono-data">Giras tecnológicas</span>
+<span class="material-symbols-outlined text-primary text-sm">cached</span>
+<span class="text-mono-data">Producción a escala piloto y lotes experimentales</span>
 </li>
 <li class="flex items-start gap-3 p-3 glass-card rounded-lg border-white/5">
 <span class="material-symbols-outlined text-on-surface-variant text-sm">schedule</span>
-<span class="text-mono-data">Publicación de manuales</span>
+<span class="text-mono-data">Publicación de manuales técnicos y giras de campo</span>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </section>
-<!-- SECTION 4: PRODUCTOS/PROTOTIPOS -->
-<section class="max-w-[1440px] mx-auto px-container-padding overflow-hidden" id="prototipos">
-<div class="text-center mb-section-gap max-w-2xl mx-auto">
-<span class="font-label-caps text-label-caps text-primary px-4 py-1 border border-primary/30 rounded-full">Innovación de Valor</span>
-<h2 class="font-display-lg text-headline-lg mt-4">Portafolio de Prototipos Biotecnológicos</h2>
-<p class="mt-4 text-on-surface-variant">Transformamos los excedentes de cosecha en productos de alto valor agregado para industrias cosméticas, alimenticias y nutracéuticas.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-gutter">
+<!-- SECTION: PRODUCTOS -->
+<section class="spa-section" id="productos">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
 <!-- Product 1 -->
 <div class="glass-card rounded-2xl overflow-hidden flex flex-col group border-primary/10">
-<div class="h-48 relative bg-gradient-to-br from-surface-container-high to-surface">
-<img class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500" data-alt="A professional studio product shot of a high-end glass jar containing vibrant orange carrot powder concentrate, placed on a dark reflective surface with laboratory glassware in the background. Cinematic lighting with burnt orange accents reflecting off the glass." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6lqymYjPl1Y7OqR7_CS4TDdwmHvHhxM2NKfJCMSyffvQsGTqxB0XgEWX9LZ7o70saiiLTezIRY_ni_Yb2o2nkV1PKu3Rw41LQfwp3QDfqkV84w8UDlL8WUu3lyO-X3nDNS7M2AmaAj0Srm_vePYSo1Sr1qUwmzcgNPX4UwXOhvrZlJXLU1YGIlkJyBJ9kr7NiNI2-cOG03bgO02K-3k95ELH-RowIvZIGrA5gipsrPbaC-47zAdHUSA"/>
+<div class="h-48 relative">
+<img class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6lqymYjPl1Y7OqR7_CS4TDdwmHvHhxM2NKfJCMSyffvQsGTqxB0XgEWX9LZ7o70saiiLTezIRY_ni_Yb2o2nkV1PKu3Rw41LQfwp3QDfqkV84w8UDlL8WUu3lyO-X3nDNS7M2AmaAj0Srm_vePYSo1Sr1qUwmzcgNPX4UwXOhvrZlJXLU1YGIlkJyBJ9kr7NiNI2-cOG03bgO02K-3k95ELH-RowIvZIGrA5gipsrPbaC-47zAdHUSA"/>
 <div class="absolute bottom-4 left-4 bg-secondary text-on-secondary px-2 py-0.5 rounded font-label-caps text-[10px]">LISTO</div>
 </div>
-<div class="p-6 space-y-4 flex-grow flex flex-col">
-<h3 class="font-headline-md text-headline-md">ZanaPure</h3>
-<p class="text-mono-data text-on-surface-variant text-sm flex-grow">Concentrado de zanahoria deshidratada por atomización (spray-drying).</p>
-<div class="space-y-2 border-t border-white/10 pt-4">
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Solubilidad 98%</span>
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Cero Aditivos</span>
-</div>
+<div class="p-6">
+<h3 class="font-headline-md">ZanaPure</h3>
+<p class="text-mono-data text-on-surface-variant text-sm mt-2">Concentrado de zanahoria deshidratada por atomización.</p>
 </div>
 </div>
 <!-- Product 2 -->
 <div class="glass-card rounded-2xl overflow-hidden flex flex-col group border-primary/10">
-<div class="h-48 relative bg-gradient-to-br from-surface-container-high to-surface">
-<img class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500" data-alt="A premium packaging of pet treats made from organic carrots, displayed in a modern kitchen setting. The packaging features minimal scientific design elements. Soft warm lighting highlights the natural texture of the treats." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYztIEQWMskPSyI0RACxCSF1c4sBjipL7hNzvVNmiAJnvZDdEkk0TRZUBRa3dO_dveRO7KZMSOMuzyZHApoRKD4Cy5bIhrfPylWKAMhAc__MGgYJUwRgMQtkheaRjTyyC6OMGAxnKeylmm9ChUfhGMnTRNiB0HgZc5JN8CGDqxE_FjykziM6Hz0DZfMPlEPwlIM2RW85qQHr1gHq05NX5tNhoTSRtL3bm8_8VrfGu4YeQU02XUuDHV-Q"/>
+<div class="h-48 relative">
+<img class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYztIEQWMskPSyI0RACxCSF1c4sBjipL7hNzvVNmiAJnvZDdEkk0TRZUBRa3dO_dveRO7KZMSOMuzyZHApoRKD4Cy5bIhrfPylWKAMhAc__MGgYJUwRgMQtkheaRjTyyC6OMGAxnKeylmm9ChUfhGMnTRNiB0HgZc5JN8CGDqxE_FjykziM6Hz0DZfMPlEPwlIM2RW85qQHr1gHq05NX5tNhoTSRtL3bm8_8VrfGu4YeQU02XUuDHV-Q"/>
 <div class="absolute bottom-4 left-4 bg-secondary text-on-secondary px-2 py-0.5 rounded font-label-caps text-[10px]">LISTO</div>
 </div>
-<div class="p-6 space-y-4 flex-grow flex flex-col">
-<h3 class="font-headline-md text-headline-md">ZanaPet</h3>
-<p class="text-mono-data text-on-surface-variant text-sm flex-grow">Suplemento masticable bioactivo para salud ocular canina.</p>
-<div class="space-y-2 border-t border-white/10 pt-4">
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Rico en Carotenos</span>
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Altamente Palatable</span>
-</div>
+<div class="p-6">
+<h3 class="font-headline-md">ZanaPet</h3>
+<p class="text-mono-data text-on-surface-variant text-sm mt-2">Suplemento bioactivo para salud ocular canina.</p>
 </div>
 </div>
 <!-- Product 3 -->
 <div class="glass-card rounded-2xl overflow-hidden flex flex-col group border-primary/10">
-<div class="h-48 relative bg-gradient-to-br from-surface-container-high to-surface">
-<img class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500" data-alt="Close-up artistic shot of translucent orange gummy cubes with a crystalline texture, resting on a clean Petri dish. The background is a sophisticated laboratory environment with soft bokeh effects and green atmospheric glows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2yfxHOp5WxRn4XEsmf4Am-9vh9XiqZVGVvQZSfPTZ2QJvn3U_ijy3t7mdxy4H7TIJGtfzEcbKYIzu9ojyxzL5G7nlqc1XXbpOXwoK9Lw9ngQdavm32DPiX4NAJjH4FSHXE-R3Mp9yOfpfkRsUOk8339gFqPap_3a2UeEsGkQU2DnpCKkZJ_a-8TP7FmYp-s1IfTBKztert8B26jTbPK0kziY_lCwDr4erdUNRYZ0S4-TuCSifdPe4jA"/>
+<div class="h-48 relative">
+<img class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2yfxHOp5WxRn4XEsmf4Am-9vh9XiqZVGVvQZSfPTZ2QJvn3U_ijy3t7mdxy4H7TIJGtfzEcbKYIzu9ojyxzL5G7nlqc1XXbpOXwoK9Lw9ngQdavm32DPiX4NAJjH4FSHXE-R3Mp9yOfpfkRsUOk8339gFqPap_3a2UeEsGkQU2DnpCKkZJ_a-8TP7FmYp-s1IfTBKztert8B26jTbPK0kziY_lCwDr4erdUNRYZ0S4-TuCSifdPe4jA"/>
 <div class="absolute bottom-4 left-4 bg-primary text-on-primary px-2 py-0.5 rounded font-label-caps text-[10px]">TESTEO</div>
 </div>
-<div class="p-6 space-y-4 flex-grow flex flex-col">
-<h3 class="font-headline-md text-headline-md">BioGomas</h3>
-<p class="text-mono-data text-on-surface-variant text-sm flex-grow">Gomas biofuncionales enriquecidas con antioxidantes naturales.</p>
-<div class="space-y-2 border-t border-white/10 pt-4">
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Sin Azúcar Refinada</span>
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Matriz de Pectina</span>
-</div>
-</div>
-</div>
-<!-- Product 4 -->
-<div class="glass-card rounded-2xl overflow-hidden flex flex-col group border-primary/10">
-<div class="h-48 relative bg-gradient-to-br from-surface-container-high to-surface">
-<img class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500" data-alt="A sleek dark dropper bottle containing a deep orange viscous liquid. The label has clean typography and technical diagrams. Set against an obsidian background with a localized burnt orange glow effect." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQGW2IcYuy_Rc71JrMAjLUgeqsAct78AYQZd0Gmh6wYPgWSmqbYpOuEUyvO634-8sanlbi6Pbkdbe0_Jxh-qDsAokP6a4Ru049u_jjduzL3kirYHfkPH9GgLzO3dqEm4SHfb0Cx2MJ3-bXSTpRHpXgHaANGNZ3m9nn9XxhoJ5BA0H8yvxLM5z4ig60xs5qJQwXyKQiVqw0p5Hs5kMW1F9xRhnsPXpSuirWdjzlKFtUB5M5SdRtpslq1A"/>
-<div class="absolute bottom-4 left-4 bg-primary text-on-primary px-2 py-0.5 rounded font-label-caps text-[10px]">TESTEO</div>
-</div>
-<div class="p-6 space-y-4 flex-grow flex flex-col">
-<h3 class="font-headline-md text-headline-md">Extracto Apo</h3>
-<p class="text-mono-data text-on-surface-variant text-sm flex-grow">Extracto oleoso de apocarotenoides para uso cosmético premium.</p>
-<div class="space-y-2 border-t border-white/10 pt-4">
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Alta Pureza</span>
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Fotoprotección Natural</span>
-</div>
-</div>
-</div>
-<!-- Product 5 -->
-<div class="glass-card rounded-2xl overflow-hidden flex flex-col group border-primary/10">
-<div class="h-48 relative bg-gradient-to-br from-surface-container-high to-surface">
-<img class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500" data-alt="High-tech industrial looking emulsion in a stainless steel beaker, illuminated by dramatic side lighting. The liquid shows a golden-carrot hue. Abstract scientific aesthetic with precision engineering feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ItCXSiZt3r0keVQyeEro8niClMUpm_uSXzDo9hKY_GNpCXTfiFVohxrWIKyXNMdjsTTqIAwim60K1hzE_1w5AKxkJTYECf0rlqutKRjhBObynAsilJ_KG46HUCyk15_7zEXTu8wtnGsg_N6Ntyjtj_3vwxyzqAgwI3jQxzaQDXV5mQEG39m80cH_xEK9d6ygQLrc7VxFnCIN0Pd-YTxTba6FW9j2NkKRYOj40rKLSIns8bvjUwmQjQ"/>
-<div class="absolute bottom-4 left-4 bg-surface-container-highest text-on-surface px-2 py-0.5 rounded font-label-caps text-[10px]">PROTO</div>
-</div>
-<div class="p-6 space-y-4 flex-grow flex flex-col">
-<h3 class="font-headline-md text-headline-md">Aurum Carota</h3>
-<p class="text-mono-data text-on-surface-variant text-sm flex-grow">Emulsión nanotecnológica para fortificación de bebidas.</p>
-<div class="space-y-2 border-t border-white/10 pt-4">
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Bio-accesibilidad</span>
-<span class="flex items-center gap-2 text-xs opacity-70"><span class="w-1 h-1 rounded-full bg-primary"></span> Estabilidad Térmica</span>
-</div>
+<div class="p-6">
+<h3 class="font-headline-md">BioGomas</h3>
+<p class="text-mono-data text-on-surface-variant text-sm mt-2">Gomas enriquecidas con antioxidantes naturales.</p>
 </div>
 </div>
 </div>
 </section>
-<!-- SECTION 5: RESULTADOS -->
-<section class="max-w-[1440px] mx-auto px-container-padding" id="resultados">
-<div class="flex flex-col lg:flex-row gap-section-gap items-center">
-<div class="lg:w-1/3 space-y-6">
-<h2 class="font-display-lg text-headline-lg">Impacto Basado en Evidencia</h2>
-<p class="text-on-surface-variant font-body-md">Métricas clave alcanzadas durante el ciclo de investigación 2022-2024.</p>
-<div class="grid grid-cols-2 gap-4">
-<div class="glass-card p-4 rounded-xl text-center">
-<p class="font-display-lg text-headline-lg text-secondary">117</p>
-<p class="font-label-caps text-[10px]">Muestras de Suelo</p>
-</div>
-<div class="glass-card p-4 rounded-xl text-center">
-<p class="font-display-lg text-headline-lg text-primary">05</p>
-<p class="font-label-caps text-[10px]">Prototipos</p>
-</div>
-<div class="glass-card p-4 rounded-xl text-center">
-<p class="font-display-lg text-headline-lg text-primary">06</p>
-<p class="font-label-caps text-[10px]">Modelos Productivos</p>
-</div>
-<div class="glass-card p-4 rounded-xl text-center">
-<p class="font-display-lg text-headline-lg text-secondary">02</p>
-<p class="font-label-caps text-[10px]">Manuales Técnicos</p>
-</div>
-</div>
-</div>
-<div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-<!-- Milestone Cards -->
+<!-- SECTION: RESULTADOS -->
+<section class="spa-section" id="resultados">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
 <div class="glass-card p-6 rounded-2xl border-l-4 border-secondary">
-<h4 class="font-headline-md text-headline-md mb-2">Caracterización Regional</h4>
-<p class="text-on-surface-variant text-sm">Primer mapa nutricional detallado de la zanahoria en los 9 municipios del Oriente Antioqueño.</p>
+<h4 class="font-headline-md mb-2">Métricas de Alcance</h4>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="text-center">
+<p class="text-3xl font-bold text-secondary">117</p>
+<p class="text-[10px] font-label-caps opacity-60">Muestras Suelo</p>
 </div>
-<div class="glass-card p-6 rounded-2xl border-l-4 border-primary-container">
-<h4 class="font-headline-md text-headline-md mb-2">Zero Waste Model</h4>
-<p class="text-on-surface-variant text-sm">Protocolo validado para el aprovechamiento del 100% de la biomasa residual de cosecha.</p>
+<div class="text-center">
+<p class="text-3xl font-bold text-secondary">06</p>
+<p class="text-[10px] font-label-caps opacity-60">Modelos Prod.</p>
+</div>
+</div>
 </div>
 <div class="glass-card p-6 rounded-2xl border-l-4 border-primary">
-<h4 class="font-headline-md text-headline-md mb-2">Hitos de I+D</h4>
-<p class="text-on-surface-variant text-sm">Aislamiento exitoso de beta-carotenos con estabilidad superior al 92% en anaquel.</p>
-</div>
-<div class="glass-card p-6 rounded-2xl border-l-4 border-white/20">
-<h4 class="font-headline-md text-headline-md mb-2">Alianzas Sólidas</h4>
-<p class="text-on-surface-variant text-sm">Integración de la academia, empresa privada y asociaciones de productores rurales.</p>
-</div>
-<!-- Background glow -->
-<div class="absolute -z-10 w-64 h-64 atmospheric-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+<h4 class="font-headline-md mb-2">Hitos Tecnológicos</h4>
+<p class="text-on-surface-variant text-sm">Validación de extractos de beta-caroteno con estabilidad superior al 92% en anaquel.</p>
 </div>
 </div>
 </section>
-<!-- SECTION 6: GALERIA -->
-<section class="max-w-[1440px] mx-auto px-container-padding" id="galeria">
-<div class="flex items-center justify-between mb-stack-lg">
-<h2 class="font-headline-lg text-headline-lg">Galería del Proyecto</h2>
-<div class="flex gap-4">
-<button class="px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-caps text-[10px]">Todas</button>
-<button class="px-4 py-2 rounded-full glass-card hover:bg-white/10 font-label-caps text-[10px] transition-all">Escalamiento</button>
-<button class="px-4 py-2 rounded-full glass-card hover:bg-white/10 font-label-caps text-[10px] transition-all">Socialización</button>
+<!-- SECTION: GALERIA -->
+<section class="spa-section" id="galeria">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="rounded-xl overflow-hidden aspect-video glass-card">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy7WzCtkKYrQJYnKOyamvBd4zDPyIYsTihHl_he1sRIs7bi7CVFRwQgGrexLO1zb0bBpnfWOwpFVVIZIkfvn9AD2wG-yCsTE-0X_u3jloGBFp4asTV4xpUYIl9ceow1XjVHSmAmUkLuvQKX9FWvIPfysbdAH_40ZvJ6Chm58IqKgrG5U0wz7i2fWZkH1H9BE9Ne2UJVUb9gWHWs7WT1btj0VD7S-88cCJ77oGvENHscMVYfVz1fhLAmQ"/>
 </div>
+<div class="rounded-xl overflow-hidden aspect-video glass-card">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRVpY54eB2SEboA2iDIClX5sKcYQsAaAnx0Q-iD9PiHJaVk5PUK3I-q75hQ5ecBTxgCVQh2C_PLP_3j5wFSRBrLZ6yGFfrXlG1k9eqKEOrHraXbTlZgi4F9A9amAKWnQBiUfZs68G5eQR_D_oHoEaI-078DYvoLGp64FRmoxeKonvm_vNZi5Gxv0SNcqXn4ucxoi3I8U_fa_jYdTvlkzKd2xarQqz47-PkSkWVDBJUxoxBds9DFxtgSA"/>
 </div>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 aspect-video md:aspect-[21/9]">
-<div class="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group">
-<img class="w-full h-full object-cover" data-alt="Wide shot of extensive carrot fields in the rolling hills of Oriente Antioqueño, Colombia. The sunrise creates long shadows and a golden mist over the landscape. Rich green foliage contrasts with the dark volcanic soil. Hyper-realistic agricultural photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy7WzCtkKYrQJYnKOyamvBd4zDPyIYsTihHl_he1sRIs7bi7CVFRwQgGrexLO1zb0bBpnfWOwpFVVIZIkfvn9AD2wG-yCsTE-0X_u3jloGBFp4asTV4xpUYIl9ceow1XjVHSmAmUkLuvQKX9FWvIPfysbdAH_40ZvJ6Chm58IqKgrG5U0wz7i2fWZkH1H9BE9Ne2UJVUb9gWHWs7WT1btj0VD7S-88cCJ77oGvENHscMVYfVz1fhLAmQ"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-<p class="font-label-caps text-primary">Campo Experimental</p>
-<h4 class="font-headline-md">Cultivos en La Selva</h4>
-</div>
-</div>
-<div class="rounded-2xl overflow-hidden relative group">
-<img class="w-full h-full object-cover" data-alt="A female scientist in a white lab coat meticulously handling a sample of orange liquid with a pipette. High-tech laboratory equipment and glowing digital displays in the background. Cool white lighting with warm amber accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRVpY54eB2SEboA2iDIClX5sKcYQsAaAnx0Q-iD9PiHJaVk5PUK3I-q75hQ5ecBTxgCVQh2C_PLP_3j5wFSRBrLZ6yGFfrXlG1k9eqKEOrHraXbTlZgi4F9A9amAKWnQBiUfZs68G5eQR_D_oHoEaI-078DYvoLGp64FRmoxeKonvm_vNZi5Gxv0SNcqXn4ucxoi3I8U_fa_jYdTvlkzKd2xarQqz47-PkSkWVDBJUxoxBds9DFxtgSA"/>
-</div>
-<div class="rounded-2xl overflow-hidden relative group">
-<img class="w-full h-full object-cover" data-alt="Close-up of a group of local Colombian farmers engaged in a technical workshop, looking at a digital tablet with agricultural data. Authentic smiles, weathered hands, and traditional hats. Soft natural lighting in a community center." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMPwbhgcxS4PgklqmpLvPIPBsnV7EeuYutTgoqnhMupGrnXdGTUwa7_p_zQPKbjuoR691X-Kse0wSTqbu5Ywg8KfyeP7QxLqZJxGD1zPtXDdIWmvzg28LSNs5a2BjZIvD_MEQ6MK50xt877U47GzQXwMSlBsfMJdLCQdFaQA5U6kYQ5J9iSXnJqP6sh_OtCQNQAwd0agbBP4jCxmx2csHhKhuhZM64mFSc7bLgeg9s6tqaTGNF5-CPXA"/>
-</div>
-<div class="rounded-2xl overflow-hidden relative group">
-<img class="w-full h-full object-cover" data-alt="Extreme close-up of a perfectly harvested carrot, still covered in light dark soil, with its bright orange skin shining through. Macro details of the texture. Scientific and earthy aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYGuOBisZXQoHE7z9P3cJN7J_BX16WbC6RlMxzM_92WKwd2a289jpauT1Ut5pHNcxO3BGTEaT_fwNwpQ6eTwwi1y3MpeWv1UgIxKEQ6P1adPzwNk_Q8vsHwAEKm4mDEHvKespLSh_lpmXMRnVJwh6ePSjUf8LUlfmSShZ4IAMZSUatnSYwxiVTsi49Bq66I5FFLkDR1XS6fSEWZA8t8-j94v-SyKwoxpTd2V2WKeU6AuDRTIf_baHC4A"/>
-</div>
-<div class="rounded-2xl overflow-hidden relative group">
-<img class="w-full h-full object-cover" data-alt="Industrial pilot plant interior with gleaming stainless steel tanks, pipes, and control panels. The lighting is precise and technical, reflecting the glass-morphism UI style of the project." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiWOL1h3ujFekVWjLfBi8eGgHwA72ooCML5FMf3mBV_uXHmzq3Mol7Fee45FBHXbhHB9GqAZVEtT5n_ycRvXq0X8PQzpa2ZifuPFgEuF2u1Ant97ZVPTrmWc_PuV5G_GIWQwuExxN89g_0r6xan1LAOdT-bs2dqcYe6h5R2k-iHT_3MS8kElkWKhSYgllcmArpZ6JxRutUAgFd96Xazbo97wE61VZIQBc2xnpbFAcwW2rF3ktpzAsKhA"/>
+<div class="rounded-xl overflow-hidden aspect-video glass-card">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMPwbhgcxS4PgklqmpLvPIPBsnV7EeuYutTgoqnhMupGrnXdGTUwa7_p_zQPKbjuoR691X-Kse0wSTqbu5Ywg8KfyeP7QxLqZJxGD1zPtXDdIWmvzg28LSNs5a2BjZIvD_MEQ6MK50xt877U47GzQXwMSlBsfMJdLCQdFaQA5U6kYQ5J9iSXnJqP6sh_OtCQNQAwd0agbBP4jCxmx2csHhKhuhZM64mFSc7bLgeg9s6tqaTGNF5-CPXA"/>
 </div>
 </div>
 </section>
-<!-- SECTION 7: ALIADOS -->
-<section class="max-w-[1440px] mx-auto px-container-padding" id="aliados">
-<h2 class="font-headline-lg text-headline-lg text-center mb-stack-lg">Alianzas Estratégicas</h2>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-gutter items-center opacity-70 grayscale hover:grayscale-0 transition-all">
+<!-- SECTION: CRONOLOGIA -->
+<section class="spa-section" id="cronologia">
+<div class="glass-card p-12 rounded-3xl space-y-8 max-w-2xl mx-auto">
+<div class="flex items-center gap-8 border-l-2 border-primary/30 pl-8 relative">
+<span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20"></span>
+<div>
+<p class="font-label-caps text-primary text-xs">AÑO 1 (2022-2023)</p>
+<h4 class="font-headline-md">Diagnóstico y Línea Base</h4>
+</div>
+</div>
+<div class="flex items-center gap-8 border-l-2 border-white/10 pl-8 relative">
+<span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white/20"></span>
+<div>
+<p class="font-label-caps text-on-surface-variant text-xs">AÑO 2 (2023-2024)</p>
+<h4 class="font-headline-md opacity-60">I+D y Prototipado</h4>
+</div>
+</div>
+<div class="flex items-center gap-8 border-l-2 border-white/10 pl-8 relative">
+<span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white/20"></span>
+<div>
+<p class="font-label-caps text-on-surface-variant text-xs">AÑO 3-4 (2024-2026)</p>
+<h4 class="font-headline-md opacity-60">Escalamiento y Cierre</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: DOCUMENTOS -->
+<section class="spa-section" id="documentos">
+<div class="space-y-4 max-w-4xl">
+<div class="glass-card p-4 rounded-xl flex items-center justify-between group hover:border-primary transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl text-primary">description</span>
+<div>
+<h4 class="font-headline-md text-base">Manual Técnico de Cultivo</h4>
+<p class="text-xs opacity-60">PDF | 12.4 MB | Actualizado Nov 2023</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">download</span>
+</div>
+<div class="glass-card p-4 rounded-xl flex items-center justify-between group hover:border-primary transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl text-primary">lab_profile</span>
+<div>
+<h4 class="font-headline-md text-base">Informe de Caracterización Fisicoquímica</h4>
+<p class="text-xs opacity-60">PDF | 8.1 MB | Publicado Ene 2024</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">download</span>
+</div>
+</div>
+</section>
+<!-- SECTION: EQUIPO -->
+<section class="spa-section" id="equipo">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-card p-6 rounded-2xl text-center space-y-4">
+<div class="w-20 h-20 bg-primary/10 rounded-full mx-auto flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-primary">person</span>
+</div>
+<div>
+<h4 class="font-headline-md text-base">Juan Carlos Henao</h4>
+<p class="text-xs text-primary font-label-caps">Líder de Investigación</p>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl text-center space-y-4">
+<div class="w-20 h-20 bg-primary/10 rounded-full mx-auto flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-primary">person</span>
+</div>
+<div>
+<h4 class="font-headline-md text-base">Equipo I+D Lab</h4>
+<p class="text-xs text-primary font-label-caps">Agrosavia La Selva</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: ALIADOS -->
+<section class="spa-section" id="aliados">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-gutter items-center opacity-70 grayscale hover:grayscale-0 transition-all">
 <div class="p-4 flex flex-col items-center gap-4 text-center">
-<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center p-2">
-<span class="material-symbols-outlined text-4xl">science</span>
-</div>
+<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center p-2"><span class="material-symbols-outlined text-4xl">science</span></div>
 <span class="font-label-caps text-[10px]">AGROSAVIA</span>
 </div>
 <div class="p-4 flex flex-col items-center gap-4 text-center">
-<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center p-2">
-<span class="material-symbols-outlined text-4xl">school</span>
-</div>
+<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center p-2"><span class="material-symbols-outlined text-4xl">school</span></div>
 <span class="font-label-caps text-[10px]">UdeA</span>
 </div>
 <div class="p-4 flex flex-col items-center gap-4 text-center">
-<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center p-2">
-<span class="material-symbols-outlined text-4xl">account_balance</span>
-</div>
+<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center p-2"><span class="material-symbols-outlined text-4xl">account_balance</span></div>
 <span class="font-label-caps text-[10px]">UCO</span>
-</div>
-<div class="p-4 flex flex-col items-center gap-4 text-center">
-<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center p-2">
-<span class="material-symbols-outlined text-4xl">workspace_premium</span>
-</div>
-<span class="font-label-caps text-[10px]">UNAL</span>
-</div>
-<div class="p-4 flex flex-col items-center gap-4 text-center">
-<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center p-2">
-<span class="material-symbols-outlined text-4xl">groups</span>
-</div>
-<span class="font-label-caps text-[10px]">HORTISANOS</span>
-</div>
-<div class="p-4 flex flex-col items-center gap-4 text-center">
-<div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center p-2">
-<span class="material-symbols-outlined text-4xl">precision_manufacturing</span>
-</div>
-<span class="font-label-caps text-[10px]">MULTIALOE</span>
 </div>
 </div>
 </section>
-<!-- SECTION 8: CONTACTO -->
-<section class="max-w-[1000px] mx-auto px-container-padding" id="contacto">
+<!-- SECTION: CONTACTO -->
+<section class="spa-section" id="contacto">
 <div class="glass-card rounded-[2rem] overflow-hidden grid grid-cols-1 md:grid-cols-2">
 <div class="p-12 space-y-8 bg-gradient-to-br from-primary-container/20 to-transparent">
 <h2 class="font-headline-lg text-headline-lg">Contáctenos</h2>
-<p class="text-on-surface-variant">¿Interesado en los resultados del proyecto o en posibles colaboraciones industriales?</p>
 <div class="space-y-6">
 <div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">mail</span>
-</div>
-<div>
-<p class="font-label-caps text-[10px] opacity-60">Email del Investigador</p>
-<p class="font-mono-data">jhenao@agrosavia.co</p>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">location_on</span>
-</div>
-<div>
-<p class="font-label-caps text-[10px] opacity-60">Centro de Investigación</p>
-<p class="font-mono-data">Rionegro, Antioquia - Km 7 vía Las Palmas</p>
-</div>
+<div class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-primary"><span class="material-symbols-outlined">mail</span></div>
+<div><p class="font-label-caps text-[10px] opacity-60">Email del Investigador</p><p class="font-mono-data">jhenao@agrosavia.co</p></div>
 </div>
 </div>
 <button class="w-full py-4 bg-primary-container text-on-primary-container rounded-xl font-headline-md hover:shadow-xl hover:shadow-primary-container/20 transition-all flex items-center justify-center gap-3">
-                        Contactar al Proyecto
-                        <span class="material-symbols-outlined">arrow_forward</span>
+                            Contactar al Proyecto <span class="material-symbols-outlined">arrow_forward</span>
 </button>
 </div>
 <div class="p-12 space-y-6 border-l border-white/5">
-<h4 class="font-label-caps text-label-caps text-primary">Resumen del Proyecto</h4>
+<h4 class="font-label-caps text-label-caps text-primary">SGR Transparencia</h4>
 <table class="w-full text-sm">
-<tbody><tr class="border-b border-white/5">
-<td class="py-3 opacity-60 font-mono-data">BPIN</td>
-<td class="py-3 text-right">2020000100192</td>
-</tr>
-<tr class="border-b border-white/5">
-<td class="py-3 opacity-60 font-mono-data">Fuente</td>
-<td class="py-3 text-right">Regalías SGR — CTI</td>
-</tr>
-<tr class="border-b border-white/5">
-<td class="py-3 opacity-60 font-mono-data">Entidad</td>
-<td class="py-3 text-right">Gobernación de Antioquia</td>
-</tr>
-<tr class="border-b border-white/5">
-<td class="py-3 opacity-60 font-mono-data">Ejecuta</td>
-<td class="py-3 text-right">Agrosavia (Líder)</td>
-</tr>
-</tbody></table>
-<div class="p-4 rounded-xl glass-card text-xs italic opacity-60 mt-4">
-                        "Proyecto financiado para impulsar el desarrollo agroindustrial y mejorar la calidad de vida de los productores de zanahoria en la subregión Oriente."
-                    </div>
+<tbody>
+<tr class="border-b border-white/5"><td class="py-3 opacity-60 font-mono-data">BPIN</td><td class="py-3 text-right">2020000100192</td></tr>
+<tr class="border-b border-white/5"><td class="py-3 opacity-60 font-mono-data">Fuente</td><td class="py-3 text-right">Regalías SGR — CTI</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
+</div>
 </main>
-<!-- FOOTER -->
-<footer class="bg-surface-container-lowest pt-stack-lg border-t border-white/5">
-<div class="max-w-[1440px] mx-auto px-container-padding pb-stack-lg grid grid-cols-1 md:grid-cols-4 gap-gutter">
-<div class="col-span-1 md:col-span-2 space-y-6">
-<div class="font-headline-md text-headline-md text-primary-fixed-dim font-bold">Antioquia Zana</div>
-<p class="text-on-surface-variant max-w-md">Fortaleciendo la competitividad del sector hortícola colombiano a través de la ciencia, la tecnología y la innovación con impacto social.</p>
-<div class="flex gap-4">
-<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-lg">public</span>
-</a>
-<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-lg">video_library</span>
-</a>
-</div>
-</div>
-<div class="space-y-4">
-<h5 class="font-label-caps text-label-caps text-on-surface">Aliados</h5>
-<ul class="space-y-2 text-on-surface-variant font-body-md">
-<li><a class="hover:text-primary transition-colors" href="#">AGROSAVIA</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">U. de Antioquia</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">U. Católica de Oriente</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">U. Nacional de Colombia</a></li>
-</ul>
-</div>
-<div class="space-y-4">
-<h5 class="font-label-caps text-label-caps text-on-surface">Legal</h5>
-<ul class="space-y-2 text-on-surface-variant font-body-md">
-<li><a class="hover:text-primary transition-colors" href="#">Políticas de Privacidad</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Términos de Uso</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">SGR Transparencia</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Datos Abiertos</a></li>
-</ul>
-</div>
-</div>
-<div class="border-t border-white/5 py-8 text-center px-container-padding">
-<p class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">
-                © 2024 Antioquia Zana - Proyecto BPIN 2020000100192. Todos los derechos reservados.
-            </p>
-</div>
-</footer>
 <script>
-        // Micro-interactions for glass cards on scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
+        // SPA TAB LOGIC
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.spa-section');
+        const sectionTitle = document.getElementById('current-section-title');
+        const mainContent = document.querySelector('main');
 
+        function switchTab(tabId) {
+            // Update Navigation UI
+            navLinks.forEach(link => {
+                if(link.dataset.tab === tabId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Update Section Visibility
+            sections.forEach(section => {
+                if(section.id === tabId) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+
+            // Update Header Title
+            const activeLink = document.querySelector(`.nav-link[data-tab="${tabId}"]`);
+            if(activeLink) {
+                sectionTitle.textContent = activeLink.textContent.trim().replace(/^\w+/, (c) => c.toUpperCase());
+            }
+
+            // Scroll main content to top
+            mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                switchTab(link.dataset.tab);
+            });
+        });
+
+        // Initialize micro-interactions
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -682,19 +591,6 @@
         document.querySelectorAll('.glass-card').forEach(card => {
             card.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700');
             observer.observe(card);
-        });
-
-        // Smooth scroll for nav links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    document.querySelector(href).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
         });
     </script>
 </body></html>
