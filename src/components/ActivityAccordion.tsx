@@ -488,8 +488,8 @@ export default function ActivityAccordion() {
                     </div>
                   )}
 
-                  {/* Deliverables Download Links (Show only on Hoja 3) */}
-                  {currentReportPage === 2 && (
+                  {/* Deliverables Download Links (Show only on the very last page) */}
+                  {currentReportPage === activeReport.pages.length - 1 && (
                     <div className="pt-6 border-t border-white/5 space-y-4">
                       <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">
                         📁 Entregables y Reportes de Avance
@@ -525,9 +525,9 @@ export default function ActivityAccordion() {
                   >
                     ← Anterior
                   </button>
-                  <span className="text-slate-500">Hoja {currentReportPage + 1} de 3</span>
+                  <span className="text-slate-500">Hoja {currentReportPage + 1} de {activeReport.pages.length}</span>
                   <button
-                    disabled={currentReportPage === 2}
+                    disabled={currentReportPage === activeReport.pages.length - 1}
                     onClick={() => setCurrentReportPage(prev => prev + 1)}
                     className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-all"
                   >
