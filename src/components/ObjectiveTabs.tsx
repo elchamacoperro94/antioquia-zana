@@ -34,6 +34,20 @@ const objectiveData = [
   }
 ];
 
+const colSpanMap: Record<string, string> = {
+  "OBJ-01": "lg:col-span-4 md:col-span-6",
+  "OBJ-02": "lg:col-span-8 md:col-span-6",
+  "OBJ-03": "lg:col-span-7 md:col-span-6",
+  "OBJ-04": "lg:col-span-5 md:col-span-6",
+};
+
+const progressData: Record<string, { percent: number; color: string; trackColor: string }> = {
+  "OBJ-01": { percent: 100, color: "#10b981", trackColor: "rgba(16,185,129,0.1)" }, // Green
+  "OBJ-02": { percent: 95, color: "#e67e22", trackColor: "rgba(230,126,34,0.1)" }, // Orange
+  "OBJ-03": { percent: 55, color: "#f59e0b", trackColor: "rgba(245,158,11,0.1)" }, // Amber
+  "OBJ-04": { percent: 40, color: "#3b82f6", trackColor: "rgba(59,130,246,0.1)" }, // Blue
+};
+
 export default function ObjectiveTabs() {
   const [activeId, setActiveId] = useState<string | null>(null);
   
@@ -41,30 +55,74 @@ export default function ObjectiveTabs() {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* 4-Column Objectives Grid (Estilo Google Stitch) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Asymmetric Bento Grid (12-Columns) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {objectiveData.map((item) => {
           const isActive = activeId === item.id;
+          const spanClass = colSpanMap[item.id] || "lg:col-span-3";
+          const itemProgress = progressData[item.id] || { percent: 0, color: "#e67e22", trackColor: "rgba(230,126,34,0.1)" };
+          
+          const radius = 18;
+          const circumference = 2 * Math.PI * radius;
+          const strokeDashoffset = circumference - (itemProgress.percent / 100) * circumference;
+
           return (
             <button
               key={item.id}
               onClick={() => setActiveId(isActive ? null : item.id)}
-              className="text-left focus:outline-none w-full group"
+              className={`text-left focus:outline-none w-full group transition-all duration-350 ${spanClass}`}
             >
               <div 
-                className={`glass-card p-8 rounded-2xl relative h-full flex flex-col justify-between transition-all duration-300 border hover:-translate-y-1 ${
+                className={`glass-card p-8 rounded-2xl relative h-full flex flex-col justify-between transition-all duration-350 border hover:-translate-y-1 ${
                   isActive 
-                    ? 'border-primary-container bg-primary-container/5 ring-1 ring-primary-container/20 shadow-md shadow-primary-container/5' 
+                    ? 'border-carrot-orange bg-carrot-orange/5 ring-1 ring-carrot-orange/20 shadow-md shadow-carrot-orange/5' 
                     : 'border-white/10 hover:border-white/20'
                 }`}
               >
-                {/* Badge top-right */}
-                <div className={`absolute top-4 right-4 ${item.badgeColor} text-[10px] px-2 py-0.5 rounded font-mono`}>
-                  {item.badge}
+                {/* Top Section with ID, Radial Progress and Badge */}
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    {/* Animated Radial SVG Progress Ring */}
+                    <svg className="w-10 h-10 transform -rotate-90 shrink-0" viewBox="0 0 40 40">
+                      <circle
+                        cx="20"
+                        cy="20"
+                        r={radius}
+                        fill="none"
+                        stroke={itemProgress.trackColor}
+                        strokeWidth="3"
+                      />
+                      <motion.circle
+                        cx="20"
+                        cy="20"
+                        r={radius}
+                        fill="none"
+                        stroke={itemProgress.color}
+                        strokeWidth="3"
+                        strokeDasharray={circumference}
+                        initial={{ strokeDashoffset: circumference }}
+                        animate={{ strokeDashoffset }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                      />
+                      <text
+                        x="20"
+                        y="23"
+                        className="font-mono text-[8px] font-bold fill-white"
+                        textAnchor="middle"
+                        transform="rotate(90 20 20)"
+                      >
+                        {itemProgress.percent}%
+                      </text>
+                    </svg>
+                    <span className="font-mono text-primary text-sm font-semibold tracking-wider block">{item.id}</span>
+                  </div>
+                  
+                  <div className={`px-2 py-0.5 rounded font-mono text-[9px] uppercase tracking-wider ${item.badgeColor}`}>
+                    {item.badge}
+                  </div>
                 </div>
 
-                <div className="space-y-4">
-                  <span className="font-mono text-primary text-sm font-semibold tracking-wider block">{item.id}</span>
+                <div className="space-y-3">
                   <h3 className="font-headline-md text-white text-xl font-bold leading-snug">{item.title}</h3>
                   <p className="font-body-md text-slate-400 text-sm leading-relaxed font-light">
                     {item.desc}
@@ -136,14 +194,14 @@ export default function ObjectiveTabs() {
                           key={idx}
                           href={deliv.link}
                           download
-                          className="group/item flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-100 text-xs text-slate-700 hover:bg-emerald-50/50 hover:border-emerald-500/30 shadow-sm hover:shadow-md transition-all cursor-pointer"
+                          className="group/item flex items-start gap-2.5 p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all cursor-pointer"
                         >
-                          <FileText className="h-4.5 w-4.5 text-emerald-600 shrink-0 mt-0.5" />
+                          <FileText className="h-4.5 w-4.5 text-emerald-500 shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform" />
                           <div className="flex flex-col w-full min-w-0">
-                            <span className="font-semibold text-slate-800 group-hover/item:text-emerald-700 transition-colors truncate block">
+                            <span className="font-semibold text-slate-200 group-hover/item:text-emerald-400 transition-colors truncate block">
                               {deliv.name}
                             </span>
-                            <span className="text-[10px] text-slate-500 mt-1 block font-mono">
+                            <span className="text-[10px] text-slate-400 mt-1 block font-mono">
                               Descargar archivo
                             </span>
                           </div>

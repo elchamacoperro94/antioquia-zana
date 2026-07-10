@@ -7,11 +7,11 @@ interface BadgeProps {
 
 export default function Badge({ text, pulsing = false, color = 'orange' }: BadgeProps) {
   const colorMap = {
-    orange: 'bg-carrot-orange/10 text-carrot-orange border-carrot-orange/30',
-    green: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-    purple: 'bg-glow-purple/10 text-glow-purple border-glow-purple/30',
-    amber: 'bg-amber-gold/10 text-amber-gold border-amber-gold/30',
-    blue: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+    orange: 'bg-carrot-orange/10 text-carrot-orange border-carrot-orange/40 shadow-[0_0_12px_rgba(230,126,34,0.12)] backdrop-blur-md',
+    green: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.12)] backdrop-blur-md',
+    purple: 'bg-glow-purple/10 text-glow-purple border-glow-purple/40 shadow-[0_0_12px_rgba(168,85,247,0.12)] backdrop-blur-md',
+    amber: 'bg-amber-gold/10 text-amber-gold border-amber-gold/40 shadow-[0_0_12px_rgba(245,158,11,0.12)] backdrop-blur-md',
+    blue: 'bg-blue-500/10 text-blue-400 border-blue-500/40 shadow-[0_0_12px_rgba(59,130,246,0.12)] backdrop-blur-md',
   };
 
   const dotColorMap = {
