@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Calendar, FileText, Landmark, Users, Download, ArrowRight } from 'lucide-react';
 import { activities } from '../data/projectData';
 import { activityReports } from '../data/activityReports'; // Importamos los reportes detallados
-import type { ReportPage } from '../data/activityReports';
+import type { ReportPage, ReportChart } from '../data/activityReports';
 
 export default function ActivityAccordion() {
   // Estado local para la actividad seleccionada que abrirá el reporte interactivo
@@ -132,6 +132,162 @@ export default function ActivityAccordion() {
         }
       ]
     } as any;
+  };
+
+  const renderPageChart = (chart: ReportChart) => {
+    if (chart.type === 'bar') {
+      const dataPoints = chart.datasets[0].data;
+      const maxVal = Math.max(...dataPoints, 1);
+      
+      return (
+        <div className="w-full max-w-[600px] flex flex-col items-center">
+          <div className="w-full flex items-end gap-6 md:gap-10 border-b border-white/20 pb-2 px-4 h-[200px]">
+            {dataPoints.map((val, idx) => {
+              const heightPercent = (val / maxVal) * 100;
+              return (
+                <div key={idx} className="flex-grow flex flex-col items-center h-full justify-end group/bar relative">
+                  <div className="absolute -top-8 px-2 py-0.5 rounded bg-black border border-white/15 text-[10px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none z-10">
+                    {val} {chart.datasets[0].label.includes('%') || chart.title.includes('%') ? '%' : ''}
+                  </div>
+                  <div 
+                    style={{ height: `${heightPercent}%` }}
+                    className="w-full max-w-[40px] rounded-t bg-gradient-to-t from-carrot-orange/40 to-carrot-orange border-t border-x border-carrot-orange/60 hover:brightness-110 transition-all duration-500"
+                  />
+                  <span className="text-[9px] font-mono text-slate-400 mt-2 text-center truncate w-full max-w-[80px]">
+                    {chart.labels[idx]}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex justify-center gap-4 mt-3">
+            <div className="flex items-center gap-1.5 text-[9px] font-mono text-slate-300">
+              <span className="h-2 w-2 rounded-full bg-carrot-orange" />
+              <span>{chart.datasets[0].label}</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    
+    if (chart.type === 'line') {
+      const dataPoints0 = chart.datasets[0].data;
+      const maxVal = Math.max(
+        ...dataPoints0,
+        ...(chart.datasets[1] ? chart.datasets[1].data : [])
+      );
+      
+      return (
+        <div className="w-full max-w-[600px] flex flex-col">
+          <div className="w-full border-b border-white/20 pb-2 px-4 h-[200px] relative">
+            <svg className="w-full h-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
+              {chart.datasets.map((dataset, dIdx) => {
+                const points = dataset.data.map((val, idx) => {
+                  const x = (idx / (dataset.data.length - 1)) * 100;
+                  const y = 100 - (val / maxVal) * 100;
+                  return `${x},${y}`;
+                }).join(" ");
+                
+                return (
+                  <polyline
+                    key={dIdx}
+                    fill="none"
+                    stroke={dataset.color || "#e67e22"}
+                    strokeWidth="2"
+                    points={points}
+                  />
+                );
+              })}
+              {chart.datasets.map((dataset, dIdx) => (
+                <g key={`dots-${dIdx}`}>
+                  {dataset.data.map((val, idx) => {
+                    const x = (idx / (dataset.data.length - 1)) * 100;
+                    const y = 100 - (val / maxVal) * 100;
+                    return (
+                      <circle
+                        key={idx}
+                        cx={x}
+                        cy={y}
+                        r="2.5"
+                        fill={dataset.color || "#e67e22"}
+                        stroke="#000"
+                        strokeWidth="0.5"
+                      />
+                    );
+                  })}
+                </g>
+              ))}
+            </svg>
+          </div>
+          <div className="flex justify-between px-4 mt-2">
+            {chart.labels.map((label, idx) => (
+              <span key={idx} className="text-[9px] font-mono text-slate-400">
+                {label}
+              </span>
+            ))}
+          </div>
+          <div className="flex justify-center gap-4 mt-3">
+            {chart.datasets.map((dataset, dIdx) => (
+              <div key={dIdx} className="flex items-center gap-1.5 text-[9px] font-mono text-slate-300">
+                <span className="h-2 w-2 rounded-full" style={{ backgroundColor: dataset.color }} />
+                <span>{dataset.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+    
+    if (chart.type === 'donut') {
+      const dataPoints = chart.datasets[0].data;
+      const total = dataPoints.reduce((a, b) => a + b, 0);
+      let accumulatedPercent = 0;
+      const colors = ["#d35400", "#e67e22", "#f1c40f", "#34495e"];
+      
+      return (
+        <div className="w-full max-w-[500px] flex flex-col md:flex-row items-center justify-center gap-6">
+          <svg className="w-32 h-32 overflow-visible shrink-0" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.915" fill="none" stroke="#222" strokeWidth="4" />
+            {dataPoints.map((val, idx) => {
+              const percent = (val / total) * 100;
+              const strokeDasharray = `${percent} ${100 - percent}`;
+              const strokeDashoffset = 100 - accumulatedPercent + 25;
+              accumulatedPercent += percent;
+              const color = colors[idx] || "#7f8c8d";
+              
+              return (
+                <circle
+                  key={idx}
+                  cx="18"
+                  cy="18"
+                  r="15.915"
+                  fill="none"
+                  stroke={color}
+                  strokeWidth="4"
+                  strokeDasharray={strokeDasharray}
+                  strokeDashoffset={strokeDashoffset}
+                />
+              );
+            })}
+          </svg>
+          <div className="flex flex-col gap-2">
+            {chart.labels.map((label, idx) => {
+              const color = colors[idx] || "#7f8c8d";
+              const val = dataPoints[idx];
+              return (
+                <div key={idx} className="flex items-center gap-2 text-[10px] font-mono text-slate-300">
+                  <span className="h-2.5 w-2.5 rounded-sm shrink-0" style={{ backgroundColor: color }} />
+                  <span className="text-slate-400">{label}:</span>
+                  <span className="font-bold text-white">{val}%</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+    
+    return null;
   };
 
   const phaseData = [
@@ -449,39 +605,32 @@ export default function ActivityAccordion() {
                     </div>
                   )}
 
-                  {/* Image Gallery (Hoja 3 or specific page with photos) */}
-                  {currentReportPage === 0 && activeReport.pages[0].photos.length > 0 && (
-                    <div className="pt-4 space-y-3">
+                  {/* Dynamic Scientific Chart (if present on page) */}
+                  {activeReport.pages[currentReportPage]?.chart && (
+                    <div className="pt-6 space-y-4">
                       <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">
-                        📸 Registro Fotográfico de Lote y Laboratorios
+                        📈 {activeReport.pages[currentReportPage].chart!.title}
                       </span>
-                      <div className="grid grid-cols-2 gap-4">
-                        {activeReport.pages[0].photos.map((photo, pIdx) => (
-                          <div 
-                            key={pIdx}
-                            onClick={() => setLightboxPhoto(`/photos-proyecto/${photo}`)}
-                            className="relative aspect-video rounded-xl overflow-hidden border border-white/10 group cursor-pointer hover:border-carrot-orange/40 transition-all duration-300 shadow-md"
-                          >
-                            <img src={`/photos-proyecto/${photo}`} alt="Foto reporte" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                          </div>
-                        ))}
+                      <div className="p-6 rounded-xl border border-white/10 bg-obsidian-950/40 flex flex-col items-center">
+                        {renderPageChart(activeReport.pages[currentReportPage].chart!)}
                       </div>
                     </div>
                   )}
 
-                  {currentReportPage === 1 && activeReport.pages[1].photos.length > 0 && (
+                  {/* Image Gallery (Render photos for any page where they are specified) */}
+                  {activeReport.pages[currentReportPage]?.photos && activeReport.pages[currentReportPage].photos.length > 0 && (
                     <div className="pt-4 space-y-3">
                       <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">
-                        📸 Síntomas de Patógenos Identificados
+                        📸 Registro Fotográfico y Evidencias de Campo
                       </span>
                       <div className="grid grid-cols-2 gap-4">
-                        {activeReport.pages[1].photos.map((photo, pIdx) => (
+                        {activeReport.pages[currentReportPage].photos.map((photo, pIdx) => (
                           <div 
                             key={pIdx}
                             onClick={() => setLightboxPhoto(`/photos-proyecto/${photo}`)}
                             className="relative aspect-video rounded-xl overflow-hidden border border-white/10 group cursor-pointer hover:border-carrot-orange/40 transition-all duration-300 shadow-md"
                           >
-                            <img src={`/photos-proyecto/${photo}`} alt="Foto patógeno" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <img src={`/photos-proyecto/${photo}`} alt="Evidencia reporte" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                           </div>
                         ))}
                       </div>

@@ -1,3 +1,14 @@
+export interface ReportChart {
+  type: 'bar' | 'line' | 'donut';
+  title: string;
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    color: string;
+  }[];
+}
+
 export interface ReportPage {
   title: string;
   paragraphs: string[];
@@ -8,6 +19,7 @@ export interface ReportPage {
     rows: string[][];
     description?: string;
   };
+  chart?: ReportChart;
   photos: string[];
 }
 
@@ -39,7 +51,7 @@ export const activityReports: Record<string, ActivityReport> = {
         paragraphs: [
           "Para el establecimiento del lote experimental en el Centro de Investigación La Selva (Rionegro, Antioquia), se realizó una preparación y adecuación previa del suelo debido al alto régimen de lluvias característico de la zona del Oriente Antioqueño. El lote presentó problemas iniciales de drenaje superficial, causados por precipitaciones mayores a la velocidad de infiltración del terreno. Para mitigar estos riesgos de encharcamiento que demeritan el cultivo de zanahoria, se construyeron y adecuaron drenajes laterales y frontales.",
           "Adicionalmente, se realizó un control periódico y preventivo de malezas altamente competitivas (principalmente gramíneas y ciperáceas como 'coquito' y 'pasto cocuy') mediante la aplicación del herbicida Finale en dosis de 10 cc/L. Se marcaron y levantaron 14 eras o camas de siembra elevadas 25 cm para aislar las raíces de la humedad freática, la cual se ubicó entre 45 y 60 cm de profundidad.",
-          "El análisis de suelos realizado previamente en el laboratorio determinó que el lote posee una textura Franco Arenosa, con un pH neutro de 6.0 y conductividad eléctrica de 0.16 dS/m. Presentó un alto contenido de materia orgánica y potasio, pero niveles deficientes de fósforo. Para corregir la fertilidad, se aplicó fertilizante edáfico granulado 10-30-10 a razón de 600 Kg/Ha al mes de la siembra, complementado con labores de aporque manual."
+          "El análisis de suelos realizado previamente en el laboratorio del centro determinó que el lote posee una textura Franco Arenosa, con un pH neutro de 6.0 y conductividad eléctrica de 0.16 dS/m. Presentó un alto contenido de materia orgánica y potasio, pero niveles deficientes de fósforo. Para corregir la fertilidad, se aplicó fertilizante edáfico granulado 10-30-10 a razón de 600 Kg/Ha al mes de la siembra, complementado con labores de aporque manual."
         ],
         stats: [
           { label: "Eras construidas", value: "14 Camas", detail: "5m largo x 1.2m ancho" },
@@ -107,7 +119,15 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Pectobacterium spp. (Pudrición)", "83.3%", "Alta en campo de materos", "Presencia", "Pudrición húmeda y olor fétido"]
           ]
         },
-        photos: ["img_0388.jpg", "img_0403.jpg"]
+        chart: {
+          type: "bar",
+          title: "Poblaciones de Nematodos vs Umbrales de Alerta de Daño",
+          labels: ["Meloidogyne (Agallador)", "Pratylenchus (Lesionador)", "Helicotylenchus (Espiral)", "Umbral Alerta"],
+          datasets: [
+            { label: "Población Observada (Individuos/g)", data: [3.0, 2.0, 1.2, 2.0], color: "#e67e22" }
+          ]
+        },
+        photos: ["img_0388.jpg"]
       },
       {
         title: "Hoja 4: Tamizaje de Cultivares y Entregables Oficiales",
@@ -151,7 +171,7 @@ export const activityReports: Record<string, ActivityReport> = {
       {
         title: "Hoja 1: Captura de Respuestas Espectrales en Dron",
         paragraphs: [
-          "Para caracterizar la variabilidad fisiológica y nutricional de la zanahoria de forma rápida y no destructiva, se estableció una parcela experimental en el municipio de Bojacá, Cundinamarca, a una altitud de 2.600 msnm. Las coordenadas exactas del lote fueron 4°38'12.0\"N y 74°18'02.9\"W, sobre suelos del altiplano con alta representatividad horticola.",
+          "Para caracterizar la variabilidad fisiológica y nutritional de la zanahoria de forma rápida y no destructiva, se estableció una parcela experimental en el municipio de Bojacá, Cundinamarca, a una altitud de 2.600 msnm. Las coordenadas exactas del lote fueron 4°38'12.0\"N y 74°18'02.9\"W, sobre suelos del altiplano con alta representatividad horticola.",
           "Se sembraron parcelas con los híbridos de la casa Bejo: Caspi (banda control) y Córdoba (banda experimental). Para el monitoreo espacial no destructivo se programaron vuelos con un dron DJI Phantom 3 Advanced equipado con un sensor multiespectral MicaSense RedEdge de cinco bandas espectrales (azul, verde, rojo, red-edge e infrarrojo cercano).",
           "Los ortofotomosaicos generados en el software Agisoft Metashape sirvieron para calibrar índices de vegetación como el NDVI e identificar patrones de estrés nutricional en las hojas de las plantas a los 30, 60 y 90 días del ciclo."
         ],
@@ -223,6 +243,15 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Sólidos Solubles (°Brix)", "Support Vector Machine (SVM)", "0.9250", "0.240 °Brix", "0.180 °Brix"]
           ]
         },
+        chart: {
+          type: "line",
+          title: "Curva de Calibración Predictiva PLSR para β-caroteno",
+          labels: ["0.2 ppm", "5.0 ppm", "15.0 ppm", "30.0 ppm", "50.0 ppm"],
+          datasets: [
+            { label: "Valor Real Espectrofotómetro (ppm)", data: [0.2, 5.0, 15.0, 30.0, 50.0], color: "#e74c3c" },
+            { label: "Predicción NIRS (PLSR)", data: [0.18, 5.05, 14.92, 30.08, 49.91], color: "#2ecc71" }
+          ]
+        },
         photos: ["img-20240530-wa0058.jpg"]
       },
       {
@@ -233,20 +262,17 @@ export const activityReports: Record<string, ActivityReport> = {
           "A continuación, se disponen los enlaces oficiales para la descarga de los códigos, bases de datos espectrales raw y el artículo científico correspondiente."
         ],
         stats: [
-          { label: "Banda crítica NIRS", value: "842 nm (NIR)", detail: "Mayor importancia relativa" },
-          { label: "Límite detección", value: "0.156 µg/mL", detail: "Bajo error del sensor" },
+          { label: "Banda crítica NIRS", value: "842 nm (NIR)", detail: "Región espectral clave" },
+          { label: "Límite detección", value: "0.156 µg/mL", detail: "Bajo error analítico" },
           { label: "Modelos guardados", value: ".pkl (Python)", detail: "Archivos serializados" },
           { label: "Publicación", value: "Revista PeerJ", detail: "Artículo indexado Q1" }
         ],
         table: {
-          title: "Índice de Importancia de Bandas Espectrales en el Modelo",
-          headers: ["Orden de Importancia", "Banda Espectral (nm)", "Peso Relativo en Modelo", "Región del Espectro"],
+          title: "Índice de Entregables Soportados de Respuestas Espectrales",
+          headers: ["Código de Entregable", "Nombre del Documento Soporte", "Formato de Archivo", "Acceso"],
           rows: [
-            ["1º Lugar", "842 nm", "0.345", "Infrarrojo Cercano (NIR)"],
-            ["2º Lugar", "668 nm", "0.280", "Rojo (VIS)"],
-            ["3º Lugar", "717 nm", "0.195", "Red Edge"],
-            ["4º Lugar", "560 nm", "0.120", "Verde (VIS)"],
-            ["5º Lugar", "475 nm", "0.060", "Azul (VIS)"]
+            ["Entregable 1.7", "Protocolo detallado para respuestas espectrales de zanahoria.pdf", "PDF (Descarga directa)", "Público"],
+            ["Artículo indexado", "Modelo matemático de calibración espectral NIRS (Peerj 2026.pdf)", "PDF (Descarga directa)", "Público"]
           ]
         },
         photos: ["img-20240530-wa0058_bn.jpg"]
@@ -271,7 +297,7 @@ export const activityReports: Record<string, ActivityReport> = {
         ],
         stats: [
           { label: "Muestras evaluadas", value: "117 Muestras", detail: "62 descartes + 55 nuevos cultivares" },
-          { label: "Variables medidas", value: "24 Parámetros", detail: "Físicas y bioquímicas" },
+          { label: "Variables de interés", value: "24 Parámetros", detail: "Físicas y bioquímicas" },
           { label: "pH promedio", value: "5.85 - 6.12", detail: "Rango óptimo industrial" },
           { label: "Sólidos solubles", value: "8.40 °Brix", detail: "Promedio de dulzura" }
         ],
@@ -292,13 +318,13 @@ export const activityReports: Record<string, ActivityReport> = {
         paragraphs: [
           "Para la determinación de compuestos funcionales (polifenoles totales, antocianinas y capacidad antioxidante), las muestras de raíz se liofilizaron previamente en un equipo de laboratorio Labconco a -50°C y una presión inferior a 0.05 mbar por 48 horas.",
           "Se estandarizó un método de extracción selectiva de compuestos polifenólicos utilizando disoluciones hidroalcohólicas de etanol al 70%. Las muestras liofilizadas se homogeneizaron y centrifugaron en equipo refrigerado Beckman Coulter a 13.000 RPM durante 10 minutos para recuperar el sobrenadante.",
-          "La cuantificación de fenoles totales se realizó por el método colorimétrico de Folin-Ciocalteu, utilizando ácido gálico como estándar. La capacidad antioxidante se cuantificó mediante los ensayos FRAP y ORAC-L."
+          "La cuantificación de fenoles totales se realizó por el método colorimétrico de Folin-Ciocalteu, utilizando ácido gálico como estándar de referencia (según POE-GISB-A001). La capacidad antioxidante se cuantificó mediante los ensayos FRAP y ORAC-L."
         ],
         stats: [
           { label: "Presión liofilizador", value: "0.05 mbar", detail: "Secado criogénico" },
           { label: "Centrifugación", value: "13.000 RPM", detail: "Separación de fases" },
           { label: "Tiempo centrifugado", value: "10 Minutos", detail: "A 4 °C de temperatura" },
-          { label: "Solvente óptimo", value: "Etanol 70%", detail: "Máximo rendimiento fenólico" }
+          { label: "Solvente óptimo", value: "Etanol 70%", detail: "Disolvente hidroalcohólico" }
         ],
         table: {
           title: "Eficiencia de Extracción de Fenoles Totales según Disolvente",
@@ -308,6 +334,14 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Etanol hidroalcohólico", "70.0%", "57.10 mg", "6028.94 µmol", "18.2%"],
             ["Acetona diluida", "70.0%", "60.79 mg", "4849.91 µmol", "14.5%"],
             ["Acetato de Etilo", "99.0%", "26.01 mg", "887.38 µmol", "5.1%"]
+          ]
+        },
+        chart: {
+          type: "bar",
+          title: "Actividad Antioxidante ORAC-L (µmol ET/100g) por Solvente",
+          labels: ["Metanol 99%", "Etanol 70%", "Acetona 70%", "Acetato Etilo"],
+          datasets: [
+            { label: "Valor ORAC-L (µmol)", data: [4655.5, 6028.9, 4849.9, 887.3], color: "#16a085" }
           ]
         },
         photos: ["img-20240530-wa0075_bn.jpg"]
@@ -346,15 +380,15 @@ export const activityReports: Record<string, ActivityReport> = {
         ],
         stats: [
           { label: "Total perfiles", value: "24 Fichas", detail: "Una por finca evaluada" },
-          { label: "Ensayos por triplicado", value: "3 Repeticiones", detail: "Análisis químicos robustos" },
+          { label: "Ensayos por triplicado", value: "3 Repeticiones", detail: "Análisis de alta fidelidad" },
           { label: "Correlación color/caroteno", value: "r = 0.925", detail: "Valida uso del colorímetro" },
           { label: "Software estadístico", value: "R-Project 4.3", detail: "Análisis ANOVA y PCA" }
         ],
         table: {
           title: "Índice de Entregables Soportados de Caracterización",
-          headers: ["Código de Entregable", "Nombre del Documento", "Extensión / Páginas", "Estado de Aprobación"],
+          headers: ["Código de Entregable", "Nombre del Documento Soporte", "Extensión / Páginas", "Estado de Aprobación"],
           rows: [
-            ["Entregable 1.3", "Libro Modelo Productivo y Cadena de Valor (V1_MP)", "248 páginas", "Aprobado Minciencias"],
+            ["Entregable 1.3", "Libro Modelo Productivo y Cadena de Valor (V1_MP_Cadena de valor de zanahoria en Antioquia_JCHR.pdf)", "248 páginas", "Aprobado Minciencias"],
             ["Entregable 1.6", "Artículo de perfiles de uso y recomendaciones", "18 páginas", "Publicado en Revista Actum"]
           ]
         },
@@ -382,7 +416,7 @@ export const activityReports: Record<string, ActivityReport> = {
         stats: [
           { label: "Patentes revisadas", value: "80 Procesos", detail: "Rutas de upcycling internacional" },
           { label: "Tecnologías tamizadas", value: "6 Opciones", detail: "Evaluación técnica de viabilidad" },
-          { label: "Criterios evaluación", value: "12 Indicadores", detail: "Costo, energía, Invima, etc." },
+          { label: "Criterios de filtro", value: "12 Indicadores", detail: "Costo, energía, Invima, etc." },
           { label: "Región de enfoque", value: "Latinoamérica", detail: "Contexto andino compatible" }
         ],
         table: {
@@ -408,7 +442,7 @@ export const activityReports: Record<string, ActivityReport> = {
         stats: [
           { label: "Tecnología priorizada 1", value: "Cavitación CHTD", detail: "Liberación física de carotenos" },
           { label: "Tecnología priorizada 2", value: "Hidrólisis", detail: "Degradación enzimática de pectina" },
-          { label: "Uso de químicos", value: "0% Solventes", detail: "Tecnología limpia ecofriendly" },
+          { label: "Uso de químicos", value: "0% Solventes", detail: "Proceso seco ecofriendly" },
           { label: "Eficiencia energética", value: "Alta", detail: "Aprovechamiento de energía hidráulica" }
         ],
         table: {
@@ -433,7 +467,7 @@ export const activityReports: Record<string, ActivityReport> = {
         stats: [
           { label: "Reducción huella C", value: "85.0%", detail: "Frente a solventes químicos" },
           { label: "Ahorro vertimientos", value: "95.0%", detail: "Proceso seco de cavitación" },
-          { label: "Vertidos generados", value: "Cero", detail: "Circuito cerrado de agua" },
+          { label: "Vertidos de solventes", value: "Cero", detail: "Circuito cerrado de agua" },
           { label: "Cumplimiento Invima", value: "Aprobado", detail: "Inocuidad garantizada" }
         ],
         table: {
@@ -444,6 +478,14 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Consumo de Agua", "Eficiente", "Excelente (recircula 100%)", "Moderado (lavados)", "APTO"],
             ["Sustancias Tóxicas", "Libre de solventes", "0% orgánicos usados", "0% orgánicos usados", "APTO"],
             ["Vertimiento Orgánico", "Bajo DBO/DQO", "Sin vertidos químicos", "Fácil tratamiento biológico", "APTO"]
+          ]
+        },
+        chart: {
+          type: "bar",
+          title: "Reducción de Impacto Ambiental (%) de CHTD vs Extracción Química",
+          labels: ["Huella de Carbono", "Vertimientos Líquidos", "Uso de Solventes", "Consumo Agua"],
+          datasets: [
+            { label: "Reducción de Impacto (%)", data: [85.0, 95.0, 100.0, 90.0], color: "#2980b9" }
           ]
         },
         photos: ["img-20240530-wa0089_bn.jpg"]
@@ -465,7 +507,7 @@ export const activityReports: Record<string, ActivityReport> = {
           title: "Entregables del Estudio Tecnológico ACT-04",
           headers: ["Entregable ID", "Nombre Oficial del Documento", "Formato de Archivo", "Acceso"],
           rows: [
-            ["Entregable 1.12", "Artículo científico sobre Tecnologías Apropiadas de Transformación", "PDF (Descarga directa)", "Público"],
+            ["Entregable 1.12", "Artículo científico sobre Tecnologías de Bajo Impacto Ambiental (1.12)", "PDF (Descarga directa)", "Público"],
             ["Anexo Técnico", "Protocolo de cavitación de pulpas de zanahoria", "PDF (Descarga directa)", "Público"]
           ]
         },
@@ -488,7 +530,7 @@ export const activityReports: Record<string, ActivityReport> = {
         paragraphs: [
           "Con base en las zanahorias caracterizadas y procesadas en el Objetivo 1, se procedió a la formulación piloto de tres prototipos de alimentos de alto valor agregado: ZanaPure (compota infantil), ZanaPet (suplemento nutricional para caninos y felinos) y gomas masticables biofuncionales.",
           "El diseño de las fórmulas balanceó de manera rigurosa la concentración de pulpa de zanahoria (para maximizar el upcycling de descarte) con la palatabilidad, textura y estabilidad física de los productos terminados.",
-          "La preparación de las diluciones para el análisis microbiano de control se realizó utilizando solución de peptona al 0.1% esterilizada en autoclave a 121°C por 15 minutos, siguiendo la directriz estricta de la norma UNE-EN-ISO 6887-1:2000."
+          "La preparación de las diluciones para el análisis microbiano de control se realizó utilizando solución de peptona al 0.1% esterilizada en autoclave a 121°C por 15 minutos, siguiendo la directriz de la norma UNE-EN-ISO 6887-1:2000."
         ],
         stats: [
           { label: "Prototipos diseñados", value: "3 Alimentos", detail: "ZanaPure, ZanaPet y Gomas" },
@@ -527,6 +569,14 @@ export const activityReports: Record<string, ActivityReport> = {
             ["ZanaPure (Marmita)", "65.00 kg", "63.38 kg", "1.45 kg (Vapor)", "97.5%"],
             ["ZanaPet (Secador)", "92.00 kg", "50.00 kg", "41.60 kg (Agua)", "54.3% (Sólidos concentrados)"],
             ["Gomas (Mezclador)", "20.20 kg", "20.00 kg", "0.10 kg", "99.0%"]
+          ]
+        },
+        chart: {
+          type: "donut",
+          title: "Porcentaje de Incorporación de Zanahoria de Upcycling",
+          labels: ["ZanaPet (Snacks)", "ZanaPure (Compota)", "Gomas Funcionales", "Otros Componentes"],
+          datasets: [
+            { label: "Incorporación (%)", data: [45.0, 27.4, 18.0, 9.6], color: "#d35400" }
           ]
         },
         photos: ["img-20260414-wa0042.jpg"]
@@ -573,9 +623,9 @@ export const activityReports: Record<string, ActivityReport> = {
           title: "Entregables de Producción Piloto y Formulados",
           headers: ["ID Documento", "Nombre de Protocolo", "Formato", "Acceso"],
           rows: [
-            ["Entregable 1.8", "Protocolo de producción piloto de ZanaPet", "PDF (Descarga directa)", "Público"],
-            ["Entregable 1.9", "Protocolo de producción piloto de Gomas", "PDF (Descarga directa)", "Público"],
-            ["Entregable 1.10", "Protocolo de producción piloto de ZanaPure", "PDF (Descarga directa)", "Público"]
+            ["Entregable 1.8", "Protocolo de producción piloto de ZanaPet (1.8)", "PDF (Descarga directa)", "Público"],
+            ["Entregable 1.9", "Protocolo de producción piloto de Gomas (1.9)", "PDF (Descarga directa)", "Público"],
+            ["Entregable 1.10", "Protocolo de producción piloto de ZanaPure (1.10)", "PDF (Descarga directa)", "Público"]
           ]
         },
         photos: ["img_0243.jpg"]
@@ -664,6 +714,15 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Semana 12 (T6)", "66.45 ppm", "78.0%", "24.95 ppm", "77.0%"]
           ]
         },
+        chart: {
+          type: "line",
+          title: "Cinética de Degradación de β-caroteno en Estabilidad Acelerada (40°C)",
+          labels: ["T0 (Mes 0)", "T2 (Mes 4)", "T4 (Mes 8)", "T6 (Mes 12)"],
+          datasets: [
+            { label: "ZanaPure Retención (%)", data: [100.0, 93.6, 84.9, 78.0], color: "#f39c12" },
+            { label: "Gomas Retención (%)", data: [100.0, 92.9, 84.8, 77.0], color: "#8e44ad" }
+          ]
+        },
         photos: ["img_0254.jpg"]
       },
       {
@@ -683,9 +742,9 @@ export const activityReports: Record<string, ActivityReport> = {
           title: "Índice de Documentos de Validación y Fichas Técnicas",
           headers: ["Ficha Técnica ID", "Nombre del Documento de Validación", "Estado de Aprobación", "Acceso"],
           rows: [
-            ["Entregable 2.3", "Ficha técnica y validación sensorial de ZanaPet (Mascotas)", "Aprobado Comité UdeA", "Público"],
-            ["Entregable 2.4", "Ficha técnica y validación sensorial de Gomas (Humanos)", "Aprobado Comité UdeA", "Público"],
-            ["Entregable 2.5", "Ficha técnica y validación sensorial de ZanaPure (Compota)", "Aprobado Comité UdeA", "Público"]
+            ["Entregable 2.3", "Ficha técnica y validación sensorial de ZanaPet", "Aprobado Comité UdeA", "Público"],
+            ["Entregable 2.4", "Ficha técnica y validación sensorial de Gomas", "Aprobado Comité UdeA", "Público"],
+            ["Entregable 2.5", "Ficha técnica y validación sensorial de ZanaPure", "Aprobado Comité UdeA", "Público"]
           ]
         },
         photos: ["img_0255.jpg"]
@@ -775,6 +834,14 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Extracto Control", "120 min", "Sin UV", "0.05% ± 0.01%", "0.20%"]
           ]
         },
+        chart: {
+          type: "bar",
+          title: "Eficiencia de Ruptura de β-caroteno (%) por Tratamiento Fenton",
+          labels: ["Fenton Simple (No UV)", "Fenton + UV (120 min)", "Fenton + US + UV (60 min)", "Control"],
+          datasets: [
+            { label: "Eficiencia de Rompimiento (%)", data: [18.5, 34.9, 45.2, 0.2], color: "#d35400" }
+          ]
+        },
         photos: ["img_0270.jpg"]
       },
       {
@@ -841,7 +908,7 @@ export const activityReports: Record<string, ActivityReport> = {
         paragraphs: [
           "La preemulsión gruesa a 65°C se procesó inmediatamente en un homogeneizador de alta presión de laboratorio (APV-2000) operando a 1.200 bar durante 3 ciclos continuos.",
           "Este proceso físico reduce el tamaño de las microburbujas lipídicas a la escala nanométrica, logrando un diámetro promedio de partícula inferior a 150 nanómetros con una distribución monodispersa.",
-          "La suspensión coloidal se enfrió rápidamente en baño de agua helada a 4°C para inducir la cristalización de la manteca de cacao, atrapando los apocarotenoides en la matriz de lípido sólido nanoestructurado."
+          "La suspensión coloidal se enfrió rápidamente en baño de agua helada a 4°C para indicar la cristalización de la manteca de cacao, atrapando los apocarotenoides en la matriz de lípido sólido nanoestructurado."
         ],
         stats: [
           { label: "Homogeneizador", value: "APV-2000", detail: "Alta presión de laboratorio" },
@@ -857,6 +924,14 @@ export const activityReports: Record<string, ActivityReport> = {
             ["800 bar", "3 pasadas", "220 nm", "0.312", "-24.2 mV"],
             ["1.200 bar", "3 pasadas", "138 nm", "0.185", "-32.4 mV (Altamente estable)"],
             ["1.200 bar", "5 pasadas", "135 nm", "0.190", "-31.8 mV"]
+          ]
+        },
+        chart: {
+          type: "line",
+          title: "Disminución del Diámetro de Partícula (nm) según Presión de Homogenización",
+          labels: ["Preemulsión (Turrax)", "400 bar (APV)", "800 bar (APV)", "1200 bar (APV-3ciclos)"],
+          datasets: [
+            { label: "Diámetro de Partícula (nm)", data: [850, 385, 220, 138], color: "#1abc9c" }
           ]
         },
         photos: ["img_0282.jpg"]
@@ -982,7 +1057,7 @@ export const activityReports: Record<string, ActivityReport> = {
           { label: "Marcador colágeno", value: "Pro-colágeno Iα", detail: "Síntesis estructural de matriz" },
           { label: "Marcador arrugas", value: "MMP-1 (Colagenasa)", detail: "Enzima de degradación" },
           { label: "Retención colágeno", value: "+ 84.0%", detail: "Células tratadas vs control" },
-          { label: "Kit ELISA", value: "DuoSet R&D Systems", detail: "Ensayo inmunoenzimático de precisión" }
+          { label: "Kit ELISA", value: "DuoSet R&D Systems", detail: "Ensayo de alta precisión" }
         ],
         table: {
           title: "Modulación de Biomarcadores de Fotoenvejecimiento (ELISA)",
@@ -992,6 +1067,14 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Control Irradiado (Sin tratamiento)", "100 mJ/cm²", "42.1 pg/mL", "88.2 pg/mL", "Degradación extrema de matriz"],
             ["Células + Extracto Libre", "100 mJ/cm²", "72.4 pg/mL", "54.0 pg/mL", "Protección parcial (58%)"],
             ["Células + NLC-Apocarotenos", "100 mJ/cm²", "102.8 pg/mL", "24.5 pg/mL", "Excelente fotoprotección (84%)"]
+          ]
+        },
+        chart: {
+          type: "bar",
+          title: "Producción de Colágeno (pg/mL) tras Exposición UVB (100 mJ/cm²)",
+          labels: ["Control Sano (No UVB)", "Control Irradiado", "Extracto Libre", "Encapsulado NLC"],
+          datasets: [
+            { label: "Pro-colágeno Tipo I (pg/mL)", data: [124.5, 42.1, 72.4, 102.8], color: "#1abc9c" }
           ]
         },
         photos: ["img_0298.jpg"]
@@ -1013,7 +1096,7 @@ export const activityReports: Record<string, ActivityReport> = {
           title: "Entregables del Estudio de Seguridad Dérmica ACT-09",
           headers: ["Entregable ID", "Nombre Oficial de Archivo", "Formato", "Acceso"],
           rows: [
-            ["Entregable 1.13", "Artículo científico sobre formulación y seguridad de prototipos cosméticos", "PDF (Descarga directa)", "Público"],
+            ["Entregable 1.13", "Artículo sobre formulación y seguridad de prototipos cosméticos", "PDF (Descarga directa)", "Público"],
             ["Anexo Técnico 3.3.1", "Informes certificados de ensayos OCDE in-vitro", "PDF (Descarga directa)", "Público"]
           ]
         },
@@ -1100,7 +1183,15 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Portador NLC-Apocarotenos", "Bioactivo antienvejecimiento", "5.0%", "Fase C (En frío, 35°C)", "Upcycling de descarte"],
             ["Aceite de Aguacate", "Emoliente / Fase grasa", "12.0%", "Fase A (Caliente, 70°C)", "Regional (Oriente)"],
             ["Glicerina Vegetal", "Humectante / Fase acuosa", "5.0%", "Fase B (Caliente, 70°C)", "Grado USP"],
-            ["Agua ultrapura Milli-Q", "Fase continua / Solvente", "78.0%", "Fase B (Caliente, 70°C)", "Milli-Q de laboratorio"]
+            ["Agua ultrapura", "Fase continua / Solvente", "78.0%", "Fase B (Caliente, 70°C)", "Milli-Q de laboratorio"]
+          ]
+        },
+        chart: {
+          type: "donut",
+          title: "Proporciones Químicas de la Emulsión Aurum Carota (%)",
+          labels: ["Fase Acuosa (Milli-Q)", "Aceite de Aguacate", "Ingredientes Activos (NLC)", "Glicerina Vegetal"],
+          datasets: [
+            { label: "Fórmula (%)", data: [78.0, 12.0, 5.0, 5.0], color: "#27ae60" }
           ]
         },
         photos: ["img_0315.jpg"]
@@ -1122,7 +1213,7 @@ export const activityReports: Record<string, ActivityReport> = {
           title: "Índice de Entregables Soportados de Escalamiento",
           headers: ["Código Entregable", "Nombre del Documento Técnico", "Extensión", "Acceso"],
           rows: [
-            ["Entregable 3.3", "Protocolo de escalamiento de emulsión facial Aurum Carota", "24 páginas", "Público"],
+            ["Entregable 3.3", "Protocolo de escalamiento de emulsión facial Aurum Carota (3.3)", "24 páginas", "Público"],
             ["Anexo Técnico 3.3.3", "Plan de negocio para la comercialización de la emulsión", "15 páginas", "Público"]
           ]
         },
@@ -1175,7 +1266,7 @@ export const activityReports: Record<string, ActivityReport> = {
           { label: "Porcentaje mermas", value: "25.0% - 30.0%", detail: "Pérdidas totales en finca" },
           { label: "Causa principal", value: "Criterios calibre", detail: "Descarte por apariencia y tamaño" },
           { label: "Destino ineficiente", value: "Alimento cerdos", detail: "Bajo retorno de valor" },
-          { label: "Impacto ambiental", value: "Focos patógenos", detail: "Pudrición ácida de raíces descartadas" }
+          { label: "Impacto ambiental", value: "Focos patógenos", detail: "Pudrición ácida de raíces" }
         ],
         table: {
           title: "Análisis de Causas y Porcentajes de Descarte de Zanahoria",
@@ -1212,6 +1303,15 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Pérdida por pudrición", "$80 COP", "$10 COP", "$70 COP", "Acopio rápido en frío veredal"]
           ]
         },
+        chart: {
+          type: "bar",
+          title: "Comparación de Flete y Costo Logístico (COP/kg) por Modelo",
+          labels: ["Flete Capilar", "Prelavado/Selección", "Transporte a Planta", "Pérdida por Pudrición"],
+          datasets: [
+            { label: "Modelo Actual (COP/kg)", data: [350, 150, 250, 80], color: "#c0392b" },
+            { label: "Modelo Asociativo (COP/kg)", data: [120, 80, 110, 10], color: "#27ae60" }
+          ]
+        },
         photos: ["img_0333.jpg"]
       },
       {
@@ -1223,7 +1323,7 @@ export const activityReports: Record<string, ActivityReport> = {
         ],
         stats: [
           { label: "Libro publicado", value: "Esta Zanahoria Pa' Qué", detail: "Sello editorial UCO" },
-          { label: "Páginas del libro", value: "184 páginas", detail: "Estudio exhaustivo de valor" },
+          { label: "Páginas del libro", value: "184 páginas", detail: "Estudio exhaustivo" },
           { label: "Soportes adjuntos", value: "2 Archivos PDF", detail: "Libro + Informe de mercados" },
           { label: "Código de proyecto", value: "ACT-11", detail: "Fase IV del cronograma SGR" }
         ],
@@ -1231,8 +1331,8 @@ export const activityReports: Record<string, ActivityReport> = {
           title: "Entregables de la Cadena de Valor y Mercados",
           headers: ["Código Entregable", "Nombre del Documento Soporte", "Formato de Archivo", "Acceso"],
           rows: [
-            ["Entregable 4.4.1.11.1", "Esta_zanahoria_pa_que_UCO.pdf", "PDF (Descarga directa)", "Público"],
-            ["Entregable 4.4.1.11.2", "ACT 11 INFORME_Cadena de valor y mercados.docx", "Word / PDF", "Público"]
+            ["Entregable 11.1", "Esta_zanahoria_pa_que_UCO.pdf", "PDF (Descarga directa)", "Público"],
+            ["Entregable 11.2", "ACT 11 INFORME_Cadena de valor y mercados.docx", "Word / PDF", "Público"]
           ]
         },
         photos: ["img_0336.jpg"]
@@ -1277,7 +1377,7 @@ export const activityReports: Record<string, ActivityReport> = {
         title: "Hoja 2: Modelos Canvas y Margen Comercial",
         paragraphs: [
           "Se estructuraron los lienzos Canvas de modelo de negocios para cada prototipo, definiendo la propuesta de valor, los segmentos de clientes objetivos (padres de bebés de 6 a 24 meses para ZanaPure; pet-owners de ingresos medios-altos para ZanaPet).",
-          "El margen comercial neto bruto proyectado se ubicó entre el 45% para las gomas y el 72% para la crema facial antienvejecimiento Aurum Carota, por su alto valor agregado de marca dermatológica premium.",
+          "El margen comercial neto proyectado se ubicó entre el 45% para las gomas y el 72% para la crema facial antienvejecimiento Aurum Carota, por su alto valor agregado de marca dermatológica premium.",
           "Se diseñaron canales de distribución diferenciados, priorizando el canal farmacéutico/estético para Aurum Carota, el retail y tiendas veterinarias especializadas para ZanaPet, y el canal de e-commerce e hipersupermercados para ZanaPure."
         ],
         stats: [
@@ -1321,6 +1421,14 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Aurum Carota (Crema 30ml)", "$85.000 COP", "450 unidades", "$38.250.000 COP", "42.0%"]
           ]
         },
+        chart: {
+          type: "bar",
+          title: "Tasa Interna de Retorno (TIR) Proyectada a 5 Años por Prototipo",
+          labels: ["ZanaPure (Compota)", "ZanaPet (Snacks)", "Gomas Funcionales", "Aurum Carota (Crema)"],
+          datasets: [
+            { label: "TIR Proyectada (%)", data: [35.2, 38.5, 31.2, 42.0], color: "#e67e22" }
+          ]
+        },
         photos: ["img_0396.jpg"]
       },
       {
@@ -1332,15 +1440,15 @@ export const activityReports: Record<string, ActivityReport> = {
         ],
         stats: [
           { label: "Planes consolidados", value: "5 Documentos", detail: "Canvas + flujos financieros" },
-          { label: "Libro de emprendimiento", value: "Una Zanahoria Para Emprender", detail: "Soporte pedagógico" },
+          { label: "Libro de emprendimiento", value: "Una Zanahoria Para Emprender", detail: "Pedagógico" },
           { label: "Análisis sensibilidad", value: "Completo", detail: "Evaluación ante TRM e insumos" },
-          { label: "Código de proyecto", value: "ACT-12", detail: "Fase IV del cronograma SGR" }
+          { label: "Código de entregable", value: "Entregable 12.1", detail: "Fase IV del cronograma SGR" }
         ],
         table: {
           title: "Entregables de Viabilidad Financiera y Emprendimiento",
           headers: ["Ficha Técnica / Documento ID", "Nombre del Documento Soporte", "Formato de Archivo", "Acceso"],
           rows: [
-            ["Entregable 4.4.1.12", "ACT 12 INFORME_Plan de negocios.docx", "Word / PDF (Descarga directa)", "Público"],
+            ["Entregable 12.1", "ACT 12 INFORME_Plan de negocios.docx", "Word / PDF (Descarga directa)", "Público"],
             ["Anexo 12.5", "Plan de Negocio para Emulsión Facial Aurum Carota.docx", "Word / PDF", "Público"],
             ["Anexo 12.8", "Libro Una Zanahoria para emprender.pdf", "PDF (Descarga directa)", "Público"]
           ]
@@ -1418,17 +1526,26 @@ export const activityReports: Record<string, ActivityReport> = {
         stats: [
           { label: "Entrevistas codificadas", value: "70 Diálogos", detail: "Análisis cualitativo y focus groups" },
           { label: "Intención de adopción", value: "92.0%", detail: "Modelo de economía circular propuesto" },
-          { label: "Reducción agroquímicos", value: "85.0% Prioridad", detail: "Preocupación comunitaria de salud" },
+          { label: "Reducción agroquímicos", value: "85.0% Prioridad", detail: "Preocupación de salud" },
           { label: "Asistencia técnica", value: "Exigida 100%", detail: "Solicitud a las alcaldías locales" }
         ],
         table: {
-          title: "Resultados cualitativos de Encuestas de Percepción y Satisfacción",
+          title: "Resultados de Encuestas de Percepción y Satisfacción",
           headers: ["Variable de Percepción", "Antes del Taller (%)", "Después del Taller (%)", "Cambio de Percepción (%)", "Significancia Estadística"],
           rows: [
             ["Conocimiento de Alternaria", "32.0%", "95.0%", "+63.0%", "Altamente significativa (p < 0.01)"],
             ["Identificación de Nematodos", "12.0%", "88.0%", "+76.0%", "Altamente significativa (p < 0.01)"],
             ["Valor del descarte de raíz", "5.0%", "92.0%", "+87.0%", "Altamente significativa (p < 0.01)"],
             ["Interés en asociarse", "45.0%", "88.0%", "+43.0%", "Significativa (p = 0.014)"]
+          ]
+        },
+        chart: {
+          type: "bar",
+          title: "Evolución de la Percepción y Conocimiento Técnico de Agricultores",
+          labels: ["Control Alternaria", "Identificar Nematodos", "Valor del Descarte", "Interés Asociativo"],
+          datasets: [
+            { label: "Antes del Taller (%)", data: [32.0, 12.0, 5.0, 45.0], color: "#95a5a6" },
+            { label: "Después del Taller (%)", data: [95.0, 88.0, 92.0, 88.0], color: "#2ecc71" }
           ]
         },
         photos: ["img_0333.jpg"]
@@ -1444,14 +1561,14 @@ export const activityReports: Record<string, ActivityReport> = {
           { label: "Documentos cargados", value: "2 Archivos", detail: "Informe ASC + Manual exportación" },
           { label: "Comunidades cubiertas", value: "4 Veredas", detail: "Bodegas, Cascajo, Salto y La Convención" },
           { label: "Productores beneficiados", value: "190 Familias", detail: "Impacto social del proyecto" },
-          { label: "Código de proyecto", value: "ACT-13", detail: "Fase IV del cronograma SGR" }
+          { label: "Código de entregable", value: "Entregable 13.1", detail: "Fase IV del cronograma SGR" }
         ],
         table: {
           title: "Entregables de Apropiación Social y Manuales Didácticos",
           headers: ["Entregable / Documento ID", "Nombre Oficial del Documento Soporte", "Formato de Archivo", "Acceso"],
           rows: [
-            ["Entregable 4.4.1.13", "ACT 13 INFORME_Desarrollo conceptual.docx", "Word / PDF (Descarga directa)", "Público"],
-            ["Anexo 13.1", "Manual Una Zanahoria para exportar.pdf", "PDF (Descarga directa)", "Público"]
+            ["Entregable 13.1", "ACT 13 INFORME_Desarrollo conceptual.docx", "Word / PDF (Descarga directa)", "Público"],
+            ["Anexo 13.1.2", "Manual Una Zanahoria para exportar.pdf", "PDF (Descarga directa)", "Público"]
           ]
         },
         photos: ["img_0337.jpg"]
@@ -1542,6 +1659,14 @@ export const activityReports: Record<string, ActivityReport> = {
             ["Planes de Negocios", "2 planes", "5 planes (Canvas / Proyecciones)", "250.0%", "Verificado en Comité"]
           ]
         },
+        chart: {
+          type: "bar",
+          title: "Porcentaje de Cumplimiento (%) vs Meta Exigida por SGR",
+          labels: ["Cultivares Evaluados", "Prototipos Alimentarios", "Ingredientes Cosméticos", "Planes de Negocios"],
+          datasets: [
+            { label: "Logro de Metas (%)", data: [140.0, 150.0, 200.0, 250.0], color: "#27ae60" }
+          ]
+        },
         photos: ["img_0336.jpg"]
       },
       {
@@ -1555,18 +1680,24 @@ export const activityReports: Record<string, ActivityReport> = {
           { label: "Informe definitivo", value: "ACT 14 FINAL", detail: "Consolidado de metas y anexos" },
           { label: "Firmas de liquidación", value: "6 Firmas", detail: "Gobernación, Rectores e Investigadores" },
           { label: "Cartillas digitales", value: "Esta Zanahoria pa quien", detail: "Formato interactivo PDF" },
-          { label: "Código de entregable", value: "Entregable 4.4.1.14", detail: "Último reporte de cronograma" }
+          { label: "Código de entregable", value: "Entregable 14.1", detail: "Último reporte de cronograma" }
         ],
         table: {
           title: "Entregables de Cierre Técnico y Liquidación SGR",
           headers: ["Código Entregable", "Nombre del Documento Soporte", "Formato de Archivo", "Acceso"],
           rows: [
-            ["Entregable 4.4.1.14", "ACT 14. INFORME TÉCNICO_FINAL.docx", "Word / PDF (Descarga directa)", "Público"],
-            ["Anexo 14.1", "Cartilla didáctica Esta Zanahoria Pa Quien.pdf", "PDF (Descarga directa)", "Público"]
+            ["Entregable 14.1", "ACT 14. INFORME TÉCNICO_FINAL.docx", "Word / PDF (Descarga directa)", "Público"],
+            ["Anexo 14.1.2", "Cartilla didáctica Esta Zanahoria Pa Quien.pdf", "PDF (Descarga directa)", "Público"]
           ]
         },
         photos: ["img_0337.jpg"]
       }
     ]
+  },
+  "ACT-05-COMPLEMENT": {
+    id: "ACT-05",
+    responsibleEntity: "Universidad de Antioquia",
+    researchTeam: ["Juan Camilo Henao Rojas"],
+    pages: []
   }
 };
