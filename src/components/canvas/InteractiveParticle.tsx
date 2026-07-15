@@ -102,7 +102,7 @@ export default function InteractiveParticle({
 
   // ── Delayed Html unmount (keeps AnimatePresence exit alive for ~600 ms) ───
   const [showHtml, setShowHtml]   = useState(false)
-  const hideTimeout = useRef<ReturnType<typeof setTimeout>>()
+  const hideTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
     if (isIntercepted) {
