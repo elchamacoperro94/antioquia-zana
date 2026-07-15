@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import BackgroundParticles from './components/canvas/BackgroundParticles';
+import { useParticleStore } from './store/useParticleStore';
 import { 
   Menu, 
   X, 
@@ -33,6 +35,9 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<string>('inicio');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // 3D particle store
+  const { setActiveSection, clearActiveSection } = useParticleStore();
+
   const navItems = [
     { label: 'Inicio', id: 'inicio', icon: <Home className="h-4 w-4" /> },
     { label: 'Proyecto', id: 'proyecto', icon: <Info className="h-4 w-4" /> },
@@ -52,13 +57,20 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-surface text-slate-300">
+    <>
+      {/* ─── Fixed 3D canvas background — z-0, pointer-events-none ─── */}
+      <BackgroundParticles />
+
+    <div className="flex h-screen overflow-hidden bg-transparent text-slate-300">
       
       {/* 1. DESKTOP SIDEBAR NAVIGATION */}
       <aside className="hidden md:flex w-64 lg:w-72 flex-col h-full border-r border-white/5 bg-surface-container-low shrink-0">
         {/* Header/Logo */}
         <div className="p-6 border-b border-white/5">
-          <div className="font-headline-md text-xl font-bold text-primary flex items-center gap-2 group cursor-pointer" onClick={() => setActiveTab('inicio')}>
+          <div
+            className="font-headline-md text-xl font-bold text-primary flex items-center gap-2 group cursor-pointer"
+            onClick={() => { setActiveTab('inicio'); setActiveSection('inicio'); }}
+          >
             <Tractor className="h-6 w-6 text-primary group-hover:scale-110 transition-transform duration-300" />
             <span className="text-white tracking-wider font-semibold">Antioquia Zana</span>
           </div>
@@ -80,7 +92,7 @@ export default function App() {
               return (
                 <li key={item.id}>
                   <button
-                    onClick={() => setActiveTab(item.id)}
+                    onClick={() => { setActiveTab(item.id); setActiveSection(item.id); }}
                     className={`w-full flex items-center gap-3 px-6 py-3.5 text-left font-label-caps text-xs tracking-wider transition-all border-r-4 ${
                       isActive
                         ? 'bg-primary-container/10 text-primary border-primary font-bold'
@@ -198,6 +210,7 @@ export default function App() {
                         key={item.id}
                         onClick={() => {
                           setActiveTab(item.id);
+                          setActiveSection(item.id);
                           setIsMobileMenuOpen(false);
                         }}
                         className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-left text-xs font-mono transition-all ${
@@ -225,5 +238,6 @@ export default function App() {
         </div>
       )}
     </div>
+    </>
   );
 }
