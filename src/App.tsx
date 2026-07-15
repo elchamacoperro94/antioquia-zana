@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import BackgroundParticles from './components/canvas/BackgroundParticles';
-import { useParticleStore } from './store/useParticleStore';
 import { 
   Menu, 
   X, 
@@ -32,17 +30,8 @@ import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
 export default function App() {
-  // 1. Estados de Zustand para las pestañas y el 3D
-  const activeTab = useParticleStore((s) => s.activeTab);
-  const setActiveTab = useParticleStore((s) => s.setActiveTab);
-
-  // 2. Estado local de React para el menú móvil (¡Asegúrate de dejar esta línea!)
+  const [activeTab, setActiveTab] = useState<string>('inicio');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // 3. Acciones de las partículas de Zustand
-  const setActiveSection = useParticleStore((state) => state.setActiveSection);
-  const activeSection = useParticleStore((state) => state.activeSection);
-
 
   const navItems = [
     { label: 'Inicio', id: 'inicio', icon: <Home className="h-4 w-4" /> },
@@ -63,23 +52,13 @@ export default function App() {
   };
 
   return (
-    <>
-      {/* — AHORA: Intercambio de capas dinámico — */}
-      <div className={`absolute inset-0 pointer-events-none transition-all duration-300 ${activeSection ? 'z-40' : 'z-0'}`}>
-        <BackgroundParticles />
-      </div>
-      
-
-    <div className="relative z-10 flex h-screen overflow-hidden bg-transparent text-slate-300">
+    <div className="flex h-screen overflow-hidden bg-surface text-slate-300">
       
       {/* 1. DESKTOP SIDEBAR NAVIGATION */}
       <aside className="hidden md:flex w-64 lg:w-72 flex-col h-full border-r border-white/5 bg-surface-container-low shrink-0">
         {/* Header/Logo */}
         <div className="p-6 border-b border-white/5">
-          <div
-            className="font-headline-md text-xl font-bold text-primary flex items-center gap-2 group cursor-pointer"
-            onClick={() => { setActiveSection('inicio'); }}
-          >
+          <div className="font-headline-md text-xl font-bold text-primary flex items-center gap-2 group cursor-pointer" onClick={() => setActiveTab('inicio')}>
             <Tractor className="h-6 w-6 text-primary group-hover:scale-110 transition-transform duration-300" />
             <span className="text-white tracking-wider font-semibold">Antioquia Zana</span>
           </div>
@@ -101,11 +80,7 @@ export default function App() {
               return (
                 <li key={item.id}>
                   <button
-                    onClick={() => {
-                      console.log("¡Clic físico detectado en el botón!", item.id);
-                      setActiveTab(item.id);
-                      setActiveSection(item.id);
-                    }}
+                    onClick={() => setActiveTab(item.id)}
                     className={`w-full flex items-center gap-3 px-6 py-3.5 text-left font-label-caps text-xs tracking-wider transition-all border-r-4 ${
                       isActive
                         ? 'bg-primary-container/10 text-primary border-primary font-bold'
@@ -166,7 +141,7 @@ export default function App() {
         </header>
 
         {/* Scrollable SPA View wrapper */}
-        <div className={`flex-grow overflow-y-auto custom-scrollbar p-6 md:p-10 transition-all duration-500 ${activeSection ? 'blur-md opacity-25 pointer-events-none' : ''}`}>
+        <div className="flex-grow overflow-y-auto custom-scrollbar p-6 md:p-10 bg-obsidian-950/10">
           <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-140px)] flex flex-col justify-between">
             
             {/* Conditional Page Rendering */}
@@ -222,7 +197,7 @@ export default function App() {
                       <button
                         key={item.id}
                         onClick={() => {
-                          setActiveSection(item.id);
+                          setActiveTab(item.id);
                           setIsMobileMenuOpen(false);
                         }}
                         className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-left text-xs font-mono transition-all ${
@@ -250,6 +225,5 @@ export default function App() {
         </div>
       )}
     </div>
-    </>
   );
 }
