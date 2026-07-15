@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ParticleHeroBackground from './components/ParticleHeroBackground';
 import { 
   Menu, 
   X, 
@@ -52,11 +53,17 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-surface text-slate-300">
+    <>
+      {/* ── FONDO GLOBAL DE ESFERAS ── */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <ParticleHeroBackground />
+      </div>
       
-      {/* 1. DESKTOP SIDEBAR NAVIGATION */}
-      <aside className="hidden md:flex w-64 lg:w-72 flex-col h-full border-r border-white/5 bg-surface-container-low shrink-0">
-        {/* Header/Logo */}
+      <div className="relative z-10 flex h-screen overflow-hidden bg-transparent text-slate-300">
+        
+        {/* 1. DESKTOP SIDEBAR NAVIGATION */}
+        <aside className="hidden md:flex w-64 lg:w-72 flex-col h-full border-r border-white/5 bg-surface-container-low shrink-0">
+          {/* Header/Logo */}
         <div className="p-6 border-b border-white/5">
           <div className="font-headline-md text-xl font-bold text-primary flex items-center gap-2 group cursor-pointer" onClick={() => setActiveTab('inicio')}>
             <Tractor className="h-6 w-6 text-primary group-hover:scale-110 transition-transform duration-300" />
@@ -225,5 +232,6 @@ export default function App() {
         </div>
       )}
     </div>
+    </>
   );
 }

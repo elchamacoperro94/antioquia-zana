@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Copy, Check, Users, Award, Landmark } from 'lucide-react';
-import ParticleHeroBackground from '../components/ParticleHeroBackground';
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
@@ -18,7 +17,7 @@ export default function Hero() {
       className="relative min-h-[100vh] py-20 flex flex-col items-center justify-center overflow-hidden px-6 text-center select-none"
     >
       {/* 3D Particle Background & Noise Overlay */}
-      <ParticleHeroBackground />
+      
       <div className="noise-overlay" />
       
       {/* Luminous Orbs */}
