@@ -12,13 +12,13 @@
  * — Inner image zooms on hover via CSS group-hover:scale-110
  */
 
-import { useRef, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 
 type AccentColor = 'orange' | 'purple' | 'yellow' | 'green';
 
 interface GlassCardProps {
-  title: string;
+  title?: string;
   subtitle?: string;
   imageUrl?: string;
   accentColor?: AccentColor;
@@ -26,6 +26,7 @@ interface GlassCardProps {
   delay?: number;
   className?: string;
   children?: ReactNode;
+  hoverEffect?: boolean;
 }
 
 const accentGlowMap: Record<AccentColor, string> = {

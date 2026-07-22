@@ -76,9 +76,16 @@ export default function Products() {
                     <h3 className="font-headline-md text-white text-base font-bold leading-tight group-hover:text-primary transition-colors">
                       {product.name}
                     </h3>
-                    <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light line-clamp-3">
+                    <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light line-clamp-2">
                       {product.description}
                     </p>
+                    {productBullets[product.id] && (
+                      <ul className="space-y-0.5 pt-1 text-[10px] font-mono text-slate-500">
+                        {productBullets[product.id].map((bullet, bIdx) => (
+                          <li key={bIdx}>{bullet}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
               </ArtFrame>

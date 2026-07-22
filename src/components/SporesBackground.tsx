@@ -13,11 +13,10 @@ import * as THREE from 'three';
 function SporeParticles({ count = 120 }: { count?: number }) {
   const pointsRef = useRef<THREE.Points>(null);
 
-  // Generate spore positions, sizes, and colors (#D4CF7D oro-lienzo & #DE5A30 bermellón)
-  const [positions, colors, scales] = useMemo(() => {
+  // Generate spore positions and colors (#D4CF7D oro-lienzo & #DE5A30 bermellón)
+  const [positions, colors] = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
-    const sca = new Float32Array(count);
 
     const oro = new THREE.Color('#D4CF7D');
     const bermellon = new THREE.Color('#DE5A30');
@@ -41,11 +40,9 @@ function SporeParticles({ count = 120 }: { count?: number }) {
       col[i * 3]     = color.r;
       col[i * 3 + 1] = color.g;
       col[i * 3 + 2] = color.b;
-
-      sca[i] = Math.random() * 0.15 + 0.05;
     }
 
-    return [pos, col, sca];
+    return [pos, col];
   }, [count]);
 
   // Frame animation: continuous slow orbital drift and floating movement

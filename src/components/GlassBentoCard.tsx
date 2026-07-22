@@ -11,7 +11,8 @@
  * Used for bento-style data layouts throughout the site.
  */
 
-import { useRef, ReactNode } from 'react';
+import { useRef } from 'react';
+import type { ReactNode } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 type GlowColor = 'carrot' | 'purple' | 'gold' | 'sage';

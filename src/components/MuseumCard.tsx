@@ -10,7 +10,7 @@
  * — Sliced scroll entrance with Framer Motion spring (stiffness: 80, damping: 20)
  */
 
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
 interface MuseumCardProps {

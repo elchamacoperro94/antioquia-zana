@@ -15,23 +15,12 @@
 
 import { motion } from 'framer-motion';
 
-// ─── Shared animation variants ──────────────────────────────────────────────
-
-const branchVariant = (delay: number, duration: number, yRange: number) => ({
-  initial: { pathLength: 0, opacity: 0 },
-  animate: {
-    pathLength: 1,
-    opacity: 1,
-    transition: { pathLength: { duration, delay, ease: 'easeOut' }, opacity: { duration: 0.6, delay } }
-  },
-});
-
 const floatVariant = (delay: number, yAmp: number, duration: number) => ({
   initial: { y: 0, rotate: 0 },
   animate: {
     y: [0, -yAmp, 0],
     rotate: [0, 1.5, 0],
-    transition: { duration, delay, repeat: Infinity, ease: 'easeInOut' }
+    transition: { duration, delay, repeat: Infinity, ease: 'easeInOut' as const }
   },
 });
 
