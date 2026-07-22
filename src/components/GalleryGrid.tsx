@@ -50,11 +50,10 @@ export default function GalleryGrid() {
           <button
             key={cat}
             onClick={() => handleCategoryChange(cat)}
-            className={`px-4 py-2 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 ${
-              activeCategory === cat
+            className={`px-4 py-2 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 ${activeCategory === cat
                 ? 'bg-carrot-orange text-white shadow-md shadow-carrot-orange/10'
                 : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/5'
-            }`}
+              }`}
           >
             {getUIName(cat)}
           </button>
@@ -114,7 +113,7 @@ export default function GalleryGrid() {
                       <p className="text-[11px] text-slate-300 font-mono line-clamp-1">
                         {photo.activity}
                       </p>
-                      
+
                       <div className="flex justify-between items-center border-t border-white/10 pt-2 mt-1 text-[10px] text-slate-400">
                         <span className="flex items-center gap-1">
                           <MapPin className="h-3 w-3 text-emerald-400 shrink-0" />

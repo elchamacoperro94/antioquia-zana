@@ -1,22 +1,25 @@
-import { useState } from 'react';
-import { 
-  Menu, 
-  X, 
-  Tractor, 
-  Home, 
-  Info, 
-  Target, 
-  ListTodo, 
-  Beaker, 
-  BarChart3, 
-  GraduationCap, 
-  Image as ImageIcon, 
-  Handshake, 
-  Mail,
-  BookOpen
-} from 'lucide-react';
+/**
+ * App.tsx
+ *
+ * Dark Botanical Museum Landing Page Assembly for Antioquia Zana.
+ * Includes:
+ * — SporesBackground (3D canvas)
+ * — CustomCursor (physics trailing cursor in #DE5A30)
+ * — Museum Halo ambient orbs (divs with blur-[120px] in #4A2545 & #D4CF7D)
+ * — Hero (parallax 100vh)
+ * — Bento Grid section with MuseumCard components
+ * — Seamless SPA Section View Switcher with Framer Motion AnimatePresence
+ * — FloatingNav (app-like bottom navigation)
+ */
 
-// Import Sections & Components
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import SporesBackground from './components/SporesBackground';
+import CustomCursor from './components/CustomCursor';
+import MuseumCard from './components/MuseumCard';
+import FloatingNav from './components/FloatingNav';
+
+// Core Sections & Components
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Objectives from './sections/Objectives';
@@ -29,201 +32,249 @@ import Partners from './sections/Partners';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
+import {
+  Leaf,
+  Beaker,
+  Users,
+  Award,
+  BookOpen,
+  ArrowUpRight,
+  Flame,
+} from 'lucide-react';
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<string>('inicio');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('inicio');
 
-  const navItems = [
-    { label: 'Inicio', id: 'inicio', icon: <Home className="h-4 w-4" /> },
-    { label: 'Proyecto', id: 'proyecto', icon: <Info className="h-4 w-4" /> },
-    { label: 'Objetivos', id: 'objetivos', icon: <Target className="h-4 w-4" /> },
-    { label: 'Actividades', id: 'actividades', icon: <ListTodo className="h-4 w-4" /> },
-    { label: 'Productos', id: 'productos', icon: <Beaker className="h-4 w-4" /> },
-    { label: 'Resultados', id: 'resultados', icon: <BarChart3 className="h-4 w-4" /> },
-    { label: 'Estudiantes', id: 'estudiantes', icon: <GraduationCap className="h-4 w-4" /> },
-    { label: 'Galería', id: 'galeria', icon: <ImageIcon className="h-4 w-4" /> },
-    { label: 'Aliados', id: 'aliados', icon: <Handshake className="h-4 w-4" /> },
-    { label: 'Contacto', id: 'contacto', icon: <Mail className="h-4 w-4" /> }
-  ];
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (
+        hash &&
+        [
+          'inicio',
+          'proyecto',
+          'objetivos',
+          'actividades',
+          'productos',
+          'resultados',
+          'estudiantes',
+          'galeria',
+          'aliados',
+          'contacto',
+        ].includes(hash)
+      ) {
+        setActiveTab(hash);
+      }
+    };
 
-  const getSectionTitle = () => {
-    const activeItem = navItems.find(item => item.id === activeTab);
-    return activeItem ? activeItem.label : 'Inicio';
-  };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-surface text-slate-300">
-      
-      {/* 1. DESKTOP SIDEBAR NAVIGATION */}
-      <aside className="hidden md:flex w-64 lg:w-72 flex-col h-full border-r border-white/5 bg-surface-container-low shrink-0">
-        {/* Header/Logo */}
-        <div className="p-6 border-b border-white/5">
-          <div className="font-headline-md text-xl font-bold text-primary flex items-center gap-2 group cursor-pointer" onClick={() => setActiveTab('inicio')}>
-            <Tractor className="h-6 w-6 text-primary group-hover:scale-110 transition-transform duration-300" />
-            <span className="text-white tracking-wider font-semibold">Antioquia Zana</span>
-          </div>
-          <p className="text-[9px] font-label-caps text-on-surface-variant mt-2 tracking-widest opacity-60">
-            BPIN 2020000100192
-          </p>
-        </div>
+    <div className="relative min-h-screen bg-[#0F1A15] text-[#F0EDE1] font-inter overflow-x-hidden">
+      {/* ── 1. 3D Spore Particles Canvas ── */}
+      <SporesBackground />
 
-        {/* Navigation list */}
-        <nav className="flex-grow overflow-y-auto custom-scrollbar py-4">
-          <div className="px-6 mb-3">
-            <span className="text-[10px] font-label-caps text-slate-500 uppercase tracking-wider block">
-              Navegación
-            </span>
-          </div>
-          <ul className="space-y-1">
-            {navItems.map((item) => {
-              const isActive = activeTab === item.id;
-              return (
-                <li key={item.id}>
-                  <button
-                    onClick={() => setActiveTab(item.id)}
-                    className={`w-full flex items-center gap-3 px-6 py-3.5 text-left font-label-caps text-xs tracking-wider transition-all border-r-4 ${
-                      isActive
-                        ? 'bg-primary-container/10 text-primary border-primary font-bold'
-                        : 'text-slate-400 border-transparent hover:bg-white/5 hover:text-white'
-                    }`}
-                  >
-                    {item.icon}
-                    {item.label}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+      {/* ── 2. Physics Trailing Custom Cursor ── */}
+      <CustomCursor />
 
-        {/* Footer in Sidebar */}
-        <div className="p-6 border-t border-white/5 flex flex-col gap-2">
-          <div className="flex items-center gap-3 opacity-40">
-            <Tractor className="h-5 w-5" />
-            <BookOpen className="h-5 w-5" />
-          </div>
-          <p className="text-[8px] font-mono text-slate-500 uppercase tracking-widest">
-            Agrosavia © 2024
-          </p>
-        </div>
-      </aside>
+      {/* ── 3. Museum Halo Ambient Orbs ── */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden z-0">
+        {/* Orb 1: Púrpura Ancestral (#4A2545) top-left */}
+        <div className="absolute top-[10vh] -left-[10vw] w-[550px] h-[550px] rounded-full bg-[#4A2545]/30 blur-[130px]" />
+        {/* Orb 2: Oro Lienzo (#D4CF7D) center-right */}
+        <div className="absolute top-[45vh] -right-[10vw] w-[650px] h-[650px] rounded-full bg-[#D4CF7D]/15 blur-[140px]" />
+        {/* Orb 3: Bermellón (#DE5A30) lower-left */}
+        <div className="absolute top-[90vh] -left-[5vw] w-[600px] h-[600px] rounded-full bg-[#DE5A30]/15 blur-[130px]" />
+        {/* Orb 4: Daucus Green (#5E824A) bottom-right */}
+        <div className="absolute top-[140vh] right-[5vw] w-[550px] h-[550px] rounded-full bg-[#5E824A]/20 blur-[130px]" />
+      </div>
 
-      {/* 2. MAIN VIEWPORT AREA */}
-      <main className="flex-grow h-screen flex flex-col overflow-hidden relative">
-        
-        {/* Sticky Context Banner at the top of the main container */}
-        <header className="sticky top-0 z-40 w-full bg-surface/90 backdrop-blur-md border-b border-white/5 px-6 py-4 flex items-center justify-between">
-          <div className="flex flex-col">
-            <span className="text-[9px] font-label-caps text-secondary uppercase flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span> 
-              Proyecto de Regalías SGR
-            </span>
-            <h2 className="text-xl font-bold text-white mt-0.5 tracking-wide">
-              {getSectionTitle()}
-            </h2>
-          </div>
+      {/* ── 4. Main Viewport & Dynamic Section Renderer ── */}
+      <AnimatePresence mode="wait">
+        {activeTab === 'inicio' && (
+          <motion.div
+            key="tab-inicio"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+          >
+            {/* Fullscreen Parallax Hero */}
+            <Hero />
 
-          <div className="flex items-center gap-4">
-            <div className="hidden lg:flex items-center gap-3 text-xs font-mono text-slate-500">
-              <span>AGROSAVIA Centro La Selva</span>
-              <span className="w-px h-3 bg-white/10"></span>
-              <span>Región Oriente</span>
-            </div>
-
-            {/* Mobile menu trigger */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-1.5 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none"
-            >
-              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
-        </header>
-
-        {/* Scrollable SPA View wrapper */}
-        <div className="flex-grow overflow-y-auto custom-scrollbar p-6 md:p-10 bg-obsidian-950/10">
-          <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-140px)] flex flex-col justify-between">
-            
-            {/* Conditional Page Rendering */}
-            <div className="flex-grow pb-12">
-              {activeTab === 'inicio' && <Hero />}
-              {activeTab === 'proyecto' && <About />}
-              {activeTab === 'objetivos' && <Objectives />}
-              {activeTab === 'actividades' && <Activities />}
-              {activeTab === 'productos' && <Products />}
-              {activeTab === 'resultados' && <Results />}
-              {activeTab === 'estudiantes' && <StudentsPage />}
-              {activeTab === 'galeria' && <Gallery />}
-              {activeTab === 'aliados' && <Partners />}
-              {activeTab === 'contacto' && <Contact />}
-            </div>
-
-            {/* Section Footer */}
-            <Footer />
-          </div>
-        </div>
-      </main>
-
-      {/* 3. MOBILE SIDEBAR DRAWER OVERLAY */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden flex">
-          {/* Backdrop */}
-          <div 
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="absolute inset-0 bg-black/75 backdrop-blur-sm" 
-          />
-          
-          {/* Drawer menu */}
-          <div className="absolute left-0 top-0 bottom-0 w-64 bg-obsidian-900 border-r border-white/10 p-6 flex flex-col justify-between shadow-2xl z-10">
-            <div className="space-y-6">
-              <div className="flex justify-between items-center pb-4 border-b border-white/5">
-                <div className="flex items-center gap-2 text-primary font-bold">
-                  <Tractor className="h-5 w-5" />
-                  <span className="text-white text-sm">Antioquia Zana</span>
-                </div>
-                <button onClick={() => setIsMobileMenuOpen(false)} className="text-slate-400 hover:text-white">
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-
-              <div className="space-y-1">
-                <span className="text-[10px] font-label-caps text-slate-500 uppercase tracking-widest block mb-2 px-2">
-                  Navegación
+            {/* Bento Grid Museum Collection */}
+            <main id="bento-grid" className="relative z-10 container mx-auto px-6 py-20 max-w-7xl space-y-24 pb-28">
+              
+              {/* Section Header */}
+              <div className="text-center max-w-3xl mx-auto space-y-4">
+                <span className="font-geist text-xs uppercase tracking-[0.3em] text-[#D4CF7D]">
+                  Colección Bioeconómica & Agroindustrial
                 </span>
-                <nav className="flex flex-col gap-1">
-                  {navItems.map((item) => {
-                    const isActive = activeTab === item.id;
-                    return (
-                      <button
-                        key={item.id}
-                        onClick={() => {
-                          setActiveTab(item.id);
-                          setIsMobileMenuOpen(false);
-                        }}
-                        className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-left text-xs font-mono transition-all ${
-                          isActive
-                            ? 'bg-primary-container/10 text-primary font-bold'
-                            : 'text-slate-300 hover:bg-white/5 hover:text-white'
-                        }`}
-                      >
-                        {item.icon}
-                        {item.label}
-                      </button>
-                    );
-                  })}
-                </nav>
+                <h2 className="font-sora text-3xl sm:text-5xl font-light text-[#F0EDE1] tracking-tight">
+                  El arte de transformar la <span className="italic text-[#DE5A30]">materia rechazada</span>
+                </h2>
+                <p className="text-[#F0EDE1]/60 text-sm md:text-base font-light leading-relaxed">
+                  Resultados del proyecto de investigación BPIN 2020000100192 ejecutado en el Oriente Antioqueño.
+                </p>
               </div>
+
+              {/* Bento Grid Layout */}
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-6">
+
+                {/* Card 1: Large Feature — Bioactivos & Apocarotenoides */}
+                <MuseumCard
+                  title="Extracción de Bioactivos & Apocarotenoides"
+                  subtitle="Ruta A2 · Aprovechamiento Biotecnológico"
+                  badge="35% Potencial"
+                  glowColor="bermellon"
+                  delay={0.1}
+                  className="lg:col-span-8 min-h-[320px] flex flex-col justify-between"
+                >
+                  <div className="space-y-4 my-auto">
+                    <p className="text-base text-[#F0EDE1]/90 font-light leading-relaxed">
+                      Obtención de pigmentos carotenoides de alta pureza y flavonoides antioxidantes a partir de zanahorias descartadas por fuera de calibre (12%) o daño cosmético (5%).
+                    </p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                      <div className="p-3 rounded-2xl bg-[#0F1A15]/60 border border-[#5E824A]/20">
+                        <p className="font-geist text-[10px] text-[#D4CF7D] uppercase">Rendimiento</p>
+                        <p className="font-sora text-lg font-semibold text-[#DE5A30]">85.4%</p>
+                      </div>
+                      <div className="p-3 rounded-2xl bg-[#0F1A15]/60 border border-[#5E824A]/20">
+                        <p className="font-geist text-[10px] text-[#D4CF7D] uppercase">Pureza α-Caroteno</p>
+                        <p className="font-sora text-lg font-semibold text-[#F0EDE1]">92.1%</p>
+                      </div>
+                      <div className="p-3 rounded-2xl bg-[#0F1A15]/60 border border-[#5E824A]/20 col-span-2 sm:col-span-1">
+                        <p className="font-geist text-[10px] text-[#D4CF7D] uppercase">Variedad 13FLA</p>
+                        <p className="font-sora text-lg font-semibold text-[#4A2545]">Morada</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="pt-4 flex items-center justify-between border-t border-[#5E824A]/20 text-xs font-geist text-[#D4CF7D]">
+                    <span className="flex items-center gap-1.5"><Beaker className="w-4 h-4 text-[#DE5A30]" /> Ensayo de extracción supercrítica</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </MuseumCard>
+
+                {/* Card 2: Side Feature — Alimentos Funcionales */}
+                <MuseumCard
+                  title="Ingredientes Funcionales"
+                  subtitle="Ruta A1 · Harinas & Harinas Puré"
+                  badge="30% Valor"
+                  glowColor="oro"
+                  delay={0.2}
+                  className="lg:col-span-4 flex flex-col justify-between"
+                >
+                  <div className="space-y-3 my-auto">
+                    <div className="w-10 h-10 rounded-2xl bg-[#D4CF7D]/10 flex items-center justify-center text-[#D4CF7D] mb-2">
+                      <Flame className="w-5 h-5" />
+                    </div>
+                    <p className="text-xs text-[#F0EDE1]/80 leading-relaxed font-light">
+                      Desarrollo de harinas deshidratadas ricas en fibra dietaria soluble e insoluble para la industria panificadora y de suplementos.
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-[#5E824A]/20 flex justify-between items-center text-xs font-geist text-[#D4CF7D]">
+                    <span>PROT-01 a PROT-05</span>
+                    <span className="text-white font-semibold">5 Prototipos</span>
+                  </div>
+                </MuseumCard>
+
+                {/* Card 3: Nutrición Animal */}
+                <MuseumCard
+                  title="Suplementación Animal"
+                  subtitle="Ruta B1 · Silaje Digestivo"
+                  badge="25% Volumen"
+                  glowColor="daucus"
+                  delay={0.3}
+                  className="lg:col-span-4 flex flex-col justify-between"
+                >
+                  <div className="space-y-3 my-auto">
+                    <div className="w-10 h-10 rounded-2xl bg-[#5E824A]/10 flex items-center justify-center text-[#5E824A] mb-2">
+                      <Leaf className="w-5 h-5" />
+                    </div>
+                    <p className="text-xs text-[#F0EDE1]/80 leading-relaxed font-light">
+                      Aprovechamiento directo de mermas de campo para ensilaje pecuario enriquecido con probióticos.
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-[#5E824A]/20 text-xs font-geist text-[#5E824A]">
+                    <span>Asociación Ganaderos Maravilla</span>
+                  </div>
+                </MuseumCard>
+
+                {/* Card 4: Impacto Social & ZanaFest */}
+                <MuseumCard
+                  title="Apropiación Social & ZanaFest"
+                  subtitle="Transferencia de Conocimiento"
+                  badge="800+ Asistentes"
+                  glowColor="purpura"
+                  delay={0.4}
+                  className="lg:col-span-8 min-h-[260px] flex flex-col justify-between"
+                >
+                  <div className="space-y-4 my-auto">
+                    <p className="text-sm text-[#F0EDE1]/90 font-light leading-relaxed">
+                      Empoderamiento de 190 familias agricultoras en Marinilla, El Santuario y Rionegro mediante 3 Días de Campo y el Festival ZanaFest.
+                    </p>
+                    <div className="flex flex-wrap gap-4 text-xs font-geist text-[#F0EDE1]/70">
+                      <div className="flex items-center gap-2 bg-[#0F1A15]/70 px-3 py-1.5 rounded-full border border-[#5E824A]/20">
+                        <Users className="w-3.5 h-3.5 text-[#D4CF7D]" />
+                        <span>190 Agricultores Capacitados</span>
+                      </div>
+                      <div className="flex items-center gap-2 bg-[#0F1A15]/70 px-3 py-1.5 rounded-full border border-[#5E824A]/20">
+                        <Award className="w-3.5 h-3.5 text-[#DE5A30]" />
+                        <span>3 Días de Campo</span>
+                      </div>
+                      <div className="flex items-center gap-2 bg-[#0F1A15]/70 px-3 py-1.5 rounded-full border border-[#5E824A]/20">
+                        <BookOpen className="w-3.5 h-3.5 text-[#5E824A]" />
+                        <span>Catálogo de Excedentes</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="pt-3 border-t border-[#5E824A]/20 flex justify-between items-center text-xs font-geist text-[#D4CF7D]">
+                    <span>Oriente Antioqueño · Vigencia 2022–2026</span>
+                    <span className="text-[#DE5A30]">AGROSAVIA · UdeA · UCO · INTAL</span>
+                  </div>
+                </MuseumCard>
+
+              </div>
+
+              {/* Section Footer */}
+              <Footer />
+            </main>
+          </motion.div>
+        )}
+
+        {/* Dynamic SPA View Sections */}
+        {activeTab !== 'inicio' && (
+          <motion.div
+            key={`tab-${activeTab}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+            className="relative z-10 container mx-auto px-6 py-28 max-w-7xl pb-32"
+          >
+            {activeTab === 'proyecto' && <About />}
+            {activeTab === 'objetivos' && <Objectives />}
+            {activeTab === 'actividades' && <Activities />}
+            {activeTab === 'productos' && <Products />}
+            {activeTab === 'resultados' && <Results />}
+            {activeTab === 'estudiantes' && <StudentsPage />}
+            {activeTab === 'galeria' && <Gallery />}
+            {activeTab === 'aliados' && <Partners />}
+            {activeTab === 'contacto' && <Contact />}
+
+            {/* Footer */}
+            <div className="mt-16">
+              <Footer />
             </div>
-            
-            <div className="border-t border-white/5 pt-4">
-              <span className="text-[8px] font-mono text-slate-500 uppercase tracking-wider block">
-                Proyecto BPIN
-              </span>
-              <span className="text-xs font-mono text-white font-bold">2020000100192</span>
-            </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── 5. Floating App-like Navigation Bar ── */}
+      <FloatingNav activeTab={activeTab} onSelectTab={setActiveTab} />
     </div>
   );
 }

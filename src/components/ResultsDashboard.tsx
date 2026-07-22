@@ -20,30 +20,29 @@ import {
 } from 'lucide-react';
 
 // 1. Data Definitions
-// Physicochemical characterization results of raw residue
-const muestrasData = [
-  { name: 'Beta-caroteno (mg/100g)', shortName: 'Beta-caroteno', cantidad: 8.28, fill: '#e86a1f' },
-  { name: 'Alfa-caroteno (mg/100g)', shortName: 'Alfa-caroteno', cantidad: 3.42, fill: '#f5a623' },
-  { name: 'Fibra Insoluble (%)', shortName: 'Fibra Insol.', cantidad: 16.0, fill: '#2d6a30' },
-  { name: 'Fibra Soluble (%)', shortName: 'Fibra Sol.', cantidad: 12.5, fill: '#10b981' },
-  { name: 'Sólidos Solubles (°Brix)', shortName: 'Sólidos Sol. (°B)', cantidad: 7.20, fill: '#3b82f6' }
+// Causes and breakdown of discard / excedentes (25-30% of total harvest in Oriente Antioqueño)
+const causasExcedentesData = [
+  { name: 'Fuera de calibre / tamaño no estándar', shortName: 'Fuera de Calibre', valor: 12, fill: '#f2542d' },
+  { name: 'Imperfecciones estéticas / rajaduras de campo', shortName: 'Imperfecciones', valor: 9, fill: '#f5a623' },
+  { name: 'Manchas / daño cosmético', shortName: 'Daño Cosmético', valor: 5, fill: '#3b82f6' },
+  { name: 'Sobreoferta y fluctuación de precios', shortName: 'Sobreoferta', valor: 4, fill: '#10b981' }
+];
+
+// Potential for upcycling and valorization of surpluses (%)
+const potencialValorizacionData = [
+  { name: 'Extracción de Bioactivos / Apocarotenoides', uv: 35, fill: '#8b5cf6' },
+  { name: 'Alimentos e Ingredientes Funcionales', uv: 30, fill: '#f2542d' },
+  { name: 'Nutrición Animal / Suplementos', uv: 25, fill: '#10b981' },
+  { name: 'Uso Agrícola / Biomasa directa', uv: 10, fill: '#f5a623' }
 ];
 
 // Social appropriation and outreach data counts (number of people reached)
 const apropiacionData = [
+  { name: 'Asistentes a ZanaFest', value: 800, fill: '#ec4899' },
   { name: 'Productores Capacitados', value: 190, fill: '#10b981' },
-  { name: 'Catadores en Cata Sensorial', value: 70, fill: '#e86a1f' },
+  { name: 'Catadores en Cata Sensorial', value: 70, fill: '#f2542d' },
   { name: 'Asistentes en Socialización', value: 59, fill: '#f5a623' },
   { name: 'Investigadores Vinculados', value: 24, fill: '#8b5cf6' }
-];
-
-// Percentages of upcycled carrot residues incorporated into the final formulations of prototypes
-const formulaIngredienteData = [
-  { name: 'ZanaPure (Compota)', uv: 27, fill: '#e86a1f' },
-  { name: 'Extracto Apocarotenoide', uv: 85, fill: '#8b5cf6' },
-  { name: 'Aurum Carota (Crema)', uv: 15, fill: '#ec4899' },
-  { name: 'ZanaPet (Mascotas)', uv: 45, fill: '#10b981' },
-  { name: 'Gomas Biofuncionales', uv: 18, fill: '#f5a623' }
 ];
 
 interface StudentItem {
@@ -146,8 +145,10 @@ const studentsList: StudentItem[] = [
   }
 ];
 
+import ArtFrame from './ArtFrame';
+
 export default function ResultsDashboard() {
-  const [activeChart, setActiveChart] = useState<'muestras' | 'apropiacion' | 'innovacion' | 'talento'>('muestras');
+  const [activeChart, setActiveChart] = useState<'causas' | 'potencial' | 'apropiacion' | 'talento'>('causas');
   const [studentFilter, setStudentFilter] = useState<'All' | 'Maestría' | 'Pregrado'>('All');
 
   // Custom tooltips
@@ -156,9 +157,7 @@ export default function ResultsDashboard() {
       const value = payload[0].value;
       const name = payload[0].name;
       let unit = '';
-      if (activeChart === 'muestras') {
-        unit = name.includes('mg') ? ' mg/100g' : name.includes('Brix') ? ' °Brix' : ' %';
-      } else if (activeChart === 'innovacion') {
+      if (activeChart === 'causas' || activeChart === 'potencial') {
         unit = ' %';
       } else {
         unit = ' Personas';
@@ -211,34 +210,26 @@ export default function ResultsDashboard() {
 
         {/* Right Column: Milestones (MIT-01 to MIT-04) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="glass-card p-6 rounded-xl space-y-3 border border-white/5">
-            <span className="font-mono text-primary text-xs uppercase tracking-wider block">MIT-01</span>
-            <h4 className="font-headline-md text-white text-base font-bold leading-tight">Publicación Científica</h4>
-            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light">
+          <ArtFrame badge="MIT-01" title="Publicación Científica">
+            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light mt-2">
               Publicación del libro de divulgación científica "¿Esta Zanahoria Pa' Qué?" en colaboración institucional.
             </p>
-          </div>
-          <div className="glass-card p-6 rounded-xl space-y-3 border border-white/5">
-            <span className="font-mono text-primary text-xs uppercase tracking-wider block">MIT-02</span>
-            <h4 className="font-headline-md text-white text-base font-bold leading-tight">Censo Hortícola</h4>
-            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light">
+          </ArtFrame>
+          <ArtFrame badge="MIT-02" title="Censo Hortícola">
+            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light mt-2">
               Levantamiento cartográfico y socioeconómico de 53 tipologías de productores en Marinilla, Santuario y Rionegro.
             </p>
-          </div>
-          <div className="glass-card p-6 rounded-xl space-y-3 border border-white/5">
-            <span className="font-mono text-primary text-xs uppercase tracking-wider block">MIT-03</span>
-            <h4 className="font-headline-md text-white text-base font-bold leading-tight">Rutas de Bioeconomía</h4>
-            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light">
+          </ArtFrame>
+          <ArtFrame badge="MIT-03" title="Rutas de Bioeconomía">
+            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light mt-2">
               Diseño e implementación de 6 planes comerciales para derivados y excedentes hortícolas.
             </p>
-          </div>
-          <div className="glass-card p-6 rounded-xl space-y-3 border border-white/5">
-            <span className="font-mono text-primary text-xs uppercase tracking-wider block">MIT-04</span>
-            <h4 className="font-headline-md text-white text-base font-bold leading-tight">Transferencia Tecnológica</h4>
-            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light">
+          </ArtFrame>
+          <ArtFrame badge="MIT-04" title="Transferencia Tecnológica">
+            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light mt-2">
               Capacitación directa de 190 agricultores y realización de 3 días de campo y censo sensorial de gomas.
             </p>
-          </div>
+          </ArtFrame>
         </div>
       </div>
 
@@ -253,10 +244,9 @@ export default function ResultsDashboard() {
           {/* Selector List */}
           <div className="lg:col-span-4 flex flex-col gap-4">
             {[
-              { id: 'muestras', title: 'Caracterización Fisicoquímica', desc: 'Valores promedio de compuestos funcionales y fibra identificados en excedentes.' },
-              { id: 'apropiacion', title: 'Apropiación Social', desc: 'Personas e investigadores vinculados en talleres y paneles.' },
-              { id: 'innovacion', title: 'Ingrediente Valorizado (%)', desc: 'Porcentaje de excedente de zanahoria incorporado en la formulación final.' },
-              { id: 'talento', title: 'Talento Humano Formado', desc: 'Detalle de los 7 estudiantes de Maestría y Pregrado graduados y vinculados.' }
+              { id: 'causas', title: 'Causas de Excedentes (%)', desc: 'Causas y descarte basado en el 25–30% de mermas del Oriente Antioqueño.' },
+              { id: 'potencial', title: 'Potencial de Valorización (%)', desc: 'Rutas de aprovechamiento agroindustrial e ingredientes funcionales.' },
+              { id: 'apropiacion', title: 'Apropiación Social', desc: 'Personas, productores y 800+ asistentes al ZanaFest vinculados.' }
             ].map((chart) => (
               <button
                 key={chart.id}
@@ -280,54 +270,27 @@ export default function ResultsDashboard() {
             <div className="glass-card h-full flex flex-col justify-start border border-white/10 relative p-6 rounded-2xl bg-obsidian-900/20 min-h-[380px]">
               <div className="absolute inset-0 technical-grid opacity-10 pointer-events-none" />
               
-              {activeChart !== 'talento' ? (
-                <div className="w-full h-80 z-10">
+              <div className="w-full h-80 z-10">
                   <ResponsiveContainer width="100%" height="100%">
-                    {activeChart === 'muestras' ? (
-                      <BarChart data={muestrasData} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
+                    {activeChart === 'causas' ? (
+                      <BarChart data={causasExcedentesData} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
                         <XAxis dataKey="shortName" stroke="#6b7280" fontSize={11} tickLine={false} />
-                        <YAxis stroke="#6b7280" fontSize={11} tickLine={false} />
+                        <YAxis stroke="#6b7280" fontSize={11} tickLine={false} unit="%" />
                         <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
-                        <Bar dataKey="cantidad" radius={[8, 8, 0, 0]}>
-                          {muestrasData.map((entry, index) => (
+                        <Bar dataKey="valor" radius={[8, 8, 0, 0]}>
+                          {causasExcedentesData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.fill} />
                           ))}
                         </Bar>
                       </BarChart>
-                    ) : activeChart === 'apropiacion' ? (
-                      <PieChart>
-                        <Tooltip content={<CustomTooltip />} />
-                        <Pie
-                          data={apropiacionData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={60}
-                          outerRadius={90}
-                          paddingAngle={5}
-                          dataKey="value"
-                        >
-                          {apropiacionData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.fill} />
-                          ))}
-                        </Pie>
-                        <Legend 
-                          verticalAlign="bottom" 
-                          height={36} 
-                          formatter={(value, entry: any) => (
-                            <span className="text-xs text-slate-400 font-mono">
-                              {value} ({entry.payload.value} personas)
-                            </span>
-                          )}
-                        />
-                      </PieChart>
-                    ) : (
+                    ) : activeChart === 'potencial' ? (
                       <RadialBarChart
                         cx="50%"
                         cy="50%"
                         innerRadius="30%"
                         outerRadius="95%"
                         barSize={12}
-                        data={formulaIngredienteData}
+                        data={potencialValorizacionData}
                       >
                         <RadialBar
                           label={{ position: 'insideStart', fill: '#fff', fontSize: 9, fontFamily: 'monospace' }}
@@ -347,78 +310,35 @@ export default function ResultsDashboard() {
                           )}
                         />
                       </RadialBarChart>
+                    ) : (
+                      <PieChart>
+                        <Tooltip content={<CustomTooltip />} />
+                        <Pie
+                          data={apropiacionData}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={60}
+                          outerRadius={90}
+                          paddingAngle={5}
+                          dataKey="value"
+                        >
+                          {apropiacionData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.fill} />
+                          ))}
+                        </Pie>
+                        <Legend 
+                          verticalAlign="bottom" 
+                          height={48} 
+                          formatter={(value, entry: any) => (
+                            <span className="text-xs text-slate-400 font-mono">
+                              {value} ({entry.payload.value} personas)
+                            </span>
+                          )}
+                        />
+                      </PieChart>
                     )}
                   </ResponsiveContainer>
                 </div>
-              ) : (
-                <div className="z-10 w-full space-y-4">
-                  {/* Filter tabs */}
-                  <div className="flex gap-2 border-b border-white/5 pb-3">
-                    {['All', 'Maestría', 'Pregrado'].map((filter) => (
-                      <button
-                        key={filter}
-                        onClick={() => setStudentFilter(filter as any)}
-                        className={`px-3 py-1 text-xs rounded-full font-mono transition-all border ${
-                          studentFilter === filter
-                            ? 'bg-primary-container/20 text-primary-container border-primary-container/30'
-                            : 'bg-white/5 text-slate-400 border-transparent hover:border-white/10 hover:text-white'
-                        }`}
-                      >
-                        {filter === 'All' ? 'Todos' : filter}
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Students grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[280px] overflow-y-auto pr-2 custom-scrollbar">
-                    {studentsList
-                      .filter((s) => studentFilter === 'All' || s.type === studentFilter)
-                      .map((student, idx) => (
-                        <div key={idx} className="p-4 rounded-xl bg-obsidian-950/50 border border-white/5 flex flex-col justify-between space-y-3 hover:border-white/10 transition-all">
-                          <div>
-                            <div className="flex justify-between items-start">
-                              <span className={`text-[9px] px-2 py-0.5 rounded-full font-mono ${
-                                student.type === 'Maestría'
-                                  ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
-                                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                              }`}>
-                                {student.type}
-                              </span>
-                              <span className="text-[10px] font-mono text-slate-500">{student.university}</span>
-                            </div>
-                            <h4 className="text-sm font-bold text-white mt-2">{student.name}</h4>
-                            <p className="text-[11px] text-primary-container font-light">{student.degree}</p>
-                            {student.thesis && (
-                              <p className="text-[10px] text-slate-400 font-light mt-1.5 line-clamp-2" title={student.thesis}>
-                                <strong className="font-mono text-[9px] text-slate-500">TESIS:</strong> {student.thesis}
-                              </p>
-                            )}
-                            {student.distinction && (
-                              <div className="mt-1 flex items-center gap-1 text-[10px] text-amber-400 font-mono">
-                                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-                                {student.distinction}
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Action links */}
-                          <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/5">
-                            {student.files.map((file, fIdx) => (
-                              <a
-                                key={fIdx}
-                                href={file.link}
-                                download
-                                className="text-[9px] px-2 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all font-mono"
-                              >
-                                {file.name}
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

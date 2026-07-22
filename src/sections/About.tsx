@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Building2, Users, MapPin, CalendarRange, X } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
+import ArtFrame from '../components/ArtFrame';
 import { regionStats } from '../data/projectData';
 
 const researchTeam = [
@@ -36,13 +37,13 @@ export default function About() {
 
   const infoCards = [
     { id: 'entidad', label: 'Entidad Ejecutora', value: 'AGROSAVIA', subValue: 'Centro La Selva', icon: <Building2 className="h-5 w-5 text-carrot-orange" /> },
-    { id: 'equipo', label: 'Equipo Investigador', value: 'Personal Cientifico', subValue: 'Alianza AntioquiaZana. (Ver equipo)', icon: <Users className="h-5 w-5 text-emerald-400" />, clickable: true },
-    { id: 'zona', label: 'Región', value: 'Oriente Antioqueño', subValue: 'ElSantuario, Marinilla', icon: <MapPin className="h-5 w-5 text-blue-400" /> },
+    { id: 'equipo', label: 'Equipo Investigador', value: 'Personal Científico', subValue: 'Alianza AntioquiaZana. (Ver equipo)', icon: <Users className="h-5 w-5 text-emerald-400" />, clickable: true },
+    { id: 'zona', label: 'Región', value: 'Oriente Antioqueño', subValue: 'El Santuario, Marinilla', icon: <MapPin className="h-5 w-5 text-blue-400" /> },
     { id: 'periodo', label: 'Vigencia', value: '2022 — 2026', subValue: 'Periodo de ejecución', icon: <CalendarRange className="h-5 w-5 text-amber-400" /> },
   ];
 
   return (
-    <section id="sobre-el-proyecto" className="px-6 py-20 md:py-28 max-w-6xl mx-auto flex flex-col gap-12">
+    <section id="sobre-el-proyecto" className="px-6 py-20 md:py-28 max-w-6xl mx-auto flex flex-col gap-12 relative z-10">
       {/* Section Header */}
       <SectionHeader
         badgeText="Sobre el Proyecto"
@@ -50,8 +51,8 @@ export default function About() {
         subtitle="Un esfuerzo articulado de investigación, desarrollo y transferencia tecnológica para valorizar la producción hortícola."
       />
 
-      {/* Row of 5 Info Cards (Google Stitch style) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+      {/* Row of Info Cards (ArtFrame style) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {infoCards.map((card, i) => {
           if (card.clickable) {
             return (
@@ -60,21 +61,22 @@ export default function About() {
                 onClick={() => setShowTeamModal(true)}
                 className="cursor-pointer group flex flex-col justify-between"
               >
-                <div className="glass-card p-6 rounded-xl space-y-2 border border-white/10 hover:border-emerald-500/30 hover:bg-emerald-950/5 transition-all duration-300">
-                  <p className="font-label-caps text-primary text-[10px]">{card.label}</p>
-                  <h4 className="font-headline-md text-white text-lg font-bold leading-snug">{card.value}</h4>
-                  <p className="font-mono-data text-emerald-400 text-xs underline group-hover:text-emerald-300 transition-colors cursor-pointer">{card.subValue}</p>
-                </div>
+                <ArtFrame badge={card.label} className="h-full flex flex-col justify-between hover:border-emerald-500/50">
+                  <div className="space-y-1">
+                    <h4 className="font-headline-md text-white text-lg font-bold leading-snug">{card.value}</h4>
+                    <p className="font-mono-data text-emerald-400 text-xs underline group-hover:text-emerald-300 transition-colors">{card.subValue}</p>
+                  </div>
+                </ArtFrame>
               </div>
             );
           }
-
           return (
-            <div key={i} className="glass-card p-6 rounded-xl space-y-2 border border-white/10">
-              <p className="font-label-caps text-primary text-[10px]">{card.label}</p>
-              <h4 className="font-headline-md text-white text-lg font-bold leading-snug">{card.value}</h4>
-              <p className="font-mono-data text-slate-400 opacity-60 text-xs">{card.subValue}</p>
-            </div>
+            <ArtFrame key={i} badge={card.label} className="h-full flex flex-col justify-between">
+              <div className="space-y-1">
+                <h4 className="font-headline-md text-white text-lg font-bold leading-snug">{card.value}</h4>
+                <p className="font-mono-data text-slate-400 text-xs">{card.subValue}</p>
+              </div>
+            </ArtFrame>
           );
         })}
       </div>

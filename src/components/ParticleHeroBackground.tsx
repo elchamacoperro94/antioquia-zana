@@ -15,9 +15,10 @@ function Particles({ count }: ParticlesProps) {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
 
-    const orange = new THREE.Color('#e86a1f');
-    const green = new THREE.Color('#2d6a30');
-    const amber = new THREE.Color('#f5a623');
+    const orange = new THREE.Color('#f2542d');
+    const green = new THREE.Color('#74c67a');
+    const amber = new THREE.Color('#f4b41a');
+    const purple = new THREE.Color('#7b2869');
 
     for (let i = 0; i < count; i++) {
       // Distributed in a spherical pattern around the center
@@ -29,15 +30,17 @@ function Particles({ count }: ParticlesProps) {
       pos[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       pos[i * 3 + 2] = radius * Math.cos(phi);
 
-      // Color distribution: 40% orange, 30% green, 30% amber
+      // Color distribution: 35% vermilion, 30% green, 20% gold, 15% purple
       const rand = Math.random();
       let selectedColor;
-      if (rand < 0.40) {
+      if (rand < 0.35) {
         selectedColor = orange;
-      } else if (rand < 0.70) {
+      } else if (rand < 0.65) {
         selectedColor = green;
-      } else {
+      } else if (rand < 0.85) {
         selectedColor = amber;
+      } else {
+        selectedColor = purple;
       }
 
       col[i * 3] = selectedColor.r;
@@ -136,24 +139,24 @@ export default function ParticleHeroBackground() {
         <ambientLight intensity={0.3} />
 
         {/* Orange point light at position [10,10,10] with intensity 0.5 */}
-        <pointLight position={[10, 10, 10]} intensity={0.5} color="#e86a1f" />
+        <pointLight position={[10, 10, 10]} intensity={0.5} color="#f2542d" />
 
         {/* Green point light at position [-10,-10,-5] with intensity 0.3 */}
-        <pointLight position={[-10, -10, -5]} intensity={0.3} color="#2d6a30" />
+        <pointLight position={[-10, -10, -5]} intensity={0.3} color="#74c67a" />
 
         {/* 2000 small luminous particles */}
         <Particles count={2000} />
 
         {/* 3 wireframe spheres floating in the background */}
-        <FloatingOrb radius={1.5} color="#e86a1f" speed={0.3} offset={0.0} position={[-3, 2, -1]} />
-        <FloatingOrb radius={1.2} color="#2d6a30" speed={0.25} offset={2.5} position={[3, -2, -2]} />
-        <FloatingOrb radius={0.9} color="#f5a623" speed={0.2} offset={5.0} position={[0, 1, -3]} />
+        <FloatingOrb radius={1.5} color="#f2542d" speed={0.3} offset={0.0} position={[-3, 2, -1]} />
+        <FloatingOrb radius={1.2} color="#74c67a" speed={0.25} offset={2.5} position={[3, -2, -2]} />
+        <FloatingOrb radius={0.9} color="#f4b41a" speed={0.2} offset={5.0} position={[0, 1, -3]} />
       </Canvas>
 
       {/* OVERLAY EFFECTS ON TOP OF CANVAS */}
 
-      {/* Overlay 1: Radial Glow Gradients (Orange at 30% center, green at 70% edge) */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(232,106,31,0.12)_30%,rgba(45,106,48,0.12)_70%)]" />
+      {/* Overlay 1: Radial Glow Gradients (Vermilion at 30% center, green at 70% edge) */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(242,84,45,0.12)_30%,rgba(13,59,54,0.25)_70%)]" />
 
       {/* Overlay 2: Subtle 60px grid lines with radial fade (scientific precision look) */}
       <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(circle,white_45%,transparent_80%)]" />

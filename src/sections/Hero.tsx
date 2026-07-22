@@ -1,144 +1,114 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Copy, Check, Users, Award, Landmark } from 'lucide-react';
-import ParticleHeroBackground from '../components/ParticleHeroBackground';
+/**
+ * Hero.tsx — Full-Screen Botanical Parallax Hero
+ *
+ * Background: Artwork image placeholder with scroll parallax (useScroll + useTransform).
+ * Overlay: Gradient blending seamlessly into --color-base-oscuro (#0F1A15) at the bottom.
+ * Content: Elegant typography fading & moving gradually upward with Framer Motion.
+ */
+
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { Sparkles, ArrowDown } from 'lucide-react';
 
 export default function Hero() {
-  const [copied, setCopied] = useState(false);
+  const containerRef = useRef<HTMLElement>(null);
 
-  const handleCopyBpin = () => {
-    navigator.clipboard.writeText("2020000100192");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 50, damping: 20 });
+
+  // Parallax transformations
+  const imageY = useTransform(smoothProgress, [0, 1], ['0%', '25%']);
+  const imageScale = useTransform(smoothProgress, [0, 1], [1, 1.15]);
+  const textY = useTransform(smoothProgress, [0, 1], ['0%', '35%']);
+  const opacity = useTransform(smoothProgress, [0, 0.7], [1, 0]);
 
   return (
-    <header 
-      id="inicio" 
-      className="relative min-h-[100vh] py-20 flex flex-col items-center justify-center overflow-hidden px-6 text-center select-none"
+    <section
+      ref={containerRef}
+      id="inicio"
+      className="relative h-screen w-full flex items-center justify-center overflow-hidden select-none"
     >
-      {/* 3D Particle Background & Noise Overlay */}
-      <ParticleHeroBackground />
+      {/* ── Background Parallax Image ── */}
+      <motion.div
+        style={{ y: imageY, scale: imageScale }}
+        className="absolute inset-0 z-0"
+      >
+        <img
+          src="/logos/logo-principal.png"
+          alt="Obra Zanahoria"
+          className="w-full h-full object-cover filter blur-[1px] opacity-25 scale-105"
+          onError={(e) => {
+            // Fallback gradient pattern if placeholder image is missing
+            (e.target as HTMLElement).style.display = 'none';
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F1A15]/60 via-[#0F1A15]/40 to-[#0F1A15]" />
+      </motion.div>
+
+      {/* ── Film Grain & Radial Vignette ── */}
       <div className="noise-overlay" />
-      
-      {/* Luminous Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-carrot-orange/10 blur-[120px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-emerald-500/10 blur-[130px] pointer-events-none animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_40%,transparent_20%,#0F1A15_100%)] pointer-events-none z-0" />
 
-      {/* Hero Content Container */}
-      <div className="relative z-10 max-w-5xl space-y-6 my-auto flex flex-col items-center">
-        {/* Logo Oficial en Gran Formato (Preservado a petición de diseño de marca) */}
-        <div className="mb-2 max-w-[150px] md:max-w-[185px] animate-pulse-dot" style={{ animationDuration: '3s' }}>
-          <img 
-            src="/logos/logo-principal.png" 
-            alt="Antioquia Zana Logo" 
-            className="w-full h-auto object-contain drop-shadow-sm"
-          />
-        </div>
+      {/* ── Hero Content (drifts upward gradually) ── */}
+      <motion.div
+        style={{ y: textY, opacity }}
+        className="relative z-10 container mx-auto px-6 text-center flex flex-col items-center max-w-5xl"
+      >
+        {/* Pill Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-flex items-center gap-2 px-5 py-2 mb-8 rounded-full
+            border border-[#5E824A]/40 bg-[#0F1A15]/80 backdrop-blur-md"
+        >
+          <Sparkles className="w-3.5 h-3.5 text-[#D4CF7D]" />
+          <span className="font-geist text-xs text-[#D4CF7D] uppercase tracking-[0.25em]">
+            Catálogo Bioeconómico · SGR BPIN 2020000100192
+          </span>
+        </motion.div>
 
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-secondary/20 bg-white/5">
-          <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-          <span className="font-label-caps text-secondary text-xs uppercase tracking-wider">Proyecto de Regalías SGR — Fondo CTI</span>
-        </div>
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 50, filter: 'blur(15px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 1.2, delay: 0.4, type: 'spring', stiffness: 70, damping: 22 }}
+          className="font-sora text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-semibold
+            text-[#F0EDE1] tracking-tighter leading-none mb-6"
+        >
+          El valor de lo <br />
+          <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-[#DE5A30] via-[#D4CF7D] to-[#DE5A30]">
+            singular
+          </span>
+        </motion.h1>
 
-        <h1 className="font-display-lg text-display-lg leading-tight tracking-tight text-white font-extrabold max-w-4xl">
-          Fortalecimiento de la <br />
-          <span className="text-primary-container">Cadena Productiva</span> de la <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-carrot-orange via-amber-400 to-glow-purple">Zanahoria</span>
-        </h1>
+        {/* Paragraph */}
+        <motion.p
+          initial={{ opacity: 0, y: 25, filter: 'blur(8px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 1, delay: 0.7, ease: 'easeOut' }}
+          className="font-inter text-base sm:text-lg md:text-xl text-[#F0EDE1]/70 max-w-2xl
+            font-light leading-relaxed mb-10"
+        >
+          Reimaginando los excedentes de <span className="italic text-[#F0EDE1]">Daucus carota</span> mediante la ciencia agronómica y el arte botánico en el Oriente Antioqueño.
+        </motion.p>
 
-        <p className="font-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
-          Sistema General de Regalías — Fondo CTI | <span className="font-bold text-on-surface text-white">AGROSAVIA</span>
-        </p>
-
-        {/* Floating Glassmorphic Cards (Estilo Obsidian UI) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 pb-4 w-full max-w-4xl">
-          {/* Card 1: BPIN */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            whileHover={{ y: -4 }}
-            className="glass-card p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md flex flex-col justify-between items-center text-center shadow-lg relative group overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-carrot-orange/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <Landmark className="h-6 w-6 text-carrot-orange mb-3" />
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest font-semibold">Código Oficial</span>
-            <span className="font-mono text-base font-bold text-white mt-1">BPIN 2020000100192</span>
-            
-            <button
-              onClick={handleCopyBpin}
-              className="mt-4 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-carrot-orange/15 hover:border-carrot-orange/30 text-[10px] font-mono text-slate-300 hover:text-white transition-all cursor-pointer"
-            >
-              {copied ? (
-                <>
-                  <Check className="h-3 w-3 text-emerald-400 animate-pulse" />
-                  <span className="text-emerald-400 font-bold">¡Copiado!</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="h-3 w-3 text-carrot-orange" />
-                  <span>Copiar Código</span>
-                </>
-              )}
-            </button>
-          </motion.div>
-
-          {/* Card 2: Beneficiarios */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            whileHover={{ y: -4 }}
-            className="glass-card p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md flex flex-col justify-between items-center text-center shadow-lg relative group overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <Users className="h-6 w-6 text-emerald-400 mb-3" />
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest font-semibold">Población Impactada</span>
-            <span className="font-headline text-lg font-extrabold text-white mt-1">900+ Familias</span>
-            <span className="text-[10px] text-slate-400 mt-2 font-mono">Productores del Oriente</span>
-          </motion.div>
-
-          {/* Card 3: Aliados */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            whileHover={{ y: -4 }}
-            className="glass-card p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md flex flex-col justify-between items-center text-center shadow-lg relative group overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-glow-purple/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <Award className="h-6 w-6 text-glow-purple mb-3" />
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest font-semibold">Alianza Científica</span>
-            <span className="font-headline text-xs font-semibold text-white mt-2 leading-relaxed">
-              AGROSAVIA · UdeA <br /> UCO · INTAL
-            </span>
-            <span className="text-[9px] text-slate-500 mt-2 font-mono">Convenio Multiactor</span>
-          </motion.div>
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4 w-full sm:w-auto">
-          <a
-            href="#sobre-el-proyecto"
-            className="px-8 py-4 bg-primary-container text-on-primary-container font-headline-md rounded-xl hover:scale-105 transition-all shadow-lg shadow-primary-container/20 text-center font-bold"
-          >
-            Explorar el Proyecto
-          </a>
-          <a
-            href="#prototipos"
-            className="px-8 py-4 border border-outline-variant text-on-surface font-headline-md rounded-xl hover:bg-white/5 transition-all text-center font-bold text-slate-200"
-          >
-            Ver Prototipos
-          </a>
-        </div>
-      </div>
-
-      {/* Animated Scroll Indicator (Desplazar) */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 z-10">
-        <span className="font-label-caps text-[10px] tracking-wider text-slate-400">Desplazar</span>
-        <div className="w-px h-12 bg-gradient-to-b from-primary-container to-transparent"></div>
-      </div>
-    </header>
+        {/* Scroll Indicator */}
+        <motion.a
+          href="#bento-grid"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="inline-flex items-center gap-2 text-xs font-geist text-[#D4CF7D]/60 uppercase tracking-widest hover:text-[#D4CF7D] transition-colors"
+        >
+          <span>Descubrir la colección</span>
+          <ArrowDown className="w-4 h-4 animate-bounce" />
+        </motion.a>
+      </motion.div>
+    </section>
   );
 }

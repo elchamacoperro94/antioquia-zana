@@ -90,7 +90,8 @@ export interface PartnerEntry {
   description: string;           // Resumen de las metas asignadas a la entidad
   activities: string[];          // Lista de actividades asociadas
   website?: string;              // Enlace oficial de la institución
-  color: 'green' | 'blue' | 'amber' | 'red' | 'teal' | 'orange'; // Color del badge
+  color: 'green' | 'blue' | 'amber' | 'red' | 'teal' | 'orange' | 'purple' | 'pink' | 'emerald'; // Color del badge
+  logo: string;                  // Ruta al logotipo oficial
 }
 
 // Valores de Metadatos Generales del Proyecto Antioquia Zana
@@ -686,7 +687,8 @@ export const partners: PartnerEntry[] = [
     description: "Líder del proyecto a través del C.I. La Selva. Responsable de la caracterización agronómica, desarrollo de prototipos alimentarios, procesos farmacéuticos primarios y gobernanza territorial.",
     activities: ["Actividades 1", "3", "4", "5", "6", "10", "13"],
     website: "https://www.agrosavia.co",
-    color: "green"
+    color: "green",
+    logo: "/logos/logo-agrosavia.png"
   },
   {
     name: "Universidad de Antioquia",
@@ -695,7 +697,8 @@ export const partners: PartnerEntry[] = [
     description: "Responsable de la optimización del extracto de apocarotenoides, caracterización nanotecnológica en NLC y realización de pruebas OCDE de seguridad dérmica.",
     activities: ["Actividades 7", "8", "9", "10"],
     website: "https://www.udea.edu.co",
-    color: "blue"
+    color: "blue",
+    logo: "/logos/logo-udea.png"
   },
   {
     name: "Universidad Católica de Oriente",
@@ -704,7 +707,8 @@ export const partners: PartnerEntry[] = [
     description: "Encargada del levantamiento de la cadena de valor, la estructuración de planes de negocios y la articulación con los productores del Oriente Antioqueño.",
     activities: ["Actividades 11", "12", "13", "14"],
     website: "https://www.uco.edu.co",
-    color: "amber"
+    color: "amber",
+    logo: "/logos/logo-uco.png"
   },
   {
     name: "Universidad Nacional de Colombia",
@@ -713,22 +717,67 @@ export const partners: PartnerEntry[] = [
     description: "Desarrollo de modelos predictivos rápidos NIRS para la caracterización no destructiva del estado de maduración y potencial funcional del cultivo.",
     activities: ["Actividad 2"],
     website: "https://unal.edu.co",
-    color: "red"
+    color: "red",
+    logo: "/logos/logo-unal.png"
   },
   {
-    name: "Asociación Hortisanos",
-    shortName: "Hortisanos",
-    role: "Asociación de Productores Regional",
-    description: "Red de productores de El Santuario y Marinilla que suministraron los excedentes agrícolas y participaron activamente en los talleres de transferencia tecnológica.",
-    activities: ["Actividad 1", "13", "14"],
-    color: "teal"
+    name: "Fundación INTAL",
+    shortName: "Intal",
+    role: "Aliado de Calidad de Alimentos",
+    description: "Laboratorio encargado del análisis microbiológico y fisicoquímico de inocuidad y la estimación de la vida útil acelerada del prototipo alimentario ZanaPure.",
+    activities: ["Actividad 6"],
+    website: "http://www.fundacionintal.org",
+    color: "teal",
+    logo: "/logos/logo-intal.png"
   },
   {
-    name: "Multialoe S.A.S.",
-    shortName: "Multialoe",
-    role: "Aliado Industrial Co-desarrollador",
-    description: "Empresa del sector agroindustrial que apoyó el escalamiento piloto de la compota ZanaPure aportando infraestructura de cavitación a nivel de planta.",
-    activities: ["Actividad 5", "10", "12"],
-    color: "orange"
+    name: "Kavitec S.A.S.",
+    shortName: "Kavitec",
+    role: "Aliado Tecnológico Co-desarrollador",
+    description: "Soporte e ingeniería en procesos agroindustriales y diseño de la maquinaria de cavitación hidrodinámica empleada en el escalamiento piloto de prototipos.",
+    activities: ["Actividad 5", "10"],
+    website: "https://kavitec.co",
+    color: "orange",
+    logo: "/logos/logo-kavitec.png"
+  },
+  {
+    name: "Gobernación de Antioquia",
+    shortName: "Gobernación de Antioquia",
+    role: "Entidad Supervisora de SGR",
+    description: "Órgano ejecutor gubernamental y supervisor del avance físico y financiero del proyecto en el marco del Fondo de Ciencia, Tecnología e Innovación.",
+    activities: ["Supervisión Global"],
+    website: "https://www.antioquia.gov.co",
+    color: "pink",
+    logo: "/logos/logo-gobernacion.png"
+  },
+  {
+    name: "Alcaldía de Marinilla",
+    shortName: "Alcaldía de Marinilla",
+    role: "Apoyo y Articulación Local",
+    description: "Enlace municipal para la convocatoria de agricultores locales y facilitación de espacios para los días de campo y capacitaciones del proyecto.",
+    activities: ["Actividad 13", "14"],
+    website: "https://www.marinilla-antioquia.gov.co",
+    color: "emerald",
+    logo: "/logos/logo-marinilla.png"
+  },
+  {
+    name: "Alcaldía de El Santuario",
+    shortName: "Alcaldía de El Santuario",
+    role: "Apoyo y Articulación Local",
+    description: "Soporte territorial en el acopio de excedentes de descarte y vinculación de asociaciones de productores hortícolas de la subregión.",
+    activities: ["Actividad 1", "13"],
+    website: "https://www.elsantuario-antioquia.gov.co",
+    color: "purple",
+    logo: "/logos/logo-santuario.png"
+  },
+  {
+    name: "Sistema General de Regalías",
+    shortName: "SGR Financiación",
+    role: "Funder / Financiador CTI",
+    description: "Aportante de los recursos económicos totales a través del fondo de Ciencia, Tecnología e Innovación para el desarrollo de las 14 actividades del proyecto.",
+    activities: ["Financiación SGR"],
+    website: "https://www.sgr.gov.co",
+    color: "green",
+    logo: "/logos/logo-sgr.png"
   }
 ];
