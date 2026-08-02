@@ -3,7 +3,7 @@
  *
  * Dark Botanical Museum Landing Page Assembly for Antioquia Zana.
  * Includes:
- * — SporesBackground (3D canvas)
+ * — BotanicalBackground (SVG animated botanical roots)
  * — CustomCursor (physics trailing cursor in #DE5A30)
  * — Museum Halo ambient orbs (divs with blur-[120px] in #4A2545 & #D4CF7D)
  * — Hero (parallax 100vh)
@@ -14,7 +14,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import SporesBackground from './components/SporesBackground';
+import BotanicalBackground from './components/BotanicalBackground';
 import CustomCursor from './components/CustomCursor';
 import MuseumCard from './components/MuseumCard';
 import FloatingNav from './components/FloatingNav';
@@ -74,8 +74,8 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-[#0F1A15] text-[#F0EDE1] font-inter overflow-x-hidden">
-      {/* ── 1. 3D Spore Particles Canvas ── */}
-      <SporesBackground />
+      {/* ── 1. Botanical Roots & Stems Animated Background ── */}
+      <BotanicalBackground />
 
       {/* ── 2. Physics Trailing Custom Cursor ── */}
       <CustomCursor />
