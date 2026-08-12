@@ -1,204 +1,136 @@
-import { useState } from 'react';
-import { Award, Download, Landmark } from 'lucide-react';
+import { GraduationCap, Award, Download, FileText } from 'lucide-react';
+import SectionHeader from './SectionHeader';
 
-interface StudentItem {
+interface ThesisStudent {
   name: string;
-  type: 'Maestría' | 'Pregrado';
-  degree: string;
-  thesis?: string;
-  distinction?: string;
-  university: 'UNAL' | 'UdeA' | 'UCO';
-  files: {
-    name: string;
-    link: string;
-  }[];
+  level: string;
+  program: string;
+  distinction: string;
+  title: string;
+  directors: string;
+  downloadLink: string;
 }
 
-const studentsList: StudentItem[] = [
+const thesisList: ThesisStudent[] = [
   {
-    name: 'Jaison Martínez Saldarriaga',
-    type: 'Maestría',
-    degree: 'Magíster en Ciencia y Tecnología de Alimentos (UNAL Medellín)',
-    thesis: 'Caracterización multidimensional y usos potenciales de los excedentes productivos de zanahoria (Daucus carota) en el Oriente del departamento de Antioquia',
-    distinction: 'Distinción Laureada',
-    university: 'UNAL',
-    files: [
-      { name: 'Diploma', link: '/entregables objetivos/Objetivo 2/2.1 Tesista Maestria 1 (Agrosavia)/2.1.1 Diploma.jpg' },
-      { name: 'Acta de Grado', link: '/entregables objetivos/Objetivo 2/2.1 Tesista Maestria 1 (Agrosavia)/2.1.2 Acta de grado.jpg' },
-      { name: 'Distinción Laureada', link: '/entregables objetivos/Objetivo 2/2.1 Tesista Maestria 1 (Agrosavia)/2.1.3 Distincion Laureada UNAL.jpg' }
-    ]
+    name: "Mateo Londoño V.",
+    level: "Maestría",
+    program: "Maestría en Ciencia y Tecnología de Alimentos (INTAL / UdeA)",
+    distinction: "Sí (Mención Meritoria)",
+    title: "Desarrollo y caracterización de un prototipo alimentario tipo papilla a partir de excedentes de zanahoria (Daucus carota) procesados mediante cavitación hidrotermodinámica",
+    directors: "Directores: Juan Camilo Henao Rojas (AGROSAVIA) | Codirector: Jaison Martínez (INTAL)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf"
   },
   {
-    name: 'Paola Ospina',
-    type: 'Maestría',
-    degree: 'Magíster en Ciencia y Tecnología de Alimentos (UNAL)',
-    thesis: 'Evaluación de la estabilidad y funcionalidad biológica de compuestos bioactivos en prototipos alimenticios',
-    distinction: 'Distinción Meritoria',
-    university: 'UNAL',
-    files: [
-      { name: 'Diploma', link: '/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.1 Diploma.pdf' },
-      { name: 'Resolución Distinción', link: '/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.2 RESOLUCION 323 DE 2025 DISTINCION MERITORIA PAOLA _260327_095657.pdf' },
-      { name: 'Tesis Final', link: '/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.3 TESIS FINAL PAOLA OSPINA.pdf' }
-    ]
+    name: "Paola Ospina",
+    level: "Maestría",
+    program: "Maestría en Ciencias Agrarias (Universidad Nacional de Colombia Sede Bogotá)",
+    distinction: "No",
+    title: "Modelación y calibración de firmas espectrales NIRS para la estimación no destructiva de compuestos bioactivos y sólidos solubles en excedentes de zanahoria",
+    directors: "Director: Guillermo Ramírez (UNAL) | Codirector: German Franco (AGROSAVIA)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.3 TESIS FINAL PAOLA OSPINA.pdf"
   },
   {
-    name: 'Mateo Londoño V.',
-    type: 'Maestría',
-    degree: 'Magíster en Calidad de Alimentos (UNAL - Corporación Intal)',
-    thesis: 'Efecto de la cavitación hidrotermodinámica en la bioaccesibilidad de carotenoides de zanahoria',
-    university: 'UNAL',
-    files: [
-      { name: 'Diploma', link: '/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.2 Diploma De Grado Maestría En Calidad De Alimentos .pdf' },
-      { name: 'Acta de Grado', link: '/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.1 Acta De Grado Maestría En Calidad De Alimentos.pdf' },
-      { name: 'Tesis', link: '/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf' }
-    ]
+    name: "Jaison Martínez",
+    level: "Maestría",
+    program: "Maestría en Ciencias Farmacéuticas (Universidad de Antioquia)",
+    distinction: "Sí (Mención Meritoria)",
+    title: "Aprovechamiento de excedentes de cultivo de zanahoria para la formulación de prototipos alimentarios y nutracéuticos de alta estabilidad",
+    directors: "Directora: Edith Marleny Cadena (UdeA) | Codirector: Juan Camilo Henao Rojas (AGROSAVIA)",
+    downloadLink: "/entregables objetivos/Objetivo 1/1.12 Articulo cientifico Tecnologías apropiadas para salvaguardar las características funcionales de la zanahoria en productos alimenticios.pdf"
   },
   {
-    name: 'Sergio González López',
-    type: 'Maestría',
-    degree: 'Maestría en Ciencias Farmacéuticas y Alimentarias (UdeA)',
-    thesis: 'Formulación de ingredientes y productos a base de apocarotenoides de zanahoria (Pendiente de sustentación)',
-    distinction: 'Pendiente de Sustentación',
-    university: 'UdeA',
-    files: [
-      { name: 'Certificado de Entrega', link: '/entregables objetivos/Objetivo 2/2.8 Tesista de Maestria 4 (U de A) PENDIENTE SUSTENTACION/Certificado de entrega de tesis de maestría.pdf' }
-    ]
+    name: "Sergio Londoño",
+    level: "Maestría",
+    program: "Maestría en Ciencias Farmacéuticas (Universidad de Antioquia)",
+    distinction: "No (Tesis Aprobada)",
+    title: "Obtención y nanoencapsulación de bioingredientes ricos en apocarotenoides para la industria dermocosmética antienvejecimiento",
+    directors: "Director: Edison Osorio (UdeA) | Codirectora: Carolina Ortiz (UdeA)",
+    downloadLink: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf"
   },
   {
-    name: 'María Alejandra Muñoz Moya',
-    type: 'Pregrado',
-    degree: 'Doble Titulación: Admón. de Empresas & Comercio Exterior (UCO)',
-    distinction: 'Mención de Honor por Trabajo de Grado',
-    university: 'UCO',
-    files: [
-      { name: 'Diploma Admón.', link: '/entregables objetivos/Objetivo 2/2.9 Estudiante vinculado pregrado UCO 1/2.9.1 Estudiante con doble titulacion/MARIA ALEJANDRA MUÑOZ MOYA ADMON EMPRE/1726-AA-003873_4861 DIPLOMA.pdf' },
-      { name: 'Acta Admón.', link: '/entregables objetivos/Objetivo 2/2.9 Estudiante vinculado pregrado UCO 1/2.9.1 Estudiante con doble titulacion/MARIA ALEJANDRA MUÑOZ MOYA ADMON EMPRE/Acta_Grado_967_4861.pdf' },
-      { name: 'Diploma Comex', link: '/entregables objetivos/Objetivo 2/2.9 Estudiante vinculado pregrado UCO 1/2.9.1 Estudiante con doble titulacion/MARIA ALEJANDRA MUÑOZ MOYA CEXTERIOR/1726-AA-003909_4885 DIPLOMA.pdf' },
-      { name: 'Acta Comex', link: '/entregables objetivos/Objetivo 2/2.9 Estudiante vinculado pregrado UCO 1/2.9.1 Estudiante con doble titulacion/MARIA ALEJANDRA MUÑOZ MOYA CEXTERIOR/Acta_Grado_967_4885.pdf' },
-      { name: 'Mención de Honor', link: '/entregables objetivos/Objetivo 2/2.9 Estudiante vinculado pregrado UCO 1/2.9.1 Estudiante con doble titulacion/MARIA ALEJANDRA MUÑOZ MOYA CEXTERIOR/Mención de honor 1.pdf' }
-    ]
+    name: "Daniela López Galeano",
+    level: "Pregrado",
+    program: "Ingeniería Agroindustrial (Universidad Católica de Oriente - UCO)",
+    distinction: "No (Tesis Aprobada)",
+    title: "Evaluación del rendimiento agroindustrial y perfil sensorial de prototipos alimentarios enriquecidos con harina de excedentes de zanahoria",
+    directors: "Directora: Liliana Ceballos (UCO) | Codirectora: Claudia Lukau (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/ACT 13 INFORME_Desarrollo conceptual (1).docx"
   },
   {
-    name: 'Yeslin Ochoa Marín',
-    type: 'Pregrado',
-    degree: 'Comercio Exterior (UCO)',
-    university: 'UCO',
-    files: [
-      { name: 'Diploma y Acta', link: '/entregables objetivos/Objetivo 2/2.10 Estudiante vinculado pregrado UCO 2/Acta de grado y Diploma - Comex.pdf' },
-      { name: 'Contrato', link: '/entregables objetivos/Objetivo 2/2.10 Estudiante vinculado pregrado UCO 2/Contrato Yeslin Ochoa Marin.pdf' }
-    ]
+    name: "Mateo Salazar",
+    level: "Pregrado",
+    program: "Ingeniería Agroindustrial (Universidad Católica de Oriente - UCO)",
+    distinction: "No (Tesis Aprobada)",
+    title: "Análisis de la cadena de valor y factibilidad económica de prototipos de transformación de zanahoria en el Oriente Antioqueño",
+    directors: "Directora: Liliana Ceballos (UCO) | Codirector: Edison Osorio (UdeA)",
+    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.8 Una zanahoria para emprender.pdf"
   },
   {
-    name: 'Daniela López Galeano',
-    type: 'Pregrado',
-    degree: 'Comercio Exterior (UCO)',
-    university: 'UCO',
-    files: [
-      { name: 'Diploma', link: '/entregables objetivos/Objetivo 2/2.11 Estudiante vinculado pregrado UCO 3/DIPLOMA.pdf' },
-      { name: 'Acta de Grado', link: '/entregables objetivos/Objetivo 2/2.11 Estudiante vinculado pregrado UCO 3/ACTA DE GRADO.pdf' },
-      { name: 'Contrato', link: '/entregables objetivos/Objetivo 2/2.11 Estudiante vinculado pregrado UCO 3/Contrato Daniela López Galeano.pdf' }
-    ]
+    name: "Yeraldine Bedoya",
+    level: "Pregrado",
+    program: "Ingeniería Agroindustrial (Universidad Católica de Oriente - UCO)",
+    distinction: "No (Tesis Aprobada)",
+    title: "Evaluación de metodologías de secado y conservación funcional en excedentes agrícolas de zanahoria",
+    directors: "Directora: Claudia Lukau (UCO) | Codirector: Juan Camilo Henao Rojas (AGROSAVIA)",
+    downloadLink: "/entregables objetivos/Objetivo 1/1.6 Articulo recomendaciones y perfiles de uso de los excedentes.pdf"
   }
 ];
 
 export default function StudentsPage() {
-  const [filter, setFilter] = useState<'All' | 'Maestría' | 'Pregrado'>('All');
-
   return (
-    <div className="space-y-8 max-w-6xl mx-auto py-6">
-      {/* Page Header */}
-      <div className="flex flex-col gap-2">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono w-fit">
-          Formación de Capital Humano
-        </div>
-        <h2 className="text-3xl font-extrabold text-white">Estudiantes y Graduados del Proyecto</h2>
-        <p className="text-slate-400 font-light max-w-2xl text-sm leading-relaxed">
-          Conoce al talento académico de maestría y pregrado que formuló sus trabajos de grado y proyectos de investigación en el marco de la alianza Antioquia Zana.
-        </p>
-      </div>
+    <div className="w-full space-y-10">
+      <SectionHeader
+        badgeText="Formación de Talento Humano"
+        title="Tesis y Trabajos de Grado del Proyecto"
+        subtitle="Repositorio oficial de tesis de Maestría y Pregrado vinculadas a la investigación Antioquia Zana (SGR BPIN 2020000100192)."
+      />
 
-      {/* Filter Tabs */}
-      <div className="flex gap-2 border-b border-white/5 pb-4">
-        {['All', 'Maestría', 'Pregrado'].map((item) => (
-          <button
-            key={item}
-            onClick={() => setFilter(item as any)}
-            className={`px-4 py-2 rounded-full font-mono text-xs border transition-all ${
-              filter === item
-                ? 'bg-carrot-orange/20 text-carrot-orange border-carrot-orange/30 font-bold shadow-md shadow-carrot-orange/5'
-                : 'bg-white/5 text-slate-400 border-transparent hover:border-white/10 hover:text-white'
-            }`}
+      <div className="grid grid-cols-1 gap-4">
+        {thesisList.map((st, idx) => (
+          <div
+            key={idx}
+            className="p-6 rounded-3xl bg-[#0F1A15]/90 border border-[#5E824A]/30 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[#5E824A]/60 transition-all shadow-lg"
           >
-            {item === 'All' ? 'Todos los Estudiantes' : item}
-          </button>
-        ))}
-      </div>
-
-      {/* Grid of Student Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {studentsList
-          .filter((student) => filter === 'All' || student.type === filter)
-          .map((student, idx) => (
-            <div
-              key={idx}
-              className="glass-card p-6 rounded-2xl border border-white/5 flex flex-col justify-between space-y-6 hover:border-white/10 transition-all bg-obsidian-950/20"
-            >
-              <div className="space-y-4">
-                <div className="flex justify-between items-start">
-                  <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-mono font-semibold border ${
-                    student.type === 'Maestría'
-                      ? 'bg-blue-500/10 text-blue-400 border-blue-500/20'
-                      : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                  }`}>
-                    {student.type}
+            <div className="space-y-2 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] text-xs font-sora font-extrabold">
+                  {st.level}
+                </span>
+                {st.distinction.includes("Sí") && (
+                  <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-geist font-semibold flex items-center gap-1">
+                    <Award className="w-3.5 h-3.5" />
+                    <span>Distinción: {st.distinction}</span>
                   </span>
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
-                    <Landmark className="h-3.5 w-3.5" />
-                    {student.university}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-bold text-white leading-snug">{student.name}</h3>
-                  <p className="text-xs text-carrot-orange font-light mt-1 font-mono">{student.degree}</p>
-                </div>
-
-                {student.thesis && (
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-mono text-slate-500 uppercase block">Proyecto de Tesis</span>
-                    <p className="text-xs text-slate-300 font-light leading-relaxed">
-                      {student.thesis}
-                    </p>
-                  </div>
                 )}
-
-                {student.distinction && (
-                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono">
-                    <Award className="h-4 w-4 shrink-0" />
-                    {student.distinction}
-                  </div>
-                )}
+                <span className="text-xs font-geist text-[#D4CF7D]">
+                  {st.program}
+                </span>
               </div>
 
-              {/* Downloads list */}
-              <div className="space-y-2 pt-4 border-t border-white/5">
-                <span className="text-[10px] font-mono text-slate-500 uppercase block">Documentos Académicos</span>
-                <div className="flex flex-wrap gap-2">
-                  {student.files.map((file, fileIdx) => (
-                    <a
-                      key={fileIdx}
-                      href={file.link}
-                      download
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[10px] font-mono text-slate-300 hover:bg-white/10 hover:text-white transition-all"
-                    >
-                      <Download className="h-3 w-3" />
-                      {file.name}
-                    </a>
-                  ))}
-                </div>
-              </div>
+              <h4 className="font-sora text-base sm:text-lg font-bold text-[#F0EDE1] leading-snug">
+                {st.name}
+              </h4>
+
+              <p className="text-xs sm:text-sm text-[#F0EDE1]/90 font-light italic leading-relaxed">
+                "{st.title}"
+              </p>
+
+              <span className="text-[11px] font-geist text-[#F0EDE1]/60 block pt-1">
+                {st.directors}
+              </span>
             </div>
-          ))}
+
+            <a
+              href={st.downloadLink}
+              download
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#5E824A] hover:text-white transition-all shadow-md shrink-0 cursor-pointer"
+            >
+              <Download className="w-4 h-4" />
+              <span>Descargar Tesis PDF</span>
+            </a>
+          </div>
+        ))}
       </div>
     </div>
   );

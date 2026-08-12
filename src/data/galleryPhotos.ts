@@ -36,43 +36,7 @@ export const galleryPhotos: PhotoEntry[] = [
     date: '2026-04',
     description: 'Pruebas de aceptabilidad sensorial y degustación del puré biofuncional por parte de los agricultores participantes.'
   },
-  {
-    filename: 'ficha_tecnica-_sorbato_de_potasio_1_pdf.jpg',
-    title: 'Ficha Técnica de Materia Prima',
-    category: 'ACT-05: Prototipado Alimentario',
-    location: 'Oriente Antioqueño',
-    activity: 'ACT-05: Prototipado Alimentario',
-    date: '2024-06',
-    description: 'Documentación técnica e ingredientes para la formulación de gomas funcionales.'
-  },
-  {
-    filename: '2_1_3_distincion_laureada_unal.jpg',
-    title: 'Socialización con Productores (2_1_3_DISTINCION_LAUREADA_UNAL)',
-    category: 'ACT-13: Apropiación Social',
-    location: 'Oriente Antioqueño',
-    activity: 'ACT-13: Apropiación Social',
-    date: '2024-06',
-    description: 'Talleres participativos de transferencia tecnológica, demostración culinaria e interacción comunitaria durante el día de campo.'
-  },
-  {
-    filename: '2_1_2_acta_de_grado.jpg',
-    title: 'Acreditación Académica y Vínculos',
-    category: 'ACT-13: Apropiación Social',
-    location: 'Oriente Antioqueño',
-    activity: 'ACT-13: Apropiación Social',
-    date: '2024-06',
-    description: 'Registro del equipo científico, estudiantes de pregrado vinculados de la UCO y distinciones de maestría de UNAL.'
-  },
-  {
-    filename: '2_1_1_diploma.jpg',
-    title: 'Acreditación Académica y Vínculos',
-    category: 'ACT-13: Apropiación Social',
-    location: 'Oriente Antioqueño',
-    activity: 'ACT-13: Apropiación Social',
-    date: '2024-06',
-    description: 'Registro del equipo científico, estudiantes de pregrado vinculados de la UCO y distinciones de maestría de UNAL.'
-  },
-  {
+          {
     filename: 'yeslin_ochoa_marin.jpg',
     title: 'Socialización Comunitaria',
     category: 'ACT-13: Apropiación Social',

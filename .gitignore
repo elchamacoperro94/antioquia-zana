@@ -26,6 +26,9 @@ Objetivo 1/
 Objetivo 2/
 Objetivo 3/
 Objetivo 4/
+entregables objetivos/
+*.docx
+*.xlsx
 Informes por Actividades/
 .agents/
 skills-lock.json

@@ -29,6 +29,7 @@ import Results from './sections/Results';
 import StudentsPage from './components/StudentsPage';
 import Gallery from './sections/Gallery';
 import Partners from './sections/Partners';
+import ComplementaryProducts from './components/ComplementaryProducts';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
@@ -104,6 +105,9 @@ export default function App() {
           >
             {/* Fullscreen Parallax Hero */}
             <Hero />
+
+            {/* Sección Explicativa del Proyecto (4 Problemas, 4 Objetivos, Actividades, Generalidades, Equipo y Aliados) */}
+            <About />
 
             {/* Bento Grid Museum Collection */}
             <main id="bento-grid" className="relative z-10 container mx-auto px-6 py-20 max-w-7xl space-y-24 pb-28">
@@ -263,7 +267,12 @@ export default function App() {
             {activeTab === 'estudiantes' && <StudentsPage />}
             {activeTab === 'galeria' && <Gallery />}
             {activeTab === 'aliados' && <Partners />}
-            {activeTab === 'contacto' && <Contact />}
+            {activeTab === 'contacto' && (
+              <>
+                <ComplementaryProducts />
+                <Contact />
+              </>
+            )}
 
             {/* Footer */}
             <div className="mt-16">

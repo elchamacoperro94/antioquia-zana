@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SectionHeader from '../components/SectionHeader';
 import ProductModal from '../components/ProductModal';
+import TrlExplanation from '../components/TrlExplanation';
 import { products } from '../data/projectData';
 import type { ProductEntry } from '../data/projectData';
 
@@ -35,10 +36,23 @@ export default function Products() {
     <section id="prototipos" className="px-6 py-20 md:py-28 max-w-6xl mx-auto flex flex-col gap-12 border-t border-white/5 relative z-10">
       {/* Section Header */}
       <SectionHeader
-        badgeText="Prototipos"
-        title="5 Productos Desarrollados"
-        subtitle="3 para la industria de alimentos y 2 ingredientes activos para cosmética/farmacia desarrollados con química verde."
+        badgeText="Prototipos Agroindustriales"
+        title="5 Prototipos Desarrollados (TRL 6 - TRL 7)"
+        subtitle="3 prototipos para la industria alimentaria y 2 bioingredientes para la industria farmacéutica y cosmética desarrollados mediante tecnologías limpias."
       />
+
+      {/* Banner de Nivel de Madurez Tecnológica TRL 6-7 (Observación 8) */}
+      <div className="p-5 sm:p-6 rounded-3xl bg-[#0F1A15] border border-[#5E824A]/40 flex flex-col sm:flex-row items-center gap-4 shadow-xl">
+        <div className="px-4 py-2 rounded-2xl bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] font-sora font-extrabold text-sm shrink-0">
+          Nivel TRL 6 – 7
+        </div>
+        <p className="text-xs sm:text-sm text-[#F0EDE1]/80 font-light leading-relaxed">
+          Los 5 desarrollos tecnológicos alcanzaron un nivel de madurez <strong>TRL 6 a TRL 7</strong> (Validación de prototipos en entorno operacional y escalamiento a nivel de planta piloto en el Oriente Antioqueño).
+        </p>
+      </div>
+
+      {/* Componente Explicativo Interactivo e Infografía de la Escala TRL (1 a 9) */}
+      <TrlExplanation />
 
       {/* 5-Column Grid Layout (ArtFrame style) */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">

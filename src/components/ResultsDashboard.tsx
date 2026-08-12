@@ -1,286 +1,324 @@
 import { useState } from 'react';
-import {
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  PieChart,
-  Pie,
-  Cell,
-  RadialBarChart,
-  RadialBar,
-  Legend
-} from 'recharts';
-import {
-  BookOpen,
-  Users,
-  GraduationCap
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  GraduationCap, 
+  Users, 
+  Calendar, 
+  FileText, 
+  BookOpen, 
+  Award, 
+  Download, 
+  Beaker,
+  Sparkles,
+  ChevronDown,
+  Building2
 } from 'lucide-react';
 
-// 1. Data Definitions
-// Causes and breakdown of discard / excedentes (25-30% of total harvest in Oriente Antioqueño)
-const causasExcedentesData = [
-  { name: 'Fuera de calibre / tamaño no estándar', shortName: 'Fuera de Calibre', valor: 12, fill: '#f2542d' },
-  { name: 'Imperfecciones estéticas / rajaduras de campo', shortName: 'Imperfecciones', valor: 9, fill: '#f5a623' },
-  { name: 'Manchas / daño cosmético', shortName: 'Daño Cosmético', valor: 5, fill: '#3b82f6' },
-  { name: 'Sobreoferta y fluctuación de precios', shortName: 'Sobreoferta', valor: 4, fill: '#10b981' }
+interface ThesisStudent {
+  name: string;
+  level: string; // "Maestría" | "Pregrado"
+  program: string;
+  distinction: string; // "Sí (Meritoria)" | "No"
+  title: string;
+  directors: string;
+  downloadLink: string;
+}
+
+const thesisList: ThesisStudent[] = [
+  {
+    name: "Mateo Londoño V.",
+    level: "Maestría",
+    program: "Maestría en Ciencia y Tecnología de Alimentos (INTAL / UdeA)",
+    distinction: "Sí (Mención Meritoria)",
+    title: "Desarrollo y caracterización de un prototipo alimentario tipo papilla a partir de excedentes de zanahoria (Daucus carota) procesados mediante cavitación hidrotermodinámica",
+    directors: "Directores: Juan Camilo Henao Rojas (AGROSAVIA) | Codirector: Jaison Martínez (INTAL)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf"
+  },
+  {
+    name: "Paola Ospina",
+    level: "Maestría",
+    program: "Maestría en Ciencias Agrarias (Universidad Nacional de Colombia Sede Bogotá)",
+    distinction: "No",
+    title: "Modelación y calibración de firmas espectrales NIRS para la estimación no destructiva de compuestos bioactivos y sólidos solubles en excedentes de zanahoria",
+    directors: "Director: Guillermo Ramírez (UNAL) | Codirector: German Franco (AGROSAVIA)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.3 TESIS FINAL PAOLA OSPINA.pdf"
+  },
+  {
+    name: "Jaison Martínez",
+    level: "Maestría",
+    program: "Maestría en Ciencias Farmacéuticas (Universidad de Antioquia)",
+    distinction: "Sí (Mención Meritoria)",
+    title: "Aprovechamiento de excedentes de cultivo de zanahoria para la formulación de prototipos alimentarios y nutracéuticos de alta estabilidad",
+    directors: "Directora: Edith Marleny Cadena (UdeA) | Codirector: Juan Camilo Henao Rojas (AGROSAVIA)",
+    downloadLink: "/entregables objetivos/Objetivo 1/1.12 Articulo cientifico Tecnologías apropiadas para salvaguardar las características funcionales de la zanahoria en productos alimenticios.pdf"
+  },
+  {
+    name: "Sergio Londoño",
+    level: "Maestría",
+    program: "Maestría en Ciencias Farmacéuticas (Universidad de Antioquia)",
+    distinction: "No (Tesis Aprobada)",
+    title: "Obtención y nanoencapsulación de bioingredientes ricos en apocarotenoides para la industria dermocosmética antienvejecimiento",
+    directors: "Director: Edison Osorio (UdeA) | Codirectora: Carolina Ortiz (UdeA)",
+    downloadLink: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf"
+  },
+  {
+    name: "Daniela López Galeano",
+    level: "Pregrado",
+    program: "Ingeniería Agroindustrial (Universidad Católica de Oriente - UCO)",
+    distinction: "No (Tesis Aprobada)",
+    title: "Evaluación del rendimiento agroindustrial y perfil sensorial de prototipos alimentarios enriquecidos con harina de excedentes de zanahoria",
+    directors: "Directora: Liliana Ceballos (UCO) | Codirectora: Claudia Lukau (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/ACT 13 INFORME_Desarrollo conceptual (1).docx"
+  },
+  {
+    name: "Mateo Salazar",
+    level: "Pregrado",
+    program: "Ingeniería Agroindustrial (Universidad Católica de Oriente - UCO)",
+    distinction: "No (Tesis Aprobada)",
+    title: "Análisis de la cadena de valor y factibilidad económica de prototipos de transformación de zanahoria en el Oriente Antioqueño",
+    directors: "Directora: Liliana Ceballos (UCO) | Codirector: Edison Osorio (UdeA)",
+    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.8 Una zanahoria para emprender.pdf"
+  },
+  {
+    name: "Yeraldine Bedoya",
+    level: "Pregrado",
+    program: "Ingeniería Agroindustrial (Universidad Católica de Oriente - UCO)",
+    distinction: "No (Tesis Aprobada)",
+    title: "Evaluación de metodologías de secado y conservación funcional en excedentes agrícolas de zanahoria",
+    directors: "Directora: Claudia Lukau (UCO) | Codirector: Juan Camilo Henao Rojas (AGROSAVIA)",
+    downloadLink: "/entregables objetivos/Objetivo 1/1.6 Articulo recomendaciones y perfiles de uso de los excedentes.pdf"
+  }
 ];
 
-// Potential for upcycling and valorization of surpluses (%)
-const potencialValorizacionData = [
-  { name: 'Extracción de Bioactivos / Apocarotenoides', uv: 35, fill: '#8b5cf6' },
-  { name: 'Alimentos e Ingredientes Funcionales', uv: 30, fill: '#f2542d' },
-  { name: 'Nutrición Animal / Suplementos', uv: 25, fill: '#10b981' },
-  { name: 'Uso Agrícola / Biomasa directa', uv: 10, fill: '#f5a623' }
+const metricsOverview = [
+  {
+    title: "Formación de Estudiantes",
+    value: "7",
+    subtext: "4 Maestrías + 3 Pregrados",
+    desc: "Tesistas vinculados y graduados en la alianza interinstitucional.",
+    icon: <GraduationCap className="w-6 h-6 text-[#DE5A30]" />,
+    accent: "border-[#DE5A30]"
+  },
+  {
+    title: "Personas Capacitadas",
+    value: "190",
+    subtext: "Productores y Técnicos",
+    desc: "Capacitados en parcelas, días de campo y el curso Carota 360°.",
+    icon: <Users className="w-6 h-6 text-emerald-400" />,
+    accent: "border-emerald-400"
+  },
+  {
+    title: "Eventos de Apropiación",
+    value: "7",
+    subtext: "Días de Campo, Ferias y ZanaFest",
+    desc: "Eventos de transferencia tecnológica y divulgación científica.",
+    icon: <Calendar className="w-6 h-6 text-[#D4CF7D]" />,
+    accent: "border-[#D4CF7D]"
+  },
+  {
+    title: "Documentos Científicos",
+    value: "5",
+    subtext: "Artículos Indexados A1/A2/Q1",
+    desc: "Publicaciones en revistas de alto impacto (Heliyon, PeerJ).",
+    icon: <FileText className="w-6 h-6 text-sky-400" />,
+    accent: "border-sky-400"
+  },
+  {
+    title: "Libros y Manuales",
+    value: "4",
+    subtext: "Publicaciones Editoriales",
+    desc: "Libros de divulgación: '¿Esta Zanahoria Pa' Qué?', Emprender y Exportar.",
+    icon: <BookOpen className="w-6 h-6 text-purple-400" />,
+    accent: "border-purple-400"
+  },
+  {
+    title: "Prototipos Diseñados",
+    value: "5",
+    subtext: "Prototipos TRL 6 - TRL 7",
+    desc: "3 Alimentarios + 2 Bioingredientes Cosméticos/Farmacéuticos.",
+    icon: <Beaker className="w-6 h-6 text-amber-400" />,
+    accent: "border-amber-400"
+  }
 ];
-
-// Social appropriation and outreach data counts (number of people reached)
-const apropiacionData = [
-  { name: 'Asistentes a ZanaFest', value: 800, fill: '#ec4899' },
-  { name: 'Productores Capacitados', value: 190, fill: '#10b981' },
-  { name: 'Catadores en Cata Sensorial', value: 70, fill: '#f2542d' },
-  { name: 'Asistentes en Socialización', value: 59, fill: '#f5a623' },
-  { name: 'Investigadores Vinculados', value: 24, fill: '#8b5cf6' }
-];
-
-import ArtFrame from './ArtFrame';
 
 export default function ResultsDashboard() {
-  const [activeChart, setActiveChart] = useState<'causas' | 'potencial' | 'apropiacion'>('causas');
-
-  // Custom tooltips
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      const value = payload[0].value;
-      const name = payload[0].name;
-      let unit = '';
-      if (activeChart === 'causas' || activeChart === 'potencial') {
-        unit = ' %';
-      } else {
-        unit = ' Personas';
-      }
-      return (
-        <div className="bg-obsidian-900/90 border border-white/10 p-3 rounded-lg shadow-xl backdrop-blur-md">
-          <p className="text-xs font-mono text-slate-400">{name}</p>
-          <p className="text-sm font-bold text-white mt-1">
-            {value}{unit}
-          </p>
-        </div>
-      );
-    }
-    return null;
-  };
+  const [activeTab, setActiveTab] = useState<'metrics' | 'thesis'>('metrics');
 
   return (
-    <div className="flex flex-col gap-12 w-full">
-      {/* 1. Google Stitch Style Results Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        {/* Left Column: Stats & Description */}
-        <div className="space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-secondary/20 bg-white/5">
-            <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-            <span className="font-label-caps text-secondary text-xs uppercase tracking-wider">Impacto Basado en Evidencia</span>
-          </div>
-          <h2 className="font-display-lg text-white text-3xl md:text-4xl font-bold">Resultados Científicos y del Proyecto</h2>
-          <p className="font-body-lg text-slate-400 leading-relaxed font-light">
-            Métricas consolidadas de análisis fisicoquímicos, prototipos y transferencia de conocimiento logrados por la alianza.
-          </p>
-          <div className="grid grid-cols-2 gap-6 pt-4">
-            <div className="glass-card p-6 rounded-xl border-l-4 border-l-primary">
-              <h3 className="font-display-lg text-white text-3xl font-extrabold">117</h3>
-              <p className="font-label-caps text-slate-400 opacity-60 text-xs">Muestras Caracterizadas</p>
-            </div>
-            <div className="glass-card p-6 rounded-xl border-l-4 border-l-secondary">
-              <h3 className="font-display-lg text-white text-3xl font-extrabold">05</h3>
-              <p className="font-label-caps text-slate-400 opacity-60 text-xs">Prototipos Creados</p>
-            </div>
-            <div className="glass-card p-6 rounded-xl border-l-4 border-l-blue-500">
-              <h3 className="font-display-lg text-white text-3xl font-extrabold">06</h3>
-              <p className="font-label-caps text-slate-400 opacity-60 text-xs">Modelos de Negocio</p>
-            </div>
-            <div className="glass-card p-6 rounded-xl border-l-4 border-l-purple-500">
-              <h3 className="font-display-lg text-white text-3xl font-extrabold">02</h3>
-              <p className="font-label-caps text-slate-400 opacity-60 text-xs">Documentos Oficiales</p>
-            </div>
-          </div>
+    <div className="w-full space-y-12">
+      
+      {/* ── Switcher de Pestañas en Resultados ── */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-2 rounded-2xl bg-[#0F1A15] border border-[#5E824A]/30">
+        <div className="flex items-center gap-2 px-3 py-1 text-xs font-geist text-[#D4CF7D]">
+          <Sparkles className="w-4 h-4 text-[#DE5A30]" />
+          <span className="uppercase tracking-widest font-semibold">Indicadores MGA BPIN 2020000100192</span>
         </div>
 
-        {/* Right Column: Milestones (MIT-01 to MIT-04) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ArtFrame badge="MIT-01" title="Publicación Científica">
-            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light mt-2">
-              Publicación del libro de divulgación científica "¿Esta Zanahoria Pa' Qué?" en colaboración institucional.
-            </p>
-          </ArtFrame>
-          <ArtFrame badge="MIT-02" title="Censo Hortícola">
-            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light mt-2">
-              Levantamiento cartográfico y socioeconómico de 53 tipologías de productores en Marinilla, Santuario y Rionegro.
-            </p>
-          </ArtFrame>
-          <ArtFrame badge="MIT-03" title="Rutas de Bioeconomía">
-            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light mt-2">
-              Diseño e implementación de 6 planes comerciales para derivados y excedentes hortícolas.
-            </p>
-          </ArtFrame>
-          <ArtFrame badge="MIT-04" title="Transferencia Tecnológica">
-            <p className="font-body-md text-slate-400 text-xs leading-relaxed font-light mt-2">
-              Capacitación directa de 190 agricultores y realización de 3 días de campo y censo sensorial de gomas.
-            </p>
-          </ArtFrame>
+        <div className="flex items-center gap-2 w-full sm:w-auto">
+          <button
+            onClick={() => setActiveTab('metrics')}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-geist transition-all cursor-pointer ${
+              activeTab === 'metrics'
+                ? 'bg-[#DE5A30] text-white font-semibold shadow-lg'
+                : 'text-[#F0EDE1]/60 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <Award className="w-4 h-4" />
+            <span>Métricas Principales</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('thesis')}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-geist transition-all cursor-pointer ${
+              activeTab === 'thesis'
+                ? 'bg-[#5E824A]/30 text-[#D4CF7D] font-semibold border border-[#5E824A] shadow-lg'
+                : 'text-[#F0EDE1]/60 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <GraduationCap className="w-4 h-4 text-[#D4CF7D]" />
+            <span>Formación de Estudiantes & Tesis (7)</span>
+          </button>
         </div>
       </div>
 
-      {/* 2. Interactive Charts Panel (Preserved local data explorer) */}
-      <div className="border-t border-white/5 pt-12 space-y-6">
-        <div className="space-y-1">
-          <span className="font-mono text-primary text-xs uppercase tracking-widest block">Explorador Científico</span>
-          <h3 className="font-headline-md text-white text-xl font-bold">Datos Cuantitativos del Proyecto</h3>
-        </div>
+      {/* ── Renderizado de Pestaña 1: Métricas Principales (Observación 10) ── */}
+      <AnimatePresence mode="wait">
+        {activeTab === 'metrics' ? (
+          <motion.div
+            key="results-metrics"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-8"
+          >
+            {/* Rejilla de las 6 Métricas Principales */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {metricsOverview.map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`p-6 rounded-3xl bg-[#0F1A15]/90 border ${item.accent}/40 backdrop-blur-md flex flex-col justify-between space-y-4 shadow-xl hover:border-white/40 transition-all group`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
+                      {item.icon}
+                    </div>
+                    <span className="font-sora text-4xl sm:text-5xl font-black text-[#F0EDE1] tracking-tight group-hover:scale-105 transition-transform">
+                      {item.value}
+                    </span>
+                  </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Selector List */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            {[
-              { id: 'causas', title: 'Causas de Excedentes (%)', desc: 'Causas y descarte basado en el 25–30% de mermas del Oriente Antioqueño.' },
-              { id: 'potencial', title: 'Potencial de Valorización (%)', desc: 'Rutas de aprovechamiento agroindustrial e ingredientes funcionales.' },
-              { id: 'apropiacion', title: 'Apropiación Social', desc: 'Personas, productores y 800+ asistentes al ZanaFest vinculados.' }
-            ].map((chart) => (
-              <button
-                key={chart.id}
-                onClick={() => setActiveChart(chart.id as any)}
-                className={`text-left w-full focus:outline-none p-5 rounded-2xl border transition-all duration-300 ${
-                  activeChart === chart.id
-                    ? 'bg-obsidian-800 border-primary-container/40 shadow-md shadow-primary-container/5 translate-x-2'
-                    : 'bg-obsidian-800/30 border-white/5 hover:bg-obsidian-800/60 hover:border-white/10'
-                }`}
-              >
-                <h4 className={`font-bold text-sm ${activeChart === chart.id ? 'text-white' : 'text-slate-300'}`}>
-                  {chart.title}
+                  <div className="space-y-1">
+                    <h3 className="font-sora text-lg font-bold text-[#F0EDE1]">
+                      {item.title}
+                    </h3>
+                    <span className="text-xs font-mono text-[#D4CF7D] block font-semibold">
+                      {item.subtext}
+                    </span>
+                    <p className="text-xs text-[#F0EDE1]/70 font-light leading-relaxed pt-1">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Acceso Directo a las Tesis desde la misma Landing (Observación 10) */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0F1A15] via-[#15261F] to-[#0F1A15] border border-[#5E824A]/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-[#D4CF7D] text-xs font-geist uppercase tracking-widest font-semibold">
+                  <GraduationCap className="w-4 h-4 text-[#DE5A30]" />
+                  <span>Repositorio de Tesis Académicas</span>
+                </div>
+                <h4 className="font-sora text-xl font-bold text-[#F0EDE1]">
+                  Consulta las Tesis de Maestría y Pregrado del Proyecto
                 </h4>
-                <p className="text-[11px] text-slate-500 mt-1 leading-relaxed font-light">{chart.desc}</p>
-              </button>
-            ))}
-          </div>
-
-          {/* Chart Area */}
-          <div className="lg:col-span-8">
-            <div className="glass-card h-full flex flex-col justify-start border border-white/10 relative p-6 rounded-2xl bg-obsidian-900/20 min-h-[380px]">
-              <div className="absolute inset-0 technical-grid opacity-10 pointer-events-none" />
-              
-              <div className="w-full h-80 z-10">
-                  <ResponsiveContainer width="100%" height="100%">
-                    {activeChart === 'causas' ? (
-                      <BarChart data={causasExcedentesData} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
-                        <XAxis dataKey="shortName" stroke="#6b7280" fontSize={11} tickLine={false} />
-                        <YAxis stroke="#6b7280" fontSize={11} tickLine={false} unit="%" />
-                        <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
-                        <Bar dataKey="valor" radius={[8, 8, 0, 0]}>
-                          {causasExcedentesData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.fill} />
-                          ))}
-                        </Bar>
-                      </BarChart>
-                    ) : activeChart === 'potencial' ? (
-                      <RadialBarChart
-                        cx="50%"
-                        cy="50%"
-                        innerRadius="30%"
-                        outerRadius="95%"
-                        barSize={12}
-                        data={potencialValorizacionData}
-                      >
-                        <RadialBar
-                          label={{ position: 'insideStart', fill: '#fff', fontSize: 9, fontFamily: 'monospace' }}
-                          background={{ fill: 'rgba(255,255,255,0.05)' }}
-                          dataKey="uv"
-                        />
-                        <Tooltip content={<CustomTooltip />} />
-                        <Legend
-                          iconSize={8}
-                          layout="vertical"
-                          verticalAlign="middle"
-                          align="right"
-                          formatter={(value, entry: any) => (
-                            <span className="text-xs text-slate-400 font-mono">
-                              {value} ({entry.payload.uv}%)
-                            </span>
-                          )}
-                        />
-                      </RadialBarChart>
-                    ) : (
-                      <PieChart>
-                        <Tooltip content={<CustomTooltip />} />
-                        <Pie
-                          data={apropiacionData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={60}
-                          outerRadius={90}
-                          paddingAngle={5}
-                          dataKey="value"
-                        >
-                          {apropiacionData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.fill} />
-                          ))}
-                        </Pie>
-                        <Legend 
-                          verticalAlign="bottom" 
-                          height={48} 
-                          formatter={(value, entry: any) => (
-                            <span className="text-xs text-slate-400 font-mono">
-                              {value} ({entry.payload.value} personas)
-                            </span>
-                          )}
-                        />
-                      </PieChart>
-                    )}
-                  </ResponsiveContainer>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. Social Appropriation Academic Stats Panel */}
-      <div className="glass-card border border-emerald-500/20 bg-gradient-to-r from-emerald-950/10 via-obsidian-900/40 to-obsidian-900 p-8 rounded-2xl">
-        <div className="absolute inset-0 technical-grid opacity-5 pointer-events-none" />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-          <div className="lg:col-span-5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
-              Apropiación Social
-            </div>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white mt-4 leading-snug">
-              Transferencia Tecnológica e Impacto Académico
-            </h3>
-            <p className="text-slate-300 text-sm mt-3 leading-relaxed font-light">
-              El proyecto no solo genera prototipos de productos, sino que consolida las capacidades locales del Oriente Antioqueño mediante programas formativos y publicaciones científicas.
-            </p>
-          </div>
-
-          <div className="lg:col-span-7 grid grid-cols-2 gap-4">
-            {[
-              { val: '190+', desc: 'Individuos Capacitados', icon: <Users className="h-5 w-5 text-emerald-400" /> },
-              { val: '2', desc: 'Tesis de Maestría', icon: <GraduationCap className="h-5 w-5 text-blue-400" /> },
-              { val: '3', desc: 'Tesis de Pregrado', icon: <GraduationCap className="h-5 w-5 text-amber-400" /> },
-              { val: '4', desc: 'Artículos Científicos', icon: <BookOpen className="h-5 w-5 text-purple-400" /> }
-            ].map((item, i) => (
-              <div key={i} className="bg-obsidian-950/40 p-4 rounded-xl border border-white/5 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0">
-                  {item.icon}
-                </div>
-                <div>
-                  <span className="text-xl md:text-2xl font-mono font-bold text-white block">
-                    {item.val}
-                  </span>
-                  <span className="text-xs text-slate-400 font-light block">{item.desc}</span>
-                </div>
+                <p className="text-xs text-[#F0EDE1]/70 font-light max-w-2xl">
+                  Accede a los documentos finales completos desarrollados por los 7 estudiantes formados en AGROSAVIA, UdeA, UCO, INTAL y UNAL.
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
+
+              <button
+                onClick={() => setActiveTab('thesis')}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#DE5A30] text-white font-sora font-semibold text-xs hover:bg-[#DE5A30]/90 transition-colors shadow-lg shrink-0 cursor-pointer"
+              >
+                <span>Ver Tesis para Descargar</span>
+                <ChevronDown className="w-4 h-4 -rotate-90" />
+              </button>
+            </div>
+          </motion.div>
+        ) : (
+          /* ── Renderizado de Pestaña 2: Sección de Tesis (Observación 11) ── */
+          <motion.div
+            key="results-thesis"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-6"
+          >
+            <div className="border-b border-[#5E824A]/20 pb-4">
+              <span className="font-geist text-xs uppercase tracking-widest text-[#D4CF7D]">Formación de Talento Humano</span>
+              <h3 className="font-sora text-2xl font-bold text-[#F0EDE1] mt-1">
+                Tesis y Trabajos de Grado (7 Estudiantes Formados)
+              </h3>
+              <p className="text-xs text-[#F0EDE1]/70 font-light mt-1">
+                Información oficial verificada del equipo científico (Nombre, Programa, Distinción, Título, Directores y enlace directo PDF).
+              </p>
+            </div>
+
+            {/* Listado de las 7 Tesis (Formato Estricto Observación 11) */}
+            <div className="grid grid-cols-1 gap-4">
+              {thesisList.map((st, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-3xl bg-[#0F1A15]/90 border border-[#5E824A]/30 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[#5E824A]/60 transition-all shadow-lg"
+                >
+                  <div className="space-y-2 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="px-3 py-1 rounded-full bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] text-xs font-sora font-extrabold">
+                        {st.level}
+                      </span>
+                      {st.distinction.includes("Sí") && (
+                        <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-geist font-semibold flex items-center gap-1">
+                          <Award className="w-3.5 h-3.5" />
+                          <span>Distinción: {st.distinction}</span>
+                        </span>
+                      )}
+                      <span className="text-xs font-geist text-[#D4CF7D]">
+                        {st.program}
+                      </span>
+                    </div>
+
+                    <h4 className="font-sora text-base sm:text-lg font-bold text-[#F0EDE1] leading-snug">
+                      {st.name}
+                    </h4>
+
+                    <p className="text-xs sm:text-sm text-[#F0EDE1]/90 font-light italic leading-relaxed">
+                      "{st.title}"
+                    </p>
+
+                    <span className="text-[11px] font-geist text-[#F0EDE1]/60 block pt-1">
+                      {st.directors}
+                    </span>
+                  </div>
+
+                  {/* Enlace de Descargar Tesis PDF */}
+                  <a
+                    href={st.downloadLink}
+                    download
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#5E824A] hover:text-white transition-all shadow-md shrink-0 cursor-pointer"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Descargar Tesis PDF</span>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }

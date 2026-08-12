@@ -3,16 +3,16 @@ import ActivityAccordion from '../components/ActivityAccordion';
 
 export default function Activities() {
   return (
-    <section id="actividades" className="px-6 py-20 md:py-28 max-w-5xl mx-auto flex flex-col gap-12 border-t border-white/5">
-      {/* Section Header */}
+    <section id="actividades" className="px-6 py-20 md:py-28 max-w-6xl mx-auto flex flex-col gap-12 border-t border-white/5">
+      {/* Section Header alineado con la Observación 6 (Sin mención a fases ni cronograma) */}
       <SectionHeader
-        badgeText="Actividades"
-        title="14 Actividades en 4 Fases"
+        badgeText="Metodología Operativa"
+        title="14 Actividades por Objetivo Específico"
         badgeColor="purple"
-        subtitle="Mapeo detallado de las actividades e hitos ejecutados a lo largo del cronograma de investigación."
+        subtitle="Rutas tecnológicas del documento técnico oficial BPIN 2020000100192 ejecutadas por AGROSAVIA y la alianza institucional."
       />
 
-      {/* Accordion List */}
+      {/* Acordeón de Actividades por Objetivo */}
       <ActivityAccordion />
     </section>
   );

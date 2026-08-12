@@ -122,9 +122,9 @@ export const regionStats: RegionStat[] = [
 export const objectives: ObjectiveEntry[] = [
   {
     id: "OBJ-01",
-    title: "Caracterización de Materias Primas",
+    title: "Caracterización de Materias Primas y Excedentes",
     status: "Completado",
-    description: "Establecer las propiedades fisicoquímicas, nutricionales y sensoriales de los excedentes y de los nuevos cultivares evaluados en la región.",
+    description: "Caracterizar el potencial de los excedentes agronómicos y nuevos cultivares de zanahoria como materia prima para la generación de productos con valor agregado en el Oriente antioqueño.",
     achievements: [
       "Análisis exhaustivo de 117 muestras caracterizadas multicriterio.",
       "Identificación de huellas espectrales por NIRS para potencial biofuncional.",
@@ -146,9 +146,9 @@ export const objectives: ObjectiveEntry[] = [
   },
   {
     id: "OBJ-02",
-    title: "Prototipos Alimentarios",
+    title: "Prototipos para la Industria Alimentaria",
     status: "Avanzado",
-    description: "Desarrollar prototipos de productos alimenticios sólidos, semisólidos y líquidos dirigidos a diferentes segmentos de mercado mediante tecnologías limpias.",
+    description: "Desarrollar prototipos de productos para la industria alimentaria a partir de excedentes y nuevos cultivares de zanahoria.",
     achievements: [
       "Desarrollo de ZanaPure (compota infantil) con cavitación hidrotermodinámica (CHTD).",
       "Formulación final validada de ZanaPet para el mercado de mascotas.",
@@ -161,16 +161,14 @@ export const objectives: ObjectiveEntry[] = [
       { name: "2.5 Ficha de prototipo alimentario ZanaPure (Compotas)", link: "/entregables objetivos/Objetivo 2/2.5 Ficha 3 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPure) PENDIENTE.pdf" },
       { name: "2.6 Tesis de Maestría en Calidad de Alimentos - Mateo Londoño V.", link: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf" },
       { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "/entregables objetivos/Objetivo 2/2.7 Secreto empresarial/Constancia Secreto Empresarial_ Zanahoria.pdf" },
-      { name: "2.2 Tesis de Maestría Paola Ospina (Universidad Nacional)", link: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.3 TESIS FINAL PAOLA OSPINA.pdf" },
-      { name: "Certificado de entrega de tesis de maestría (U de A)", link: "/entregables objetivos/Objetivo 2/2.8 Tesista de Maestria 4 (U de A) PENDIENTE SUSTENTACION/Certificado de entrega de tesis de maestría.pdf" },
-      { name: "Contrato y Acta de Grado Daniela López Galeano (UCO)", link: "/entregables objetivos/Objetivo 2/2.11 Estudiante vinculado pregrado UCO 3/ACTA DE GRADO.pdf" }
+      { name: "2.2 Tesis de Maestría Paola Ospina (Universidad Nacional)", link: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.3 TESIS FINAL PAOLA OSPINA.pdf" }
     ]
   },
   {
     id: "OBJ-03",
-    title: "Prototipos Farmacéuticos/Cosméticos",
+    title: "Prototipos Farmacéuticos / Cosméticos",
     status: "Avanzado",
-    description: "Diseñar y formular ingredientes ricos en carotenoides y apocarotenoides para la elaboración de productos cosméticos y fitoterapéuticos.",
+    description: "Generar prototipos de productos funcionales para la industria farmacéutica/cosmética a partir de los excedentes o nuevos cultivares en el sistema productivo de zanahoria del Oriente antioqueño.",
     achievements: [
       "Extracción y purificación de apocarotenoides usando tecnologías UV + Fenton.",
       "Estabilización nanotecnológica en NLC (Nanostructured Lipid Carriers) <400nm.",
@@ -186,9 +184,9 @@ export const objectives: ObjectiveEntry[] = [
   },
   {
     id: "OBJ-04",
-    title: "Oportunidades de Mercado",
+    title: "Oportunidades de Mercado y Comercialización",
     status: "Completado",
-    description: "Estructurar planes de negocio, encadenamientos productivos y estrategias de gobernanza para garantizar la transferencia de los prototipos desarrollados.",
+    description: "Evaluar las oportunidades de mercado y comercialización de nuevos productos a partir de la zanahoria para el Oriente antioqueño mediante un modelo de negocios para productos prototipados.",
     achievements: [
       "Levantamiento completo de la cadena de valor y cuantificación de excedentes.",
       "Diseño de 6 modelos de negocios específicos para los prototipos entregados.",
@@ -569,85 +567,85 @@ export const products: ProductEntry[] = [
     id: "prod-zanapure",
     name: "ZanaPure",
     type: "Alimentaria",
-    tag: "Primera Infancia",
-    formulation: "Zanahoria 27%, banano 38%, yacón 4%, colágeno 4%, remolacha 3%, gulupa 4%, Emulfiber 1.5%",
+    tag: "Prototipo TRL 6-7 · Alimentario",
+    formulation: "Zanahoria (27.4%), Banano (38%), Yacón (4%), Colágeno (4%), Gulupa y Emulfiber",
     process: "Cavitación Hidrotermodinámica (CHTD)",
-    status: "Escalamiento piloto en alianza con Multialoe S.A.S.",
+    status: "Validado a escala piloto (TRL 6-7)",
     features: [
       "Sin azúcares añadidos ni edulcorantes artificiales",
       "Etiquetado limpio (sin sellos de advertencia)",
-      "Alto contenido de fibra dietaria soluble",
+      "Alto contenido de fibra dietaria soluble e insoluble",
       "Aporte energético óptimo: 69 kcal/100g"
     ],
-    description: "Una papilla / compota funcional orientada a la nutrición infantil y del adulto mayor, desarrollada con tecnología de cavitación de alta eficiencia para preservar vitaminas y evitar la degradación térmica de nutrientes.",
+    description: "Compota / puré infantil y familiar elaborado mediante cavitación hidrotermodinámica (CHTD), tecnología limpia que previene la degradación térmica de vitaminas y carotenos.",
     accent: "orange"
   },
   {
     id: "prod-zanapet",
     name: "ZanaPet",
     type: "Alimentaria",
-    tag: "Industria de Mascotas",
-    formulation: "Zanahoria deshidratada, grasa de pollo (fuente de omega), aceite de soya",
+    tag: "Prototipo TRL 6-7 · Alimentario",
+    formulation: "Zanahoria deshidratada (45%), Harina de zanahoria, Grasa de pollo y Aceite vegetal",
     process: "Deshidratación convectiva y homogeneización lipídica",
-    status: "Formulación final validada en estabilidad y palatabilidad",
+    status: "Validado a escala piloto (TRL 6-7)",
     features: [
-      "Suplemento nutricional rico en betacaroteno para el pelaje",
-      "Alto contenido de fibra natural para la digestión",
-      "Gran palatabilidad validada por paneles caninos",
-      "100% natural, libre de colorantes y conservantes sintéticos"
+      "Suplemento rico en betacaroteno para salud de la piel y pelaje",
+      "Alto contenido de fibra natural para salud digestiva animal",
+      "Alta palatabilidad validada por paneles caninos",
+      "100% natural, libre de conservantes o colorantes sintéticos"
     ],
-    description: "Suplemento alimenticio húmedo para perros y gatos que aprovecha las tipologías de zanahoria descartadas por tamaño, proporcionando un excelente aporte de antioxidantes y fibra soluble.",
+    description: "Alimento complementario / snack deshidratado para mascotas a base de zanahoria de descarte, rico en fibra soluble y carotenoides naturales.",
     accent: "green"
   },
   {
     id: "prod-gomas",
     name: "Gomas Biofuncionales",
     type: "Alimentaria",
-    tag: "Consumo Masivo Funcional",
-    formulation: "Zanahoria concentrada, sorbitol (libre de azúcar), micronutrientes esenciales (Vitaminas B, D, Zinc, Hierro, Calcio)",
+    tag: "Prototipo TRL 6-7 · Alimentario",
+    formulation: "Concentrado de zanahoria (18%), Sorbitol (libre de azúcar), Vitaminas B, D, Zinc y Hierro",
     process: "Concentración al vacío y dosificación por goteo",
-    status: "Producción piloto por lotes y caracterización sensorial",
+    status: "Validado a escala piloto (TRL 6-7)",
     features: [
-      "Endulzadas con polioles (aptas para diabéticos)",
+      "Endulzadas con polioles (aptas para régimen de control de azúcar)",
       "Aporte del 30% del requerimiento diario de zinc y hierro",
-      "Sabor natural a base de concentrado de zanahoria",
+      "Color y sabor natural a base de concentrado de zanahoria",
       "Textura masticable optimizada con hidrocoloides naturales"
     ],
-    description: "Gomas de gelatina funcionales dirigidas al público infantil y juvenil, diseñadas como vehículo para combatir deficiencias nutricionales mediante el aprovechamiento de zanahorias locales.",
+    description: "Gomas de gelatina funcionales enriquecidas con micronutrientes esenciales y fibra soluble a partir de pulpa concentrada de zanahoria.",
     accent: "orange"
   },
   {
     id: "prod-apocarotenoides",
-    name: "Extracto de Apocarotenoides",
+    name: "Bioingrediente NLC",
     type: "Farmacéutica/Cosmética",
-    tag: "Ingrediente Activo Cosmecéutico",
-    formulation: "Apocarotenoides concentrados (11+ ppm de retinoides y metabolitos activos)",
-    process: "Fotólisis ultravioleta asistida con Fenton (UV + Fenton) sobre biomasa seca",
-    status: "Escalamiento en reactor piloto (60 kg zanahoria fresca → 4.6 kg seca → 16L extracto vía BSP-1200)",
+    tag: "Prototipo TRL 6-7 · Cosmético",
+    formulation: "Apocarotenoides concentrados (11+ ppm de retinoides), Manteca de cacao, Portadores lipídicos",
+    process: "Foto-oxidación (UV + Fenton) y Nanocarriers Lipídicos NLC (<400nm)",
+    status: "Validado a escala piloto (TRL 6-7)",
     features: [
       "Concentración de retinoides naturales superior a 11 ppm",
-      "Método analítico HPLC-DAD validado (r=0.9997, límite de detección 0.125 μg/mL)",
-      "Estabilidad térmica probada a temperatura ambiente",
-      "Libre de solventes orgánicos tóxicos (química verde)"
+      "Encapsulación coloidal en nanocarriers lipídicos NLC (<400nm)",
+      "Método analítico HPLC-DAD validado (r=0.9997)",
+      "Protegido bajo protocolo de Secreto Empresarial"
     ],
-    description: "Ingrediente activo precursor de la vitamina A obtenido por la fragmentación controlada de carotenoides, diseñado para su incorporación en formulaciones cosméticas regeneradoras.",
+    description: "Bioingrediente activo dermocosmético precursor de vitamina A, obtenido por fragmentación catalítica de betacaroteno y encapsulado en nanocarriers lipídicos.",
     accent: "purple"
   },
   {
     id: "prod-aurum",
-    name: "Emulsión Aurum Carota",
+    name: "Emulsión cosmética",
     type: "Farmacéutica/Cosmética",
-    tag: "Cosmético Terminado",
-    formulation: "Extracto de apocarotenoides encapsulado en NLC (<400nm), manteca de cacao, Myritol 318",
-    process: "Homogeneización por corte a alta presión y dispersión en portadores lipídicos nanoestructurados (NLC)",
-    status: "Evaluación clínica de seguridad y estabilidad completada",
+    tag: "Prototipo TRL 6-7 · Cosmético",
+    formulation: "Bioingrediente NLC rico en apocarotenoides, Manteca de cacao, Myritol 318, Fase emulsificante",
+    process: "Homogeneización por corte a alta presión y dispersión coloidal",
+    status: "Validado en seguridad dérmica in-vitro (TRL 6-7)",
     features: [
-      "Absorción profunda mediante nanopartículas lipídicas de tamaño inferior a 400 nm",
-      "Seguridad garantizada bajo 4 protocolos internacionales OCDE (432, 491, 431, 439)",
-      "Efecto comprobado in-vitro sobre síntesis de colágeno y elastina",
-      "Textura ultraligera y libre de sensación grasosa"
+      "Absorción profunda mediante nanopartículas lipídicas NLC (<400 nm)",
+      "Seguridad garantizada bajo 4 protocolos internacionales OCDE (431, 432, 439, 491)",
+      "Efecto antienvejecimiento comprobado in-vitro sobre síntesis de colágeno",
+      "Protegido bajo protocolo de Secreto Empresarial"
     ],
-    description: "Crema facial regeneradora antienvejecimiento de alta gama. Su tecnología de liberación controlada permite penetrar los estratos superficiales de la piel para entregar retinoides bioactivos.",
+    description: "Emulsión cosmética antienvejecimiento facial de alta gama. Su tecnología de liberación controlada permite penetrar los estratos dérmicos entregando apocarotenoides bioactivos.",
     accent: "purple"
   }
 ];
