@@ -3,14 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Sparkles, 
   CheckCircle2, 
-  ChevronRight, 
-  Layers, 
-  FlaskConical, 
-  Factory, 
-  Rocket, 
-  ShieldCheck, 
-  Info,
-  ArrowRight,
   Maximize2
 } from 'lucide-react';
 

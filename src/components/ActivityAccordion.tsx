@@ -1,16 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  CheckCircle2, 
   FileText, 
   Download, 
-  ShieldCheck, 
   Mail, 
   ChevronDown, 
-  Beaker, 
-  Apple, 
-  HeartPulse, 
-  TrendingUp, 
   Sparkles,
   Lock
 } from 'lucide-react';

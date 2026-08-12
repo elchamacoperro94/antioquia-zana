@@ -1,4 +1,4 @@
-import { GraduationCap, Award, Download, FileText } from 'lucide-react';
+import { Award, Download } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 
 interface ThesisStudent {

@@ -10,8 +10,7 @@ import {
   Download, 
   Beaker,
   Sparkles,
-  ChevronDown,
-  Building2
+  ChevronDown
 } from 'lucide-react';
 
 interface ThesisStudent {

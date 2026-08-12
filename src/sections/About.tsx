@@ -9,10 +9,8 @@ import {
   AlertTriangle, 
   Target, 
   CheckCircle2, 
-  ArrowRight,
   BookOpen,
-  Sparkles,
-  FileText
+  Sparkles
 } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
 import ArtFrame from '../components/ArtFrame';

@@ -1,4 +1,5 @@
-import { BookOpen, Sparkles, Download, FileText, Palette, Utensils } from 'lucide-react';
+import React from 'react';
+import { BookOpen, Download, FileText, Palette, Utensils } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 
 interface ComplementaryItem {
@@ -7,7 +8,7 @@ interface ComplementaryItem {
   category: string;
   description: string;
   badge: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   downloadLink: string;
   accent: string;
 }

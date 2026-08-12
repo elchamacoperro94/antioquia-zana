@@ -8,23 +8,23 @@ import type { ObjectiveChart } from '../data/objectiveResults';
 const objectiveData = [
   {
     id: "OBJ-01",
-    title: "Caracterización de Materias Primas",
-    desc: "Evaluación integral de la composición fisicoquímica, perfiles funcionales y calibración espectral NIRS de la zanahoria regional."
+    title: "Objetivo Específico 1",
+    desc: "Caracterizar el potencial de los excedentes agronómicos y nuevos cultivares de zanahoria como materia prima para la generación de productos con valor agregado en el Oriente Antioqueño."
   },
   {
     id: "OBJ-02",
-    title: "Prototipos Alimentarios",
-    desc: "Desarrollo de compotas ZanaPure, snacks deshidratados caninos ZanaPet y gomas funcionales mediante cavitación e hidrólisis."
+    title: "Objetivo Específico 2",
+    desc: "Generar prototipos de productos funcionales para la industria alimentaria a partir de los excedentes o nuevos cultivares del sistema productivo de zanahoria para el Oriente Antioqueño."
   },
   {
     id: "OBJ-03",
-    title: "Prototipos Farmacéuticos/Cosméticos",
-    desc: "Ingrediente cosmético a base de apocarotenoides degradados catalíticamente y encapsulación en transportadores lipídicos NLC."
+    title: "Objetivo Específico 3",
+    desc: "Generar prototipos de productos funcionales para la industria farmacéutica/cosmética a partir de los excedentes o nuevos cultivares en el sistema productivo de zanahoria del Oriente Antioqueño."
   },
   {
     id: "OBJ-04",
-    title: "Oportunidades de Mercado",
-    desc: "Estudio de cadena de valor de 53 actores, modelos Canvas con TIR del 42% y plan de apropiación pedagógica Carota 360°."
+    title: "Objetivo Específico 4",
+    desc: "Evaluar las oportunidades de mercado y comercialización de nuevos productos a partir de la zanahoria para el Oriente antioqueño mediante un modelo de negocios para productos prototipados."
   }
 ];
 

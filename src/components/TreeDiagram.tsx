@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AlertTriangle, Target, ArrowUp, CheckCircle2, Layers, Sparkles, Beaker, Apple, HeartPulse, TrendingUp } from 'lucide-react';
+import { AlertTriangle, Target, ArrowUp, Layers, Beaker, Apple, HeartPulse, TrendingUp } from 'lucide-react';
 
 export default function TreeDiagram() {
   const [activeTree, setActiveTree] = useState<'problems' | 'objectives'>('objectives');

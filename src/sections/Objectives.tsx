@@ -6,32 +6,34 @@ import { Target } from 'lucide-react';
 export default function Objectives() {
   return (
     <section id="objetivos" className="px-6 py-20 md:py-28 max-w-6xl mx-auto flex flex-col gap-12 border-t border-white/5">
-      {/* Section Header */}
+      {/* Encabezado de la Sección */}
       <SectionHeader
-        badgeText="Objetivos"
-        title="4 Objetivos Específicos"
-        subtitle="Estructura científica del proyecto orientada a la caracterización, formulación agroindustrial y la transferencia comercial."
+        badgeText="Objetivos Oficiales MGA"
+        title="Formulación Literal de Objetivos (BPIN 2020000100192)"
+        subtitle="Formulación científica e institucional del documento técnico oficial del proyecto para el Oriente Antioqueño."
       />
 
-      {/* General Objective Banner */}
+      {/* Banner del Objetivo General (100% Literal según Sección 12.1 del Documento Técnico) */}
       <GlassCard 
         hoverEffect={false} 
-        className="p-6 md:p-8 border-emerald-500/20 bg-gradient-to-r from-emerald-950/20 via-obsidian-900/50 to-obsidian-900 flex flex-col md:flex-row items-center gap-6"
+        className="p-6 sm:p-8 border-[#5E824A]/40 bg-[#0F1A15]/90 backdrop-blur-md flex flex-col md:flex-row items-center gap-6 shadow-2xl"
       >
-        <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0">
+        <div className="p-4 rounded-2xl bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] shrink-0">
           <Target className="h-8 w-8" />
         </div>
-        <div>
-          <span className="text-xs font-mono text-emerald-400 tracking-widest uppercase block">
-            Objetivo General
-          </span>
-          <p className="text-lg md:text-xl text-white font-medium mt-1 leading-snug">
-            Fortalecer la cadena productiva de la zanahoria mediante la creación de prototipos de productos alimenticios, cosmecéuticos e ingredientes funcionales innovadores, a partir de excedentes y nuevos materiales de zanahoria en el Oriente de Antioquia.
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono text-[#D4CF7D] uppercase tracking-widest font-semibold block">
+              12.1 Objetivo General (Formulación Oficial Literal)
+            </span>
+          </div>
+          <p className="font-sora text-xl sm:text-2xl font-bold text-[#F0EDE1] leading-snug">
+            Aumentar la tecnificación agroindustrial del sistema de producción de zanahoria en el Oriente Antioqueño.
           </p>
         </div>
       </GlassCard>
 
-      {/* Interactive Tabs */}
+      {/* Tabs / Tarjetas de los 4 Objetivos Específicos (100% Literales según Sección 12.2) */}
       <ObjectiveTabs />
     </section>
   );

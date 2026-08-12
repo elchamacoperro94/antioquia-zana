@@ -122,9 +122,9 @@ export const regionStats: RegionStat[] = [
 export const objectives: ObjectiveEntry[] = [
   {
     id: "OBJ-01",
-    title: "Caracterización de Materias Primas y Excedentes",
+    title: "Objetivo Específico 1",
     status: "Completado",
-    description: "Caracterizar el potencial de los excedentes agronómicos y nuevos cultivares de zanahoria como materia prima para la generación de productos con valor agregado en el Oriente antioqueño.",
+    description: "Caracterizar el potencial de los excedentes agronómicos y nuevos cultivares de zanahoria como materia prima para la generación de productos con valor agregado en el Oriente Antioqueño.",
     achievements: [
       "Análisis exhaustivo de 117 muestras caracterizadas multicriterio.",
       "Identificación de huellas espectrales por NIRS para potencial biofuncional.",
@@ -146,9 +146,9 @@ export const objectives: ObjectiveEntry[] = [
   },
   {
     id: "OBJ-02",
-    title: "Prototipos para la Industria Alimentaria",
+    title: "Objetivo Específico 2",
     status: "Avanzado",
-    description: "Desarrollar prototipos de productos para la industria alimentaria a partir de excedentes y nuevos cultivares de zanahoria.",
+    description: "Generar prototipos de productos funcionales para la industria alimentaria a partir de los excedentes o nuevos cultivares del sistema productivo de zanahoria para el Oriente Antioqueño.",
     achievements: [
       "Desarrollo de ZanaPure (compota infantil) con cavitación hidrotermodinámica (CHTD).",
       "Formulación final validada de ZanaPet para el mercado de mascotas.",
@@ -166,14 +166,14 @@ export const objectives: ObjectiveEntry[] = [
   },
   {
     id: "OBJ-03",
-    title: "Prototipos Farmacéuticos / Cosméticos",
+    title: "Objetivo Específico 3",
     status: "Avanzado",
-    description: "Generar prototipos de productos funcionales para la industria farmacéutica/cosmética a partir de los excedentes o nuevos cultivares en el sistema productivo de zanahoria del Oriente antioqueño.",
+    description: "Generar prototipos de productos funcionales para la industria farmacéutica/cosmética a partir de los excedentes o nuevos cultivares en el sistema productivo de zanahoria del Oriente Antioqueño.",
     achievements: [
       "Extracción y purificación de apocarotenoides usando tecnologías UV + Fenton.",
       "Estabilización nanotecnológica en NLC (Nanostructured Lipid Carriers) <400nm.",
       "Evaluación dermatológica y toxicológica usando 4 protocolos OCDE.",
-      "Desarrollo de la emulsión facial antienvejecimiento Aurum Carota."
+      "Desarrollo de la emulsión cosmética antienvejecimiento Aurum Carota."
     ],
     deliverables: [
       { name: "3.1 Ficha de ingrediente rico en apocarotenoides", link: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.1 Ficha Ingrediente enriquecido en apocarotenoides de zanahoria.pdf" },
@@ -184,7 +184,7 @@ export const objectives: ObjectiveEntry[] = [
   },
   {
     id: "OBJ-04",
-    title: "Oportunidades de Mercado y Comercialización",
+    title: "Objetivo Específico 4",
     status: "Completado",
     description: "Evaluar las oportunidades de mercado y comercialización de nuevos productos a partir de la zanahoria para el Oriente antioqueño mediante un modelo de negocios para productos prototipados.",
     achievements: [
