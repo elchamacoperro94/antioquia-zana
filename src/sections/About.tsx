@@ -278,9 +278,10 @@ export default function About() {
             {/* Tarjeta del Libro Descargable */}
             <div className="glass-card p-5 rounded-2xl border border-[#5E824A]/30 flex flex-col justify-between bg-[#0F1A15]/60">
               <a
-                href="/entregables objetivos/Objetivo 1/1.11. Documento sobre la importancia de la transformación en el sector hortícola colombiano/1.11 documento Esta Zanahoria Pa que.pdf"
-                download
-                title="Descargar libro completo"
+                href="https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Ver libro en Repositorio UCO"
                 className="relative w-full h-36 rounded-xl overflow-hidden border border-white/10 shadow-md group block cursor-pointer"
               >
                 <img
@@ -291,7 +292,7 @@ export default function About() {
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                   <div className="px-4 py-2 rounded-xl bg-emerald-500/90 text-white font-mono text-xs font-semibold flex items-center gap-2 border border-emerald-400/30 shadow-lg">
                     <BookOpen className="w-4 h-4" />
-                    <span>Descargar Libro PDF</span>
+                    <span>Ver en Repositorio UCO</span>
                   </div>
                 </div>
               </a>

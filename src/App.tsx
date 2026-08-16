@@ -47,13 +47,16 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('inicio');
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [activeTab]);
+
+  useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.replace('#', '');
       if (
         hash &&
         [
           'inicio',
-          'proyecto',
           'objetivos',
           'actividades',
           'productos',
@@ -259,7 +262,6 @@ export default function App() {
             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
             className="relative z-10 container mx-auto px-6 py-28 max-w-7xl pb-32"
           >
-            {activeTab === 'proyecto' && <About />}
             {activeTab === 'objetivos' && <Objectives />}
             {activeTab === 'actividades' && <Activities />}
             {activeTab === 'productos' && <Products />}

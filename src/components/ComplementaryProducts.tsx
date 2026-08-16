@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Download, FileText, Palette, Utensils } from 'lucide-react';
+import { BookOpen, Download, ExternalLink, FileText, Palette, Utensils } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 
 interface ComplementaryItem {
@@ -51,7 +51,7 @@ const complementaryList: ComplementaryItem[] = [
     description: "Libro institucional que documenta la ruta de innovación de la zanahoria en Antioquia e incluye recetas culinarias y preparaciones agroindustriales con pulpa y excedentes.",
     badge: "Libro & Recetario",
     icon: <Utensils className="w-6 h-6 text-[#D4CF7D]" />,
-    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.8 Una zanahoria para emprender.pdf",
+    downloadLink: "https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19",
     accent: "border-[#D4CF7D]"
   }
 ];
@@ -69,45 +69,61 @@ export default function ComplementaryProducts() {
 
       {/* Rejilla de los 4 Productos Complementarios (Observación 14) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {complementaryList.map((item) => (
-          <div
-            key={item.id}
-            className={`p-6 sm:p-8 rounded-3xl bg-[#0F1A15]/90 border ${item.accent}/40 backdrop-blur-md flex flex-col justify-between space-y-6 shadow-xl hover:border-white/40 transition-all`}
-          >
-            <div className="space-y-4">
-              <div className="flex items-center justify-between gap-4">
-                <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
-                  {item.icon}
-                </div>
-                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#D4CF7D] font-geist text-xs font-semibold">
-                  {item.badge}
-                </span>
-              </div>
+        {complementaryList.map((item) => {
+          const isExternal = item.downloadLink.startsWith('http');
 
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-[#DE5A30] uppercase tracking-wider block font-bold">
-                  {item.category}
-                </span>
-                <h3 className="font-sora text-lg sm:text-xl font-bold text-[#F0EDE1] leading-snug">
-                  {item.title}
-                </h3>
-              </div>
-
-              <p className="text-xs sm:text-sm text-[#F0EDE1]/80 font-light leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-
-            <a
-              href={item.downloadLink}
-              download
-              className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#DE5A30] hover:text-white hover:border-[#DE5A30] transition-all shadow-md cursor-pointer"
+          return (
+            <div
+              key={item.id}
+              className={`p-6 sm:p-8 rounded-3xl bg-[#0F1A15]/90 border ${item.accent}/40 backdrop-blur-md flex flex-col justify-between space-y-6 shadow-xl hover:border-white/40 transition-all`}
             >
-              <Download className="w-4 h-4" />
-              <span>Descargar Documento PDF</span>
-            </a>
-          </div>
-        ))}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
+                    {item.icon}
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#D4CF7D] font-geist text-xs font-semibold">
+                    {item.badge}
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono text-[#DE5A30] uppercase tracking-wider block font-bold">
+                    {item.category}
+                  </span>
+                  <h3 className="font-sora text-lg sm:text-xl font-bold text-[#F0EDE1] leading-snug">
+                    {item.title}
+                  </h3>
+                </div>
+
+                <p className="text-xs sm:text-sm text-[#F0EDE1]/80 font-light leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+
+              {isExternal ? (
+                <a
+                  href={item.downloadLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#DE5A30] hover:text-white hover:border-[#DE5A30] transition-all shadow-md cursor-pointer"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Ver Publicación en Repositorio UCO</span>
+                </a>
+              ) : (
+                <a
+                  href={item.downloadLink}
+                  download
+                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#DE5A30] hover:text-white hover:border-[#DE5A30] transition-all shadow-md cursor-pointer"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Descargar Documento PDF</span>
+                </a>
+              )}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

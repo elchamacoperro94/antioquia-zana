@@ -136,7 +136,7 @@ export const objectives: ObjectiveEntry[] = [
       { name: "1.5 Informe de volúmenes de excedentes regionales", link: "/entregables objetivos/Objetivo 1/1.5 informe volumenes de excedentes.docx" },
       { name: "1.6 Artículo de recomendaciones y perfiles de uso de los excedentes", link: "/entregables objetivos/Objetivo 1/1.6 Articulo recomendaciones y perfiles de uso de los excedentes.pdf" },
       { name: "1.7 Protocolo detallado de firma espectral NIRS", link: "/entregables objetivos/Objetivo 1/1.7 Protocolo para la evaluación de respuestas espectrales en zanahoria/Protocolo detallado firma espectral.pdf" },
-      { name: "1.11 Documento de divulgación 'Esta Zanahoria Pa' Qué'", link: "/entregables objetivos/Objetivo 1/1.11. Documento sobre la importancia de la transformación en el sector hortícola colombiano/1.11 documento Esta Zanahoria Pa que.pdf" },
+      { name: "1.11 Documento de divulgación 'Esta Zanahoria Pa' Qué'", link: "https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19" },
       { name: "1.12 Artículo científico de tecnologías de conservación funcional", link: "/entregables objetivos/Objetivo 1/1.12 Articulo cientifico Tecnologías apropiadas para salvaguardar las características funcionales de la zanahoria en productos alimenticios.pdf" },
       { name: "1.13 Artículo de prototipos farmacéuticos y cosméticos a base de excedentes", link: "/entregables objetivos/Objetivo 1/1.13 Articulo obre generación de prototipos de productos farmacéuticos-cosmeticos a base de excedentes y nuevos materiales de zanahoria.pdf" },
       { name: "1.14 Artículo sobre mercado, cadena de valor y oportunidades de negocio", link: "/entregables objetivos/Objetivo 1/1.14 Articulo sobre las mercado, cadena de valor y oportunidades de modelos de negocio de la zanahoria.pdf" },
@@ -473,7 +473,7 @@ export const activities: ActivityEntry[] = [
       "Mapeo relacional de flujos logísticos y cuellos de botella para el upcycling de excedentes."
     ],
     deliverables: [
-      { name: "Entregable 4.4: Libro publicado 'Esta Zanahoria Pa' Qué: Rutas de Innovación para la Zanahoria en Antioquia'.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 11/Anexo 11.1 Esta_zanahoria_pa_que_UCO.pdf" },
+      { name: "Entregable 4.4: Libro publicado 'Esta Zanahoria Pa' Qué: Rutas de Innovación para la Zanahoria en Antioquia'.", link: "https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19" },
       { name: "Estudio de mapeo de la cadena de valor y oportunidades de mercado.", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 11/ACT 11 INFORME_Cadena de valor y mercados.docx" }
     ],
     technicalTable: {

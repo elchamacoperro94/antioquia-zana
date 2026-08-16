@@ -12,7 +12,6 @@
 import { motion } from 'framer-motion';
 import {
   Home,
-  Info,
   Target,
   ListTodo,
   Beaker,
@@ -31,7 +30,6 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { id: 'inicio', label: 'Inicio', icon: Home },
-  { id: 'proyecto', label: 'Proyecto', icon: Info },
   { id: 'objetivos', label: 'Objetivos', icon: Target },
   { id: 'actividades', label: 'Actividades', icon: ListTodo },
   { id: 'productos', label: 'Productos', icon: Beaker },
@@ -50,6 +48,7 @@ export default function FloatingNav({
   onSelectTab?: (id: string) => void;
 }) {
   const handleSelect = (id: string) => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     window.location.hash = id;
     if (onSelectTab) {
       onSelectTab(id);
