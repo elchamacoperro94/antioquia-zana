@@ -34,7 +34,18 @@ const activitiesList: ActivityItem[] = [
       { name: "1.5 Informe de volúmenes de excedentes regionales", link: "https://drive.google.com/uc?export=download&id=1Vm1t89XYGUHmCk078ZbifhQwPB9tmYiy" },
       { name: "1.1 Catálogo de materiales y excedentes de zanahoria", link: "https://drive.google.com/uc?export=download&id=1a0Z7snW-d1hm19llLFVqh2sQnsumbc5g" }
     ],
-    photos: ["foto-1.jpg", "foto-2.jpg", "foto-3.jpg"]
+    photos: [
+      "actividad 1/Figura 1. Problemas de drenaje superficial en el lote debido al alto régimen de lluvias..png",
+      "actividad 1/Figura 3. Semillas de zanahoria iniciando proceso de germinación.png",
+      "actividad 1/Figura 5. Proceso de siembra en replicas temporales de ensayo agronómico de zanahoria..png",
+      "actividad 1/Figura 7. Daños por aves presentes en la réplica 4 del ensayo agronómico de zanahorias..png",
+      "actividad 1/Figura 8. Siembra de cuarta replica 17 de diciembre de 2022.png",
+      "actividad 1/Figura 9. Cosecha de materiales de zanahoria..png",
+      "actividad 1/Figura 10. Lavado y clasificación de materiales de zanahoria.png",
+      "actividad 1/Figura 14. Sistema de riego en funcionamiento.png",
+      "actividad 1/Figura 15. Condiciones climáticas predominantes durante el periodo de estudio. Precipitación (PP), promedio día de temperatura (Temp) y humedad relativa (HR)..png",
+      "actividad 1/Figura 91. Disposición de zanahorias en vasos para inducir daños por lepidópteros..png"
+    ]
   },
   {
     id: "ACT-02",
