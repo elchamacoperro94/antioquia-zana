@@ -40,6 +40,7 @@ export default function ObjectiveTabs() {
   const [lightboxPhoto, setLightboxPhoto] = useState<string | null>(null);
   
   const activeObj = objectives.find((obj) => obj.id === selectedObjectiveId);
+  const activeItem = objectiveData.find((o) => o.id === selectedObjectiveId);
   const activeResult = selectedObjectiveId ? objectiveResults[selectedObjectiveId] : null;
 
   const renderObjectiveChart = (chart: ObjectiveChart) => {
@@ -215,7 +216,6 @@ export default function ObjectiveTabs() {
                 className="glass-card p-8 rounded-2xl relative h-full flex flex-col justify-between transition-all duration-350 border border-white/10 hover:border-white/20 hover:-translate-y-1 hover:bg-white/[0.02]"
               >
                 <div className="space-y-3">
-                  <span className="font-mono text-primary text-sm font-semibold tracking-wider block">{item.id}</span>
                   <h3 className="font-headline-md text-white text-xl font-bold leading-snug">{item.title}</h3>
                   <p className="font-body-md text-slate-400 text-sm leading-relaxed font-light">
                     {item.desc}
@@ -256,11 +256,9 @@ export default function ObjectiveTabs() {
             >
               <div className="flex flex-col gap-6 h-full justify-between">
                 
-                {/* Header */}
                 <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-primary text-sm font-semibold tracking-wider">{activeResult.id}</span>
-                    <h2 className="text-xl md:text-2xl font-bold text-white">{activeResult.title}</h2>
+                  <div className="flex items-center gap-3 flex-1 min-w-0 pr-4">
+                    <h2 className="text-base md:text-lg font-bold text-white leading-snug">{activeItem?.desc}</h2>
                   </div>
                   <button
                     onClick={() => setSelectedObjectiveId(null)}
@@ -291,108 +289,7 @@ export default function ObjectiveTabs() {
                     ))}
                   </div>
 
-                  {/* Cifras fuerza en Grid */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {activeResult.stats.map((stat, idx) => (
-                      <div key={idx} className="glass-card p-4 rounded-xl border border-white/5 bg-obsidian-950/20 flex flex-col justify-between">
-                        <h4 className="text-xl font-bold text-carrot-orange font-mono">{stat.value}</h4>
-                        <span className="text-[10px] font-semibold text-slate-400 mt-1 uppercase block">{stat.label}</span>
-                        {stat.detail && <span className="text-[8px] font-mono text-slate-500 mt-0.5">{stat.detail}</span>}
-                      </div>
-                    ))}
-                  </div>
 
-                  {/* Chart section */}
-                  {activeResult.chart && (
-                    <div className="pt-4 space-y-3">
-                      <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">
-                        📈 {activeResult.chart.title}
-                      </span>
-                      <div className="p-6 rounded-xl border border-white/10 bg-obsidian-950/40 flex flex-col items-center">
-                        {renderObjectiveChart(activeResult.chart)}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Technical table */}
-                  {activeResult.table && (
-                    <div className="pt-4 space-y-3">
-                      <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">
-                        📊 {activeResult.table.title}
-                      </span>
-                      <div className="overflow-x-auto rounded-xl border border-white/10 bg-obsidian-950/40 custom-scrollbar">
-                        <table className="w-full text-left border-collapse">
-                          <thead>
-                            <tr className="border-b border-white/10 bg-white/[0.02]">
-                              {activeResult.table.headers.map((head, idx) => (
-                                <th key={idx} className="px-4 py-3 text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
-                                  {head}
-                                </th>
-                              ))}
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-white/5">
-                            {activeResult.table.rows.map((row, rIdx) => (
-                              <tr key={rIdx} className="hover:bg-white/[0.02] transition-colors">
-                                {row.map((cell, cIdx) => (
-                                  <td key={cIdx} className="px-4 py-3 font-mono text-xs text-slate-300 whitespace-nowrap">
-                                    {cell}
-                                  </td>
-                                ))}
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Photo gallery */}
-                  {activeResult.photos.length > 0 && (
-                    <div className="pt-4 space-y-3">
-                      <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">
-                        📸 Evidencias de Campo y Laboratorios
-                      </span>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        {activeResult.photos.map((photo, idx) => (
-                          <div 
-                            key={idx} 
-                            onClick={() => setLightboxPhoto(`/photos-proyecto/${photo}`)}
-                            className="relative aspect-video rounded-xl overflow-hidden border border-white/10 group cursor-pointer hover:border-carrot-orange/40 transition-all duration-300 shadow-md"
-                          >
-                            <img src={`/photos-proyecto/${photo}`} alt="Evidencia objetivo" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Deliverables Downloads */}
-                  <div className="pt-6 border-t border-white/5 space-y-4">
-                    <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">
-                      📁 Entregables y Soportes del Objetivo
-                    </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {activeObj.deliverables?.map((deliv, idx) => (
-                        <a 
-                          key={idx}
-                          href={deliv.link}
-                          download
-                          className="group/item flex items-start gap-2.5 p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 hover:bg-emerald-500/10 hover:border-emerald-500/20 transition-all cursor-pointer"
-                        >
-                          <FileText className="h-4.5 w-4.5 text-emerald-500 shrink-0 mt-0.5 group-hover/item:scale-105 transition-transform" />
-                          <div className="flex flex-col w-full min-w-0">
-                            <span className="font-semibold text-slate-200 group-hover/item:text-emerald-400 transition-colors truncate block">
-                              {deliv.name}
-                            </span>
-                            <span className="text-[10px] text-slate-400 mt-1 block font-mono">
-                              Descargar entregable
-                            </span>
-                          </div>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
 
                 </div>
 

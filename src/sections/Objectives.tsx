@@ -18,15 +18,13 @@ export default function Objectives() {
         hoverEffect={false} 
         className="p-6 sm:p-8 border-[#5E824A]/40 bg-[#0F1A15]/90 backdrop-blur-md flex flex-col md:flex-row items-center gap-6 shadow-2xl"
       >
-        <div className="p-4 rounded-2xl bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] shrink-0">
-          <Target className="h-8 w-8" />
+        <div className="px-4 py-3 rounded-2xl bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] shrink-0 flex items-center gap-3">
+          <Target className="h-6 w-6" />
+          <span className="text-xs font-mono text-[#DE5A30] uppercase tracking-widest font-semibold whitespace-nowrap">
+            Objetivo General
+          </span>
         </div>
         <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-mono text-[#D4CF7D] uppercase tracking-widest font-semibold block">
-              12.1 Objetivo General (Formulación Oficial Literal)
-            </span>
-          </div>
           <p className="font-sora text-xl sm:text-2xl font-bold text-[#F0EDE1] leading-snug">
             Aumentar la tecnificación agroindustrial del sistema de producción de zanahoria en el Oriente Antioqueño.
           </p>

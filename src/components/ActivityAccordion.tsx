@@ -31,8 +31,8 @@ const activitiesList: ActivityItem[] = [
     name: "1. Estimación de los volúmenes de producción no utilizados y evaluación agronómica de cultivares promisorios de zanahoria.",
     description: "Cuantificación de pérdidas y excedentes agronómicos en fincas de El Santuario y Marinilla, evaluando parámetros de rendimiento y comportamiento fitosanitario en campo.",
     deliverables: [
-      { name: "1.5 Informe de volúmenes de excedentes regionales", link: "/entregables objetivos/Objetivo 1/1.5 informe volumenes de excedentes.docx" },
-      { name: "1.1 Catálogo de materiales y excedentes de zanahoria", link: "/entregables objetivos/Objetivo 1/1.1 Catalogo de materiales y excedentes de zanahoria.pdf" }
+      { name: "1.5 Informe de volúmenes de excedentes regionales", link: "https://drive.google.com/uc?export=download&id=1Vm1t89XYGUHmCk078ZbifhQwPB9tmYiy" },
+      { name: "1.1 Catálogo de materiales y excedentes de zanahoria", link: "https://drive.google.com/uc?export=download&id=1a0Z7snW-d1hm19llLFVqh2sQnsumbc5g" }
     ],
     photos: ["foto-1.jpg", "foto-2.jpg", "foto-3.jpg"]
   },
@@ -236,7 +236,7 @@ export default function ActivityAccordion() {
               onClick={() => setActiveObjFilter(obj.id)}
               className={`px-4 py-2 rounded-xl text-xs font-geist border transition-all cursor-pointer ${badgeColor}`}
             >
-              {obj.id}: {obj.title}
+              {obj.title}
             </button>
           );
         })}
@@ -264,9 +264,6 @@ export default function ActivityAccordion() {
               >
                 <div className="space-y-2 flex-1">
                   <div className="flex items-center gap-3">
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#0F1A15] border border-[#5E824A]/40 text-[#D4CF7D] text-[10px] font-mono font-bold">
-                      {act.objId}
-                    </span>
                     <span className="text-xs text-[#F0EDE1]/60 font-geist">
                       {parentObj?.title}
                     </span>
@@ -336,7 +333,10 @@ export default function ActivityAccordion() {
                           <a
                             key={dIdx}
                             href={del.link}
-                            download
+                            {...(del.link.startsWith('http') 
+                              ? { target: "_blank", rel: "noopener noreferrer" } 
+                              : { download: true }
+                            )}
                             className="flex items-center justify-between p-3.5 rounded-2xl bg-[#0F1A15] border border-[#5E824A]/30 text-xs text-[#F0EDE1] hover:border-[#DE5A30] hover:bg-[#15261F] transition-colors group cursor-pointer"
                           >
                             <div className="flex items-center gap-3 min-w-0">
