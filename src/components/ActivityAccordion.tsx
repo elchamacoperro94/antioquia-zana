@@ -54,9 +54,14 @@ const activitiesList: ActivityItem[] = [
     name: "2. Determinación de las huellas espectrales asociadas a potencialidades biofuncionales de los excedentes y nuevos materiales de zanahoria.",
     description: "Desarrollo de modelos de calibración NIRS de alta precisión para la estimación ultrarrápida no destructiva de humedad, sólido solubles (°Brix) y carotenos.",
     deliverables: [
-      { name: "1.7 Protocolo de firmas espectrales NIRS en zanahoria", link: "/entregables objetivos/Objetivo 1/1.7 Protocolo para la evaluación de respuestas espectrales en zanahoria/Protocolo detallado firma espectral.pdf" }
+      { name: "1.7a Protocolo bandas espectrales zanahoria", link: "https://drive.google.com/uc?export=download&id=14xMMLjrqeoTjHXqENCqSHnONsJyGP-h-" },
+      { name: "1.7b Protocolo detallado firma espectral", link: "https://drive.google.com/uc?export=download&id=1QfvBVOnkhLHErc1dM3pFrmrFuD__SbKr" }
     ],
-    photos: ["foto-4.jpg", "foto-5.jpg"]
+    photos: [
+      "actividad 2/Figura 1. Esquema gráfico de ejecución de análisis de cifras y productos de exportaciones e importaciones..png",
+      "actividad 2/Figura 2. Ubicación del área de estudio en el municipio de Bojacá Mapa de Colombia (arriba).png",
+      "actividad 2/Figura 4. Muestras de zanahorias disponibles en supermercado.png"
+    ]
   },
   {
     id: "ACT-03",
