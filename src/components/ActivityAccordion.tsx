@@ -94,9 +94,13 @@ const activitiesList: ActivityItem[] = [
     name: "4. Priorización de las tecnologías para transformación de productos según normativas y adaptabilidad al entorno.",
     description: "Selección de tecnologías de química verde y procesamiento limpio (cavitación hidrotermodinámica CHTD y deshidratación) para la agroindustria hortícola.",
     deliverables: [
-      { name: "4.1 Informe del Curso Técnico de Transformación 'Carota 360°'", link: "/entregables objetivos/Objetivo 4/4.1 Un curso de operaciones unitarias y métodos de extracción, applied a la agroindustria de zanahoria en Antioquia/Informe Curso Carota 360°.docx" }
+      { name: "4.1 Informe del Curso Técnico de Transformación 'Carota 360°'", link: "https://drive.google.com/uc?export=download&id=1O79ZX5oBgd-18ieqebKsGLs2bsnsLVrn" }
     ],
-    photos: ["foto-8.jpg", "foto-9.jpg"]
+    photos: [
+      "actividad 4/Figura 1. Diagrama de proceso para la limpieza y desinfección de zanahoria.png",
+      "actividad 4/Figura 2. Principales productos alimenticios elaborados con zanahoria..png",
+      "actividad 4/Ilustración 2. Principales atributos y declaraciones de productos con zanahoria..png"
+    ]
   },
   {
     id: "ACT-05",
