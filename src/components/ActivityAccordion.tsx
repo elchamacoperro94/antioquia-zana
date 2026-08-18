@@ -60,7 +60,10 @@ const activitiesList: ActivityItem[] = [
     photos: [
       "actividad 2/Figura 1. Esquema gráfico de ejecución de análisis de cifras y productos de exportaciones e importaciones..png",
       "actividad 2/Figura 2. Ubicación del área de estudio en el municipio de Bojacá Mapa de Colombia (arriba).png",
-      "actividad 2/Figura 4. Muestras de zanahorias disponibles en supermercado.png"
+      "actividad 2/Figura 4. Muestras de zanahorias disponibles en supermercado.png",
+      "actividad 2/Figura 8. Resultados del análisis de tendencias en wordcloud.png",
+      "actividad 2/Figura 10. Búsqueda de términos a nivel departamental (Colombia).png",
+      "actividad 2/Figura 17. Resultados geográficos (A) países donde se publicaron videos a la plataforma, (B) número de vídeos subidos por país..png"
     ]
   },
   {
@@ -70,10 +73,17 @@ const activitiesList: ActivityItem[] = [
     name: "3. Caracterización física, química, fisicoquímica y sensorial de los excedentes y nuevos materiales de zanahoria.",
     description: "Evaluación bromatológica completa y caracterización multicriterio de aptitud agroindustrial de materias primas para transformación alimentaria y cosmética.",
     deliverables: [
-      { name: "1.6 Artículo de perfiles de uso agroindustrial de excedentes", link: "/entregables objetivos/Objetivo 1/1.6 Articulo recomendaciones y perfiles de uso de los excedentes.pdf" },
-      { name: "1.12 Artículo de tecnologías de conservación funcional", link: "/entregables objetivos/Objetivo 1/1.12 Articulo cientifico Tecnologías apropiadas para salvaguardar las características funcionales de la zanahoria en productos alimenticios.pdf" }
+      { name: "1.6 Artículo de perfiles de uso agroindustrial de excedentes", link: "https://drive.google.com/uc?export=download&id=1ioVaWAp23WWR85kAlL_BlFYEoNxtcwso" },
+      { name: "1.12 Artículo de tecnologías de conservación funcional", link: "https://drive.google.com/uc?export=download&id=19eYDvqOI5lc9BKlIaCwObHkUit7ruIg0" }
     ],
-    photos: ["foto-6.jpg", "foto-7.jpg"]
+    photos: [
+      "actividad 3/Fig. 1. Mapa georreferenciado de las localidades de cosecha.png",
+      "actividad 3/Figura 1. Tipologías de zanahoria[JM3.1], (a) Zanahoria regular o de categoría extra.png",
+      "actividad 3/Figura 2. Mapa georeferencial de las localidades de cosecha. Elaboración propia..png",
+      "actividad 3/Figura 3. Nubes de palabras.png",
+      "actividad 3/Figura 4. [JM19.1][JM19.2][dp19.3]Análisis de componentes principales de los excedentes de producción de zanahoria.png",
+      "actividad 3/Figura 5. Análisis de componentes principales de los excedentes de producción de zanahoria bajo tres esquemas.png"
+    ]
   },
 
   // ── OBJETIVO ESPECÍFICO 2 ──
