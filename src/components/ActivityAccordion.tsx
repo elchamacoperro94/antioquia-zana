@@ -149,7 +149,6 @@ const activitiesList: ActivityItem[] = [
     description: "Investigación sobre rutas catalíticas y fotoquímicas para la degradación selectiva de carotenoides hacia apocarotenoides bioactivos.",
     isSecret: true,
     deliverables: [
-      { name: "3.1.1 Ficha Ingrediente enriquecido en apocarotenoides de zanahoria.pdf", link: "https://drive.google.com/uc?export=download&id=1egIoQVWBpLeIlXIEvjlHo5eXV0bBEaYS" },
       { name: "3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf", link: "https://drive.google.com/uc?export=download&id=1BF1a5hzy9Vs8zfMIix6yDk1mEdKPMQ45" }
     ],
     photos: []
@@ -162,10 +161,14 @@ const activitiesList: ActivityItem[] = [
     description: "Publicación científica y estandarización del ingrediente dermocosmético con actividad antioxidante y fotoprotectora comprobada.",
     hasArticle: true,
     deliverables: [
-      { name: "1.13 Artículo Científico de Prototipos Cosméticos y Farmacéuticos", link: "/entregables objetivos/Objetivo 1/1.13 Articulo obre generación de prototipos de productos farmacéuticos-cosmeticos a base de excedentes y nuevos materiales de zanahoria.pdf" },
-      { name: "3.1 Protocolo de obtención de bioingrediente", link: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf" }
+      { name: "1.13 Artículo Científico de Prototipos Cosméticos y Farmacéuticos", link: "https://drive.google.com/uc?export=download&id=1m9DtxcZUpur36YnLOWYd3abzI1Bg-xtp" },
+      { name: "3.1.1 Ficha Ingrediente enriquecido en apocarotenoides de zanahoria.pdf", link: "https://drive.google.com/uc?export=download&id=1egIoQVWBpLeIlXIEvjlHo5eXV0bBEaYS" }
     ],
-    photos: ["foto-15.jpg", "foto-16.jpg"]
+    photos: [
+      "actividad 8/Figura 13. Resultados de determinación de la capacidad antioxidante en muestras de cosechas de zanahoria.jpeg",
+      "actividad 8/Figura 15. Estructura para la evaluación de optimización de rompimiento de carotenoides..jpeg",
+      "actividad 8/Figura 5. Estabilidad de β-caroteno en muestras de zanahoria.jpeg"
+    ]
   },
   {
     id: "ACT-09",
