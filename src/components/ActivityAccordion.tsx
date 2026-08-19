@@ -149,9 +149,10 @@ const activitiesList: ActivityItem[] = [
     description: "Investigación sobre rutas catalíticas y fotoquímicas para la degradación selectiva de carotenoides hacia apocarotenoides bioactivos.",
     isSecret: true,
     deliverables: [
-      { name: "3.1 Ficha de bioingrediente rico en apocarotenoides", link: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.1 Ficha Ingrediente enriquecido en apocarotenoides de zanahoria.pdf" }
+      { name: "3.1.1 Ficha Ingrediente enriquecido en apocarotenoides de zanahoria.pdf", link: "https://drive.google.com/uc?export=download&id=1egIoQVWBpLeIlXIEvjlHo5eXV0bBEaYS" },
+      { name: "3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf", link: "https://drive.google.com/uc?export=download&id=1BF1a5hzy9Vs8zfMIix6yDk1mEdKPMQ45" }
     ],
-    photos: ["foto-14.jpg"]
+    photos: []
   },
   {
     id: "ACT-08",
@@ -392,33 +393,35 @@ export default function ActivityAccordion() {
                     </div>
 
                     {/* Galería Fotográfica Específica por Actividad */}
-                    <div className="space-y-3">
-                      <span className="text-[11px] font-geist text-[#D4CF7D] uppercase tracking-wider block font-semibold">
-                        📸 Evidencias de Campo y Laboratorio:
-                      </span>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                        {act.photos.map((photo, pIdx) => (
-                          <div
-                            key={pIdx}
-                            onClick={() => setLightboxPhoto(`/photos-proyecto/${photo}`)}
-                            className="aspect-video rounded-xl overflow-hidden border border-[#5E824A]/20 cursor-pointer group hover:border-[#DE5A30] transition-colors relative bg-[#0F1A15]"
-                          >
-                            <img
-                              src={`/photos-proyecto/${photo}`}
-                              alt={`Evidencia ${act.id}`}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                              onError={(e) => {
-                                // Fallback elegante si la foto de muestra aún no está en la carpeta
-                                (e.target as HTMLElement).style.opacity = '0.4';
-                              }}
-                            />
-                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                              <span className="text-[10px] font-geist text-white font-semibold">Ampliar</span>
+                    {act.photos && act.photos.length > 0 && (
+                      <div className="space-y-3">
+                        <span className="text-[11px] font-geist text-[#D4CF7D] uppercase tracking-wider block font-semibold">
+                          📸 Evidencias de Campo y Laboratorio:
+                        </span>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                          {act.photos.map((photo, pIdx) => (
+                            <div
+                              key={pIdx}
+                              onClick={() => setLightboxPhoto(`/photos-proyecto/${photo}`)}
+                              className="aspect-video rounded-xl overflow-hidden border border-[#5E824A]/20 cursor-pointer group hover:border-[#DE5A30] transition-colors relative bg-[#0F1A15]"
+                            >
+                              <img
+                                src={`/photos-proyecto/${photo}`}
+                                alt={`Evidencia ${act.id}`}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                onError={(e) => {
+                                  // Fallback elegante si la foto de muestra aún no está en la carpeta
+                                  (e.target as HTMLElement).style.opacity = '0.4';
+                                }}
+                              />
+                              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span className="text-[10px] font-geist text-white font-semibold">Ampliar</span>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                     {/* Leyenda Legal de Contacto Institucional (Para Actividades sin Secreto Empresarial) */}
                     {!act.isSecret && (
