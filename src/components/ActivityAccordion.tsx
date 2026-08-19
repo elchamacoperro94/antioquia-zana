@@ -109,11 +109,18 @@ const activitiesList: ActivityItem[] = [
     name: "5. Generación y prototipados de productos alimenticios sólidos, semisólidos y líquidos.",
     description: "Formulación a escala piloto de prototipos alimentarios: compota infantil ZanaPure, snack veterinario ZanaPet y gomas biofuncionales enriquecidas.",
     deliverables: [
-      { name: "2.3 Ficha de prototipo alimentario ZanaPet (Mascotas)", link: "/entregables objetivos/Objetivo 2/2.3 Ficha 1 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPet) PENDIENTE.pdf" },
-      { name: "2.4 Ficha de prototipo alimentario Gomas Funcionales", link: "/entregables objetivos/Objetivo 2/2.4 Ficha 2 de prototipo de producto para la industria Alimentaria a base de zanahoria (Gomas upcycling) PENDIENTE.pdf" },
-      { name: "2.5 Ficha de prototipo alimentario ZanaPure (Compotas)", link: "/entregables objetivos/Objetivo 2/2.5 Ficha 3 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPure) PENDIENTE.pdf" }
+      { name: "2.3 Ficha de prototipo alimentario ZanaPet (Mascotas)", link: "https://drive.google.com/uc?export=download&id=1DV993dzZJgZU64p9plcYDSRZhG7FkHVK" },
+      { name: "2.4 Ficha de prototipo alimentario Gomas Funcionales", link: "https://drive.google.com/uc?export=download&id=1O4XV3jmjeia7-ADzruUOkDq3nECKhfur" },
+      { name: "2.5 Ficha de prototipo alimentario ZanaPure (Compotas)", link: "https://drive.google.com/uc?export=download&id=10VZyEk3omEqIX9oDFTs7Zena2TSMWFIE" }
     ],
-    photos: ["foto-10.jpg", "foto-11.jpg"]
+    photos: [
+      "actividad 5/Figura 16. Prototipos de zanahoria secada en horno de convección y deshidratador..jpeg",
+      "actividad 5/Figura 21. Área de transformación de Multialoe S.A.S..jpeg",
+      "actividad 5/Figura 24. Excedentes de producción de zanahoria..jpeg",
+      "actividad 5/Figura 25. Recepción del material vegetal e ingreso al área de transformación..jpeg",
+      "actividad 5/Figura 26. Lavado y desinfección del material vegetal..jpeg",
+      "actividad 5/Figura 3. Response surface plots for key technological and functional variables as a function of mixture.jpeg"
+    ]
   },
   {
     id: "ACT-06",
