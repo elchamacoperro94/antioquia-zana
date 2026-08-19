@@ -129,10 +129,15 @@ const activitiesList: ActivityItem[] = [
     name: "6. Estimar y comunicar los aspectos biofuncionales, sensoriales y de vida útil diferenciadores de los prototipos alimentarios generados.",
     description: "Paneles de censo sensorial con consumidores y estudios microbiológicos y fisicoquímicos de vida útil para validación de mercado.",
     deliverables: [
-      { name: "2.6 Tesis de Maestría en Calidad de Alimentos - Mateo Londoño (INTAL)", link: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf" },
-      { name: "2.2 Tesis de Maestría Paola Ospina (Universidad Nacional)", link: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.3 TESIS FINAL PAOLA OSPINA.pdf" }
+      { name: "2.6 Tesis de Maestría en Calidad de Alimentos - Mateo Londoño (INTAL)", link: "https://drive.google.com/uc?export=download&id=1N45coqBEeJxluikZC2GaYuHFTwsyI28A" },
+      { name: "2.2 Tesis de Maestría Paola Ospina (Universidad Nacional)", link: "https://drive.google.com/uc?export=download&id=1QUNKIotaW4xFqFYxy8kkLnsWLenB0ogS" }
     ],
-    photos: ["foto-12.jpg", "foto-13.jpg"]
+    photos: [
+      "actividad 6/Figura 2a. Recuento total en placa de carga microbiana en gomas Medio Sabouraud (Mesófilos) para las temperaturas 40, 45, 55ºC, en diluciones de 10-2 a 10-4 respectivamente, puntos de muestreo con baja carga microbiana..jpeg",
+      "actividad 6/Figura 3.  UFCmL en matriz de compota de zanahoria procesada en marmita en los tiempos Tiempo 0 (T0-25ºC, T1 36ºC, T2 45ºC, T3 70ºC y T4 85ºC cada uno de los medios de cultivo..jpeg",
+      "actividad 6/Figura 4a. Recuento total en placa de carga microbiana en compota Medio PCA (Mesófilos) para las T0 y T1, en diluciones de 10-3 a 10-5 respectivamente..jpeg",
+      "actividad 6/Figura 4b. Recuento total en placa de carga microbiana en compota Medio EMB (coliformes) para las T0 y T1, en diluciones de 10-3 a 10-5 respectivamente..jpeg"
+    ]
   },
 
   // ── OBJETIVO ESPECÍFICO 3 (Cosmética / Farmacéutica con Secreto Empresarial) ──
