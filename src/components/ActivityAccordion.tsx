@@ -178,9 +178,9 @@ const activitiesList: ActivityItem[] = [
     description: "Ensayos in vitro e in vivo de estabilidad acelerada, citotoxicidad y penetrabilidad dérmica según normativas internacionales.",
     isSecret: true,
     deliverables: [
-      { name: "3.2 Ficha de Nanocarriers Lipídicos (NLC)", link: "/entregables objetivos/Objetivo 3/3.2 Bioingrediente para la industria cosmetica a base de zanahoria 2/Ficha transportador lipidico nanoextructurado apocarotenoides de zanahoria.pdf" }
+      { name: "3.2 Ficha de Nanocarriers Lipídicos (NLC)", link: "https://drive.google.com/uc?export=download&id=1IJEDE__L0bNkAKjmsTkWvm2US0QsEyfo" }
     ],
-    photos: ["foto-17.jpg"]
+    photos: []
   },
   {
     id: "ACT-10",
@@ -190,9 +190,9 @@ const activitiesList: ActivityItem[] = [
     description: "Desarrollo de la emulsión dermocosmética antienvejecimiento Aurum Carota y transferencia bajo protocolo confidencial.",
     isSecret: true,
     deliverables: [
-      { name: "3.2 Protocolo de encapsulación en Nanocarriers NLC", link: "/entregables objetivos/Objetivo 3/3.2 Bioingrediente para la industria cosmetica a base de zanahoria 2/Protocolo trasnportador lipidico nanoestructurado.pdf" }
+      { name: "3.2 Protocolo de encapsulación en Nanocarriers NLC", link: "https://drive.google.com/uc?export=download&id=1SBySuTYOucJrEGao67Zb9OyXlApXkvOc" }
     ],
-    photos: ["foto-18.jpg"]
+    photos: []
   },
 
   // ── OBJETIVO ESPECÍFICO 4 ──
