@@ -9,7 +9,6 @@ import {
   AlertTriangle, 
   Target, 
   CheckCircle2, 
-  BookOpen,
   Sparkles
 } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
@@ -19,29 +18,39 @@ import { regionStats } from '../data/projectData';
 
 const researchTeam = [
   { name: "Juan Camilo Henao Rojas", role: "Investigador Principal (Líder)", entity: "AGROSAVIA" },
-  { name: "Jorge Eliecer Jaramillo", role: "Investigador Co-principal", entity: "AGROSAVIA" },
-  { name: "Carolina Zuluaga", role: "Investigadora", entity: "AGROSAVIA" },
-  { name: "Cristian Domínguez", role: "Investigador", entity: "AGROSAVIA" },
-  { name: "Rocío Alexandra Ortíz-Paz", role: "Investigadora Fitosanitaria", entity: "AGROSAVIA" },
-  { name: "Albeiro de Jesús Macías", role: "Investigador", entity: "AGROSAVIA" },
-  { name: "Mario Alonso Mesa", role: "Investigador Colaborador", entity: "UdeA" },
-  { name: "Rosa Helen Mira Herrera", role: "Investigadora", entity: "AGROSAVIA" },
-  { name: "Karen Ballestas Álvarez", role: "Investigadora", entity: "AGROSAVIA" },
-  { name: "Luz Mary Quintero", role: "Apoyo Técnico", entity: "AGROSAVIA" },
-  { name: "German Franco", role: "Investigador Colaborador", entity: "UNal" },
-  { name: "Jose Antonio Rubiano", role: "Investigador", entity: "AGROSAVIA" },
-  { name: "Carolina Ortiz", role: "Investigadora Colaboradora", entity: "UdeA" },
-  { name: "Jaison Martínez", role: "Investigador Colaborador", entity: "UCO" },
-  { name: "Yeraldine Bedoya", role: "Investigadora Colaboradora", entity: "UCO" },
-  { name: "Mateo Londoño", role: "Investigador Colaborador", entity: "UCO" },
-  { name: "Luis Salazar", role: "Investigador Colaborador", entity: "UCO" },
-  { name: "Edison Osorio", role: "Investigador Colaborador", entity: "UCO" },
-  { name: "Catalina Agudelo", role: "Investigadora Colaboradora", entity: "UCO" },
-  { name: "Karent Bravo", role: "Investigadora Colaboradora", entity: "UCO" },
-  { name: "Daniel Carvajal", role: "Investigador Colaborador", entity: "UCO" },
-  { name: "Liliana Ceballos", role: "Investigadora Colaboradora", entity: "UCO" },
-  { name: "Claudia Lukau", role: "Investigadora Colaboradora", entity: "UCO" },
-  { name: "Jenny Milena Moreno", role: "Investigadora Colaboradora", entity: "UCO" }
+  { name: "Jorge Eliecer Jaramillo", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Carolina Zuluaga", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Cristian Domínguez", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Angela Maria Castaño", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Lucas Esteban Cano", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Luis Felipe Lopez", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Paola Andrea Hormaza", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Tatiana Alejandra Rodriguez", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Gleyder Yeraldin Bedoya", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Melissa Andrea Castañeda", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Robert Julio Ardila", role: "Operario de Campo", entity: "AGROSAVIA" },
+  { name: "Rocío Alexandra Ortíz", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Albeiro de Jesús Macías", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Mario Alonso Mesa", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Rosa Helen Mira Herrera", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Karen Ballestas Álvarez", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Luz Mary Quintero", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "German Franco", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Jose Antonio Rubiano", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Carolina Ortiz", role: "Co-Investigador", entity: "AGROSAVIA" },
+  { name: "Jaison Martínez", role: "Tesista de Maestria", entity: "AGROSAVIA" },
+  { name: "Mateo Londoño", role: "Tesista de Maestria", entity: "INTAL" },
+  { name: "Luis Salazar", role: "Co-Investigador", entity: "INTAL" },
+  { name: "Edison Osorio", role: "Co-Investigador", entity: "UdeA" },
+  { name: "Catalina Agudelo", role: "Co-Investigador", entity: "UdeA" },
+  { name: "Karent Bravo", role: "Co-Investigador", entity: "UdeA" },
+  { name: "Daniel Carvajal", role: "Co-Investigador", entity: "UdeA" },
+  { name: "Sergio Gonzales Lopez", role: "Tesista de Maestria", entity: "UdeA" },
+  { name: "Liliana Ceballos", role: "Co-Investigador", entity: "UCO" },
+  { name: "Claudia Lukau", role: "Co-Investigador", entity: "UCO" },
+  { name: "Jenny Milena Moreno", role: "Co-Investigador", entity: "UCO" },
+  { name: "Joaquin Guillermo Ramirez", role: "Co-Investigador", entity: "UNal" },
+  { name: "Paola Andrea Ospina", role: "Tesista de Maestria", entity: "UNal" }
 ];
 
 const problemsAndObjectives = [
@@ -102,7 +111,7 @@ export default function About() {
 
   const infoCards = [
     { id: 'entidad', label: 'Entidad Ejecutora', value: 'AGROSAVIA', subValue: 'Centro C.I. La Selva', icon: <Building2 className="h-5 w-5 text-[#DE5A30]" /> },
-    { id: 'equipo', label: 'Equipo Investigador', value: '24 Investigadores', subValue: 'Ver equipo científico completo', icon: <Users className="h-5 w-5 text-emerald-400" />, clickable: true },
+    { id: 'equipo', label: 'Equipo Investigador', value: '34 Investigadores', subValue: 'Ver equipo científico completo', icon: <Users className="h-5 w-5 text-emerald-400" />, clickable: true },
     { id: 'zona', label: 'Región de Impacto', value: 'Oriente Antioqueño', subValue: 'El Santuario, Marinilla, Rionegro', icon: <MapPin className="h-5 w-5 text-sky-400" /> },
     { id: 'periodo', label: 'Vigencia del Proyecto', value: '2022 — 2026', subValue: 'Financiación Regalías SGR', icon: <CalendarRange className="h-5 w-5 text-[#D4CF7D]" /> },
   ];
@@ -130,8 +139,32 @@ export default function About() {
             Transformación integral de la cadena productiva de la zanahoria (2022–2026)
           </h3>
           <p className="text-sm md:text-base text-[#F0EDE1]/80 font-light leading-relaxed">
-            Financiado por el Sistema General de Regalías (SGR) con el código <strong>BPIN 2020000100192</strong>, el proyecto reúne a <strong>AGROSAVIA, Universidad de Antioquia, Universidad Católica de Oriente, INTAL y Universidad Nacional</strong>. A lo largo de 4 años, se abordaron las pérdidas poscosecha que afectan a más de 1.000 familias en El Santuario y Marinilla, convirtiendo mermas agrícolas en prototipos de valor bioeconómico.
+            Financiado por el Sistema General de Regalías (SGR) con el código <strong>BPIN 2020000100192</strong>, el proyecto reúne a <strong>AGROSAVIA, Universidad de Antioquia, Universidad Católica de Oriente, INTAL, Universidad Nacional y Kavitec S.A.S.</strong> A lo largo de 4 años, se abordaron las pérdidas poscosecha que afectan a <strong>más de 380 productores de la región</strong>, convirtiendo mermas agrícolas en prototipos de valor bioeconómico.
           </p>
+
+          <div className="mt-6 pt-6 border-t border-[#5E824A]/25 space-y-4">
+            <h4 className="font-sora text-[#D4CF7D] text-sm font-semibold uppercase tracking-wider">
+              Objetivos Específicos del Proyecto:
+            </h4>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-[#F0EDE1]/70 font-light leading-relaxed">
+              <li className="flex items-start gap-2">
+                <span className="text-[#D4CF7D] font-semibold mt-0.5 font-geist">1.</span>
+                <span>Caracterizar el potencial de los excedentes agronómicos y nuevos cultivares de zanahoria como materia prima para la generación de productos con valor agregado en el Oriente Antioqueño.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#D4CF7D] font-semibold mt-0.5 font-geist">2.</span>
+                <span>Generar prototipos de productos funcionales para la industria alimentaria a partir de los excedentes o nuevos cultivares del sistema productivo de zanahoria para el Oriente Antioqueño.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#D4CF7D] font-semibold mt-0.5 font-geist">3.</span>
+                <span>Generar prototipos de productos funcionales para la industria farmacéutica/cosmética a partir de los excedentes o nuevos cultivares en el sistema productivo de zanahoria del Oriente Antioqueño.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#D4CF7D] font-semibold mt-0.5 font-geist">4.</span>
+                <span>Evaluar las oportunidades de mercado y comercialización de nuevos productos a partir de la zanahoria para el Oriente antioqueño mediante un modelo de negocios para productos prototipados.</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -263,48 +296,40 @@ export default function About() {
         {/* Rejilla Multimedia: Video y Libro de Divulgación + Indicadores Regionales */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
           
-          {/* Panel Izquierdo: Video e Informe Libro */}
-          <div className="lg:col-span-1 flex flex-col gap-6 justify-between">
-            <div className="w-full aspect-video rounded-2xl overflow-hidden border border-[#5E824A]/30 shadow-lg bg-[#0F1A15]">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/_f6V2en_rGM"
-                title="Antioquia Zana Video de Divulgación"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
+          {/* Panel Izquierdo: Videos de Parche del Agro */}
+          <div className="lg:col-span-1 flex flex-col gap-6">
+            <div className="flex flex-col gap-1">
+              <span className="text-xs uppercase tracking-[0.2em] text-[#D4CF7D] font-semibold font-geist">Conoce el proyecto:</span>
+              <h4 className="font-sora text-base font-semibold text-[#F0EDE1]">El Parche del Agro</h4>
             </div>
 
-            {/* Tarjeta del Libro Descargable */}
-            <div className="glass-card p-5 rounded-2xl border border-[#5E824A]/30 flex flex-col justify-between bg-[#0F1A15]/60">
-              <a
-                href="https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Ver libro en Repositorio UCO"
-                className="relative w-full h-36 rounded-xl overflow-hidden border border-white/10 shadow-md group block cursor-pointer"
-              >
-                <img
-                  src="/libro-portada.jpg"
-                  alt="Libro ¿Esta Zanahoria Pa' Qué?"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            <div className="flex flex-col gap-4">
+              <div className="w-full aspect-video rounded-2xl overflow-hidden border border-[#5E824A]/30 shadow-lg bg-[#0F1A15]">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/6WUb2SOZTMw"
+                  title="El Parche del Agro - Capítulo 1"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
                 />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                  <div className="px-4 py-2 rounded-xl bg-emerald-500/90 text-white font-mono text-xs font-semibold flex items-center gap-2 border border-emerald-400/30 shadow-lg">
-                    <BookOpen className="w-4 h-4" />
-                    <span>Ver en Repositorio UCO</span>
-                  </div>
-                </div>
-              </a>
-              <div className="mt-3 border-t border-[#5E824A]/20 pt-2 flex justify-between items-center">
-                <div>
-                  <h4 className="text-xs font-bold text-[#F0EDE1] font-mono">
-                    ¿Esta zanahoria pa' qué?
-                  </h4>
-                  <p className="text-[10px] text-[#F0EDE1]/60 font-light mt-0.5">
-                    Libro oficial de divulgación de rutas de innovación.
-                  </p>
-                </div>
+              </div>
+              <div className="w-full aspect-video rounded-2xl overflow-hidden border border-[#5E824A]/30 shadow-lg bg-[#0F1A15]">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/okU0LUBh7no"
+                  title="El Parche del Agro - Capítulo 2"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+              <div className="w-full aspect-video rounded-2xl overflow-hidden border border-[#5E824A]/30 shadow-lg bg-[#0F1A15]">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/2RAqNHrmPX8"
+                  title="El Parche del Agro - Capítulo 3"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
               </div>
             </div>
           </div>
@@ -313,40 +338,31 @@ export default function About() {
           <div className="lg:col-span-2 flex flex-col gap-6 justify-between">
             {/* Fila de Estadísticas */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-[#0F1A15]/80 border border-[#5E824A]/30 rounded-3xl">
-              {regionStats.map((stat, idx) => {
-                let cleanValue = stat.value;
-                let cleanLabel = stat.label;
-
-                if (cleanValue.includes(" ha")) {
-                  cleanValue = "600";
-                  cleanLabel = "Hectáreas Sembradas";
-                } else if (cleanValue.includes(" t/año")) {
-                  cleanValue = "46.8k";
-                  cleanLabel = "Tons / Año";
-                } else if (cleanValue.includes("25–30%")) {
-                  cleanValue = "30%";
-                  cleanLabel = "Merma No Comercial";
-                }
-
-                return (
-                  <div
-                    key={idx}
-                    className="text-center space-y-1 border-r border-[#5E824A]/20 last:border-0 pr-2"
-                  >
-                    <h3 className="font-sora text-3xl sm:text-4xl text-[#DE5A30] font-black">{cleanValue}</h3>
-                    <p className="font-geist text-[11px] text-[#F0EDE1]/60 uppercase tracking-wider">{cleanLabel}</p>
-                  </div>
-                );
-              })}
+              {regionStats.map((stat, idx) => (
+                <div
+                  key={idx}
+                  className="text-center space-y-1 border-r border-[#5E824A]/20 last:border-0 pr-2"
+                  title={stat.detail}
+                >
+                  <h3 className="font-sora text-2xl sm:text-3xl text-[#DE5A30] font-black">{stat.value}</h3>
+                  <p className="font-geist text-[10px] text-[#F0EDE1]/60 uppercase tracking-wider">{stat.label}</p>
+                </div>
+              ))}
             </div>
 
             {/* Texto Descriptivo Extenso del Proyecto */}
             <div className="space-y-4 p-6 rounded-3xl bg-[#0F1A15]/60 border border-[#5E824A]/20 text-[#F0EDE1]/80 font-light text-sm sm:text-base leading-relaxed">
               <p>
-                El Oriente Antioqueño (especialmente los municipios de <strong>El Santuario, Marinilla, Rionegro y San Pedro de los Milagros</strong>) constituye la despensa hortícola principal del departamento de Antioquia. No obstante, los agricultores enfrentan pérdidas poscosecha constantes asociadas a criterios estéticos de mercado y sobreoferta estacional.
+                El proyecto <strong>"Antioquia Zana"</strong> surge como una iniciativa estratégica para fortalecer la cadena de valor de la zanahoria en el Oriente Antioqueño, una de las zonas hortícolas más importantes del departamento. A través de una alianza interinstitucional sin precedentes, este esfuerzo reúne a la academia, centros de investigación, la empresa privada y las comunidades locales con el propósito de generar soluciones innovadoras y sostenibles frente a las problemáticas del descarte agrícola y la sobreoferta estacional.
               </p>
               <p>
-                A través de metodologías de química verde, biotecnología y diseño agroindustrial, <strong>Antioquia Zana</strong> demostró la viabilidad de transformar excedentes en ingredientes de valor agregado para las industrias alimentaria, cosmética y veterinaria, consolidando una red interinstitucional de transferencia tecnológica directa con el territorio.
+                Bajo un enfoque de investigación aplicada y desarrollo tecnológico, la iniciativa busca transformar los excedentes de las cosechas en nuevos productos de alto valor agregado, fomentando la transición hacia una bioeconomía regional más sólida. Este modelo de trabajo colaborativo no solo integra el conocimiento científico de última generación, sino que también rescata y respeta los saberes tradicionales de los agricultores de la región, propiciando un diálogo constante entre el laboratorio y el campo.
+              </p>
+              <p>
+                Los esfuerzos del proyecto se materializan en múltiples áreas de impacto complementarias. Por un lado, se desarrollan alternativas para el procesamiento y conservación de alimentos funcionales y de nutrición animal. Por otro lado, se investigan aplicaciones en el sector cosmético y del cuidado de la piel mediante el aprovechamiento de compuestos activos naturales. De manera simultánea, se estructuran estudios de viabilidad y modelos de negocio que aseguren la rentabilidad y sostenibilidad de estas innovaciones.
+              </p>
+              <p>
+                El impacto final de <strong>Antioquia Zana</strong> trasciende los resultados técnicos y se enfoca en el desarrollo social y económico. A través de talleres prácticos, capacitaciones y eventos de apropiación del conocimiento, se busca empoderar a las asociaciones de productores locales para que puedan diversificar sus ingresos y mejorar sus circuitos de comercialización, sembrando las bases para un campo más competitivo, sostenible y orientado al bienestar de sus comunidades.
               </p>
               <div className="pt-2 flex flex-wrap gap-3">
                 <button

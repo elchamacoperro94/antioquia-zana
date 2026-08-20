@@ -1,129 +1,188 @@
 import React from 'react';
-import { BookOpen, Download, ExternalLink, FileText, Palette, Utensils } from 'lucide-react';
+import { BookOpen, ExternalLink, Bookmark, FileSpreadsheet, Newspaper, Award } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 
-interface ComplementaryItem {
+interface WorkItem {
   id: string;
   title: string;
+  shortTitle: string;
   category: string;
   description: string;
   badge: string;
   icon: React.ReactNode;
-  downloadLink: string;
-  accent: string;
+  coverImage?: string;
+  gradient: string;
+  editorialLink: string;
+  accentColor: string;
 }
 
-const complementaryList: ComplementaryItem[] = [
+const worksList: WorkItem[] = [
   {
-    id: "COMP-01",
-    title: "Cartilla Ilustrada & Historieta 'Esta Zanahoria Pa' Quién'",
-    category: "Divulgación Cómica y Apropiación Social",
-    description: "Historieta ilustrada que relata mediante un lenguaje ameno y caricaturesco la cadena de valor de la zanahoria y los modelos de gobernanza participativa en el Oriente Antioqueño.",
-    badge: "Historieta & Cartilla",
-    icon: <Palette className="w-6 h-6 text-[#DE5A30]" />,
-    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/Anexo 14.1 Esta Zanahoria pa quien.pdf",
-    accent: "border-[#DE5A30]"
+    id: "WORK-01",
+    title: "Libro Carota 360°: Modelo Productivo de la Zanahoria",
+    shortTitle: "Libro Carota 360°",
+    category: "Obra de Investigación AGROSAVIA",
+    description: "Sistematización integral del modelo productivo, recomendaciones técnicas de cultivo, manejo integrado de plagas y perfiles de uso para el Oriente Antioqueño.",
+    badge: "Libro Científico",
+    icon: <Award className="w-5 h-5 text-[#DE5A30]" />,
+    gradient: "from-[#DE5A30] to-[#5C2310]",
+    editorialLink: "https://editorial.agrosavia.co/",
+    accentColor: "border-[#DE5A30]"
   },
   {
-    id: "COMP-02",
-    title: "Manual Agroindustrial 'Una Zanahoria Para Emprender'",
-    category: "Manual Técnico UCO",
-    description: "Guía práctica de emprendimiento agroindustrial desarrollada en alianza con la Universidad Católica de Oriente (UCO) para apoyar el montaje de nuevos modelos de negocio locales.",
-    badge: "Manual Académico UCO",
-    icon: <BookOpen className="w-6 h-6 text-emerald-400" />,
-    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.8 Una zanahoria para emprender.pdf",
-    accent: "border-emerald-400"
+    id: "WORK-02",
+    title: "Catálogo: El Valor de lo Singular (Daucus carota L.)",
+    shortTitle: "El Valor de lo Singular",
+    category: "Catálogo de Variedades AGROSAVIA",
+    description: "Catálogo de cultivares promisorios y excedentes de zanahoria con calidad diferencial y aptitud agroindustrial para la bioeconomía del Oriente.",
+    badge: "Catálogo Técnico",
+    icon: <FileSpreadsheet className="w-5 h-5 text-emerald-400" />,
+    gradient: "from-[#5E824A] to-[#1F2F18]",
+    editorialLink: "https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/538",
+    accentColor: "border-emerald-400"
   },
   {
-    id: "COMP-03",
-    title: "Manual de Mercado 'Una Zanahoria Para Exportar'",
-    category: "Guía Exportadora UCO",
-    description: "Manual metodológico enfocado en los estándares internacionales de calidad, requisitos fitosanitarios y empaques para exportar zanahoria y sus derivados.",
-    badge: "Manual Académico UCO",
-    icon: <FileText className="w-6 h-6 text-sky-400" />,
-    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/Anexo 13.1 Una zanahoria para exportar.pdf",
-    accent: "border-sky-400"
-  },
-  {
-    id: "COMP-04",
-    title: "Libro & Recetario Agroindustrial '¿Esta Zanahoria Pa' Qué?'",
-    category: "Libro de Divulgación & Recetas",
-    description: "Libro institucional que documenta la ruta de innovación de la zanahoria en Antioquia e incluye recetas culinarias y preparaciones agroindustriales con pulpa y excedentes.",
+    id: "WORK-03",
+    title: "Libro & Recetario Agroindustrial: ¿Esta Zanahoria Pa' Qué?",
+    shortTitle: "¿Esta Zanahoria Pa' Qué?",
+    category: "Libro de Divulgación & Cocina",
+    description: "Publicación que recopila la ruta de innovación de la zanahoria e incluye recetas gastronómicas y aplicaciones culinarias desarrolladas con excedentes.",
     badge: "Libro & Recetario",
-    icon: <Utensils className="w-6 h-6 text-[#D4CF7D]" />,
-    downloadLink: "https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19",
-    accent: "border-[#D4CF7D]"
+    icon: <BookOpen className="w-5 h-5 text-[#D4CF7D]" />,
+    coverImage: "/libro-portada.jpg",
+    gradient: "from-[#D4CF7D] to-[#42401C]",
+    editorialLink: "https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19",
+    accentColor: "border-[#D4CF7D]"
+  },
+  {
+    id: "WORK-04",
+    title: "Manual Agroindustrial: Una Zanahoria para Emprender",
+    shortTitle: "Una Zanahoria para Emprender",
+    category: "Manual Técnico UCO",
+    description: "Guía práctica de emprendimiento, plan de negocio y hoja de ruta metodológica para iniciativas agroindustriales y de gomas pet funcionales.",
+    badge: "Manual Académico UCO",
+    icon: <Bookmark className="w-5 h-5 text-purple-400" />,
+    gradient: "from-[#4A2545] to-[#251022]",
+    editorialLink: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-emprender-gomas-pet-plan-de-negocio-y-hoja-de-ruta-para-iniciativas-agroindustriales",
+    accentColor: "border-[#4A2545]"
+  },
+  {
+    id: "WORK-05",
+    title: "Manual de Mercados: Una Zanahoria para Exportar",
+    shortTitle: "Una Zanahoria para Exportar",
+    category: "Manual Técnico UCO",
+    description: "Manual enfocado en estándares internacionales de calidad, requisitos fitosanitarios y canal de exportación de gomas funcionales para el mercado de mascotas.",
+    badge: "Manual Académico UCO",
+    icon: <Newspaper className="w-5 h-5 text-sky-400" />,
+    gradient: "from-sky-600 to-sky-950",
+    editorialLink: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-exportar-gomas-funcionales-para-el-mercado-pet-con-destino-a-belgica",
+    accentColor: "border-sky-400"
+  },
+  {
+    id: "WORK-06",
+    title: "Manual de Red de Valor: Esta Zanahoria Pa' Quién?",
+    shortTitle: "Esta Zanahoria Pa' Quién?",
+    category: "Manual Técnico UCO",
+    description: "Investigación sobre la gobernanza de la red de valor, esquemas asociativos y aprendizajes territoriales de transferencia tecnológica.",
+    badge: "Manual Académico UCO",
+    icon: <BookOpen className="w-5 h-5 text-teal-400" />,
+    gradient: "from-teal-600 to-teal-950",
+    editorialLink: "https://universidadcatolicadeorienteuco.publica.la/library/publication/esta-zanahoria-pa-quien-gobernanza-transferencia-y-aprendizajes-en-la-red-de-valor-de-la-zanahoria",
+    accentColor: "border-teal-400"
   }
 ];
 
 export default function ComplementaryProducts() {
   return (
-    <section id="productos-complementarios" className="px-6 py-20 md:py-28 max-w-6xl mx-auto flex flex-col gap-12 border-t border-white/5">
+    <section id="coleccion-obras" className="px-6 py-20 md:py-28 max-w-7xl mx-auto flex flex-col gap-12 border-t border-white/5">
       {/* Encabezado de la Sección */}
       <SectionHeader
-        badgeText="Valor Agregado"
+        badgeText="Publicaciones"
         badgeColor="orange"
-        title="Productos Complementarios y Materiales de Divulgación"
-        subtitle="Publicaciones, historietas, recetarios y manuales técnicos desarrollados como entregables de impacto social y pedagógico."
+        title="Colección Antioquia Zana: Nuestras Obras Destacadas"
+        subtitle="Publicaciones científicas, libros de investigación y manuales técnicos desarrollados en el marco del proyecto para el desarrollo agroindustrial del Oriente Antioqueño."
       />
 
-      {/* Rejilla de los 4 Productos Complementarios (Observación 14) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {complementaryList.map((item) => {
-          const isExternal = item.downloadLink.startsWith('http');
-
-          return (
-            <div
-              key={item.id}
-              className={`p-6 sm:p-8 rounded-3xl bg-[#0F1A15]/90 border ${item.accent}/40 backdrop-blur-md flex flex-col justify-between space-y-6 shadow-xl hover:border-white/40 transition-all`}
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
-                    {item.icon}
+      {/* Rejilla de Obras */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {worksList.map((work) => (
+          <div
+            key={work.id}
+            className={`group p-6 rounded-3xl bg-[#0F1A15]/85 border ${work.accentColor}/30 backdrop-blur-md flex flex-col sm:flex-row gap-6 shadow-2xl hover:border-white/20 transition-all duration-300 relative overflow-hidden`}
+          >
+            {/* Lado Izquierdo: Representación 3D del Libro */}
+            <div className="flex-shrink-0 flex items-center justify-center sm:justify-start">
+              <a
+                href={work.editorialLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block w-28 h-40 group-hover:scale-105 transition-transform duration-500 cursor-pointer"
+                style={{ perspective: '1000px' }}
+              >
+                {/* Lomo / Spine shadow */}
+                <div className="absolute top-0 bottom-0 left-0 w-3 bg-black/30 z-20 rounded-l-sm" />
+                
+                {work.coverImage ? (
+                  <img
+                    src={work.coverImage}
+                    alt={work.title}
+                    className="w-full h-full object-cover rounded-r-md shadow-2xl transition-transform duration-500 origin-left group-hover:rotate-y-[-15deg] group-hover:translate-x-[-4px]"
+                  />
+                ) : (
+                  <div className={`w-full h-full rounded-r-md bg-gradient-to-br ${work.gradient} p-2 flex flex-col justify-between border-l border-white/10 shadow-2xl transition-transform duration-500 origin-left group-hover:rotate-y-[-15deg] group-hover:translate-x-[-4px] text-white`}>
+                    <div className="space-y-1">
+                      <span className="text-[7px] uppercase tracking-wider font-semibold font-geist text-white/70 block">{work.category}</span>
+                      <h4 className="font-sora text-[10px] leading-tight font-black mt-1 line-clamp-4">{work.shortTitle}</h4>
+                    </div>
+                    <div className="flex items-center justify-between border-t border-white/10 pt-1.5 mt-auto">
+                      <span className="text-[6px] uppercase tracking-widest text-[#D4CF7D] font-bold font-geist">Zana Alianza</span>
+                      <span className="text-[7px] font-bold">2026</span>
+                    </div>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#D4CF7D] font-geist text-xs font-semibold">
-                    {item.badge}
+                )}
+                {/* 3D Book Page Edge */}
+                <div className="absolute top-[2px] bottom-[2px] right-[-3px] w-[5px] bg-[#EBE7D8] z-0 rounded-r-sm shadow-inner transition-transform duration-500 origin-left group-hover:rotate-y-[-15deg] group-hover:translate-x-[-3px]" />
+              </a>
+            </div>
+
+            {/* Lado Derecho: Metadatos y Botones */}
+            <div className="flex-grow flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="p-2 rounded-xl bg-white/5 border border-white/10">
+                    {work.icon}
+                  </div>
+                  <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#D4CF7D] font-geist text-[10px] font-semibold">
+                    {work.badge}
                   </span>
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-[#DE5A30] uppercase tracking-wider block font-bold">
-                    {item.category}
+                  <span className="text-[9px] font-mono text-[#DE5A30] uppercase tracking-wider block font-bold">
+                    {work.category}
                   </span>
-                  <h3 className="font-sora text-lg sm:text-xl font-bold text-[#F0EDE1] leading-snug">
-                    {item.title}
+                  <h3 className="font-sora text-base font-bold text-[#F0EDE1] leading-snug group-hover:text-emerald-300 transition-colors">
+                    {work.title}
                   </h3>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#F0EDE1]/80 font-light leading-relaxed">
-                  {item.description}
+                <p className="text-xs text-[#F0EDE1]/75 font-light leading-relaxed line-clamp-3">
+                  {work.description}
                 </p>
               </div>
 
-              {isExternal ? (
-                <a
-                  href={item.downloadLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#DE5A30] hover:text-white hover:border-[#DE5A30] transition-all shadow-md cursor-pointer"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>Ver Publicación en Repositorio UCO</span>
-                </a>
-              ) : (
-                <a
-                  href={item.downloadLink}
-                  download
-                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#DE5A30] hover:text-white hover:border-[#DE5A30] transition-all shadow-md cursor-pointer"
-                >
-                  <Download className="w-4 h-4" />
-                  <span>Descargar Documento PDF</span>
-                </a>
-              )}
+              <a
+                href={work.editorialLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#5E824A]/20 border border-[#5E824A]/40 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#DE5A30] hover:text-white hover:border-[#DE5A30] transition-all duration-300 shadow-md cursor-pointer"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Ver en Editorial / Repositorio</span>
+              </a>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </section>
   );

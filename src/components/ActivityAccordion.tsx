@@ -20,6 +20,8 @@ interface ActivityItem {
   hasArticle?: boolean; // Para Actividad 8
   deliverables: { name: string; link: string }[];
   photos: string[];
+  contactName?: string;
+  contactEmail?: string;
 }
 
 const activitiesList: ActivityItem[] = [
@@ -32,7 +34,7 @@ const activitiesList: ActivityItem[] = [
     description: "Cuantificación de pérdidas y excedentes agronómicos en fincas de El Santuario y Marinilla, evaluando parámetros de rendimiento y comportamiento fitosanitario en campo.",
     deliverables: [
       { name: "1.5 Informe de volúmenes de excedentes regionales", link: "https://drive.google.com/uc?export=download&id=1Vm1t89XYGUHmCk078ZbifhQwPB9tmYiy" },
-      { name: "1.1 Catálogo de materiales y excedentes de zanahoria", link: "https://drive.google.com/uc?export=download&id=1a0Z7snW-d1hm19llLFVqh2sQnsumbc5g" }
+      { name: "Artículo: Growth Dynamics and Ecophysiological Performance of Two Carrot Types (MDPI)", link: "https://www.mdpi.com/2311-7524/12/5/525" }
     ],
     photos: [
       "actividad 1/Figura 1. Problemas de drenaje superficial en el lote debido al alto régimen de lluvias..png",
@@ -55,7 +57,10 @@ const activitiesList: ActivityItem[] = [
     description: "Desarrollo de modelos de calibración NIRS de alta precisión para la estimación ultrarrápida no destructiva de humedad, sólido solubles (°Brix) y carotenos.",
     deliverables: [
       { name: "1.7a Protocolo bandas espectrales zanahoria", link: "https://drive.google.com/uc?export=download&id=14xMMLjrqeoTjHXqENCqSHnONsJyGP-h-" },
-      { name: "1.7b Protocolo detallado firma espectral", link: "https://drive.google.com/uc?export=download&id=1QfvBVOnkhLHErc1dM3pFrmrFuD__SbKr" }
+      { name: "1.7b Protocolo detallado firma espectral", link: "https://drive.google.com/uc?export=download&id=1QfvBVOnkhLHErc1dM3pFrmrFuD__SbKr" },
+      { name: "Artículo: Temporal Dynamics of Postharvest Quality (MDPI)", link: "https://www.mdpi.com/2311-7524/12/6/657" },
+      { name: "Artículo: Temporal Dynamics of Postharvest Quality (PMC)", link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC13312970/" },
+      { name: "Artículo: Multidimensional Quality in Carrots (Wiley)", link: "https://onlinelibrary.wiley.com/doi/full/10.1002/fsn3.70718" }
     ],
     photos: [
       "actividad 2/Figura 1. Esquema gráfico de ejecución de análisis de cifras y productos de exportaciones e importaciones..png",
@@ -64,7 +69,9 @@ const activitiesList: ActivityItem[] = [
       "actividad 2/Figura 8. Resultados del análisis de tendencias en wordcloud.png",
       "actividad 2/Figura 10. Búsqueda de términos a nivel departamental (Colombia).png",
       "actividad 2/Figura 17. Resultados geográficos (A) países donde se publicaron videos a la plataforma, (B) número de vídeos subidos por país..png"
-    ]
+    ],
+    contactName: "Joaquin Guillermo Ramirez",
+    contactEmail: "jgramireg@unal.edu.co"
   },
   {
     id: "ACT-03",
@@ -73,8 +80,10 @@ const activitiesList: ActivityItem[] = [
     name: "3. Caracterización física, química, fisicoquímica y sensorial de los excedentes y nuevos materiales de zanahoria.",
     description: "Evaluación bromatológica completa y caracterización multicriterio de aptitud agroindustrial de materias primas para transformación alimentaria y cosmética.",
     deliverables: [
-      { name: "1.6 Artículo de perfiles de uso agroindustrial de excedentes", link: "https://drive.google.com/uc?export=download&id=1ioVaWAp23WWR85kAlL_BlFYEoNxtcwso" },
-      { name: "1.12 Artículo de tecnologías de conservación funcional", link: "https://drive.google.com/uc?export=download&id=19eYDvqOI5lc9BKlIaCwObHkUit7ruIg0" }
+      { name: "1.1 Catálogo: El Valor de lo Singular (Editorial AGROSAVIA)", link: "https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/538" },
+      { name: "Artículo: Phytochemical Bioprospecting Framework (Heliyon)", link: "https://www.cell.com/heliyon/fulltext/S2405-8440(25)00202-6" },
+      { name: "Artículo: Metabolomic Insights into Residual Carrot Biomass (Scientific Reports)", link: "https://www.nature.com/articles/s41598-026-36993-2" },
+      { name: "Artículo: Desirability Index Framework for Bioprospecting (Frontiers in Plant Science)", link: "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2026.1794157/full" }
     ],
     photos: [
       "actividad 3/Fig. 1. Mapa georreferenciado de las localidades de cosecha.png",
@@ -92,9 +101,9 @@ const activitiesList: ActivityItem[] = [
     num: 4,
     objId: "OBJ-02",
     name: "4. Priorización de las tecnologías para transformación de productos según normativas y adaptabilidad al entorno.",
-    description: "Selección de tecnologías de química verde y procesamiento limpio (cavitación hidrotermodinámica CHTD y deshidratación) para la agroindustria hortícola.",
+    description: "Priorización de cavitación e hidrólisis de descarte como las tecnologías de transformación con mayor viabilidad local.",
     deliverables: [
-      { name: "4.1 Informe del Curso Técnico de Transformación 'Carota 360°'", link: "https://drive.google.com/uc?export=download&id=1O79ZX5oBgd-18ieqebKsGLs2bsnsLVrn" }
+      { name: "Ficha de priorización de tecnologías", link: "https://drive.google.com/uc?export=download&id=1GeKjt4nJxpxYYQiV1D-UENm0lptJxz2F" }
     ],
     photos: [
       "actividad 4/Figura 1. Diagrama de proceso para la limpieza y desinfección de zanahoria.png",
@@ -440,7 +449,15 @@ export default function ActivityAccordion() {
                       <div className="pt-4 border-t border-[#5E824A]/20 flex items-center gap-3 text-[11px] text-[#F0EDE1]/60 font-geist">
                         <Mail className="w-4 h-4 text-[#DE5A30] shrink-0" />
                         <span>
-                          Si requieres conocer más sobre la <strong>{act.name}</strong>, contacta al Investigador Principal Juan Camilo Henao Rojas (<code>jhenao@agrosavia.co</code>) o Atención al Cliente AGROSAVIA (<code>atencionalcliente@agrosavia.co</code>).
+                          Si requieres conocer más sobre la <strong>{act.name}</strong>, contacta a {act.contactName ? (
+                            <>
+                              <strong>{act.contactName}</strong> (<code>{act.contactEmail}</code>).
+                            </>
+                          ) : (
+                            <>
+                              al Investigador Principal Juan Camilo Henao Rojas (<code>jhenao@agrosavia.co</code>) o Atención al Cliente AGROSAVIA (<code>atencionalcliente@agrosavia.co</code>).
+                            </>
+                          )}
                         </span>
                       </div>
                     )}

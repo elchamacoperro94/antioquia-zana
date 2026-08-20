@@ -113,10 +113,10 @@ export const projectMetadata: ProjectMetadata = {
 };
 
 export const regionStats: RegionStat[] = [
-  { value: "600 ha", label: "Área Sembrada", detail: "Área productiva en el Oriente Antioqueño" },
-  { value: "500+", label: "Productores", detail: "Pequeños agricultores beneficiados directamente" },
-  { value: "46.827 t/año", label: "Volumen Anual", detail: "Producción promedio de zanahoria en la región" },
-  { value: "25–30%", label: "Excedentes", detail: "Porcentaje de merma o descarte no comercializable" }
+  { value: "+380", label: "Beneficiados", detail: "Personas de la región beneficiadas directamente" },
+  { value: "16", label: "Publicaciones", detail: "10 artículos científicos, 3 libros y 3 manuales técnicos" },
+  { value: "4", label: "Tesistas", detail: "Tesistas formados a nivel de pregrado y posgrado" },
+  { value: "9", label: "Eventos ASC", detail: "Eventos de Apropiación Social del Conocimiento" }
 ];
 
 export const objectives: ObjectiveEntry[] = [
