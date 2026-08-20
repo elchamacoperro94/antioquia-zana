@@ -25,67 +25,67 @@ interface ThesisStudent {
 
 const thesisList: ThesisStudent[] = [
   {
-    name: "Mateo Londoño V.",
+    name: "Ing. Mateo Londoño Valencia",
     level: "Maestría",
     program: "Maestría en Ciencia y Tecnología de Alimentos (INTAL / UdeA)",
-    distinction: "Sí (Mención Meritoria)",
+    distinction: "Tesis Aprobada",
     title: "Desarrollo y caracterización de un prototipo alimentario tipo papilla a partir de excedentes de zanahoria (Daucus carota) procesados mediante cavitación hidrotermodinámica",
-    directors: "Directores: Juan Camilo Henao Rojas (AGROSAVIA) | Codirector: Jaison Martínez (INTAL)",
+    directors: "Director: PhD. Luis A. Salazar Hoyos | Co-director: MSc. Juan C. Henao Rojas | Asesores: PhD. Álvaro Arango Ruíz, PhD. Juan F. Montoya Carvajal",
     downloadLink: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf"
   },
   {
-    name: "Paola Ospina",
+    name: "Jaison Martínez Saldarriaga",
     level: "Maestría",
-    program: "Maestría en Ciencias Agrarias (Universidad Nacional de Colombia Sede Bogotá)",
-    distinction: "No",
-    title: "Modelación y calibración de firmas espectrales NIRS para la estimación no destructiva de compuestos bioactivos y sólidos solubles en excedentes de zanahoria",
-    directors: "Director: Guillermo Ramírez (UNAL) | Codirector: German Franco (AGROSAVIA)",
-    downloadLink: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.3 TESIS FINAL PAOLA OSPINA.pdf"
+    program: "Maestría en Ciencia y Tecnología de Alimentos (Universidad Nacional de Colombia - Sede Medellín)",
+    distinction: "Sí (Distinción Laureada - UNAL)",
+    title: "Caracterización multidimensional y usos potenciales de los excedentes productivos de zanahoria (Daucus carota) en el oriente del departamento de Antioquia",
+    directors: "Director: Prof. Juan Camilo Henao Rojas | Codirigida por: Prof. Diana Paola Yepes Betancur y Prof. Edith Marleny Cadena Chamorro",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.1 Tesista Maestria 1 (Agrosavia)/2.1.3 Distincion Laureada UNAL.jpg"
   },
   {
-    name: "Jaison Martínez",
+    name: "Paola Andrea Ospina Sánchez",
     level: "Maestría",
-    program: "Maestría en Ciencias Farmacéuticas (Universidad de Antioquia)",
-    distinction: "Sí (Mención Meritoria)",
-    title: "Aprovechamiento de excedentes de cultivo de zanahoria para la formulación de prototipos alimentarios y nutracéuticos de alta estabilidad",
-    directors: "Directora: Edith Marleny Cadena (UdeA) | Codirector: Juan Camilo Henao Rojas (AGROSAVIA)",
-    downloadLink: "/entregables objetivos/Objetivo 1/1.12 Articulo cientifico Tecnologías apropiadas para salvaguardar las características funcionales de la zanahoria en productos alimenticios.pdf"
+    program: "Maestría en Geomática (Universidad Nacional de Colombia - Sede Bogotá)",
+    distinction: "Sí (Distinción Meritoria - Res. 323 de 2025)",
+    title: "Modelación de la calidad multidimensional en zanahoria a partir de respuestas espectrales, imágenes y percepción del consumidor",
+    directors: "Director: Joaquín Guillermo Ramírez Gil (UNAL Sede Bogotá) | Codirector: Juan Camilo Henao Rojas (AGROSAVIA)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.2 RESOLUCION 323 DE 2025 DISTINCION MERITORIA PAOLA _260327_095657.pdf"
   },
   {
-    name: "Sergio Londoño",
+    name: "Sergio González López",
     level: "Maestría",
-    program: "Maestría en Ciencias Farmacéuticas (Universidad de Antioquia)",
-    distinction: "No (Tesis Aprobada)",
-    title: "Obtención y nanoencapsulación de bioingredientes ricos en apocarotenoides para la industria dermocosmética antienvejecimiento",
-    directors: "Director: Edison Osorio (UdeA) | Codirectora: Carolina Ortiz (UdeA)",
-    downloadLink: "/entregables objetivos/Objetivo 3/3.1 Bioingrediente para la industria cosmetica a base de zanahoria 1/3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf"
+    program: "Maestría en Ciencias Farmacéuticas y Alimentarias (Línea: Productos Naturales - Universidad de Antioquia)",
+    distinction: "En Evaluación de Trabajo de Grado",
+    title: "Study of the cytotoxic effect mediated by a pro-oxidant mechanism of carotenoids on gastric cancer cells",
+    directors: "Facultad de Ciencias Farmacéuticas y Alimentarias (UdeA)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.8 Tesista de Maestria 4 (U de A) PENDIENTE SUSTENTACION/Certificado de entrega de tesis de maestría.pdf"
   },
   {
     name: "Daniela López Galeano",
     level: "Pregrado",
-    program: "Ingeniería Agroindustrial (Universidad Católica de Oriente - UCO)",
-    distinction: "No (Tesis Aprobada)",
-    title: "Evaluación del rendimiento agroindustrial y perfil sensorial de prototipos alimentarios enriquecidos con harina de excedentes de zanahoria",
-    directors: "Directora: Liliana Ceballos (UCO) | Codirectora: Claudia Lukau (UCO)",
-    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/ACT 13 INFORME_Desarrollo conceptual (1).docx"
+    program: "Comercio Exterior (Universidad Católica de Oriente - UCO)",
+    distinction: "Grado Obtenido (Acta y Diploma)",
+    title: "Estudiante Vinculada de Pregrado - Convenio de Investigación UCO",
+    directors: "Universidad Católica de Oriente (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.11 Estudiante vinculado pregrado UCO 3/ACTA DE GRADO.pdf"
   },
   {
-    name: "Mateo Salazar",
+    name: "Yeslin Ochoa Marín",
     level: "Pregrado",
-    program: "Ingeniería Agroindustrial (Universidad Católica de Oriente - UCO)",
-    distinction: "No (Tesis Aprobada)",
-    title: "Análisis de la cadena de valor y factibilidad económica de prototipos de transformación de zanahoria en el Oriente Antioqueño",
-    directors: "Directora: Liliana Ceballos (UCO) | Codirector: Edison Osorio (UdeA)",
-    downloadLink: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.8 Una zanahoria para emprender.pdf"
+    program: "Comercio Exterior (Universidad Católica de Oriente - UCO)",
+    distinction: "Grado Obtenido (Acta y Diploma)",
+    title: "Estudiante Vinculada de Pregrado - Convenio de Investigación UCO",
+    directors: "Universidad Católica de Oriente (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.10 Estudiante vinculado pregrado UCO 2/Acta de grado y Diploma - Comex.pdf"
   },
   {
-    name: "Yeraldine Bedoya",
+    name: "María Alejandra Muñoz Moya",
     level: "Pregrado",
-    program: "Ingeniería Agroindustrial (Universidad Católica de Oriente - UCO)",
-    distinction: "No (Tesis Aprobada)",
-    title: "Evaluación de metodologías de secado y conservación funcional en excedentes agrícolas de zanahoria",
-    directors: "Directora: Claudia Lukau (UCO) | Codirector: Juan Camilo Henao Rojas (AGROSAVIA)",
-    downloadLink: "/entregables objetivos/Objetivo 1/1.6 Articulo recomendaciones y perfiles de uso de los excedentes.pdf"
+    program: "Doble Titulación: Admon. de Empresas y Comercio Exterior (Universidad Católica de Oriente - UCO)",
+    distinction: "Estudiante Vinculada",
+    title: "Estudiante Vinculada de Pregrado - Convenio de Investigación UCO",
+    directors: "Universidad Católica de Oriente (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.9 Estudiante vinculado pregrado UCO 1/2.9.1 Estudiante con doble titulacion"
   }
 ];
 
@@ -99,34 +99,34 @@ const metricsOverview = [
     accent: "border-[#DE5A30]"
   },
   {
-    title: "Personas Capacitadas",
-    value: "190",
-    subtext: "Productores y Técnicos",
-    desc: "Capacitados en parcelas, días de campo y el curso Carota 360°.",
+    title: "Personas Beneficiadas",
+    value: "+380",
+    subtext: "Productores y Beneficiados",
+    desc: "Personas de la región beneficiadas directamente en parcelas, días de campo y capacitaciones.",
     icon: <Users className="w-6 h-6 text-emerald-400" />,
     accent: "border-emerald-400"
   },
   {
     title: "Eventos de Apropiación",
-    value: "7",
+    value: "9",
     subtext: "Días de Campo, Ferias y ZanaFest",
     desc: "Eventos de transferencia tecnológica y divulgación científica.",
     icon: <Calendar className="w-6 h-6 text-[#D4CF7D]" />,
     accent: "border-[#D4CF7D]"
   },
   {
-    title: "Documentos Científicos",
-    value: "5",
-    subtext: "Artículos Indexados A1/A2/Q1",
-    desc: "Publicaciones en revistas de alto impacto (Heliyon, PeerJ).",
+    title: "Artículos Científicos",
+    value: "10",
+    subtext: "Artículos Indexados Publicados",
+    desc: "Publicaciones científicas en revistas de alto impacto (Heliyon, PeerJ, MDPI).",
     icon: <FileText className="w-6 h-6 text-sky-400" />,
     accent: "border-sky-400"
   },
   {
     title: "Libros y Manuales",
-    value: "4",
-    subtext: "Publicaciones Editoriales",
-    desc: "Libros de divulgación: '¿Esta Zanahoria Pa' Qué?', Emprender y Exportar.",
+    value: "6",
+    subtext: "3 Libros + 3 Manuales UCO",
+    desc: "Obras editoriales: 'Esta Zanahoria Pa' Qué', 'Pa' Quién', Emprender, Exportar y Catálogo.",
     icon: <BookOpen className="w-6 h-6 text-purple-400" />,
     accent: "border-purple-400"
   },

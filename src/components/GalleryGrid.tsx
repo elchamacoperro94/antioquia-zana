@@ -4,19 +4,16 @@ import { Image as ImageIcon, MapPin, Calendar, Plus } from 'lucide-react';
 import { galleryPhotos } from '../data/galleryPhotos';
 import GalleryLightbox from './GalleryLightbox';
 
-const categories = [
-  'Todas',
-  'ACT-01: Investigación Agronómica',
-  'ACT-05: Prototipado Alimentario',
-  'ACT-06: Pruebas Sensoriales',
-  'ACT-10: Escalamiento Cosmético',
-  'ACT-13: Apropiación Social'
-];
-
 export default function GalleryGrid() {
   const [activeCategory, setActiveCategory] = useState<string>('Todas');
-  const [visibleCount, setVisibleCount] = useState<number>(12);
+  const [visibleCount, setVisibleCount] = useState<number>(16);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  // Extract all unique categories dynamically from galleryPhotos
+  const categories = useMemo(() => {
+    const set = new Set(galleryPhotos.map((p) => p.category));
+    return ['Todas', ...Array.from(set)];
+  }, []);
 
   // Filter photos based on category
   const filteredPhotos = useMemo(() => {
@@ -31,15 +28,11 @@ export default function GalleryGrid() {
 
   const handleCategoryChange = (cat: string) => {
     setActiveCategory(cat);
-    setVisibleCount(12); // Reset page count on filter change
+    setVisibleCount(16); // Reset page count on filter change
   };
 
   const loadMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 12, filteredPhotos.length));
-  };
-
-  const getUIName = (cat: string) => {
-    return cat;
+    setVisibleCount((prev) => Math.min(prev + 16, filteredPhotos.length));
   };
 
   return (
@@ -50,12 +43,13 @@ export default function GalleryGrid() {
           <button
             key={cat}
             onClick={() => handleCategoryChange(cat)}
-            className={`px-4 py-2 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 ${activeCategory === cat
+            className={`px-3 py-1.5 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 ${
+              activeCategory === cat
                 ? 'bg-carrot-orange text-white shadow-md shadow-carrot-orange/10'
                 : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/5'
-              }`}
+            }`}
           >
-            {getUIName(cat)}
+            {cat}
           </button>
         ))}
       </div>
@@ -63,7 +57,7 @@ export default function GalleryGrid() {
       {/* Stats Bar */}
       <div className="flex flex-col sm:flex-row justify-between items-center bg-obsidian-850 border border-white/5 p-4 rounded-2xl gap-3 text-xs md:text-sm font-mono text-slate-400">
         <div>
-          <span className="text-white font-bold">{galleryPhotos.length}</span> Fotografías reales | Organizadas por <span className="text-white font-bold">5</span> Actividades clave de resultados
+          <span className="text-white font-bold">{galleryPhotos.length}</span> Fotografías reales | Organizadas por <span className="text-white font-bold">{categories.length - 1}</span> Actividades del proyecto
         </div>
         <div>
           Mostrando <span className="text-carrot-orange font-bold">{filteredPhotos.length}</span> resultados

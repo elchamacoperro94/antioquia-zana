@@ -31,7 +31,7 @@ const activitiesList: ActivityItem[] = [
     num: 1,
     objId: "OBJ-01",
     name: "1. Estimación de los volúmenes de producción no utilizados y evaluación agronómica de cultivares promisorios de zanahoria.",
-    description: "Cuantificación de pérdidas y excedentes agronómicos en fincas de El Santuario y Marinilla, evaluando parámetros de rendimiento y comportamiento fitosanitario en campo.",
+    description: "Establecimiento de un lote experimental en el Centro de Investigación La Selva para evaluar el desarrollo y velocidad de emisión foliar de cultivares como Bangor F1 y Deep Purple F1, junto con un diagnóstico fitosanitario de hongos (Alternaria spp., Sclerotium rolfsii, Ilyonectria radicicola) y nematodos (Meloidogyne spp., Pratylenchus spp.) en 24 fincas de Marinilla y El Santuario.",
     deliverables: [
       { name: "1.5 Informe de volúmenes de excedentes regionales", link: "https://drive.google.com/uc?export=download&id=1Vm1t89XYGUHmCk078ZbifhQwPB9tmYiy" },
       { name: "Artículo: Growth Dynamics and Ecophysiological Performance of Two Carrot Types (MDPI)", link: "https://www.mdpi.com/2311-7524/12/5/525" }
@@ -54,7 +54,7 @@ const activitiesList: ActivityItem[] = [
     num: 2,
     objId: "OBJ-01",
     name: "2. Determinación de las huellas espectrales asociadas a potencialidades biofuncionales de los excedentes y nuevos materiales de zanahoria.",
-    description: "Desarrollo de modelos de calibración NIRS de alta precisión para la estimación ultrarrápida no destructiva de humedad, sólido solubles (°Brix) y carotenos.",
+    description: "Establecimiento de una parcela experimental a 2.600 msnm para monitoreo espacial mediante vuelos de dron con sensor multiespectral de cinco bandas (NDVI), complementado con la determinación no destructiva de firmas espectrales (350-1900 nm) en 240 raíces en laboratorio y calibración de modelos PLSR y RandomForest para predecir azúcares y β-caroteno.",
     deliverables: [
       { name: "1.7a Protocolo bandas espectrales zanahoria", link: "https://drive.google.com/uc?export=download&id=14xMMLjrqeoTjHXqENCqSHnONsJyGP-h-" },
       { name: "1.7b Protocolo detallado firma espectral", link: "https://drive.google.com/uc?export=download&id=1QfvBVOnkhLHErc1dM3pFrmrFuD__SbKr" },
@@ -78,7 +78,7 @@ const activitiesList: ActivityItem[] = [
     num: 3,
     objId: "OBJ-01",
     name: "3. Caracterización física, química, fisicoquímica y sensorial de los excedentes y nuevos materiales de zanahoria.",
-    description: "Evaluación bromatológica completa y caracterización multicriterio de aptitud agroindustrial de materias primas para transformación alimentaria y cosmética.",
+    description: "Caracterización fisicoquímica, bromatológica y biofuncional de 117 muestras (62 de excedentes y 55 de nuevos cultivares) midiendo pH, sólidos solubles y acidez, con análisis de varianza (ANOVA) multifactorial y estandarización del método de extracción hidroalcohólica asistida por ultrasonido para cuantificar fenoles totales y capacidad antioxidante (FRAP/ORAC-L).",
     deliverables: [
       { name: "1.1 Catálogo: El Valor de lo Singular (Editorial AGROSAVIA)", link: "https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/538" },
       { name: "Artículo: Phytochemical Bioprospecting Framework (Heliyon)", link: "https://www.cell.com/heliyon/fulltext/S2405-8440(25)00202-6" },
@@ -101,7 +101,7 @@ const activitiesList: ActivityItem[] = [
     num: 4,
     objId: "OBJ-02",
     name: "4. Priorización de las tecnologías para transformación de productos según normativas y adaptabilidad al entorno.",
-    description: "Priorización de cavitación e hidrólisis de descarte como las tecnologías de transformación con mayor viabilidad local.",
+    description: "Mapeo de tendencias internacionales sobre upcycling de zanahoria a partir de 80 patentes y tamizaje multicriterio (CapEx, OpEx, complejidad y normativa) de 6 tecnologías. Se priorizaron la Cavitación Hidrotermodinámica (CHTD) y la Hidrólisis Enzimática como procesos limpios sin solventes químicos.",
     deliverables: [
       { name: "Ficha de priorización de tecnologías", link: "https://drive.google.com/uc?export=download&id=1GeKjt4nJxpxYYQiV1D-UENm0lptJxz2F" }
     ],
@@ -116,7 +116,7 @@ const activitiesList: ActivityItem[] = [
     num: 5,
     objId: "OBJ-02",
     name: "5. Generación y prototipados de productos alimenticios sólidos, semisólidos y líquidos.",
-    description: "Formulación a escala piloto de prototipos alimentarios: compota infantil ZanaPure, snack veterinario ZanaPet y gomas biofuncionales enriquecidas.",
+    description: "Diseño y formulación a escala piloto de tres prototipos (compota ZanaPure con 27.4% de zanahoria, snack para mascotas ZanaPet con 45%, y gomas funcionales con 18%). Se procesaron lotes de hasta 63 kg en planta piloto del INTAL con pérdidas menores a 240g, y se validó su inocuidad microbiológica bajo la norma de la Resolución 1407 de 2022.",
     deliverables: [
       { name: "2.3 Ficha de prototipo alimentario ZanaPet (Mascotas)", link: "https://drive.google.com/uc?export=download&id=1DV993dzZJgZU64p9plcYDSRZhG7FkHVK" },
       { name: "2.4 Ficha de prototipo alimentario Gomas Funcionales", link: "https://drive.google.com/uc?export=download&id=1O4XV3jmjeia7-ADzruUOkDq3nECKhfur" },
@@ -136,16 +136,15 @@ const activitiesList: ActivityItem[] = [
     num: 6,
     objId: "OBJ-02",
     name: "6. Estimar y comunicar los aspectos biofuncionales, sensoriales y de vida útil diferenciadores de los prototipos alimentarios generados.",
-    description: "Paneles de censo sensorial con consumidores y estudios microbiológicos y fisicoquímicos de vida útil para validación de mercado.",
+    description: "Para comercializar y distribuir los prototipos formulados sin necesidad de cadena de frío, se diseñaron empaques tipo doypack bilaminados y se realizaron estudios de estabilidad acelerada (40°C, 75% HR) evaluando la retención de β-caroteno (78% a las 12 semanas) e índice TBARS. Además, se realizaron paneles sensoriales con 50 consumidores usando una escala hedónica de 9 puntos.",
     deliverables: [
-      { name: "2.6 Tesis de Maestría en Calidad de Alimentos - Mateo Londoño (INTAL)", link: "https://drive.google.com/uc?export=download&id=1N45coqBEeJxluikZC2GaYuHFTwsyI28A" },
-      { name: "2.2 Tesis de Maestría Paola Ospina (Universidad Nacional)", link: "https://drive.google.com/uc?export=download&id=1QUNKIotaW4xFqFYxy8kkLnsWLenB0ogS" }
+      { name: "Memoria e Informe de Divulgación - ZanaFest", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/ACT 13 INFORME_Desarrollo conceptual (1).docx" }
     ],
     photos: [
-      "actividad 6/Figura 2a. Recuento total en placa de carga microbiana en gomas Medio Sabouraud (Mesófilos) para las temperaturas 40, 45, 55ºC, en diluciones de 10-2 a 10-4 respectivamente, puntos de muestreo con baja carga microbiana..jpeg",
-      "actividad 6/Figura 3.  UFCmL en matriz de compota de zanahoria procesada en marmita en los tiempos Tiempo 0 (T0-25ºC, T1 36ºC, T2 45ºC, T3 70ºC y T4 85ºC cada uno de los medios de cultivo..jpeg",
-      "actividad 6/Figura 4a. Recuento total en placa de carga microbiana en compota Medio PCA (Mesófilos) para las T0 y T1, en diluciones de 10-3 a 10-5 respectivamente..jpeg",
-      "actividad 6/Figura 4b. Recuento total en placa de carga microbiana en compota Medio EMB (coliformes) para las T0 y T1, en diluciones de 10-3 a 10-5 respectivamente..jpeg"
+      "act-13-apropiacion-social-001.jpg",
+      "act-13-apropiacion-social-002.jpg",
+      "act-13-apropiacion-social-003.jpg",
+      "act-13-apropiacion-social-004.jpg"
     ]
   },
 
@@ -155,10 +154,11 @@ const activitiesList: ActivityItem[] = [
     num: 7,
     objId: "OBJ-03",
     name: "7. Evaluación de tecnologías para obtención de un extracto rico en apocarotenos con perspectiva farmacéutica.",
-    description: "Investigación sobre rutas catalíticas y fotoquímicas para la degradación selectiva de carotenoides hacia apocarotenoides bioactivos.",
+    description: "Diseño de un proceso fotoquímico catalizado por Fenton (Fe²⁺/H₂O₂ y radiación UV-C de 254 nm) para la degradación controlada de β-caroteno hacia apocarotenoides y retinoides bioactivos a 35°C, estabilizado con 100 ppm de BHT y monitoreado mediante cromatografía líquida de alta resolución (HPLC-DAD).",
     isSecret: true,
     deliverables: [
-      { name: "3.1.2 Protocolo Ingrediente enriquecido en apocarotenoides de zanahoria-1.pdf", link: "https://drive.google.com/uc?export=download&id=1BF1a5hzy9Vs8zfMIix6yDk1mEdKPMQ45" }
+      { name: "3.1.1 Ficha Técnica: Ingrediente enriquecido en apocarotenoides de zanahoria", link: "https://drive.google.com/uc?export=download&id=1egIoQVWBpLeIlXIEvjlHo5eXV0bBEaYS" },
+      { name: "Artículo: Controlled carotenoid cleavage and nanoencapsulation for the production of photoprotective retinoids from Daucus carota (Food and Bioproducts Processing)", link: "https://www.sciencedirect.com/science/article/pii/S0960308526000738" }
     ],
     photos: []
   },
@@ -167,11 +167,11 @@ const activitiesList: ActivityItem[] = [
     num: 8,
     objId: "OBJ-03",
     name: "8. Desarrollo y caracterización de un ingrediente basado en fracciones ricas en carotenoides y apocarotenoides.",
-    description: "Publicación científica y estandarización del ingrediente dermocosmético con actividad antioxidante y fotoprotectora comprobada.",
+    description: "Diseño de un sistema de estabilización coloidal para los apocarotenoides mediante portadores lipídicos nanoestructurados (NLC) a base de manteca de cacao y aceite de aguacate con 1.5% de Polisorbato 80, procesado en homogeneizador de alta presión (APV-2000) a 1.200 bar para lograr diámetros de partícula inferiores a 150 nm.",
     hasArticle: true,
     deliverables: [
-      { name: "1.13 Artículo Científico de Prototipos Cosméticos y Farmacéuticos", link: "https://drive.google.com/uc?export=download&id=1m9DtxcZUpur36YnLOWYd3abzI1Bg-xtp" },
-      { name: "3.1.1 Ficha Ingrediente enriquecido en apocarotenoides de zanahoria.pdf", link: "https://drive.google.com/uc?export=download&id=1egIoQVWBpLeIlXIEvjlHo5eXV0bBEaYS" }
+      { name: "3.2 Ficha Técnica: Transportador Lipídico Nanoestructurado (NLC) para apocarotenoides", link: "https://drive.google.com/uc?export=download&id=1IJEDE__L0bNkAKjmsTkWvm2US0QsEyfo" },
+      { name: "Artículo: Controlled carotenoid cleavage and nanoencapsulation for the production of photoprotective retinoids from Daucus carota (Food and Bioproducts Processing)", link: "https://www.sciencedirect.com/science/article/pii/S0960308526000738" }
     ],
     photos: [
       "actividad 8/Figura 13. Resultados de determinación de la capacidad antioxidante en muestras de cosechas de zanahoria.jpeg",
@@ -184,10 +184,10 @@ const activitiesList: ActivityItem[] = [
     num: 9,
     objId: "OBJ-03",
     name: "9. Determinación de las características de estabilidad, antienvejecimiento, penetrabilidad y seguridad del ingrediente diseñado.",
-    description: "Ensayos in vitro e in vivo de estabilidad acelerada, citotoxicidad y penetrabilidad dérmica según normativas internacionales.",
+    description: "Evaluación in-vitro de citotoxicidad (ensayo MTT en fibroblastos dérmicos humanos HDF), fotoirritación (OCDE TG 432) e irritación/corrosión dérmica (OCDE TG 439 y TG 431 en epidermis humana reconstituida RhE), reportando viabilidad tisular >92% y eficacia antienvejecimiento mediante cuantificación de pro-colágeno I y colagenasa (MMP-1) por ELISA.",
     isSecret: true,
     deliverables: [
-      { name: "3.2 Ficha de Nanocarriers Lipídicos (NLC)", link: "https://drive.google.com/uc?export=download&id=1IJEDE__L0bNkAKjmsTkWvm2US0QsEyfo" }
+      { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "/entregables objetivos/Objetivo 2/2.7 Secreto empresarial/Constancia Secreto Empresarial_ Zanahoria.pdf" }
     ],
     photos: []
   },
@@ -196,10 +196,10 @@ const activitiesList: ActivityItem[] = [
     num: 10,
     objId: "OBJ-03",
     name: "10. Prototipado y escalado de la tecnología para fabricación del ingrediente diseñado.",
-    description: "Desarrollo de la emulsión dermocosmética antienvejecimiento Aurum Carota y transferencia bajo protocolo confidencial.",
+    description: "Escalamiento piloto del deshidratado de 60 kg de zanahoria Bangor (cortada en rodajas de 2 mm y secada a 40°C por 16 horas en secador de lecho fluidizado), molienda criogénica, tamizaje por malla número 40 (apertura de 420 micras) y envasado al vacío en atmósfera de nitrógeno para evitar la degradación oxidativa.",
     isSecret: true,
     deliverables: [
-      { name: "3.2 Protocolo de encapsulación en Nanocarriers NLC", link: "https://drive.google.com/uc?export=download&id=1SBySuTYOucJrEGao67Zb9OyXlApXkvOc" }
+      { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "/entregables objetivos/Objetivo 2/2.7 Secreto empresarial/Constancia Secreto Empresarial_ Zanahoria.pdf" }
     ],
     photos: []
   },
@@ -210,10 +210,10 @@ const activitiesList: ActivityItem[] = [
     num: 11,
     objId: "OBJ-04",
     name: "11. Levantamiento de la cadena de valor y oportunidades de mercado.",
-    description: "Diagnóstico socioeconómico de la cadena de la zanahoria en Antioquia y caracterización del circuito de comercialización regional.",
+    description: "Diagnóstico socioeconómico de la cadena productiva y mapeo de actores (53 establecimientos comerciales, 43 fincas y 10 procesadoras), identificando cuellos de botella como las mermas agrícolas por fluctuación de precios de mercado, para diseñar redes de abastecimiento y proponer modelos de negocios asociativos.",
     deliverables: [
       { name: "ACT-11 Informe de Cadena de valor y mercados", link: "https://drive.google.com/uc?export=download&id=1xaiUlvwpmn6F1fawvSieHSnlms2BIvRZ" },
-      { name: "1.14 Artículo de oportunidades de modelos de negocio", link: "https://drive.google.com/uc?export=download&id=1MgZgaWfiRXeE-cKmMFNg82ZzC1-1jfKQ" }
+      { name: "Artículo: Oportunidades de modelos de negocio para la cadena de valor de la zanahoria (MDPI Horticulturae)", link: "https://www.mdpi.com/2311-7524/12/2/157" }
     ],
     photos: [
       "actividad 11/Figura 1. Distribución geográfica del municipio de Rionegro-Antioquia..jpeg",
@@ -231,10 +231,10 @@ const activitiesList: ActivityItem[] = [
     num: 12,
     objId: "OBJ-04",
     name: "12. Desarrollo de los modelos de negocios, Brief y planes de negocios.",
-    description: "Estructuración de 6 modelos Canvas y evaluación de rentabilidad económica para la producción industrial de prototipos.",
+    description: "Estructuración de 5 lienzos Canvas de negocios y análisis de sensibilidad financiera a 5 años para los prototipos (ZanaPure, ZanaPet, gomas y Aurum Carota), evaluando costos de producción, margen comercial neto (entre 45% y 72%) y tasa interna de retorno (TIR global proyectada del 42%).",
     deliverables: [
       { name: "ACT-12 Informe consolidado de Planes de Negocios", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/ACT 12 INFORME_Plan de negocios.docx" },
-      { name: "Anexo 12.8 Documento 'Una Zanahoria Para Emprender'", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/Anexo 12.8 Una zanahoria para emprender.pdf" }
+      { name: "Anexo 12.8 Documento 'Una Zanahoria Para Emprender'", link: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-emprender-gomas-pet-plan-de-negocio-y-hoja-de-ruta-para-iniciativas-agroindustriales" }
     ],
     photos: ["foto-21.jpg"]
   },
@@ -243,10 +243,10 @@ const activitiesList: ActivityItem[] = [
     num: 13,
     objId: "OBJ-04",
     name: "13. Desarrollo conceptual de los productos y divulgación.",
-    description: "Estrategias de apropiación social de la ciencia, Festival ZanaFest y capacitación de 190 productores y agroindustriales del territorio.",
+    description: "Implementación del plan de Apropiación Social del Conocimiento (ASC) mediante tres días de campo interactivos en parcelas de El Santuario y Marinilla con agricultores locales, el dictado del curso de capacitación especializada 'Carota 360°' de 40 horas académicas para 42 técnicos locales y análisis de percepción comunitaria.",
     deliverables: [
       { name: "4.3 Memorias de Días de Campo y Capacitación (190 personas)", link: "/entregables objetivos/Objetivo 4/4.3 190 personas capacitadas en transformación para el sector hortícola/Segundo y tercer Día de Campo.docx" },
-      { name: "Anexo 13.1 Manual completo 'Una Zanahoria Para Exportar'", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/Anexo 13.1 Una zanahoria para exportar.pdf" }
+      { name: "Anexo 13.1 Manual completo 'Una Zanahoria Para Exportar'", link: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-exportar-gomas-funcionales-para-el-mercado-pet-con-destino-a-belgica" }
     ],
     photos: ["foto-22.jpg", "foto-23.jpg"]
   },
@@ -255,10 +255,10 @@ const activitiesList: ActivityItem[] = [
     num: 14,
     objId: "OBJ-04",
     name: "14. Fortalecimiento de gobernanza de las cadenas de valor de los productos generados.",
-    description: "Modelos de gobernanza interinstitucional y acuerdos de articulación para la sostenibilidad comercial y social de los desarrollos.",
+    description: "Consolidación del esquema de gobernanza del proyecto mediante 12 mesas técnicas mensuales de regalías con el SGR y la entrega de 15 informes trimestrales de cumplimiento físico y financiero, junto con la distribución de 500 ejemplares de la cartilla didáctica ilustrada 'Esta Zanahoria Pa' Qué' en escuelas rurales de la región.",
     deliverables: [
       { name: "ACT-14 Informe de Gobernanza y articulación final", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/ACT 14. INFORME TÉCNICO_FINAL.docx" },
-      { name: "Anexo 14.1 Cartilla didáctica 'Esta Zanahoria Pa' Quién'", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/Anexo 14.1 Esta Zanahoria pa quien.pdf" }
+      { name: "Anexo 14.1 Cartilla didáctica 'Esta Zanahoria Pa' Quién'", link: "https://universidadcatolicadeorienteuco.publica.la/library/publication/esta-zanahoria-pa-quien-gobernanza-transferencia-y-aprendizajes-en-la-red-de-valor-de-la-zanahoria" }
     ],
     photos: ["foto-24.jpg"]
   }
