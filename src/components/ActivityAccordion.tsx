@@ -203,10 +203,19 @@ const activitiesList: ActivityItem[] = [
     name: "11. Levantamiento de la cadena de valor y oportunidades de mercado.",
     description: "Diagnóstico socioeconómico de la cadena de la zanahoria en Antioquia y caracterización del circuito de comercialización regional.",
     deliverables: [
-      { name: "ACT-11 Informe de Cadena de valor y mercados", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 11/ACT 11 INFORME_Cadena de valor y mercados.docx" },
-      { name: "1.14 Artículo de oportunidades de modelos de negocio", link: "/entregables objetivos/Objetivo 1/1.14 Articulo sobre las mercado, cadena de valor y oportunidades de modelos de negocio de la zanahoria.pdf" }
+      { name: "ACT-11 Informe de Cadena de valor y mercados", link: "https://drive.google.com/uc?export=download&id=1xaiUlvwpmn6F1fawvSieHSnlms2BIvRZ" },
+      { name: "1.14 Artículo de oportunidades de modelos de negocio", link: "https://drive.google.com/uc?export=download&id=1MgZgaWfiRXeE-cKmMFNg82ZzC1-1jfKQ" }
     ],
-    photos: ["foto-19.jpg", "foto-20.jpg"]
+    photos: [
+      "actividad 11/Figura 1. Distribución geográfica del municipio de Rionegro-Antioquia..jpeg",
+      "actividad 11/Figura 2. Información poblacional y características del municipio Rionegro-Antioquia..jpeg",
+      "actividad 11/Figura 27. Publicidad de algunos stands visitados en Expobelleza 2023.jpeg",
+      "actividad 11/Figura 3. Pabellón principal de Alimentec.jpeg",
+      "actividad 11/Figura 33. Publicidad de algunos stands visitados en Expobelleza 2025.jpeg",
+      "actividad 11/Figura 34. Ingredientes utilizados en la preparación de productos cosméticos de Expobelleza 2025.jpeg",
+      "actividad 11/Figura 39. Productos destacados en Alimentec 2024.jpeg",
+      "actividad 11/Figura 4. Pasos para construir una cadena de valor.jpeg"
+    ]
   },
   {
     id: "ACT-12",
