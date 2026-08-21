@@ -25,7 +25,7 @@ interface ThesisStudent {
 
 const thesisList: ThesisStudent[] = [
   {
-    name: "Ing. Mateo Londoño Valencia",
+    name: "Mateo Londoño Valencia",
     level: "Maestría",
     program: "Maestría en Ciencia y Tecnología de Alimentos (INTAL / UdeA)",
     distinction: "Tesis Aprobada",
