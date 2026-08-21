@@ -17,7 +17,7 @@ const thesisList: ThesisStudent[] = [
     level: "Maestría",
     program: "Maestría en Ciencia y Tecnología de Alimentos (INTAL / UdeA)",
     distinction: "Tesis Aprobada",
-    title: "Desarrollo y caracterización de un prototipo alimentario tipo papilla a partir de excedentes de zanahoria (Daucus carota) procesados mediante cavitación hidrotermodinámica",
+    title: "Generación de valor en la cadena productiva de zanahoria del oriente antioqueño mediante la conceptualización, formulación y prototipado de productos alimenticios",
     directors: "Director: PhD. Luis A. Salazar Hoyos | Co-director: MSc. Juan C. Henao Rojas | Asesores: PhD. Álvaro Arango Ruíz, PhD. Juan F. Montoya Carvajal",
     downloadLink: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf"
   },
@@ -121,14 +121,16 @@ export default function StudentsPage() {
               </span>
             </div>
 
-            <a
-              href={st.downloadLink}
-              download
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#5E824A] hover:text-white transition-all shadow-md shrink-0 cursor-pointer"
-            >
-              <Download className="w-4 h-4" />
-              <span>Descargar Tesis PDF</span>
-            </a>
+            {st.level !== 'Pregrado' && (
+              <a
+                href={st.downloadLink}
+                download
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#5E824A] hover:text-white transition-all shadow-md shrink-0 cursor-pointer"
+              >
+                <Download className="w-4 h-4" />
+                <span>Descargar Tesis PDF</span>
+              </a>
+            )}
           </div>
         ))}
       </div>
