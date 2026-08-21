@@ -19,9 +19,14 @@ export default function Footer() {
 
   const entityLinks = [
     { label: 'AGROSAVIA', href: 'https://www.agrosavia.co' },
+    { label: 'Fundación INTAL', href: 'http://www.fundacionintal.org' },
     { label: 'Universidad de Antioquia', href: 'https://www.udea.edu.co' },
     { label: 'Universidad Católica de Oriente', href: 'https://www.uco.edu.co' },
-    { label: 'Universidad Nacional de Colombia', href: 'https://unal.edu.co' }
+    { label: 'Universidad Nacional de Colombia', href: 'https://unal.edu.co' },
+    { label: 'Kavitec S.A.S.', href: 'https://kavitec.co' },
+    { label: 'Gobernación de Antioquia', href: 'https://www.antioquia.gov.co' },
+    { label: 'Alcaldía de Marinilla', href: 'https://www.marinilla-antioquia.gov.co' },
+    { label: 'Alcaldía de El Santuario', href: 'https://www.elsantuario-antioquia.gov.co' }
   ];
 
   return (
