@@ -9,12 +9,68 @@ import {
   AlertTriangle, 
   Target, 
   CheckCircle2, 
-  Sparkles
+  Sparkles,
+  GraduationCap,
+  FileText,
+  BookOpen,
+  Beaker,
+  Calendar
 } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
 import ArtFrame from '../components/ArtFrame';
 import TreeDiagram from '../components/TreeDiagram';
 import { regionStats } from '../data/projectData';
+
+const mainMetrics = [
+  {
+    title: "Formación de Estudiantes",
+    value: "7",
+    subtext: "4 Maestrías + 3 Pregrados",
+    desc: "Tesistas vinculados y graduados en la alianza interinstitucional.",
+    icon: <GraduationCap className="w-6 h-6 text-[#DE5A30]" />,
+    accent: "border-[#DE5A30]"
+  },
+  {
+    title: "Personas Beneficiadas",
+    value: "+380",
+    subtext: "Productores y Beneficiados",
+    desc: "Personas de la región beneficiadas directamente en parcelas, días de campo y capacitaciones.",
+    icon: <Users className="w-6 h-6 text-emerald-400" />,
+    accent: "border-emerald-400"
+  },
+  {
+    title: "Eventos de Apropiación",
+    value: "9",
+    subtext: "Días de Campo, Ferias y ZanaFest",
+    desc: "Eventos de transferencia tecnológica y divulgación científica.",
+    icon: <Calendar className="w-6 h-6 text-[#D4CF7D]" />,
+    accent: "border-[#D4CF7D]"
+  },
+  {
+    title: "Artículos Científicos",
+    value: "10",
+    subtext: "Artículos Indexados Publicados",
+    desc: "Publicaciones científicas en revistas de alto impacto (Heliyon, PeerJ, MDPI).",
+    icon: <FileText className="w-6 h-6 text-sky-400" />,
+    accent: "border-sky-400"
+  },
+  {
+    title: "Libros y Manuales",
+    value: "6",
+    subtext: "3 Libros + 3 Manuales UCO",
+    desc: "Obras editoriales: 'Esta Zanahoria Pa' Qué', 'Pa' Quién', Emprender, Exportar y Catálogo.",
+    icon: <BookOpen className="w-6 h-6 text-purple-400" />,
+    accent: "border-purple-400"
+  },
+  {
+    title: "Prototipos Diseñados",
+    value: "5",
+    subtext: "Prototipos TRL 6 - TRL 7",
+    desc: "3 Alimentarios + 2 Bioingredientes Cosméticos/Farmacéuticos.",
+    icon: <Beaker className="w-6 h-6 text-amber-400" />,
+    accent: "border-amber-400"
+  }
+];
 
 const researchTeam = [
   { name: "Juan Camilo Henao Rojas", role: "Investigador Principal (Líder)", entity: "AGROSAVIA" },
@@ -291,6 +347,44 @@ export default function About() {
               </ArtFrame>
             );
           })}
+        </div>
+
+        {/* ── Rejilla de Indicadores MGA BPIN 2020000100192 (Las 6 Métricas Principales) ── */}
+        <div className="space-y-4 pt-4 border-t border-[#5E824A]/20">
+          <div className="flex items-center gap-2 px-3 py-1 text-xs font-geist text-[#D4CF7D]">
+            <Sparkles className="w-4 h-4 text-[#DE5A30]" />
+            <span className="uppercase tracking-widest font-semibold">Indicadores MGA BPIN 2020000100192</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {mainMetrics.map((item, idx) => (
+              <div
+                key={idx}
+                className={`p-6 rounded-3xl bg-[#0F1A15]/90 border ${item.accent}/40 backdrop-blur-md flex flex-col justify-between space-y-4 shadow-xl hover:border-white/40 transition-all group`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
+                    {item.icon}
+                  </div>
+                  <span className="font-sora text-4xl sm:text-5xl font-black text-[#F0EDE1] tracking-tight group-hover:scale-105 transition-transform">
+                    {item.value}
+                  </span>
+                </div>
+
+                <div className="space-y-1">
+                  <h3 className="font-sora text-lg font-bold text-[#F0EDE1]">
+                    {item.title}
+                  </h3>
+                  <span className="text-xs font-mono text-[#D4CF7D] block font-semibold">
+                    {item.subtext}
+                  </span>
+                  <p className="text-xs text-[#F0EDE1]/70 font-light leading-relaxed pt-1">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Rejilla Multimedia: Video y Libro de Divulgación + Indicadores Regionales */}
