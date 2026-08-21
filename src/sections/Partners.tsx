@@ -58,11 +58,6 @@ export default function Partners() {
                     {partner.role}
                   </span>
                 </div>
-
-                {/* Descripción General Breve */}
-                <p className="text-xs text-[#F0EDE1]/70 font-light leading-relaxed">
-                  {partner.description}
-                </p>
               </div>
             </div>
           );
