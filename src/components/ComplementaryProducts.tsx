@@ -37,6 +37,7 @@ const worksList: WorkItem[] = [
     description: "Catálogo de cultivares promisorios y excedentes de zanahoria con calidad diferencial y aptitud agroindustrial para la bioeconomía del Oriente.",
     badge: "Catálogo Técnico",
     icon: <FileSpreadsheet className="w-5 h-5 text-emerald-400" />,
+    coverImage: "/catalogo-el-valor-de-lo-singular.png",
     gradient: "from-[#5E824A] to-[#1F2F18]",
     editorialLink: "https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/538",
     accentColor: "border-emerald-400"
