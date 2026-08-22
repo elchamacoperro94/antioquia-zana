@@ -76,6 +76,7 @@ const worksList: WorkItem[] = [
     description: "Manual enfocado en estándares internacionales de calidad, requisitos fitosanitarios y canal de exportación de gomas funcionales para el mercado de mascotas.",
     badge: "Manual Académico UCO",
     icon: <Newspaper className="w-5 h-5 text-sky-400" />,
+    coverImage: "/manual-una-zanahoria-para-exportar.png",
     gradient: "from-sky-600 to-sky-950",
     editorialLink: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-exportar-gomas-funcionales-para-el-mercado-pet-con-destino-a-belgica",
     accentColor: "border-sky-400"
