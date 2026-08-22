@@ -63,6 +63,7 @@ const worksList: WorkItem[] = [
     description: "Guía práctica de emprendimiento, plan de negocio y hoja de ruta metodológica para iniciativas agroindustriales y de gomas pet funcionales.",
     badge: "Manual Académico UCO",
     icon: <Bookmark className="w-5 h-5 text-purple-400" />,
+    coverImage: "/manual-una-zanahoria-para-emprender.png",
     gradient: "from-[#4A2545] to-[#251022]",
     editorialLink: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-emprender-gomas-pet-plan-de-negocio-y-hoja-de-ruta-para-iniciativas-agroindustriales",
     accentColor: "border-[#4A2545]"
