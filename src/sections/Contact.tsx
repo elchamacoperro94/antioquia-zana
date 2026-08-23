@@ -26,17 +26,17 @@ export default function Contact() {
   const featuredDocs = [
     {
       type: 'Historieta & Cartilla Ilustrada',
-      title: "Cartilla Didáctica: 'Esta Zanahoria Pa' Quién'",
-      desc: 'Herramienta pedagógica e ilustrada sobre gobernanza, transferencia tecnológica y aprendizajes en la red de valor de la zanahoria.',
-      link: 'https://universidadcatolicadeorienteuco.publica.la/library/publication/esta-zanahoria-pa-quien-gobernanza-transferencia-y-aprendizajes-en-la-red-de-valor-de-la-zanahoria',
-      badge: 'Publicación UCO'
+      title: "Historieta Ilustrada: 'El Secreto de la Zanahoria'",
+      desc: 'Cartilla didáctica e ilustrada sobre la ruta de innovación, gobernanza y transferencia tecnológica en la cadena de valor de la zanahoria.',
+      link: 'https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/541',
+      badge: 'Editorial AGROSAVIA'
     },
     {
-      type: 'Manual Agroindustrial & Recetario',
-      title: "Manual de Emprendimiento: 'Una Zanahoria Para Emprender'",
-      desc: 'Hoja de ruta comercial, planes de negocio y desarrollo conceptual para productos y derivados de la agroindustria hortícola.',
-      link: 'https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-emprender-gomas-pet-plan-de-negocio-y-hoja-de-ruta-para-iniciativas-agroindustriales',
-      badge: 'Publicación UCO'
+      type: 'Libro & Recetario Agroindustrial',
+      title: "Libro & Recetario: '¿Esta Zanahoria Pa' Qué?'",
+      desc: 'Publicación que recopila la ruta de innovación de la zanahoria e incluye recetas gastronómicas y aplicaciones culinarias desarrolladas con excedentes.',
+      link: 'https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/537',
+      badge: 'Editorial AGROSAVIA'
     }
   ];
 
@@ -46,10 +46,10 @@ export default function Contact() {
       {/* ── Publicaciones Destacadas: Historieta y Recetario (Slide 25) ── */}
       <div className="space-y-8">
         <SectionHeader
-          badgeText="Divulgación & Documentos Destacados"
+          badgeText="Divulgación & Material Destacado"
           badgeColor="orange"
-          title="Historieta Didáctica y Manual de Emprendimiento"
-          subtitle="Publicaciones clave de divulgación para productores, emprendedores y la comunidad del Oriente Antioqueño."
+          title="Historieta Ilustrada y Recetario Agroindustrial"
+          subtitle="Publicaciones principales de divulgación científica y gastronómica del proyecto Antioquia Zana."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

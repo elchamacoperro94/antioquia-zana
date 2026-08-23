@@ -52,7 +52,7 @@ const worksList: WorkItem[] = [
     icon: <BookOpen className="w-5 h-5 text-[#D4CF7D]" />,
     coverImage: "/libro-portada.jpg",
     gradient: "from-[#D4CF7D] to-[#42401C]",
-    editorialLink: "https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19",
+    editorialLink: "https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/537",
     accentColor: "border-[#D4CF7D]"
   },
   {
