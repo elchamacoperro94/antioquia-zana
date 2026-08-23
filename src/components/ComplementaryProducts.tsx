@@ -89,6 +89,7 @@ const worksList: WorkItem[] = [
     description: "Investigación sobre la gobernanza de la red de valor, esquemas asociativos y aprendizajes territoriales de transferencia tecnológica.",
     badge: "Manual Académico UCO",
     icon: <BookOpen className="w-5 h-5 text-teal-400" />,
+    coverImage: "/manual-esta-zanahoria-pa-quien.png",
     gradient: "from-teal-600 to-teal-950",
     editorialLink: "https://universidadcatolicadeorienteuco.publica.la/library/publication/esta-zanahoria-pa-quien-gobernanza-transferencia-y-aprendizajes-en-la-red-de-valor-de-la-zanahoria",
     accentColor: "border-teal-400"
