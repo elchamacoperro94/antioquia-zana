@@ -50,7 +50,7 @@ const worksList: WorkItem[] = [
     description: "Publicación que recopila la ruta de innovación de la zanahoria e incluye recetas gastronómicas y aplicaciones culinarias desarrolladas con excedentes.",
     badge: "Libro & Recetario",
     icon: <BookOpen className="w-5 h-5 text-[#D4CF7D]" />,
-    coverImage: "/libro-portada.jpg",
+    coverImage: "/desde-la-raiz-recetario-portada.png",
     gradient: "from-[#D4CF7D] to-[#42401C]",
     editorialLink: "https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/537",
     accentColor: "border-[#D4CF7D]"
