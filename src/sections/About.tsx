@@ -19,7 +19,7 @@ import {
 import SectionHeader from '../components/SectionHeader';
 import ArtFrame from '../components/ArtFrame';
 import TreeDiagram from '../components/TreeDiagram';
-import { regionStats } from '../data/projectData';
+
 
 const mainMetrics = [
   {
@@ -428,21 +428,8 @@ export default function About() {
             </div>
           </div>
 
-          {/* Panel Derecho: Estadísticas del Territorio y Descripción Extensa */}
+          {/* Panel Derecho: Descripción Extensa */}
           <div className="lg:col-span-2 flex flex-col gap-6 justify-between">
-            {/* Fila de Estadísticas */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-[#0F1A15]/80 border border-[#5E824A]/30 rounded-3xl">
-              {regionStats.map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="text-center space-y-1 border-r border-[#5E824A]/20 last:border-0 pr-2"
-                  title={stat.detail}
-                >
-                  <h3 className="font-sora text-2xl sm:text-3xl text-[#DE5A30] font-black">{stat.value}</h3>
-                  <p className="font-geist text-[10px] text-[#F0EDE1]/60 uppercase tracking-wider">{stat.label}</p>
-                </div>
-              ))}
-            </div>
 
             {/* Texto Descriptivo Extenso del Proyecto */}
             <div className="space-y-4 p-6 rounded-3xl bg-[#0F1A15]/60 border border-[#5E824A]/20 text-[#F0EDE1]/80 font-light text-sm sm:text-base leading-relaxed">
