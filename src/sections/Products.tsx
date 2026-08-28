@@ -17,12 +17,12 @@ export default function Products() {
   };
 
   const productImages: Record<string, string> = {
-    "prod-zanapure": "/products/zanapure-pure-biofuncional.png",
+    "prod-zanapure": "/products/prot-01-yellow-jar.png",
     "prod-zanapet": "/photos-proyecto/act-05-prototipado-alimentario-001.jpg",
     "prod-gomas": "/products/gomas-biofuncionales.png",
     "prod-apocarotenoides": "/products/emulsion-cosmetica-aurum.png",
     "prod-aurum": "/products/emulsion-cosmetica-aurum.png",
-    "PROT-01": "/products/zanapure-pure-biofuncional.png",
+    "PROT-01": "/products/prot-01-yellow-jar.png",
     "PROT-02": "/photos-proyecto/act-05-prototipado-alimentario-001.jpg",
     "PROT-03": "/products/gomas-biofuncionales.png",
     "PROT-04": "/products/emulsion-cosmetica-aurum.png",
@@ -62,7 +62,7 @@ export default function Products() {
       {/* 5-Column Grid Layout (ArtFrame style) */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {products.map((product) => {
-          const imgUrl = productImages[product.id] || productImages[product.id.toUpperCase()] || "/products/zanapure-pure-biofuncional.png";
+          const imgUrl = productImages[product.id] || productImages[product.id.toUpperCase()] || "/products/prot-01-yellow-jar.png";
           const isListo = product.tag === "LISTO" || product.tag === "Listo" || product.tag === "Completado";
 
           return (
