@@ -20,12 +20,12 @@ export default function Products() {
     "prod-zanapure": "/products/prot-01-yellow-jar.png",
     "prod-zanapet": "/photos-proyecto/act-05-prototipado-alimentario-001.jpg",
     "prod-gomas": "/products/gomas-biofuncionales.png",
-    "prod-apocarotenoides": "/products/emulsion-cosmetica-aurum.png",
+    "prod-apocarotenoides": "/products/bioingrediente-nlc.png",
     "prod-aurum": "/products/emulsion-cosmetica-aurum.png",
     "PROT-01": "/products/prot-01-yellow-jar.png",
     "PROT-02": "/photos-proyecto/act-05-prototipado-alimentario-001.jpg",
     "PROT-03": "/products/gomas-biofuncionales.png",
-    "PROT-04": "/products/emulsion-cosmetica-aurum.png",
+    "PROT-04": "/products/bioingrediente-nlc.png",
     "PROT-05": "/products/emulsion-cosmetica-aurum.png"
   };
 
