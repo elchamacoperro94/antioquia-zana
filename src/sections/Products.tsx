@@ -17,11 +17,16 @@ export default function Products() {
   };
 
   const productImages: Record<string, string> = {
-    "PROT-01": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=600&q=80",
-    "PROT-02": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=600&q=80",
-    "PROT-03": "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80",
-    "PROT-04": "https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&w=600&q=80",
-    "PROT-05": "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=600&q=80"
+    "prod-zanapure": "/products/zanapure-pure-biofuncional.png",
+    "prod-zanapet": "/photos-proyecto/act-05-prototipado-alimentario-001.jpg",
+    "prod-gomas": "/products/gomas-biofuncionales.png",
+    "prod-apocarotenoides": "/products/emulsion-cosmetica-aurum.png",
+    "prod-aurum": "/products/emulsion-cosmetica-aurum.png",
+    "PROT-01": "/products/zanapure-pure-biofuncional.png",
+    "PROT-02": "/photos-proyecto/act-05-prototipado-alimentario-001.jpg",
+    "PROT-03": "/products/gomas-biofuncionales.png",
+    "PROT-04": "/products/emulsion-cosmetica-aurum.png",
+    "PROT-05": "/products/emulsion-cosmetica-aurum.png"
   };
 
   const productBullets: Record<string, string[]> = {
@@ -57,7 +62,7 @@ export default function Products() {
       {/* 5-Column Grid Layout (ArtFrame style) */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {products.map((product) => {
-          const imgUrl = productImages[product.id] || "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=600&q=80";
+          const imgUrl = productImages[product.id] || productImages[product.id.toUpperCase()] || "/products/zanapure-pure-biofuncional.png";
           const isListo = product.tag === "LISTO" || product.tag === "Listo" || product.tag === "Completado";
 
           return (
