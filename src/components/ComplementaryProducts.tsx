@@ -45,15 +45,15 @@ const worksList: WorkItem[] = [
   },
   {
     id: "WORK-03",
-    title: "Libro & Recetario Agroindustrial: ¿Esta Zanahoria Pa' Qué?",
+    title: "Libro de Investigación: ¿Esta Zanahoria Pa' Qué?",
     shortTitle: "¿Esta Zanahoria Pa' Qué?",
-    category: "Libro de Divulgación & Cocina",
-    description: "Publicación que recopila la ruta de innovación de la zanahoria e incluye recetas gastronómicas y aplicaciones culinarias desarrolladas con excedentes.",
-    badge: "Libro & Recetario",
+    category: "Libro de Investigación UCO",
+    description: "Rutas de innovación para la zanahoria: Conexión entre bioeconomía y agroindustria en el Oriente antioqueño.",
+    badge: "Repositorio UCO",
     icon: <BookOpen className="w-5 h-5 text-[#D4CF7D]" />,
-    coverImage: "/desde-la-raiz-recetario-portada.png",
+    coverImage: "/esta-zanahoria-pa-que-portada.jpg",
     gradient: "from-[#D4CF7D] to-[#42401C]",
-    editorialLink: "https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/537",
+    editorialLink: "https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19",
     accentColor: "border-[#D4CF7D]"
   },
   {

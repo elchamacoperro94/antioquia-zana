@@ -33,12 +33,12 @@ export default function Contact() {
       coverImage: '/la-huerta-del-saber-portada.png'
     },
     {
-      type: 'Libro & Recetario Agroindustrial',
-      title: 'Desde la raíz. Cocina singular: creaciones a base de zanahorias de la agrobiodiversidad presente en el Oriente antioqueño',
-      desc: 'Obra gastronómica y científica que recopila creaciones culinarias y formulaciones desarrolladas a partir de zanahorias del Oriente antioqueño.',
-      link: 'https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/537',
-      badge: 'Editorial AGROSAVIA',
-      coverImage: '/desde-la-raiz-recetario-portada.png'
+      type: 'Libro de Investigación & Bioeconomía',
+      title: '¿Esta Zanahoria Pa\' qué? Rutas de innovación para la zanahoria',
+      desc: 'Obra científica que profundiza en las rutas de innovación para la zanahoria y la conexión entre la bioeconomía y la agroindustria en el Oriente antioqueño.',
+      link: 'https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19',
+      badge: 'Repositorio UCO',
+      coverImage: '/esta-zanahoria-pa-que-portada.jpg'
     }
   ];
 
