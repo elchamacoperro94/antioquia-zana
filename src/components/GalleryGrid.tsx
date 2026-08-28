@@ -5,77 +5,41 @@ import { galleryPhotos } from '../data/galleryPhotos';
 import GalleryLightbox from './GalleryLightbox';
 
 export default function GalleryGrid() {
-  const [activeCategory, setActiveCategory] = useState<string>('Todas');
   const [visibleCount, setVisibleCount] = useState<number>(16);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Extract all unique categories dynamically from galleryPhotos
-  const categories = useMemo(() => {
-    const set = new Set(galleryPhotos.map((p) => p.category));
-    return ['Todas', ...Array.from(set)];
-  }, []);
-
-  // Filter photos based on category
-  const filteredPhotos = useMemo(() => {
-    if (activeCategory === 'Todas') return galleryPhotos;
-    return galleryPhotos.filter((p) => p.category === activeCategory);
-  }, [activeCategory]);
-
   // Paginated photos
   const paginatedPhotos = useMemo(() => {
-    return filteredPhotos.slice(0, visibleCount);
-  }, [filteredPhotos, visibleCount]);
-
-  const handleCategoryChange = (cat: string) => {
-    setActiveCategory(cat);
-    setVisibleCount(16); // Reset page count on filter change
-  };
+    return galleryPhotos.slice(0, visibleCount);
+  }, [visibleCount]);
 
   const loadMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 16, filteredPhotos.length));
+    setVisibleCount((prev) => Math.min(prev + 16, galleryPhotos.length));
   };
 
   return (
     <div className="flex flex-col gap-8">
-      {/* Category Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-2 border-b border-white/5 pb-6">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => handleCategoryChange(cat)}
-            className={`px-3 py-1.5 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 ${
-              activeCategory === cat
-                ? 'bg-carrot-orange text-white shadow-md shadow-carrot-orange/10'
-                : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/5'
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
       {/* Stats Bar */}
       <div className="flex flex-col sm:flex-row justify-between items-center bg-obsidian-850 border border-white/5 p-4 rounded-2xl gap-3 text-xs md:text-sm font-mono text-slate-400">
         <div>
-          <span className="text-white font-bold">{galleryPhotos.length}</span> Fotografías reales | Organizadas por <span className="text-white font-bold">{categories.length - 1}</span> Actividades del proyecto
+          <span className="text-white font-bold">{galleryPhotos.length}</span> Fotografías reales del proyecto Antioquia Zana
         </div>
         <div>
-          Mostrando <span className="text-carrot-orange font-bold">{filteredPhotos.length}</span> resultados
+          Mostrando <span className="text-carrot-orange font-bold">{paginatedPhotos.length}</span> de <span className="text-white font-bold">{galleryPhotos.length}</span>
         </div>
       </div>
 
       {/* Masonry Image Grid */}
       <div className="relative">
-        {filteredPhotos.length === 0 ? (
+        {galleryPhotos.length === 0 ? (
           <div className="text-center py-20 text-slate-500 flex flex-col items-center gap-3">
             <ImageIcon className="h-10 w-10 text-slate-600" />
-            <p>No se encontraron registros fotográficos en esta categoría.</p>
+            <p>No se encontraron registros fotográficos.</p>
           </div>
         ) : (
           <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             <AnimatePresence mode="popLayout">
               {paginatedPhotos.map((photo, idx) => {
-                // Find global index in filtered list for lightbox
                 const globalIndex = idx;
                 return (
                   <motion.div
@@ -128,7 +92,7 @@ export default function GalleryGrid() {
       </div>
 
       {/* Load More Button */}
-      {filteredPhotos.length > visibleCount && (
+      {galleryPhotos.length > visibleCount && (
         <div className="flex justify-center mt-6">
           <button
             onClick={loadMore}
@@ -145,7 +109,7 @@ export default function GalleryGrid() {
         <GalleryLightbox
           isOpen={lightboxIndex !== null}
           onClose={() => setLightboxIndex(null)}
-          photos={filteredPhotos}
+          photos={galleryPhotos}
           currentIndex={lightboxIndex}
           onNavigate={(index) => setLightboxIndex(index)}
         />
