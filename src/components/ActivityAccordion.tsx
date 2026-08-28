@@ -238,7 +238,7 @@ const activitiesList: ActivityItem[] = [
       { name: "ACT-12 Informe consolidado de Planes de Negocios", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 12/ACT 12 INFORME_Plan de negocios.docx" },
       { name: "Anexo 12.8 Documento 'Una Zanahoria Para Emprender'", link: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-emprender-gomas-pet-plan-de-negocio-y-hoja-de-ruta-para-iniciativas-agroindustriales" }
     ],
-    photos: ["foto-21.jpg"]
+    photos: []
   },
   {
     id: "ACT-13",
@@ -250,7 +250,7 @@ const activitiesList: ActivityItem[] = [
       { name: "4.3 Memorias de Días de Campo y Capacitación (190 personas)", link: "/entregables objetivos/Objetivo 4/4.3 190 personas capacitadas en transformación para el sector hortícola/Segundo y tercer Día de Campo.docx" },
       { name: "Anexo 13.1 Manual completo 'Una Zanahoria Para Exportar'", link: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-exportar-gomas-funcionales-para-el-mercado-pet-con-destino-a-belgica" }
     ],
-    photos: ["foto-22.jpg", "foto-23.jpg"]
+    photos: []
   },
   {
     id: "ACT-14",
@@ -262,7 +262,7 @@ const activitiesList: ActivityItem[] = [
       { name: "ACT-14 Informe de Gobernanza y articulación final", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/ACT 14. INFORME TÉCNICO_FINAL.docx" },
       { name: "Anexo 14.1 Cartilla didáctica 'Esta Zanahoria Pa' Quién'", link: "https://universidadcatolicadeorienteuco.publica.la/library/publication/esta-zanahoria-pa-quien-gobernanza-transferencia-y-aprendizajes-en-la-red-de-valor-de-la-zanahoria" }
     ],
-    photos: ["foto-24.jpg"]
+    photos: []
   }
 ];
 
