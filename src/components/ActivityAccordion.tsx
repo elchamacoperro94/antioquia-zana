@@ -139,6 +139,7 @@ const activitiesList: ActivityItem[] = [
     name: "6. Estimar y comunicar los aspectos biofuncionales, sensoriales y de vida útil diferenciadores de los prototipos alimentarios generados.",
     description: "Para comercializar y distribuir los prototipos formulados sin necesidad de cadena de frío, se diseñaron empaques tipo doypack bilaminados y se realizaron estudios de estabilidad acelerada (40°C, 75% HR) evaluando la retención de β-caroteno (78% a las 12 semanas) e índice TBARS. Además, se realizaron paneles sensoriales con 50 consumidores usando una escala hedónica de 9 puntos.",
     deliverables: [
+      { name: "Informe de Evaluación Sensorial, Biofuncional y Vida Útil", link: "https://drive.google.com/file/d/1RnytLJ83GC7bBiiblAM6EvjBqlmvMMvg/view?usp=sharing" },
       { name: "Memoria e Informe de Divulgación - ZanaFest", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 13/ACT 13 INFORME_Desarrollo conceptual (1).docx" }
     ],
     photos: [
