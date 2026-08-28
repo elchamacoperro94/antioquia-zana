@@ -9,8 +9,12 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Sparkles, ArrowDown } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export default function Hero() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const containerRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -79,7 +83,7 @@ export default function Hero() {
         >
           <Sparkles className="w-4 h-4 text-[#D4CF7D]" />
           <span className="font-geist text-xs sm:text-sm text-[#D4CF7D] uppercase tracking-[0.2em] font-semibold">
-            SGR BPIN 2020000100192
+            {t.hero_bpin}
           </span>
         </motion.div>
 
@@ -92,7 +96,7 @@ export default function Hero() {
             text-[#F0EDE1] tracking-tighter leading-none mb-4 uppercase drop-shadow-md"
         >
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#F0EDE1] via-[#DE5A30] to-[#F0EDE1]">
-            ANTIOQUIA ZANA
+            {t.hero_title_accent}
           </span>
         </motion.h1>
 
@@ -103,7 +107,7 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.5, ease: 'easeOut' }}
           className="font-sora text-base sm:text-xl md:text-2xl text-[#D4CF7D] font-medium tracking-tight max-w-4xl leading-relaxed mb-6 px-4"
         >
-          Fortalecimiento de la cadena productiva de la zanahoria mediante la creación de prototipos de productos innovadores en el oriente del departamento de Antioquia
+          {t.hero_project_title}
         </motion.h2>
 
         {/* Scroll Indicator */}
@@ -114,7 +118,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.8 }}
           className="inline-flex items-center gap-2 text-xs font-geist text-[#D4CF7D]/90 uppercase tracking-widest hover:text-[#DE5A30] transition-colors mt-2"
         >
-          <span>Conocer el Proyecto</span>
+          <span>{t.hero_scroll_down}</span>
           <ArrowDown className="w-4 h-4 animate-bounce text-[#DE5A30]" />
         </motion.a>
       </motion.div>

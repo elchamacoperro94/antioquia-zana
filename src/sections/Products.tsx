@@ -2,12 +2,104 @@ import { useState } from 'react';
 import SectionHeader from '../components/SectionHeader';
 import ProductModal from '../components/ProductModal';
 import TrlExplanation from '../components/TrlExplanation';
-import { products } from '../data/projectData';
+import { products as productsEs } from '../data/projectData';
 import type { ProductEntry } from '../data/projectData';
-
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 import ArtFrame from '../components/ArtFrame';
 
+const productsEn: ProductEntry[] = [
+  {
+    id: "prod-zanapure",
+    name: "ZanaPure",
+    type: "Alimentaria",
+    tag: "TRL 6-7 Prototype · Food",
+    formulation: "Carrot (27.4%), Banana (38%), Yacon (4%), Collagen (4%), Passion fruit and Emulfiber",
+    process: "Hydrothermodynamic Cavitation (CHTD)",
+    status: "Validated at pilot scale (TRL 6-7)",
+    features: [
+      "No added sugars or artificial sweeteners",
+      "Clean label (no warning stamps)",
+      "High soluble and insoluble dietary fiber",
+      "Optimal energy: 69 kcal/100g"
+    ],
+    description: "Baby and family puree made through hydrothermodynamic cavitation (CHTD), a clean technology that prevents thermal degradation of vitamins and carotenes.",
+    accent: "orange"
+  },
+  {
+    id: "prod-zanapet",
+    name: "ZanaPet",
+    type: "Alimentaria",
+    tag: "TRL 6-7 Prototype · Food",
+    formulation: "Dehydrated carrot (45%), Carrot flour, Chicken fat and Vegetable oil",
+    process: "Convective dehydration and lipid homogenization",
+    status: "Validated at pilot scale (TRL 6-7)",
+    features: [
+      "Beta-carotene rich supplement for healthy skin and coat",
+      "High natural fiber for animal digestive health",
+      "High palatability validated by canine panels",
+      "100% natural, free of synthetic preservatives"
+    ],
+    description: "Complementary food / dehydrated snack for pets based on discarded carrot, rich in soluble fiber and natural carotenoids.",
+    accent: "green"
+  },
+  {
+    id: "prod-gomas",
+    name: "Biofunctional Gummies",
+    type: "Alimentaria",
+    tag: "TRL 6-7 Prototype · Food",
+    formulation: "Carrot concentrate (18%), Sorbitol (sugar free), Vitamins B, D, Zinc and Iron",
+    process: "Vacuum concentration and drop dosing",
+    status: "Validated at pilot scale (TRL 6-7)",
+    features: [
+      "Sweetened with polyols (suitable for sugar control regimes)",
+      "Provides 30% of daily zinc and iron requirement",
+      "Natural color and flavor from carrot concentrate",
+      "Chewable texture optimized with natural hydrocolloids"
+    ],
+    description: "Functional gelatin gummies enriched with essential micronutrients and soluble fiber from concentrated carrot pulp.",
+    accent: "orange"
+  },
+  {
+    id: "prod-apocarotenoides",
+    name: "NLC Bio-ingredient",
+    type: "Farmacéutica/Cosmética",
+    tag: "TRL 6-7 Prototype · Cosmetic",
+    formulation: "Concentrated apocarotenoids (11+ ppm retinoids), Cocoa butter, Lipid carriers",
+    process: "Photo-oxidation (UV + Fenton) and NLC Lipid Nanocarriers (<400nm)",
+    status: "Validated at pilot scale (TRL 6-7)",
+    features: [
+      "Natural retinoid concentration exceeding 11 ppm",
+      "Colloidal encapsulation in NLC lipid nanocarriers (<400nm)",
+      "Validated HPLC-DAD analytical method (r=0.9997)",
+      "Protected under Trade Secret protocol"
+    ],
+    description: "Dermocosmetic active bio-ingredient precursor of vitamin A, obtained by catalytic cleavage of beta-carotene and encapsulated in lipid nanocarriers.",
+    accent: "purple"
+  },
+  {
+    id: "prod-aurum",
+    name: "Cosmetic Emulsion",
+    type: "Farmacéutica/Cosmética",
+    tag: "TRL 6-7 Prototype · Cosmetic",
+    formulation: "NLC bio-ingredient rich in apocarotenoids, Cocoa butter, Myritol 318, Emulsifying phase",
+    process: "High-pressure shear homogenization and colloidal dispersion",
+    status: "Validated at pilot scale (TRL 6-7)",
+    features: [
+      "Proven anti-aging and revitalization effect",
+      "High skin penetrability without greasy feel",
+      "Standardized with retinol equivalents",
+      "Validated with 4 OECD skin safety protocols"
+    ],
+    description: "Anti-aging facial cosmetic emulsion formulated with carrot apocarotenoid bio-ingredient for skin regeneration and photoprotection.",
+    accent: "orange"
+  }
+];
+
 export default function Products() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const products = language === 'en' ? productsEn : productsEs;
   const [selectedProduct, setSelectedProduct] = useState<ProductEntry | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -30,29 +122,29 @@ export default function Products() {
   };
 
   const productBullets: Record<string, string[]> = {
-    "PROT-01": ["• 27% Zanahoria de descarte", "• Sin azúcares añadidos", "• Tratamiento térmico CHTD"],
-    "PROT-02": ["• 15% Inclusión de harina Zana", "• Textura crujiente expandida", "• Fibra dietaria natural"],
-    "PROT-03": ["• Formulación nutracéutica", "• Betacaroteno natural", "• Alta palatabilidad animal"],
-    "PROT-04": ["• Encapsulación NLC", "• Estabilidad lumínica", "• Uso tópico regenerativo"],
-    "PROT-05": ["• Secado por liofilización", "• Concentrado antioxidante", "• Solubilidad instantánea"]
+    "PROT-01": language === 'en' ? ["• 27% Discard carrot", "• No added sugars", "• CHTD thermal treatment"] : ["• 27% Zanahoria de descarte", "• Sin azúcares añadidos", "• Tratamiento térmico CHTD"],
+    "PROT-02": language === 'en' ? ["• 15% Zana flour inclusion", "• Crunchy expanded texture", "• Natural dietary fiber"] : ["• 15% Inclusión de harina Zana", "• Textura crujiente expandida", "• Fibra dietaria natural"],
+    "PROT-03": language === 'en' ? ["• Nutraceutical formula", "• Natural beta-carotene", "• High animal palatability"] : ["• Formulación nutracéutica", "• Betacaroteno natural", "• Alta palatabilidad animal"],
+    "PROT-04": language === 'en' ? ["• NLC encapsulation", "• Light stability", "• Regenerative topical use"] : ["• Encapsulación NLC", "• Estabilidad lumínica", "• Uso tópico regenerativo"],
+    "PROT-05": language === 'en' ? ["• Freeze-drying process", "• Antioxidant concentrate", "• Instant solubility"] : ["• Secado por liofilización", "• Concentrado antioxidante", "• Solubilidad instantánea"]
   };
 
   return (
     <section id="prototipos" className="px-6 py-20 md:py-28 max-w-6xl mx-auto flex flex-col gap-12 border-t border-white/5 relative z-10">
       {/* Section Header */}
       <SectionHeader
-        badgeText="Prototipos Agroindustriales"
-        title="5 Prototipos Desarrollados (TRL 6 - TRL 7)"
-        subtitle="3 prototipos para la industria alimentaria y 2 bioingredientes para la industria farmacéutica y cosmética desarrollados mediante tecnologías limpias."
+        badgeText={t.hdr_prod_badge}
+        title={t.hdr_prod_title}
+        subtitle={t.hdr_prod_subtitle}
       />
 
-      {/* Banner de Nivel de Madurez Tecnológica TRL 6-7 (Observación 8) */}
+      {/* Banner de Nivel de Madurez Tecnológica TRL 6-7 */}
       <div className="p-5 sm:p-6 rounded-3xl bg-[#0F1A15] border border-[#5E824A]/40 flex flex-col sm:flex-row items-center gap-4 shadow-xl">
         <div className="px-4 py-2 rounded-2xl bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] font-sora font-extrabold text-sm shrink-0">
-          Nivel TRL 6 – 7
+          {t.prod_trl_banner_title}
         </div>
         <p className="text-xs sm:text-sm text-[#F0EDE1]/80 font-light leading-relaxed">
-          Los 5 desarrollos tecnológicos alcanzaron un nivel de madurez <strong>TRL 6 a TRL 7</strong> (Validación de prototipos en entorno operacional y escalamiento a nivel de planta piloto en el Oriente Antioqueño).
+          {t.prod_trl_banner_desc}
         </p>
       </div>
 

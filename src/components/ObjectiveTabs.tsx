@@ -3,29 +3,54 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, X } from 'lucide-react';
 import { objectives } from '../data/projectData';
 import { objectiveResults } from '../data/objectiveResults';
+import { useLanguage } from '../context/LanguageContext';
 
-const objectiveData = [
-  {
-    id: "OBJ-01",
-    title: "Objetivo Específico 1",
-    desc: "Caracterizar el potencial de los excedentes agronómicos y nuevos cultivares de zanahoria como materia prima para la generación de productos con valor agregado en el Oriente Antioqueño."
-  },
-  {
-    id: "OBJ-02",
-    title: "Objetivo Específico 2",
-    desc: "Generar prototipos de productos funcionales para la industria alimentaria a partir de los excedentes o nuevos cultivares del sistema productivo de zanahoria para el Oriente Antioqueño."
-  },
-  {
-    id: "OBJ-03",
-    title: "Objetivo Específico 3",
-    desc: "Generar prototipos de productos funcionales para la industria farmacéutica/cosmética a partir de los excedentes o nuevos cultivares en el sistema productivo de zanahoria del Oriente Antioqueño."
-  },
-  {
-    id: "OBJ-04",
-    title: "Objetivo Específico 4",
-    desc: "Evaluar las oportunidades de mercado y comercialización de nuevos productos a partir de la zanahoria para el Oriente antioqueño mediante un modelo de negocios para productos prototipados."
-  }
-];
+const objectiveDataMap: Record<'es' | 'en', Array<{ id: string; title: string; desc: string }>> = {
+  es: [
+    {
+      id: "OBJ-01",
+      title: "Objetivo Específico 1",
+      desc: "Caracterizar el potencial de los excedentes agronómicos y nuevos cultivares de zanahoria como materia prima para la generación de productos con valor agregado en el Oriente Antioqueño."
+    },
+    {
+      id: "OBJ-02",
+      title: "Objetivo Específico 2",
+      desc: "Generar prototipos de productos funcionales para la industria alimentaria a partir de los excedentes o nuevos cultivares del sistema productivo de zanahoria para el Oriente Antioqueño."
+    },
+    {
+      id: "OBJ-03",
+      title: "Objetivo Específico 3",
+      desc: "Generar prototipos de productos funcionales para la industria farmacéutica/cosmética a partir de los excedentes o nuevos cultivares en el sistema productivo de zanahoria del Oriente Antioqueño."
+    },
+    {
+      id: "OBJ-04",
+      title: "Objetivo Específico 4",
+      desc: "Evaluar las oportunidades de mercado y comercialización de nuevos productos a partir de la zanahoria para el Oriente antioqueño mediante un modelo de negocios para productos prototipados."
+    }
+  ],
+  en: [
+    {
+      id: "OBJ-01",
+      title: "Specific Objective 1",
+      desc: "Characterize the potential of agronomic surpluses and new carrot cultivars as raw material for value-added product generation in Eastern Antioquia."
+    },
+    {
+      id: "OBJ-02",
+      title: "Specific Objective 2",
+      desc: "Generate functional product prototypes for the food industry from surpluses or new cultivars in the carrot production system of Eastern Antioquia."
+    },
+    {
+      id: "OBJ-03",
+      title: "Specific Objective 3",
+      desc: "Generate functional product prototypes for the pharmaceutical/cosmetics industry from surpluses or new cultivars in the carrot production system of Eastern Antioquia."
+    },
+    {
+      id: "OBJ-04",
+      title: "Specific Objective 4",
+      desc: "Evaluate market opportunities and commercialization of new carrot products for Eastern Antioquia through tailored business models for prototyped products."
+    }
+  ]
+};
 
 const colSpanMap: Record<string, string> = {
   "OBJ-01": "lg:col-span-4 md:col-span-6",
@@ -35,6 +60,8 @@ const colSpanMap: Record<string, string> = {
 };
 
 export default function ObjectiveTabs() {
+  const { language } = useLanguage();
+  const objectiveData = objectiveDataMap[language];
   const [selectedObjectiveId, setSelectedObjectiveId] = useState<string | null>(null);
   
   const activeObj = objectives.find((obj) => obj.id === selectedObjectiveId);

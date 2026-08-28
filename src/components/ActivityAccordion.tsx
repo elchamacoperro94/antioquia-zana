@@ -9,6 +9,8 @@ import {
   Lock
 } from 'lucide-react';
 import { objectives } from '../data/projectData';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 interface ActivityItem {
   id: string;
@@ -267,6 +269,8 @@ const activitiesList: ActivityItem[] = [
 ];
 
 export default function ActivityAccordion() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [activeObjFilter, setActiveObjFilter] = useState<string>("TODOS");
   const [expandedActId, setExpandedActId] = useState<string | null>("ACT-01");
   const [lightboxPhoto, setLightboxPhoto] = useState<string | null>(null);
@@ -288,7 +292,7 @@ export default function ActivityAccordion() {
               : "text-[#F0EDE1]/60 hover:text-white hover:bg-white/5"
           }`}
         >
-          Todas las 14 Actividades
+          {t.act_filter_all}
         </button>
 
         {objectives.map((obj) => {
@@ -383,8 +387,8 @@ export default function ActivityAccordion() {
                       <div className="p-4 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/40 flex items-center gap-3">
                         <Sparkles className="w-5 h-5 text-[#D4CF7D] shrink-0" />
                         <div className="text-xs text-[#F0EDE1]/90 font-light">
-                          <span className="font-semibold text-[#D4CF7D] block">Artículo Científico Publicable Asociado</span>
-                          Resultados estandarizados del bioingrediente disponibles para consulta y descarga pública.
+                          <span className="font-semibold text-[#D4CF7D] block">{t.act_article_tag}</span>
+                          {t.act_article_desc}
                         </div>
                       </div>
                     )}
@@ -392,7 +396,7 @@ export default function ActivityAccordion() {
                     {/* Entregables y Soportes Oficiales */}
                     <div className="space-y-3">
                       <span className="text-[11px] font-geist text-[#D4CF7D] uppercase tracking-wider block font-semibold">
-                        📁 Entregables & Productos Descargables:
+                        {t.act_deliverables_title}
                       </span>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {act.deliverables.map((del, dIdx) => (
@@ -419,7 +423,7 @@ export default function ActivityAccordion() {
                     {act.photos && act.photos.length > 0 && (
                       <div className="space-y-3">
                         <span className="text-[11px] font-geist text-[#D4CF7D] uppercase tracking-wider block font-semibold">
-                          📸 Evidencias de Campo y Laboratorio:
+                          {t.act_photos_title}
                         </span>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                           {act.photos.map((photo, pIdx) => (

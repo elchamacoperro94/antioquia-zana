@@ -1,6 +1,8 @@
 import React from 'react';
 import { BookOpen, ExternalLink, Bookmark, FileSpreadsheet, Newspaper, Award } from 'lucide-react';
 import SectionHeader from './SectionHeader';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 interface WorkItem {
   id: string;
@@ -16,7 +18,7 @@ interface WorkItem {
   accentColor: string;
 }
 
-const worksList: WorkItem[] = [
+const worksListEs: WorkItem[] = [
   {
     id: "WORK-01",
     title: "Libro Carota 360°: Modelo Productivo de la Zanahoria",
@@ -97,15 +99,100 @@ const worksList: WorkItem[] = [
   }
 ];
 
+const worksListEn: WorkItem[] = [
+  {
+    id: "WORK-01",
+    title: "Carota 360° Book: Carrot Production Model",
+    shortTitle: "Carota 360° Book",
+    category: "AGROSAVIA Research Work",
+    description: "Comprehensive systematization of the production model, technical crop recommendations, integrated pest management, and usage profiles for Eastern Antioquia.",
+    badge: "Scientific Book",
+    icon: <Award className="w-5 h-5 text-[#DE5A30]" />,
+    coverImage: "/carota-360-portada.jpg",
+    gradient: "from-[#DE5A30] to-[#5C2310]",
+    editorialLink: "https://editorial.agrosavia.co/",
+    accentColor: "border-[#DE5A30]"
+  },
+  {
+    id: "WORK-02",
+    title: "Catalog: The Value of the Unique (Daucus carota L.)",
+    shortTitle: "The Value of the Unique",
+    category: "AGROSAVIA Variety Catalog",
+    description: "Catalog of promising cultivars and carrot surpluses with differential quality and agro-industrial suitability for the bioeconomy of Eastern Antioquia.",
+    badge: "Technical Catalog",
+    icon: <FileSpreadsheet className="w-5 h-5 text-emerald-400" />,
+    coverImage: "/catalogo-el-valor-de-lo-singular.png",
+    gradient: "from-[#5E824A] to-[#1F2F18]",
+    editorialLink: "https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/538",
+    accentColor: "border-emerald-400"
+  },
+  {
+    id: "WORK-03",
+    title: "Research Book: This Carrot For What?",
+    shortTitle: "This Carrot For What?",
+    category: "UCO Research Book",
+    description: "Innovation roadmaps for carrots: The connection between bioeconomy and agro-industry in Eastern Antioquia.",
+    badge: "UCO Repository",
+    icon: <BookOpen className="w-5 h-5 text-[#D4CF7D]" />,
+    coverImage: "/esta-zanahoria-pa-que-portada.jpg",
+    gradient: "from-[#D4CF7D] to-[#42401C]",
+    editorialLink: "https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19",
+    accentColor: "border-[#D4CF7D]"
+  },
+  {
+    id: "WORK-04",
+    title: "Agro-industrial Manual: A Carrot to Undertake",
+    shortTitle: "A Carrot to Undertake",
+    category: "UCO Technical Manual",
+    description: "Practical entrepreneurship guide, business plan, and methodological roadmap for agro-industrial pet gummy initiatives.",
+    badge: "UCO Academic Manual",
+    icon: <Bookmark className="w-5 h-5 text-purple-400" />,
+    coverImage: "/manual-una-zanahoria-para-emprender.png",
+    gradient: "from-[#4A2545] to-[#251022]",
+    editorialLink: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-emprender-gomas-pet-plan-de-negocio-y-hoja-de-ruta-para-iniciativas-agroindustriales",
+    accentColor: "border-[#4A2545]"
+  },
+  {
+    id: "WORK-05",
+    title: "Market Manual: A Carrot for Export",
+    shortTitle: "A Carrot for Export",
+    category: "UCO Technical Manual",
+    description: "Manual focused on international quality standards, phytosanitary requirements, and functional gummy export channels for the pet market.",
+    badge: "UCO Academic Manual",
+    icon: <Newspaper className="w-5 h-5 text-sky-400" />,
+    coverImage: "/manual-una-zanahoria-para-exportar.png",
+    gradient: "from-sky-600 to-sky-950",
+    editorialLink: "https://universidadcatolicadeorienteuco.publica.la/library/publication/una-zanahoria-para-exportar-gomas-funcionales-para-el-mercado-pet-con-destino-a-belgica",
+    accentColor: "border-sky-400"
+  },
+  {
+    id: "WORK-06",
+    title: "Value Network Manual: This Carrot For Whom?",
+    shortTitle: "This Carrot For Whom?",
+    category: "UCO Technical Manual",
+    description: "Research on value network governance, associative schemes, and territorial technology transfer learnings.",
+    badge: "UCO Academic Manual",
+    icon: <BookOpen className="w-5 h-5 text-teal-400" />,
+    coverImage: "/manual-esta-zanahoria-pa-quien.png",
+    gradient: "from-teal-600 to-teal-950",
+    editorialLink: "https://universidadcatolicadeorienteuco.publica.la/library/publication/esta-zanahoria-pa-quien-gobernanza-transferencia-y-aprendizajes-en-la-red-de-valor-de-la-zanahoria",
+    accentColor: "border-teal-400"
+  }
+];
+
 export default function ComplementaryProducts() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const worksList = language === 'en' ? worksListEn : worksListEs;
+
   return (
     <section id="coleccion-obras" className="px-6 py-20 md:py-28 max-w-7xl mx-auto flex flex-col gap-12 border-t border-white/5">
       {/* Encabezado de la Sección */}
       <SectionHeader
-        badgeText="Publicaciones"
+        badgeText={t.hdr_pub_badge}
         badgeColor="orange"
-        title="Colección Antioquia Zana: Nuestras Obras Destacadas"
-        subtitle="Publicaciones científicas, libros de investigación y manuales técnicos desarrollados en el marco del proyecto para el desarrollo agroindustrial del Oriente Antioqueño."
+        title={t.hdr_pub_title}
+        subtitle={t.hdr_pub_subtitle}
       />
 
       {/* Rejilla de Obras */}
@@ -183,7 +270,7 @@ export default function ComplementaryProducts() {
                 className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#5E824A]/20 border border-[#5E824A]/40 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#DE5A30] hover:text-white hover:border-[#DE5A30] transition-all duration-300 shadow-md cursor-pointer"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
-                <span>Ver en Editorial / Repositorio</span>
+                <span>{t.pub_btn_read}</span>
               </a>
             </div>
           </div>

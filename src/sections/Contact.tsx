@@ -2,8 +2,12 @@ import { Mail, ShieldCheck, User, Building2, BookOpen, ExternalLink } from 'luci
 import SectionHeader from '../components/SectionHeader';
 import GlassCard from '../components/GlassCard';
 import CalligraphyDedication from '../components/CalligraphyDedication';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export default function Contact() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const officialEmails = [
     {
       label: 'Investigador Principal del Proyecto',
@@ -119,10 +123,10 @@ export default function Contact() {
       {/* ── Canales Institucionales de Contacto & Ficha BPIN ── */}
       <div className="space-y-8">
         <SectionHeader
-          badgeText="Contacto Oficial"
+          badgeText={t.hdr_con_badge}
           badgeColor="orange"
-          title="Canales Institucionales de Contacto"
-          subtitle="Comuníquese directamente con la dirección del proyecto o la línea de atención oficial de AGROSAVIA."
+          title={t.hdr_con_title}
+          subtitle={t.hdr_con_subtitle}
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
@@ -164,17 +168,17 @@ export default function Contact() {
               <div>
                 <h3 className="font-sora text-lg font-bold text-[#F0EDE1] border-b border-[#5E824A]/20 pb-4 mb-4 flex items-center gap-2">
                   <ShieldCheck className="h-5 w-5 text-emerald-400" />
-                  Resumen Ficha Técnica BPIN
+                  {t.con_bpin_title}
                 </h3>
 
                 <div className="flex flex-col gap-3 font-geist text-xs">
                   {[
-                    { key: 'Proyecto BPIN', val: '2020000100192' },
-                    { key: 'NIT AGROSAVIA', val: '800.194.600-3' },
-                    { key: 'Fondo de Financiación', val: 'Regalías SGR — Fondo CTI' },
-                    { key: 'Vigencia del Proyecto', val: '2022 — 2026' },
-                    { key: 'Ejecutor Principal', val: 'AGROSAVIA Centro de Investigación La Selva' },
-                    { key: 'Territorio de Cobertura', val: 'El Santuario, Marinilla, Rionegro y San Pedro de los Milagros' }
+                    { key: language === 'en' ? 'BPIN Project' : 'Proyecto BPIN', val: '2020000100192' },
+                    { key: language === 'en' ? 'AGROSAVIA Tax ID' : 'NIT AGROSAVIA', val: '800.194.600-3' },
+                    { key: language === 'en' ? 'Funding Fund' : 'Fondo de Financiación', val: language === 'en' ? 'Royalties SGR — CTI Fund' : 'Regalías SGR — Fondo CTI' },
+                    { key: language === 'en' ? 'Project Term' : 'Vigencia del Proyecto', val: '2022 — 2026' },
+                    { key: language === 'en' ? 'Main Executor' : 'Ejecutor Principal', val: 'AGROSAVIA Centro de Investigación La Selva' },
+                    { key: language === 'en' ? 'Coverage Area' : 'Territorio de Cobertura', val: 'El Santuario, Marinilla, Rionegro y San Pedro de los Milagros' }
                   ].map((row, idx) => (
                     <div 
                       key={idx}
@@ -192,7 +196,7 @@ export default function Contact() {
                   href="mailto:jhenao@agrosavia.co?subject=Consulta%20Proyecto%20Antioquia%20Zana"
                   className="w-full py-4 px-6 rounded-2xl font-sora font-semibold text-center text-xs bg-[#DE5A30] hover:bg-[#DE5A30]/90 text-white transition-all duration-300 shadow-lg shadow-[#DE5A30]/20 block cursor-pointer"
                 >
-                  Enviar Correo Electrónico Oficial
+                  {t.con_btn_email}
                 </a>
               </div>
             </GlassCard>
