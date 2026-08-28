@@ -188,7 +188,7 @@ const activitiesList: ActivityItem[] = [
     description: "Evaluación in-vitro de citotoxicidad (ensayo MTT en fibroblastos dérmicos humanos HDF), fotoirritación (OCDE TG 432) e irritación/corrosión dérmica (OCDE TG 439 y TG 431 en epidermis humana reconstituida RhE), reportando viabilidad tisular >92% y eficacia antienvejecimiento mediante cuantificación de pro-colágeno I y colagenasa (MMP-1) por ELISA.",
     isSecret: true,
     deliverables: [
-      { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "/entregables objetivos/Objetivo 2/2.7 Secreto empresarial/Constancia Secreto Empresarial_ Zanahoria.pdf" }
+      { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "https://drive.google.com/file/d/1UbphwmfSolMoFyRb-TCFsgr4HP6Sgy5I/view?usp=drive_link" }
     ],
     photos: []
   },
@@ -200,7 +200,7 @@ const activitiesList: ActivityItem[] = [
     description: "Escalamiento piloto del deshidratado de 60 kg de zanahoria Bangor (cortada en rodajas de 2 mm y secada a 40°C por 16 horas en secador de lecho fluidizado), molienda criogénica, tamizaje por malla número 40 (apertura de 420 micras) y envasado al vacío en atmósfera de nitrógeno para evitar la degradación oxidativa.",
     isSecret: true,
     deliverables: [
-      { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "/entregables objetivos/Objetivo 2/2.7 Secreto empresarial/Constancia Secreto Empresarial_ Zanahoria.pdf" }
+      { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "https://drive.google.com/file/d/1UbphwmfSolMoFyRb-TCFsgr4HP6Sgy5I/view?usp=drive_link" }
     ],
     photos: []
   },

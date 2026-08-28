@@ -160,7 +160,7 @@ export const objectives: ObjectiveEntry[] = [
       { name: "2.4 Ficha de prototipo alimentario Gomas Funcionales (Humanos)", link: "/entregables objetivos/Objetivo 2/2.4 Ficha 2 de prototipo de producto para la industria Alimentaria a base de zanahoria (Gomas upcycling) PENDIENTE.pdf" },
       { name: "2.5 Ficha de prototipo alimentario ZanaPure (Compotas)", link: "/entregables objetivos/Objetivo 2/2.5 Ficha 3 de prototipo de producto para la industria Alimentaria a base de zanahoria (ZanaPure) PENDIENTE.pdf" },
       { name: "2.6 Tesis de Maestría en Calidad de Alimentos - Mateo Londoño V.", link: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf" },
-      { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "/entregables objetivos/Objetivo 2/2.7 Secreto empresarial/Constancia Secreto Empresarial_ Zanahoria.pdf" },
+      { name: "2.7 Constancia de Secreto Empresarial - Proceso Zanahoria", link: "https://drive.google.com/file/d/1UbphwmfSolMoFyRb-TCFsgr4HP6Sgy5I/view?usp=drive_link" },
       { name: "2.2 Tesis de Maestría Paola Ospina (Universidad Nacional)", link: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.3 TESIS FINAL PAOLA OSPINA.pdf" }
     ]
   },
