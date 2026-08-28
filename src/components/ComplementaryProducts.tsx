@@ -25,6 +25,7 @@ const worksList: WorkItem[] = [
     description: "Sistematización integral del modelo productivo, recomendaciones técnicas de cultivo, manejo integrado de plagas y perfiles de uso para el Oriente Antioqueño.",
     badge: "Libro Científico",
     icon: <Award className="w-5 h-5 text-[#DE5A30]" />,
+    coverImage: "/carota-360-portada.jpg",
     gradient: "from-[#DE5A30] to-[#5C2310]",
     editorialLink: "https://editorial.agrosavia.co/",
     accentColor: "border-[#DE5A30]"
