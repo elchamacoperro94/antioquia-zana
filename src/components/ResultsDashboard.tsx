@@ -12,18 +12,19 @@ import {
   Sparkles,
   ChevronDown
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ThesisStudent {
   name: string;
-  level: string; // "Maestría" | "Pregrado"
+  level: string; // "Maestría" | "Pregrado" | "Master's" | "Undergraduate"
   program: string;
-  distinction: string; // "Sí (Meritoria)" | "No"
+  distinction: string;
   title: string;
   directors: string;
   downloadLink: string;
 }
 
-const thesisList: ThesisStudent[] = [
+const thesisListEs: ThesisStudent[] = [
   {
     name: "Mateo Londoño Valencia",
     level: "Maestría",
@@ -89,7 +90,73 @@ const thesisList: ThesisStudent[] = [
   }
 ];
 
-const metricsOverview = [
+const thesisListEn: ThesisStudent[] = [
+  {
+    name: "Mateo Londoño Valencia",
+    level: "Master's",
+    program: "M.Sc. Food Science and Technology (INTAL / UdeA)",
+    distinction: "Approved Thesis",
+    title: "Value generation in the Eastern Antioquia carrot production chain through conceptualization, formulation, and prototyping of functional food products",
+    directors: "Advisor: PhD. Luis A. Salazar Hoyos | Co-advisor: MSc. Juan C. Henao Rojas | Advisors: PhD. Álvaro Arango Ruíz, PhD. Juan F. Montoya Carvajal",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf"
+  },
+  {
+    name: "Jaison Martínez Saldarriaga",
+    level: "Master's",
+    program: "M.Sc. Food Science and Technology (National University of Colombia - Medellín)",
+    distinction: "Yes (Laureate Distinction - UNAL)",
+    title: "Multidimensional characterization and potential applications of carrot productive surpluses (Daucus carota) in Eastern Antioquia",
+    directors: "Advisor: Prof. Juan Camilo Henao Rojas | Co-advised by: Prof. Diana Paola Yepes Betancur and Prof. Edith Marleny Cadena Chamorro",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.1 Tesista Maestria 1 (Agrosavia)/2.1.3 Distincion Laureada UNAL.jpg"
+  },
+  {
+    name: "Paola Andrea Ospina Sánchez",
+    level: "Master's",
+    program: "M.Sc. Geomatics (National University of Colombia - Bogotá)",
+    distinction: "Yes (Meritorious Distinction - Res. 323 of 2025)",
+    title: "Multidimensional quality modeling in carrots from spectral reflectance, imaging, and consumer perception",
+    directors: "Advisor: Joaquín Guillermo Ramírez Gil (UNAL Bogotá) | Co-advisor: Juan Camilo Henao Rojas (AGROSAVIA)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.2 RESOLUCION 323 DE 2025 DISTINCION MERITORIA PAOLA _260327_095657.pdf"
+  },
+  {
+    name: "Sergio González López",
+    level: "Master's",
+    program: "M.Sc. Pharmaceutical & Food Sciences (Line: Natural Products - Universidad de Antioquia)",
+    distinction: "Degree Work Under Evaluation",
+    title: "Study of the cytotoxic effect mediated by a pro-oxidant mechanism of carotenoids on gastric cancer cells",
+    directors: "Faculty of Pharmaceutical and Food Sciences (UdeA)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.8 Tesista de Maestria 4 (U de A) PENDIENTE SUSTENTACION/Certificado de entrega de tesis de maestría.pdf"
+  },
+  {
+    name: "Daniela López Galeano",
+    level: "Undergraduate",
+    program: "International Trade (Universidad Católica de Oriente - UCO)",
+    distinction: "Degree Conferred (Diploma & Records)",
+    title: "Affiliated Undergraduate Research Student - UCO Agreement",
+    directors: "Universidad Católica de Oriente (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.11 Estudiante vinculado pregrado UCO 3/ACTA DE GRADO.pdf"
+  },
+  {
+    name: "Yeslin Ochoa Marín",
+    level: "Undergraduate",
+    program: "International Trade (Universidad Católica de Oriente - UCO)",
+    distinction: "Degree Conferred (Diploma & Records)",
+    title: "Affiliated Undergraduate Research Student - UCO Agreement",
+    directors: "Universidad Católica de Oriente (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.10 Estudiante vinculado pregrado UCO 2/Acta de grado y Diploma - Comex.pdf"
+  },
+  {
+    name: "María Alejandra Muñoz Moya",
+    level: "Undergraduate",
+    program: "Dual Degree: Business Administration & International Trade (UCO)",
+    distinction: "Affiliated Student",
+    title: "Affiliated Undergraduate Research Student - UCO Agreement",
+    directors: "Universidad Católica de Oriente (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.9 Estudiante vinculado pregrado UCO 1/2.9.1 Estudiante con doble titulacion"
+  }
+];
+
+const metricsOverviewEs = [
   {
     title: "Formación de Estudiantes",
     value: "7",
@@ -140,8 +207,63 @@ const metricsOverview = [
   }
 ];
 
+const metricsOverviewEn = [
+  {
+    title: "Student Training & Theses",
+    value: "7",
+    subtext: "4 Master's + 3 Undergraduates",
+    desc: "Thesis researchers enrolled and graduated within the inter-institutional alliance.",
+    icon: <GraduationCap className="w-6 h-6 text-[#DE5A30]" />,
+    accent: "border-[#DE5A30]"
+  },
+  {
+    title: "Benefited People",
+    value: "+380",
+    subtext: "Producers & Beneficiaries",
+    desc: "Regional stakeholders benefited directly through field plots, farm days, and training sessions.",
+    icon: <Users className="w-6 h-6 text-emerald-400" />,
+    accent: "border-emerald-400"
+  },
+  {
+    title: "Appropriation Events",
+    value: "9",
+    subtext: "Field Days, Fairs & ZanaFest",
+    desc: "Technology transfer, agricultural field days, and scientific dissemination events.",
+    icon: <Calendar className="w-6 h-6 text-[#D4CF7D]" />,
+    accent: "border-[#D4CF7D]"
+  },
+  {
+    title: "Scientific Articles",
+    value: "10",
+    subtext: "Indexed Articles Published",
+    desc: "Scientific publications in high-impact indexed journals (Heliyon, PeerJ, MDPI, Wiley).",
+    icon: <FileText className="w-6 h-6 text-sky-400" />,
+    accent: "border-sky-400"
+  },
+  {
+    title: "Books & Manuals",
+    value: "6",
+    subtext: "3 Books + 3 UCO Manuals",
+    desc: "Editorial works: 'This Carrot For What?', 'For Whom?', Undertake, Export, and Variety Catalog.",
+    icon: <BookOpen className="w-6 h-6 text-purple-400" />,
+    accent: "border-purple-400"
+  },
+  {
+    title: "Designed Prototypes",
+    value: "5",
+    subtext: "Prototypes TRL 6 - TRL 7",
+    desc: "3 Food Prototypes + 2 Cosmetic/Pharmaceutical Bio-ingredients.",
+    icon: <Beaker className="w-6 h-6 text-amber-400" />,
+    accent: "border-amber-400"
+  }
+];
+
 export default function ResultsDashboard() {
+  const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState<'metrics' | 'thesis'>('metrics');
+
+  const metricsOverview = language === 'en' ? metricsOverviewEn : metricsOverviewEs;
+  const thesisList = language === 'en' ? thesisListEn : thesisListEs;
 
   return (
     <div className="w-full space-y-12">
@@ -150,7 +272,9 @@ export default function ResultsDashboard() {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-2 rounded-2xl bg-[#0F1A15] border border-[#5E824A]/30">
         <div className="flex items-center gap-2 px-3 py-1 text-xs font-geist text-[#D4CF7D]">
           <Sparkles className="w-4 h-4 text-[#DE5A30]" />
-          <span className="uppercase tracking-widest font-semibold">Indicadores MGA BPIN 2020000100192</span>
+          <span className="uppercase tracking-widest font-semibold">
+            {language === 'en' ? 'MGA BPIN 2020000100192 Indicators' : 'Indicadores MGA BPIN 2020000100192'}
+          </span>
         </div>
 
         <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -163,7 +287,7 @@ export default function ResultsDashboard() {
             }`}
           >
             <Award className="w-4 h-4" />
-            <span>Métricas Principales</span>
+            <span>{language === 'en' ? 'Main Metrics' : 'Métricas Principales'}</span>
           </button>
 
           <button
@@ -175,12 +299,12 @@ export default function ResultsDashboard() {
             }`}
           >
             <GraduationCap className="w-4 h-4 text-[#D4CF7D]" />
-            <span>Formación de Estudiantes & Tesis (7)</span>
+            <span>{language === 'en' ? 'Student Training & Theses (7)' : 'Formación de Estudiantes & Tesis (7)'}</span>
           </button>
         </div>
       </div>
 
-      {/* ── Renderizado de Pestaña 1: Métricas Principales (Observación 10) ── */}
+      {/* ── Renderizado de Pestaña 1: Métricas Principales ── */}
       <AnimatePresence mode="wait">
         {activeTab === 'metrics' ? (
           <motion.div
@@ -222,18 +346,24 @@ export default function ResultsDashboard() {
               ))}
             </div>
 
-            {/* Acceso Directo a las Tesis desde la misma Landing (Observación 10) */}
+            {/* Acceso Directo a las Tesis desde la misma Landing */}
             <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0F1A15] via-[#15261F] to-[#0F1A15] border border-[#5E824A]/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-[#D4CF7D] text-xs font-geist uppercase tracking-widest font-semibold">
                   <GraduationCap className="w-4 h-4 text-[#DE5A30]" />
-                  <span>Repositorio de Tesis Académicas</span>
+                  <span>{language === 'en' ? 'Academic Theses Repository' : 'Repositorio de Tesis Académicas'}</span>
                 </div>
                 <h4 className="font-sora text-xl font-bold text-[#F0EDE1]">
-                  Consulta las Tesis de Maestría y Pregrado del Proyecto
+                  {language === 'en' 
+                    ? 'Explore Master\'s and Undergraduate Theses' 
+                    : 'Consulta las Tesis de Maestría y Pregrado del Proyecto'
+                  }
                 </h4>
                 <p className="text-xs text-[#F0EDE1]/70 font-light max-w-2xl">
-                  Accede a los documentos finales completos desarrollados por los 7 estudiantes formados en AGROSAVIA, UdeA, UCO, INTAL y UNAL.
+                  {language === 'en'
+                    ? 'Access full final documents developed by the 7 students trained across AGROSAVIA, UdeA, UCO, INTAL, and UNAL.'
+                    : 'Accede a los documentos finales completos desarrollados por los 7 estudiantes formados en AGROSAVIA, UdeA, UCO, INTAL y UNAL.'
+                  }
                 </p>
               </div>
 
@@ -241,13 +371,13 @@ export default function ResultsDashboard() {
                 onClick={() => setActiveTab('thesis')}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#DE5A30] text-white font-sora font-semibold text-xs hover:bg-[#DE5A30]/90 transition-colors shadow-lg shrink-0 cursor-pointer"
               >
-                <span>Ver Tesis para Descargar</span>
+                <span>{language === 'en' ? 'View Theses Downloads' : 'Ver Tesis para Descargar'}</span>
                 <ChevronDown className="w-4 h-4 -rotate-90" />
               </button>
             </div>
           </motion.div>
         ) : (
-          /* ── Renderizado de Pestaña 2: Sección de Tesis (Observación 11) ── */
+          /* ── Renderizado de Pestaña 2: Sección de Tesis ── */
           <motion.div
             key="results-thesis"
             initial={{ opacity: 0, y: 15 }}
@@ -257,16 +387,24 @@ export default function ResultsDashboard() {
             className="space-y-6"
           >
             <div className="border-b border-[#5E824A]/20 pb-4">
-              <span className="font-geist text-xs uppercase tracking-widest text-[#D4CF7D]">Formación de Talento Humano</span>
+              <span className="font-geist text-xs uppercase tracking-widest text-[#D4CF7D]">
+                {language === 'en' ? 'Human Talent Training' : 'Formación de Talento Humano'}
+              </span>
               <h3 className="font-sora text-2xl font-bold text-[#F0EDE1] mt-1">
-                Tesis y Trabajos de Grado (7 Estudiantes Formados)
+                {language === 'en' 
+                  ? 'Theses and Graduate Degree Works (7 Trained Students)' 
+                  : 'Tesis y Trabajos de Grado (7 Estudiantes Formados)'
+                }
               </h3>
               <p className="text-xs text-[#F0EDE1]/70 font-light mt-1">
-                Información oficial verificada del equipo científico (Nombre, Programa, Distinción, Título, Directores y enlace directo PDF).
+                {language === 'en'
+                  ? 'Verified official data from the scientific team (Name, Program, Distinction, Title, Advisors, and Direct PDF link).'
+                  : 'Información oficial verificada del equipo científico (Nombre, Programa, Distinción, Título, Directores y enlace directo PDF).'
+                }
               </p>
             </div>
 
-            {/* Listado de las 7 Tesis (Formato Estricto Observación 11) */}
+            {/* Listado de las 7 Tesis */}
             <div className="grid grid-cols-1 gap-4">
               {thesisList.map((st, idx) => (
                 <div
@@ -278,10 +416,10 @@ export default function ResultsDashboard() {
                       <span className="px-3 py-1 rounded-full bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] text-xs font-sora font-extrabold">
                         {st.level}
                       </span>
-                      {st.distinction.includes("Sí") && (
+                      {(st.distinction.includes("Sí") || st.distinction.includes("Yes")) && (
                         <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-geist font-semibold flex items-center gap-1">
                           <Award className="w-3.5 h-3.5" />
-                          <span>Distinción: {st.distinction}</span>
+                          <span>{language === 'en' ? 'Distinction:' : 'Distinción:'} {st.distinction}</span>
                         </span>
                       )}
                       <span className="text-xs font-geist text-[#D4CF7D]">
@@ -303,14 +441,14 @@ export default function ResultsDashboard() {
                   </div>
 
                   {/* Enlace de Descargar Tesis PDF (Solo para Maestría) */}
-                  {st.level !== 'Pregrado' && (
+                  {st.level !== 'Pregrado' && st.level !== 'Undergraduate' && (
                     <a
                       href={st.downloadLink}
                       download
                       className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#5E824A] hover:text-white transition-all shadow-md shrink-0 cursor-pointer"
                     >
                       <Download className="w-4 h-4" />
-                      <span>Descargar Tesis PDF</span>
+                      <span>{language === 'en' ? 'Download Thesis PDF' : 'Descargar Tesis PDF'}</span>
                     </a>
                   )}
                 </div>

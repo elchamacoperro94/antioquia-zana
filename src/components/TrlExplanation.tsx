@@ -5,8 +5,9 @@ import {
   CheckCircle2, 
   Maximize2
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
-const trlStages = [
+const trlStagesEs = [
   {
     level: "TRL 1",
     phase: "Investigación Básica",
@@ -83,7 +84,84 @@ const trlStages = [
   }
 ];
 
-const roadmapSteps = [
+const trlStagesEn = [
+  {
+    level: "TRL 1",
+    phase: "Basic Research",
+    title: "Basic Principles Observed",
+    desc: "Observation and reporting of initial physicochemical carrot properties and raw agricultural profiles.",
+    status: "completado",
+    range: "1-3"
+  },
+  {
+    level: "TRL 2",
+    phase: "Basic Research",
+    title: "Technology Concept Formulated",
+    desc: "Theoretical formulation of surplus utilization for carotenoid, apocarotenoid, and dietary fiber extraction.",
+    status: "completado",
+    range: "1-3"
+  },
+  {
+    level: "TRL 3",
+    phase: "Applied Research",
+    title: "Analytical & Experimental Lab Proof of Concept",
+    desc: "Experimental hydrothermal cavitation (CHTD) trials and UV-photo-oxidation via Fenton reagent.",
+    status: "completado",
+    range: "1-3"
+  },
+  {
+    level: "TRL 4",
+    phase: "Technology Development",
+    title: "Component Validation in Laboratory",
+    desc: "Benchtop scale formulation of ZanaPure, ZanaPet, gummy snacks, and Nanostructured Lipid Carriers (<400nm).",
+    status: "completado",
+    range: "4-5"
+  },
+  {
+    level: "TRL 5",
+    phase: "Technology Development",
+    title: "Validation in Relevant Environment",
+    desc: "In-vitro testing under 4 OECD safety guidelines and accelerated stability trials (40°C / 75% RH).",
+    status: "completado",
+    range: "4-5"
+  },
+  {
+    level: "TRL 6",
+    phase: "Pilot Demonstration",
+    title: "Prototype Demonstration in Pilot Plant",
+    desc: "Operational batch scaling in semi-industrial pilot facilities of Multialoe S.A.S. and INTAL.",
+    status: "alcanzado",
+    highlight: true,
+    range: "6-7"
+  },
+  {
+    level: "TRL 7",
+    phase: "Operational Demonstration",
+    title: "Demonstration in Real Operational Environment",
+    desc: "Sensory evaluation with 70 panelists, barrier doypack packaging, and field transfer with 190 farmers.",
+    status: "alcanzado",
+    highlight: true,
+    range: "6-7"
+  },
+  {
+    level: "TRL 8",
+    phase: "Commercialization",
+    title: "Complete and Qualified System",
+    desc: "Full sanitary INVIMA registrations and commercial trademark certification for market launch.",
+    status: "futuro",
+    range: "8-9"
+  },
+  {
+    level: "TRL 9",
+    phase: "Commercialization",
+    title: "Full-scale Commercial Deployment",
+    desc: "Recurring retail distribution across supermarket chains, veterinary shops, and cosmetic retailers.",
+    status: "futuro",
+    range: "8-9"
+  }
+];
+
+const roadmapStepsEs = [
   {
     step: "01",
     title: "Fase 1: Caracterización y Ciencia Básica (TRL 1 - 3)",
@@ -118,7 +196,46 @@ const roadmapSteps = [
   }
 ];
 
+const roadmapStepsEn = [
+  {
+    step: "01",
+    title: "Phase 1: Characterization & Basic Science (TRL 1 - 3)",
+    date: "2022 — 2023",
+    items: [
+      "Field mapping of postharvest losses in El Santuario and Marinilla (25-30% discards).",
+      "Multi-criteria analysis of 117 carrot samples and NIRS spectral signature modeling.",
+      "UV + Fenton photochemical reaction to obtain fractions enriched in apocarotenoids."
+    ]
+  },
+  {
+    step: "02",
+    title: "Phase 2: Formulation & Process Engineering (TRL 4 - 5)",
+    date: "2023 — 2024",
+    items: [
+      "ZanaPure puree formulation using hydrothermal cavitation (CHTD) green technology.",
+      "Design of ZanaPet veterinary snacks and functional enriched gummy confections.",
+      "Colloidal encapsulation of apocarotenoids in Nanostructured Lipid Carriers NLC (<400nm).",
+      "In-vitro cell viability assays (>92%) and photoprotection profiles under OECD standards."
+    ]
+  },
+  {
+    step: "03",
+    title: "Phase 3: Pilot Scaling & Operational Validation (TRL 6 - 7)",
+    date: "2025 — 2026",
+    items: [
+      "Semi-industrial pilot batch trials with Multialoe S.A.S. and INTAL facilities.",
+      "12-week accelerated stability testing at 40°C / 75% RH in barrier doypack packaging.",
+      "Quantitative descriptive sensory panels with 70 target consumers.",
+      "Agronomic and technological transfer with over 190 farmers in Eastern Antioquia."
+    ]
+  }
+];
+
 export default function TrlExplanation() {
+  const { language } = useLanguage();
+  const trlStages = language === 'en' ? trlStagesEn : trlStagesEs;
+  const roadmapSteps = language === 'en' ? roadmapStepsEn : roadmapStepsEs;
+
   const [activeStageIndex, setActiveStageIndex] = useState<number>(5); // TRL 6 por defecto
   const [showDiagramModal, setShowDiagramModal] = useState(false);
 
@@ -133,13 +250,19 @@ export default function TrlExplanation() {
         <div className="space-y-3 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] text-xs font-geist uppercase tracking-widest font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Madurez Tecnológica MGA & MinCiencias</span>
+            <span>{language === 'en' ? 'MGA & MinCiencias Technology Readiness' : 'Madurez Tecnológica MGA & MinCiencias'}</span>
           </div>
           <h3 className="font-sora text-2xl sm:text-4xl font-extrabold text-[#F0EDE1] leading-tight">
-            ¿Qué es la Escala TRL y cómo alcanzamos TRL 6 – TRL 7?
+            {language === 'en' 
+              ? 'What is the TRL Scale & How Did We Achieve TRL 6 – TRL 7?' 
+              : '¿Qué es la Escala TRL y cómo alcanzamos TRL 6 – TRL 7?'
+            }
           </h3>
           <p className="text-sm text-[#F0EDE1]/80 font-light leading-relaxed">
-            La escala <strong>TRL (Technology Readiness Level)</strong> es el estándar internacional (creado por la NASA y adoptado en Colombia por el Ministerio de Ciencia, Tecnología e Innovación) que mide el nivel de madurez de una tecnología desde el concepto teórico hasta su comercialización.
+            {language === 'en'
+              ? 'The TRL (Technology Readiness Level) scale is the international standard (created by NASA and adopted in Colombia by MinCiencias) that assesses technology maturity from initial research to commercial readiness.'
+              : 'La escala TRL (Technology Readiness Level) es el estándar internacional (creado por la NASA y adoptado en Colombia por el Ministerio de Ciencia, Tecnología e Innovación) que mide el nivel de madurez de una tecnología desde el concepto teórico hasta su comercialización.'
+            }
           </p>
         </div>
 
@@ -149,7 +272,7 @@ export default function TrlExplanation() {
           className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] text-xs font-geist hover:bg-[#5E824A]/40 hover:text-white transition-all shadow-lg shrink-0 cursor-pointer"
         >
           <Maximize2 className="w-4 h-4" />
-          <span>Ver Infografía TRL Oficial</span>
+          <span>{language === 'en' ? 'View Official TRL Infographic' : 'Ver Infografía TRL Oficial'}</span>
         </button>
       </div>
 
@@ -157,10 +280,10 @@ export default function TrlExplanation() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <span className="text-xs font-geist uppercase tracking-widest text-[#D4CF7D] font-semibold">
-            Escala de Madurez de TRL 1 a TRL 9 (Haz clic en cada nivel)
+            {language === 'en' ? 'Maturity Scale from TRL 1 to TRL 9 (Click on each level)' : 'Escala de Madurez de TRL 1 a TRL 9 (Haz clic en cada nivel)'}
           </span>
           <span className="text-xs font-geist text-[#DE5A30] font-bold">
-            Antioquia Zana: Nivel TRL 6 y 7 Alcanzado
+            {language === 'en' ? 'Antioquia Zana: TRL 6 & 7 Levels Achieved' : 'Antioquia Zana: Nivel TRL 6 y 7 Alcanzado'}
           </span>
         </div>
 
@@ -195,7 +318,12 @@ export default function TrlExplanation() {
                   {stage.level}
                 </span>
                 <span className="text-[9px] font-geist leading-none truncate w-full">
-                  {isAchieved ? "★ Alcanzado" : isCompleted ? "✓ Hecho" : "Pendiente"}
+                  {isAchieved 
+                    ? (language === 'en' ? "★ Achieved" : "★ Alcanzado") 
+                    : isCompleted 
+                    ? (language === 'en' ? "✓ Done" : "✓ Hecho") 
+                    : (language === 'en' ? "Pending" : "Pendiente")
+                  }
                 </span>
               </button>
             );
@@ -229,7 +357,7 @@ export default function TrlExplanation() {
 
                 {trlStages[activeStageIndex].highlight && (
                   <span className="inline-flex items-center gap-1.5 text-xs text-[#DE5A30] font-bold font-geist uppercase tracking-wider bg-[#DE5A30]/10 px-3 py-1 rounded-full border border-[#DE5A30]/30">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> Estado Entregado del Proyecto
+                    <CheckCircle2 className="w-3.5 h-3.5" /> {language === 'en' ? 'Delivered Project Status' : 'Estado Entregado del Proyecto'}
                   </span>
                 )}
               </div>
@@ -259,7 +387,7 @@ export default function TrlExplanation() {
             />
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
               <span className="px-4 py-2 rounded-xl bg-[#DE5A30] text-white text-xs font-geist font-bold flex items-center gap-2 shadow-lg">
-                <Maximize2 className="w-4 h-4" /> Ampliar Diagrama Infográfico
+                <Maximize2 className="w-4 h-4" /> {language === 'en' ? 'Enlarge Infographic Diagram' : 'Ampliar Diagrama Infográfico'}
               </span>
             </div>
           </div>
@@ -268,9 +396,14 @@ export default function TrlExplanation() {
         {/* Explicación de las 3 Fases de Avance de Antioquia Zana */}
         <div className="lg:col-span-7 space-y-6">
           <div className="space-y-1">
-            <span className="text-xs font-geist uppercase tracking-widest text-[#D4CF7D]">Ruta de Escalamiento</span>
+            <span className="text-xs font-geist uppercase tracking-widest text-[#D4CF7D]">
+              {language === 'en' ? 'Scaling Pathway' : 'Ruta de Escalamiento'}
+            </span>
             <h4 className="font-sora text-xl font-bold text-[#F0EDE1]">
-              ¿Cómo llegamos a TRL 6 y TRL 7 en Antioquia Zana?
+              {language === 'en' 
+                ? 'How did we achieve TRL 6 and TRL 7 in Antioquia Zana?' 
+                : '¿Cómo llegamos a TRL 6 y TRL 7 en Antioquia Zana?'
+              }
             </h4>
           </div>
 
@@ -320,7 +453,10 @@ export default function TrlExplanation() {
               />
               <div className="p-3 text-center">
                 <p className="text-xs font-geist text-[#D4CF7D]">
-                  Escala de Madurez Tecnológica TRL (1 a 9) — Proyecto Antioquia Zana SGR BPIN 2020000100192 (Clic para cerrar)
+                  {language === 'en'
+                    ? 'Technology Readiness Level TRL Scale (1 to 9) — Antioquia Zana Project SGR BPIN 2020000100192 (Click to close)'
+                    : 'Escala de Madurez Tecnológica TRL (1 a 9) — Proyecto Antioquia Zana SGR BPIN 2020000100192 (Clic para cerrar)'
+                  }
                 </p>
               </div>
             </motion.div>

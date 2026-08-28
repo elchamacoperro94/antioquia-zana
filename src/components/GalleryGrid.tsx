@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Image as ImageIcon, MapPin, Calendar, Plus } from 'lucide-react';
 import { galleryPhotos } from '../data/galleryPhotos';
 import GalleryLightbox from './GalleryLightbox';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function GalleryGrid() {
+  const { language } = useLanguage();
   const [visibleCount, setVisibleCount] = useState<number>(16);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -22,10 +24,13 @@ export default function GalleryGrid() {
       {/* Stats Bar */}
       <div className="flex flex-col sm:flex-row justify-between items-center bg-obsidian-850 border border-white/5 p-4 rounded-2xl gap-3 text-xs md:text-sm font-mono text-slate-400">
         <div>
-          <span className="text-white font-bold">{galleryPhotos.length}</span> Fotografías reales del proyecto Antioquia Zana
+          <span className="text-white font-bold">{galleryPhotos.length}</span> {language === 'en' ? 'Authentic photographs from the Antioquia Zana project' : 'Fotografías reales del proyecto Antioquia Zana'}
         </div>
         <div>
-          Mostrando <span className="text-carrot-orange font-bold">{paginatedPhotos.length}</span> de <span className="text-white font-bold">{galleryPhotos.length}</span>
+          {language === 'en' ? 'Showing ' : 'Mostrando '}
+          <span className="text-carrot-orange font-bold">{paginatedPhotos.length}</span>
+          {language === 'en' ? ' of ' : ' de '}
+          <span className="text-white font-bold">{galleryPhotos.length}</span>
         </div>
       </div>
 
@@ -34,7 +39,7 @@ export default function GalleryGrid() {
         {galleryPhotos.length === 0 ? (
           <div className="text-center py-20 text-slate-500 flex flex-col items-center gap-3">
             <ImageIcon className="h-10 w-10 text-slate-600" />
-            <p>No se encontraron registros fotográficos.</p>
+            <p>{language === 'en' ? 'No photographic records found.' : 'No se encontraron registros fotográficos.'}</p>
           </div>
         ) : (
           <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
@@ -99,7 +104,7 @@ export default function GalleryGrid() {
             className="py-3 px-6 rounded-xl font-semibold text-sm bg-white/5 hover:bg-white/10 border border-white/15 text-slate-300 hover:text-white transition-all flex items-center justify-center gap-2"
           >
             <Plus className="h-4 w-4" />
-            Cargar Más Fotografías
+            <span>{language === 'en' ? `Load More Photos (${galleryPhotos.length - visibleCount} remaining)` : `Cargar más fotografías (${galleryPhotos.length - visibleCount} restantes)`}</span>
           </button>
         </div>
       )}

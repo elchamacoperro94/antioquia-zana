@@ -1,5 +1,6 @@
 import { Award, Download } from 'lucide-react';
 import SectionHeader from './SectionHeader';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ThesisStudent {
   name: string;
@@ -11,7 +12,7 @@ interface ThesisStudent {
   downloadLink: string;
 }
 
-const thesisList: ThesisStudent[] = [
+const thesisListEs: ThesisStudent[] = [
   {
     name: "Mateo Londoño Valencia",
     level: "Maestría",
@@ -77,13 +78,85 @@ const thesisList: ThesisStudent[] = [
   }
 ];
 
+const thesisListEn: ThesisStudent[] = [
+  {
+    name: "Mateo Londoño Valencia",
+    level: "Master's",
+    program: "M.Sc. Food Science and Technology (INTAL / UdeA)",
+    distinction: "Approved Thesis",
+    title: "Value generation in the Eastern Antioquia carrot production chain through conceptualization, formulation, and prototyping of functional food products",
+    directors: "Advisor: PhD. Luis A. Salazar Hoyos | Co-advisor: MSc. Juan C. Henao Rojas | Advisors: PhD. Álvaro Arango Ruíz, PhD. Juan F. Montoya Carvajal",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.6 Tesista de Maestria 3 (Intal)/2.6.3 Tesis maestria- Mateo Londoño V.pdf"
+  },
+  {
+    name: "Jaison Martínez Saldarriaga",
+    level: "Master's",
+    program: "M.Sc. Food Science and Technology (National University of Colombia - Medellín)",
+    distinction: "Yes (Laureate Distinction - UNAL)",
+    title: "Multidimensional characterization and potential applications of carrot productive surpluses (Daucus carota) in Eastern Antioquia",
+    directors: "Advisor: Prof. Juan Camilo Henao Rojas | Co-advised by: Prof. Diana Paola Yepes Betancur and Prof. Edith Marleny Cadena Chamorro",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.1 Tesista Maestria 1 (Agrosavia)/2.1.3 Distincion Laureada UNAL.jpg"
+  },
+  {
+    name: "Paola Andrea Ospina Sánchez",
+    level: "Master's",
+    program: "M.Sc. Geomatics (National University of Colombia - Bogotá)",
+    distinction: "Yes (Meritorious Distinction - Res. 323 of 2025)",
+    title: "Multidimensional quality modeling in carrots from spectral reflectance, imaging, and consumer perception",
+    directors: "Advisor: Joaquín Guillermo Ramírez Gil (UNAL Bogotá) | Co-advisor: Juan Camilo Henao Rojas (AGROSAVIA)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.2 Tesista de Maestria 2 (UNal)/2.2.2 RESOLUCION 323 DE 2025 DISTINCION MERITORIA PAOLA _260327_095657.pdf"
+  },
+  {
+    name: "Sergio González López",
+    level: "Master's",
+    program: "M.Sc. Pharmaceutical & Food Sciences (Line: Natural Products - Universidad de Antioquia)",
+    distinction: "Degree Work Under Evaluation",
+    title: "Study of the cytotoxic effect mediated by a pro-oxidant mechanism of carotenoids on gastric cancer cells",
+    directors: "Faculty of Pharmaceutical and Food Sciences (UdeA)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.8 Tesista de Maestria 4 (U de A) PENDIENTE SUSTENTACION/Certificado de entrega de tesis de maestría.pdf"
+  },
+  {
+    name: "Daniela López Galeano",
+    level: "Undergraduate",
+    program: "International Trade (Universidad Católica de Oriente - UCO)",
+    distinction: "Degree Conferred (Diploma & Records)",
+    title: "Affiliated Undergraduate Research Student - UCO Agreement",
+    directors: "Universidad Católica de Oriente (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.11 Estudiante vinculado pregrado UCO 3/ACTA DE GRADO.pdf"
+  },
+  {
+    name: "Yeslin Ochoa Marín",
+    level: "Undergraduate",
+    program: "International Trade (Universidad Católica de Oriente - UCO)",
+    distinction: "Degree Conferred (Diploma & Records)",
+    title: "Affiliated Undergraduate Research Student - UCO Agreement",
+    directors: "Universidad Católica de Oriente (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.10 Estudiante vinculado pregrado UCO 2/Acta de grado y Diploma - Comex.pdf"
+  },
+  {
+    name: "María Alejandra Muñoz Moya",
+    level: "Undergraduate",
+    program: "Dual Degree: Business Administration & International Trade (UCO)",
+    distinction: "Affiliated Student",
+    title: "Affiliated Undergraduate Research Student - UCO Agreement",
+    directors: "Universidad Católica de Oriente (UCO)",
+    downloadLink: "/entregables objetivos/Objetivo 2/2.9 Estudiante vinculado pregrado UCO 1/2.9.1 Estudiante con doble titulacion"
+  }
+];
+
 export default function StudentsPage() {
+  const { language } = useLanguage();
+  const thesisList = language === 'en' ? thesisListEn : thesisListEs;
+
   return (
     <div className="w-full space-y-10">
       <SectionHeader
-        badgeText="Formación de Talento Humano"
-        title="Tesis y Trabajos de Grado del Proyecto"
-        subtitle="Repositorio oficial de tesis de Maestría y Pregrado vinculadas a la investigación Antioquia Zana (SGR BPIN 2020000100192)."
+        badgeText={language === 'en' ? "Human Talent Training" : "Formación de Talento Humano"}
+        title={language === 'en' ? "Theses and Graduate Degree Works" : "Tesis y Trabajos de Grado del Proyecto"}
+        subtitle={language === 'en' 
+          ? "Official repository of Master's and Undergraduate theses affiliated with the Antioquia Zana research (SGR BPIN 2020000100192)." 
+          : "Repositorio oficial de tesis de Maestría y Pregrado vinculadas a la investigación Antioquia Zana (SGR BPIN 2020000100192)."
+        }
       />
 
       <div className="grid grid-cols-1 gap-4">
@@ -97,10 +170,10 @@ export default function StudentsPage() {
                 <span className="px-3 py-1 rounded-full bg-[#DE5A30]/20 border border-[#DE5A30]/40 text-[#DE5A30] text-xs font-sora font-extrabold">
                   {st.level}
                 </span>
-                {st.distinction.includes("Sí") && (
+                {(st.distinction.includes("Sí") || st.distinction.includes("Yes")) && (
                   <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-geist font-semibold flex items-center gap-1">
                     <Award className="w-3.5 h-3.5" />
-                    <span>Distinción: {st.distinction}</span>
+                    <span>{language === 'en' ? 'Distinction:' : 'Distinción:'} {st.distinction}</span>
                   </span>
                 )}
                 <span className="text-xs font-geist text-[#D4CF7D]">
@@ -121,14 +194,14 @@ export default function StudentsPage() {
               </span>
             </div>
 
-            {st.level !== 'Pregrado' && (
+            {st.level !== 'Pregrado' && st.level !== 'Undergraduate' && (
               <a
                 href={st.downloadLink}
                 download
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/50 text-[#D4CF7D] font-sora text-xs font-semibold hover:bg-[#5E824A] hover:text-white transition-all shadow-md shrink-0 cursor-pointer"
               >
                 <Download className="w-4 h-4" />
-                <span>Descargar Tesis PDF</span>
+                <span>{language === 'en' ? 'Download Thesis PDF' : 'Descargar Tesis PDF'}</span>
               </a>
             )}
           </div>

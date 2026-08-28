@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { objectives } from '../data/projectData';
 import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../data/translations';
+import { translations, activitiesDataMap } from '../data/translations';
 
 interface ActivityItem {
   id: string;
@@ -259,7 +259,7 @@ const activitiesList: ActivityItem[] = [
     num: 14,
     objId: "OBJ-04",
     name: "14. Fortalecimiento de gobernanza de las cadenas de valor de los productos generados.",
-    description: "Consolidación del esquema de gobernanza del proyecto mediante 12 mesas técnicas mensuales de regalías con el SGR y la entrega de 15 informes trimestrales de cumplimiento físico y financiero, junto con la distribución de 500 ejemplares de la cartilla didáctica ilustrada 'Esta Zanahoria Pa' Qué' en escuelas rurales de la región.",
+    description: "Consolidación del esquema de gobernanza mediante 12 mesas técnicas mensuales de regalías y distribución de la cartilla didáctica 'Esta Zanahoria Pa' Qué'.",
     deliverables: [
       { name: "ACT-14 Informe de Gobernanza y articulación final", link: "/entregables objetivos/Objetivo 4/4.4 Documento técnico con las características de la cadena de valor, mercado y planes de negocio específicos para los prototipos de productos entregados/4.4.1 DOCUMENTO TECNICO objetivo 4/ACTIVIDAD 14/ACT 14. INFORME TÉCNICO_FINAL.docx" },
       { name: "Anexo 14.1 Cartilla didáctica 'Esta Zanahoria Pa' Quién'", link: "https://universidadcatolicadeorienteuco.publica.la/library/publication/esta-zanahoria-pa-quien-gobernanza-transferencia-y-aprendizajes-en-la-red-de-valor-de-la-zanahoria" }
@@ -275,6 +275,11 @@ export default function ActivityAccordion() {
   const [expandedActId, setExpandedActId] = useState<string | null>("ACT-01");
   const [lightboxPhoto, setLightboxPhoto] = useState<string | null>(null);
 
+  const getObjectiveTitle = (objId: string) => {
+    const num = objId.replace('OBJ-0', '');
+    return language === 'en' ? `Specific Objective ${num}` : `Objetivo Específico ${num}`;
+  };
+
   const filteredActivities = activeObjFilter === "TODOS" 
     ? activitiesList 
     : activitiesList.filter(a => a.objId === activeObjFilter);
@@ -282,7 +287,6 @@ export default function ActivityAccordion() {
   return (
     <div className="w-full space-y-8">
       
-      {/* ── Filtro por Objetivo Específico (Nomenclatura Literal Oficial) ── */}
       <div className="flex flex-wrap items-center gap-3 p-2 rounded-2xl bg-[#0F1A15] border border-[#5E824A]/30">
         <button
           onClick={() => setActiveObjFilter("TODOS")}
@@ -306,17 +310,16 @@ export default function ActivityAccordion() {
               onClick={() => setActiveObjFilter(obj.id)}
               className={`px-4 py-2 rounded-xl text-xs font-geist border transition-all cursor-pointer ${badgeColor}`}
             >
-              {obj.title}
+              {getObjectiveTitle(obj.id)}
             </button>
           );
         })}
       </div>
 
-      {/* ── Lista Acordeón de Actividades ── */}
       <div className="space-y-4">
         {filteredActivities.map((act) => {
           const isExpanded = expandedActId === act.id;
-          const parentObj = objectives.find(o => o.id === act.objId);
+          const actTrans = activitiesDataMap[language]?.find(a => a.id === act.id) || act;
 
           return (
             <div
@@ -327,7 +330,6 @@ export default function ActivityAccordion() {
                   : 'bg-[#0F1A15]/80 border-[#5E824A]/20 hover:border-[#5E824A]/40'
               }`}
             >
-              {/* Encabezado del Acordeón */}
               <div
                 onClick={() => setExpandedActId(isExpanded ? null : act.id)}
                 className="p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer select-none"
@@ -335,21 +337,18 @@ export default function ActivityAccordion() {
                 <div className="space-y-2 flex-1">
                   <div className="flex items-center gap-3">
                     <span className="text-xs text-[#F0EDE1]/60 font-geist">
-                      {parentObj?.title}
+                      {getObjectiveTitle(act.objId)}
                     </span>
                   </div>
-
                   <h3 className="font-sora text-sm sm:text-base md:text-lg font-semibold text-[#F0EDE1] leading-snug">
-                    {act.name}
+                    {actTrans.name}
                   </h3>
                 </div>
-
                 <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-[#D4CF7D] shrink-0 mt-1">
                   <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-[#DE5A30]' : ''}`} />
                 </div>
               </div>
 
-              {/* Contenido Expandible */}
               <AnimatePresence>
                 {isExpanded && (
                   <motion.div
@@ -359,30 +358,27 @@ export default function ActivityAccordion() {
                     transition={{ duration: 0.3 }}
                     className="border-t border-[#5E824A]/20 p-5 sm:p-6 space-y-6 bg-[#0F1A15]/40"
                   >
-                    {/* Descripción de la Actividad */}
                     <div className="space-y-2">
                       <span className="text-[11px] font-geist text-[#D4CF7D] uppercase tracking-wider block font-semibold">
-                        Resumen Metodológico:
+                        {t.act_method_summary}
                       </span>
                       <p className="text-xs sm:text-sm text-[#F0EDE1]/80 font-light leading-relaxed">
-                        {act.description}
+                        {actTrans.description}
                       </p>
                     </div>
 
-                    {/* Caso Especial: Secreto Empresarial (Objetivo 3: Act 7, 9 y 10) */}
                     {act.isSecret && (
                       <div className="p-5 rounded-2xl bg-[#0F1A15] border border-amber-500/40 space-y-2 shadow-lg">
                         <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold uppercase tracking-wider">
                           <Lock className="w-4 h-4 text-amber-400" />
-                          <span>Aviso Legal de Secreto Empresarial (Protección Intelectual)</span>
+                          <span>{t.act_secret_notice_title}</span>
                         </div>
                         <p className="text-xs text-[#F0EDE1]/80 font-light leading-relaxed">
-                          Los resultados analíticos, formulaciones e ingredientes nanotecnológicos de esta actividad están protegidos bajo la figura de <strong>Secreto Empresarial</strong>. Para solicitar información adicional o convenios de transferencia tecnológica, por favor contactar a la <strong>OTRI Universidad de Antioquia</strong> (<code>otri@udea.co</code>) y al Grupo de Sustancias Bioactivas.
+                          {t.act_secret_notice_desc}
                         </p>
                       </div>
                     )}
 
-                    {/* Caso Especial: Artículo Científico (Objetivo 3: Act 8) */}
                     {act.hasArticle && (
                       <div className="p-4 rounded-2xl bg-[#5E824A]/20 border border-[#5E824A]/40 flex items-center gap-3">
                         <Sparkles className="w-5 h-5 text-[#D4CF7D] shrink-0" />
@@ -393,7 +389,6 @@ export default function ActivityAccordion() {
                       </div>
                     )}
 
-                    {/* Entregables y Soportes Oficiales */}
                     <div className="space-y-3">
                       <span className="text-[11px] font-geist text-[#D4CF7D] uppercase tracking-wider block font-semibold">
                         {t.act_deliverables_title}
@@ -403,10 +398,7 @@ export default function ActivityAccordion() {
                           <a
                             key={dIdx}
                             href={del.link}
-                            {...(del.link.startsWith('http') 
-                              ? { target: "_blank", rel: "noopener noreferrer" } 
-                              : { download: true }
-                            )}
+                            {...(del.link.startsWith('http') ? { target: "_blank", rel: "noopener noreferrer" } : { download: true })}
                             className="flex items-center justify-between p-3.5 rounded-2xl bg-[#0F1A15] border border-[#5E824A]/30 text-xs text-[#F0EDE1] hover:border-[#DE5A30] hover:bg-[#15261F] transition-colors group cursor-pointer"
                           >
                             <div className="flex items-center gap-3 min-w-0">
@@ -419,7 +411,6 @@ export default function ActivityAccordion() {
                       </div>
                     </div>
 
-                    {/* Galería Fotográfica Específica por Actividad */}
                     {act.photos && act.photos.length > 0 && (
                       <div className="space-y-3">
                         <span className="text-[11px] font-geist text-[#D4CF7D] uppercase tracking-wider block font-semibold">

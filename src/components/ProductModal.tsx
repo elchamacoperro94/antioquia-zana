@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Beaker, Apple, Award, ShieldAlert, Sparkles, FileText } from 'lucide-react';
 import type { ProductEntry } from '../data/projectData';
 import Badge from './Badge';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 interface ProductModalProps {
   isOpen: boolean;
@@ -11,6 +13,9 @@ interface ProductModalProps {
 }
 
 export default function ProductModal({ isOpen, onClose, product }: ProductModalProps) {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   // Prevent background scrolling when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -83,12 +88,12 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
                 </div>
                 <Badge text={product.tag} color={product.accent === 'green' ? 'green' : product.accent === 'purple' ? 'purple' : 'orange'} />
                 <span className="text-xs font-mono text-slate-400 tracking-wider mt-2 uppercase">
-                  {product.type}
+                  {product.type === 'Alimentaria' ? (language === 'en' ? 'Food Industry' : 'Alimentaria') : (language === 'en' ? 'Pharma / Cosmetics' : 'Farmacéutica/Cosmética')}
                 </span>
               </div>
 
               <div className="text-center md:text-left border-t border-white/5 pt-4">
-                <span className="text-xs font-mono text-slate-500 block">ID PROTOTIPO</span>
+                <span className="text-xs font-mono text-slate-500 block">{t.modal_proto_id}</span>
                 <span className="text-sm font-mono text-white font-bold">{product.id.toUpperCase()}</span>
               </div>
             </div>
@@ -112,14 +117,14 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
 
                 <div className="flex flex-col gap-1 border-l-2 border-carrot-orange pl-4 py-1">
                   <span className="text-xs font-mono tracking-wider text-slate-500 uppercase">
-                    Tecnología de Proceso
+                    {t.modal_process_tech}
                   </span>
                   <p className="text-sm text-white font-medium">{product.process}</p>
                 </div>
 
                 <div>
                   <h4 className="text-xs font-mono text-slate-500 tracking-wider uppercase mb-2">
-                    Formulación Científica
+                    {t.modal_scientific_formula}
                   </h4>
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5 text-sm leading-relaxed text-slate-300 font-light">
                     {product.formulation}
@@ -128,7 +133,7 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
 
                 <div>
                   <h4 className="text-xs font-mono text-slate-500 tracking-wider uppercase mb-2">
-                    Descripción del Prototipo
+                    {t.modal_proto_desc}
                   </h4>
                   <p className="text-sm text-slate-300 leading-relaxed font-light">
                     {product.description}
@@ -137,7 +142,7 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
 
                 <div>
                   <h4 className="text-xs font-mono text-slate-500 tracking-wider uppercase mb-3">
-                    Especificaciones Técnicas
+                    {t.modal_tech_specs}
                   </h4>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {product.features.map((feature, idx) => (
@@ -156,14 +161,14 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
                   href={`mailto:jhenao@agrosavia.co?subject=Consulta sobre Prototipo Antioquia Zana: ${product.name}`}
                   className="flex-grow py-3 px-6 rounded-xl font-semibold text-center text-sm bg-carrot-orange hover:bg-carrot-orange-hover text-white transition-all shadow-md shadow-carrot-orange/10 focus:outline-none"
                 >
-                  Solicitar Información
+                  {language === 'en' ? 'Request Information' : 'Solicitar Información'}
                 </a>
                 <button
-                  onClick={() => alert(`Descargando Ficha Técnica de ${product.name}...`)}
+                  onClick={() => alert(language === 'en' ? `Downloading Technical Datasheet for ${product.name}...` : `Descargando Ficha Técnica de ${product.name}...`)}
                   className="py-3 px-4 rounded-xl font-semibold text-sm bg-white/5 hover:bg-white/10 border border-white/15 text-slate-300 hover:text-white transition-all flex items-center justify-center gap-2"
                 >
                   <FileText className="h-4 w-4" />
-                  <span className="hidden sm:inline">Ficha Técnica</span>
+                  <span className="hidden sm:inline">{language === 'en' ? 'Datasheet' : 'Ficha Técnica'}</span>
                 </button>
               </div>
             </div>

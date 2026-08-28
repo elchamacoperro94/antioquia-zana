@@ -1,15 +1,20 @@
 import SectionHeader from '../components/SectionHeader';
 import GalleryGrid from '../components/GalleryGrid';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export default function Gallery() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <section id="registro-fotografico" className="px-6 py-20 md:py-28 max-w-6xl mx-auto flex flex-col gap-12 border-t border-white/5">
       {/* Section Header */}
       <SectionHeader
-        badgeText="Registro Fotográfico"
+        badgeText={t.hdr_gal_badge}
         badgeColor="orange"
-        title="Apropiación Social del Conocimiento"
-        subtitle="Galería fotográfica interactiva del trabajo de campo, socialización con productores y ensayos de laboratorio."
+        title={t.hdr_gal_title}
+        subtitle={t.hdr_gal_subtitle}
       />
 
       {/* Interactive Masonry Gallery */}

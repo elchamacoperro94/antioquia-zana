@@ -2,8 +2,13 @@ import { ExternalLink } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
 import GlassCard from '../components/GlassCard';
 import { partners } from '../data/projectData';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export default function Partners() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const colorMap = {
     green: 'border-emerald-500/25 bg-emerald-500/5 text-emerald-400',
     blue: 'border-blue-500/25 bg-blue-500/5 text-blue-400',
@@ -16,17 +21,28 @@ export default function Partners() {
     emerald: 'border-emerald-500/25 bg-emerald-500/5 text-emerald-400'
   };
 
+  const getPartnerRole = (role: string) => {
+    if (language !== 'en') return role;
+    if (role.includes('Líder')) return 'Executing Entity & Research Leader';
+    if (role.includes('Bioproductos')) return 'Co-Executing Entity — Food & Bioproducts R&D';
+    if (role.includes('Farmacéutica')) return 'Co-Executing Entity — Pharma & Biochemical R&D';
+    if (role.includes('Geomática')) return 'Co-Executing Entity — Modeling & Geomatics';
+    if (role.includes('Modelos de Negocio')) return 'Co-Executing Entity — Business Models & Economics';
+    if (role.includes('Escalado')) return 'Strategic Partner — Agro-industrial Scaling';
+    return role;
+  };
+
   return (
     <section id="aliados" className="px-6 py-20 md:py-28 max-w-6xl mx-auto flex flex-col gap-12 border-t border-white/5">
       {/* Cabecera de la Sección */}
       <SectionHeader
-        badgeText="Alianza Institucional"
+        badgeText={t.hdr_part_badge}
         badgeColor="blue"
-        title="Entidades Aliadas"
-        subtitle="Alianza estratégica interinstitucional para el fortalecimiento de la cadena productiva de la zanahoria en el Oriente Antioqueño."
+        title={t.hdr_part_title}
+        subtitle={t.hdr_part_subtitle}
       />
 
-      {/* Rejilla Simplificada de Aliados (Alineado con Observación 13) */}
+      {/* Rejilla Simplificada de Aliados */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {partners.map((partner, idx) => {
           const hasWebsite = !!partner.website;
@@ -49,13 +65,13 @@ export default function Partners() {
                   )}
                 </div>
 
-                {/* Nombre y Rol General (Sin listar actividades específicas) */}
+                {/* Nombre y Rol General */}
                 <div className="space-y-1">
                   <h4 className="font-sora text-lg font-bold text-[#F0EDE1] group-hover:text-[#DE5A30] transition-colors leading-tight">
                     {partner.shortName}
                   </h4>
                   <span className="text-xs font-mono text-[#D4CF7D] block uppercase font-semibold">
-                    {partner.role}
+                    {getPartnerRole(partner.role)}
                   </span>
                 </div>
               </div>

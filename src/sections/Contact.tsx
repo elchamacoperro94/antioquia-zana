@@ -3,46 +3,29 @@ import SectionHeader from '../components/SectionHeader';
 import GlassCard from '../components/GlassCard';
 import CalligraphyDedication from '../components/CalligraphyDedication';
 import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../data/translations';
+import { translations, featuredDocsData } from '../data/translations';
 
 export default function Contact() {
   const { language } = useLanguage();
   const t = translations[language];
+  const featuredDocs = featuredDocsData[language];
+
   const officialEmails = [
     {
-      label: 'Investigador Principal del Proyecto',
+      label: language === 'en' ? 'Principal Project Researcher' : 'Investigador Principal del Proyecto',
       name: 'Juan Camilo Henao Rojas',
-      role: 'Investigador M.Sc. AGROSAVIA Centro de Investigación La Selva',
+      role: language === 'en' ? 'Researcher M.Sc. AGROSAVIA La Selva Research Center' : 'Investigador M.Sc. AGROSAVIA Centro de Investigación La Selva',
       email: 'jhenao@agrosavia.co',
       href: 'mailto:jhenao@agrosavia.co?subject=Consulta%20Proyecto%20Antioquia%20Zana',
       icon: <User className="h-6 w-6 text-[#DE5A30]" />
     },
     {
-      label: 'Atención al Cliente e Información Institucional',
+      label: language === 'en' ? 'Customer Service & Institutional Information' : 'Atención al Cliente e Información Institucional',
       name: 'AGROSAVIA Atención al Cliente',
       role: 'Corporación Colombiana de Investigación Agropecuaria',
       email: 'atencionalcliente@agrosavia.co',
       href: 'mailto:atencionalcliente@agrosavia.co?subject=Consulta%20Proyecto%20Antioquia%20Zana',
       icon: <Building2 className="h-6 w-6 text-emerald-400" />
-    }
-  ];
-
-  const featuredDocs = [
-    {
-      type: 'Historieta & Cartilla Ilustrada',
-      title: 'La Huerta del Saber: El superpoder de la diferencia',
-      desc: 'Cartilla didáctica e ilustrada (N° 3) sobre la ruta de innovación, agrobiodiversidad y aprendizajes territoriales en la cadena de valor de la zanahoria.',
-      link: 'https://editorial.agrosavia.co/index.php/publicaciones/catalog/book/541',
-      badge: 'Editorial AGROSAVIA',
-      coverImage: '/la-huerta-del-saber-portada.png'
-    },
-    {
-      type: 'Libro de Investigación & Bioeconomía',
-      title: '¿Esta Zanahoria Pa\' qué? Rutas de innovación para la zanahoria',
-      desc: 'Obra científica que profundiza en las rutas de innovación para la zanahoria y la conexión entre la bioeconomía y la agroindustria en el Oriente antioqueño.',
-      link: 'https://repositorio.uco.edu.co/items/faf7692d-0483-4cf8-9cc9-cc88179c5a19',
-      badge: 'Repositorio UCO',
-      coverImage: '/esta-zanahoria-pa-que-portada.jpg'
     }
   ];
 
@@ -52,10 +35,10 @@ export default function Contact() {
       {/* ── Publicaciones Destacadas: Historieta y Recetario (Slide 25) ── */}
       <div className="space-y-8">
         <SectionHeader
-          badgeText="Divulgación & Material Destacado"
+          badgeText={t.hdr_feat_badge}
           badgeColor="orange"
-          title="Historieta Ilustrada y Recetario Agroindustrial"
-          subtitle="Publicaciones principales de divulgación científica y gastronómica del proyecto Antioquia Zana."
+          title={t.hdr_feat_title}
+          subtitle={t.hdr_feat_subtitle}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -111,7 +94,7 @@ export default function Contact() {
                   className="inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#5E824A]/20 hover:bg-[#DE5A30] border border-[#5E824A]/40 hover:border-[#DE5A30] text-[#D4CF7D] hover:text-white text-xs font-sora font-semibold transition-all duration-300 shadow-md group-hover:shadow-[#DE5A30]/20 cursor-pointer"
                 >
                   <BookOpen className="w-4 h-4" />
-                  <span>Leer Publicación Oficial</span>
+                  <span>{t.pub_btn_read}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
