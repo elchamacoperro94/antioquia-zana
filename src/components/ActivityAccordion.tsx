@@ -118,9 +118,10 @@ const activitiesList: ActivityItem[] = [
     name: "5. Generación y prototipados de productos alimenticios sólidos, semisólidos y líquidos.",
     description: "Diseño y formulación a escala piloto de tres prototipos (compota ZanaPure con 27.4% de zanahoria, snack para mascotas ZanaPet con 45%, y gomas funcionales con 18%). Se procesaron lotes de hasta 63 kg en planta piloto del INTAL con pérdidas menores a 240g, y se validó su inocuidad microbiológica bajo la norma de la Resolución 1407 de 2022.",
     deliverables: [
-      { name: "2.3 Ficha de prototipo alimentario ZanaPet (Mascotas)", link: "https://drive.google.com/uc?export=download&id=1DV993dzZJgZU64p9plcYDSRZhG7FkHVK" },
-      { name: "2.4 Ficha de prototipo alimentario Gomas Funcionales", link: "https://drive.google.com/uc?export=download&id=1O4XV3jmjeia7-ADzruUOkDq3nECKhfur" },
-      { name: "2.5 Ficha de prototipo alimentario ZanaPure (Compotas)", link: "https://drive.google.com/uc?export=download&id=10VZyEk3omEqIX9oDFTs7Zena2TSMWFIE" }
+      { name: "2.3 Ficha Puré biofuncional (ZanaPure) naranja.pdf", link: "https://drive.google.com/file/d/1rbCwkiWGz9-Zix8uVFSwa4-hvCtN8PMF/view?usp=sharing" },
+      { name: "2.4 Ficha Gomitas de zanahoria.pdf", link: "https://drive.google.com/file/d/1wkfnJ-jFdlIgNPPJMhX98LUxreAeZqHK/view?usp=drive_link" },
+      { name: "2.5 Ficha ZanaPet.pdf", link: "https://drive.google.com/file/d/1oTV8X3qRnPq9kHRTZk2Os1BevW5_5-Zn/view?usp=drive_link" },
+      { name: "Ficha Puré biofuncional (ZanaPure) morada.pdf", link: "https://drive.google.com/file/d/1zCO2Ptaz-g-Z4tNJP2kq7X34TWVl60uh/view?usp=drive_link" }
     ],
     photos: [
       "actividad 5/Figura 16. Prototipos de zanahoria secada en horno de convección y deshidratador..jpeg",
