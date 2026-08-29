@@ -1,14 +1,25 @@
 import { motion } from 'framer-motion';
 import { Sparkles, Heart, Award } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
-const paragraphs = [
+const paragraphsEs = [
   "El proyecto Antioquia Zana fue posible gracias al apoyo del Fondo de Ciencia, Tecnología e Innovación del Sistema General de Regalías (SGR) de Colombia y del Ministerio de Ciencia, Tecnología e Innovación de la República de Colombia, en su calidad de Secretaría Técnica del OCAD – FCTeI.",
   "Expresamos nuestro especial agradecimiento a los miembros de la Alianza Antioquia Zana, conformada por la Fundación INTAL, el Grupo de Sustancias Bioactivas de la Universidad de Antioquia, la Universidad Nacional de Colombia – sede Bogotá, la Universidad Católica de Oriente, Kavitec S.A.S. y la Corporación Colombiana de Investigación Agropecuaria – AGROSAVIA.",
   "Asimismo, reconocemos y agradecemos la participación de las asociaciones de productores, campesinos y actores territoriales, así como el acompañamiento de la Alcaldía de El Santuario, la Alcaldía de Marinilla y la Gobernación de Antioquia, cuyos aportes, saberes, capacidades y compromiso fueron fundamentales para el desarrollo del proyecto.",
   "A todos ellos, nuestro profundo reconocimiento por contribuir a una iniciativa que une ciencia, territorio, innovación y bioeconomía, y que busca transformar la cadena de valor de la zanahoria en el Oriente antioqueño desde una visión colaborativa, sostenible y orientada al bienestar de las comunidades."
 ];
 
+const paragraphsEn = [
+  "The Antioquia Zana project was made possible thanks to the support of the Science, Technology, and Innovation Fund of Colombia's General Royalty System (SGR) and the Ministry of Science, Technology, and Innovation of the Republic of Colombia, acting as the Technical Secretariat of OCAD – FCTeI.",
+  "We express our special gratitude to the members of the Antioquia Zana Alliance, formed by Fundación INTAL, the Bioactive Substances Group of Universidad de Antioquia, Universidad Nacional de Colombia – Bogotá Campus, Universidad Católica de Oriente, Kavitec S.A.S., and the Colombian Agricultural Research Corporation – AGROSAVIA.",
+  "Likewise, we recognize and appreciate the active participation of producer associations, local farmers, and community stakeholders, as well as the endorsement of the Municipalities of El Santuario and Marinilla, and the Government of Antioquia, whose contributions, traditional knowledge, capabilities, and dedication were key to the project's success.",
+  "To all of them, our deepest recognition for contributing to an initiative uniting science, territory, innovation, and bioeconomy, seeking to transform the carrot value chain in Eastern Antioquia from a collaborative, sustainable vision focused on community well-being."
+];
+
 export default function CalligraphyDedication() {
+  const { language } = useLanguage();
+  const paragraphs = language === 'en' ? paragraphsEn : paragraphsEs;
+
   return (
     <div className="w-full relative my-16">
       {/* Background Glow */}
@@ -41,11 +52,11 @@ export default function CalligraphyDedication() {
           </motion.div>
 
           <span className="text-xs font-mono text-[#D4CF7D] uppercase tracking-[0.3em] block">
-            Homenaje & Reconocimiento Institucional
+            {language === 'en' ? 'HOMAGE & INSTITUTIONAL RECOGNITION' : 'Homenaje & Reconocimiento Institucional'}
           </span>
 
           <h2 className="font-serif italic text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#F0EDE1] via-[#D4CF7D] to-[#F0EDE1] font-bold tracking-tight">
-            Agradecimientos del Proyecto
+            {language === 'en' ? 'Project Acknowledgments' : 'Agradecimientos del Proyecto'}
           </h2>
 
           <div className="w-24 h-0.5 mx-auto bg-gradient-to-r from-transparent via-[#D4CF7D]/60 to-transparent my-4" />
@@ -77,12 +88,16 @@ export default function CalligraphyDedication() {
         >
           <div className="flex items-center gap-2">
             <Award className="w-4 h-4 text-[#DE5A30]" />
-            <span>Alianza Antioquia Zana — Regalías SGR & Minciencias</span>
+            <span>
+              {language === 'en' ? 'Antioquia Zana Alliance — Royalties SGR & Minciencias' : 'Alianza Antioquia Zana — Regalías SGR & Minciencias'}
+            </span>
           </div>
 
           <div className="flex items-center gap-2 text-[#F0EDE1]/60">
             <Heart className="w-4 h-4 text-rose-400 fill-rose-400/20" />
-            <span>Con gratitud al Oriente Antioqueño</span>
+            <span>
+              {language === 'en' ? 'With gratitude to Eastern Antioquia' : 'Con gratitud al Oriente Antioqueño'}
+            </span>
           </div>
         </motion.div>
       </motion.div>
